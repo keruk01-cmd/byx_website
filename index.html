@@ -115,7 +115,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   white-space:nowrap;overflow:hidden;
 }
 #reel .w{flex:0 0 auto;transform-origin:100% 50%}
-#brand .fixed{padding-left:.15em;white-space:nowrap}
+/* the gap before BY is a real space, so it is identical to the one in BY X */
+#brand .fixed{padding-left:0;white-space:pre}
 #brand:active{opacity:.6}
 
 #nav{display:flex;align-items:center;gap:clamp(14px,2.1vw,34px);flex:0 0 auto;margin-left:auto}
@@ -175,13 +176,15 @@ body.menu #mobnav{transform:translateY(0);visibility:visible}
 .count{font-family:var(--font-mono);font-size:11px;color:var(--mute)}
 
 .display,#brand,#nav a,.row-i .t,.card .cap .nm,.yeardiv span,table.idx .c-name,.art h1,.art h3,
-.sechead h2,.person .n,.bigmail,.feature .ttl,.pd-nav .v,.arow .tt{font-variation-settings:'wght' 680}
+.sechead h2,.person .n,.feature .ttl,.pd-nav .v,.arow .tt{font-variation-settings:'wght' 680}
 .display{font-family:var(--font-display);font-weight:400;text-transform:uppercase;line-height:.92;letter-spacing:-.005em;margin:0}
 .h-xl{font-size:clamp(44px,11.5vw,168px)}
 .h-l{font-size:clamp(30px,6vw,74px)}
 .h-m{font-size:clamp(20px,2.9vw,38px)}
 .blank{display:inline-block;width:1.42em;height:.072em;background:currentColor;vertical-align:.055em;margin-right:.04em}
-.blk-row{display:block;margin:0 0 .12em}
+/* ABOUT masthead: blank line + BY X on a single line, spaced like the logo */
+.brandline{white-space:pre}
+.brandline .blank{margin-right:0}
 
 .hero{padding:clamp(28px,6vw,80px) var(--pad) clamp(24px,4vw,54px);border-bottom:var(--hair) solid var(--fg)}
 .hero .lede{max-width:60ch;margin-top:clamp(18px,2.6vw,34px);font-size:clamp(13px,1.25vw,17px);line-height:1.62}
@@ -354,9 +357,7 @@ table.idx .thumb{width:46px;min-width:46px;max-width:none;height:34px;object-fit
 .person .im img{width:100%;height:100%;object-fit:cover}
 .person .n{font-family:var(--font-display);font-size:17px;text-transform:uppercase;line-height:1}
 .person .r{font-family:var(--font-mono);font-size:10px;color:var(--mute);text-transform:uppercase;margin-top:4px}
-.bigmail{font-family:var(--font-display);font-size:clamp(22px,3.6vw,48px);text-transform:uppercase;line-height:1.02;word-break:break-all;display:inline-block}
-.bigmail:hover{background:var(--fg);color:var(--bg)}
-.map{aspect-ratio:16/9;border:var(--hair) solid var(--fg);margin-top:20px;overflow:hidden}
+.map{aspect-ratio:16/9;border:var(--hair) solid var(--fg);overflow:hidden}
 .map img{width:100%;height:100%;object-fit:cover}
 
 /* ---------- FORMS (shared by contact + admin) ---------- */
@@ -381,6 +382,12 @@ input:focus,textarea:focus,select:focus{border-bottom-width:2px;padding-bottom:8
 .abtn.sm{font-size:9.5px;padding:6px 10px}
 
 /* ---------- ADMIN ---------- */
+/* in-page shortcut into ADMIN — only rendered while logged in */
+.editbar{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:9px var(--pad);border-bottom:var(--hair) solid var(--fg);background:var(--bg);
+}
+.editbar .lb{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-right:2px}
 .adm-bar{
   display:flex;flex-wrap:wrap;align-items:stretch;
   border-bottom:var(--hair) solid var(--fg);
@@ -420,9 +427,15 @@ input:focus,textarea:focus,select:focus{border-bottom-width:2px;padding-bottom:8
 .imgs .cell{position:relative;width:118px}
 .imgs img{width:118px;height:86px;object-fit:cover;border:var(--hair) solid var(--faint)}
 .imgs .x{position:absolute;top:0;right:0;background:var(--fg);color:var(--bg);font-family:var(--font-mono);font-size:10px;padding:2px 6px;line-height:1.3}
-.blocks .b{border:var(--hair) solid var(--faint);padding:10px 12px;margin-bottom:8px}
-.blocks .bh{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
-.blocks .bh .g{display:flex;gap:5px}
+/* post writer — one field you write straight through */
+.wtools{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.wtools .hint{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.05em;color:var(--mute);text-transform:uppercase}
+.wbody{
+  min-height:56vh;border:var(--hair) solid var(--fg);padding:14px;
+  line-height:1.8;font-size:13.5px;
+}
+.wbody:focus{border-width:2px;padding:13px}
+.wbody.on{background:var(--fg);color:var(--bg)}
 .acts-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px;padding-top:16px;border-top:var(--hair) solid var(--fg)}
 .acts-bar .right{margin-left:auto}
 #toast{
@@ -486,7 +499,7 @@ footer{padding:18px var(--pad);border-top:var(--hair) solid var(--fg)}
 <header id="top">
   <button id="brand" aria-label="BY X — home (slot machine)">
     <span id="slotwrap"><span id="slot"><span id="reel"></span></span><span id="rule"></span></span>
-    <span class="fixed">BY&nbsp;X</span>
+    <span class="fixed">&nbsp;BY&nbsp;X</span>
   </button>
 
   <nav id="nav">
@@ -546,6 +559,18 @@ const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const uid = () => 'id' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+
+/* ordering is derived from dates — there is no manual sort field to fill in.
+   '2026.07.28' -> 20260728,  {year:2026, month:7} -> 202607                  */
+const dnum  = s => { const n = String(s == null ? '' : s).replace(/\D/g, ''); return n ? +n.padEnd(8, '0').slice(0, 8) : 0; };
+const ymNum = p => (+p.year || 0) * 100 + (+p.month || 0);
+const ymText = p => !p.year ? '—' : (p.month ? p.year + '.' + String(p.month).padStart(2, '0') : String(p.year));
+const ymInput = p => !p.year ? '' : p.year + '-' + String(p.month || 1).padStart(2, '0');
+
+/* "KEY | VALUE" per line — how editable list settings are typed in ADMIN */
+const pairs = s => String(s == null ? '' : s).split('\n').map(l => l.trim()).filter(Boolean)
+  .map(l => { const i = l.indexOf('|'); return i < 0 ? [l, ''] : [l.slice(0, i).trim(), l.slice(i + 1).trim()]; });
+const lines = s => String(s == null ? '' : s).split(/\n\s*\n/).map(t => t.trim()).filter(Boolean);
 
 let toastT;
 function toast(msg){
@@ -649,27 +674,28 @@ const DESCR = (n,l,t,y,s,role,c) =>
 ${y}년 ${s.toLowerCase()}. ${role} 범위로 진행되었으며, 클라이언트 ${c} 와(과)의 협업으로 완성되었다.`;
 
 const SEED_PROJECTS = [
-  ['BYX-2604','Slit House','Private','HOUSE','Yangpyeong, KR',2026,'IN PROGRESS','214 m²','Architecture / Interior'],
-  ['BYX-2603','Paper Terrace','Hanul Development','APT','Hanam, KR',2026,'IN PROGRESS','12,480 m²','Design Architect'],
-  ['BYX-2602','Bar Code','Seongsu F&B','INTERIOR','Seoul, KR',2026,'BUILT','96 m²','Interior / Signage'],
-  ['BYX-2601','Grey Field','Gangneung City','LANDSCAPE','Gangneung, KR',2026,'BUILT','8,100 m²','Landscape / Masterplan'],
-  ['BYX-2506','Stack Stool','MUJUN','FURNITURE','Product',2025,'PRODUCTION','H 450 mm','Product Design'],
-  ['BYX-2505','Half Mirror','Self-initiated','OBJECT','Studio',2025,'BUILT','600×900 mm','Object'],
-  ['BYX-2504','Long Section','Seoul Museum of Craft','EXHIBITION','Seoul, KR',2025,'BUILT','640 m²','Exhibition Design'],
-  ['BYX-2503','Concrete Diary','Openhouse Press','GRAPHIC','Print',2025,'PUBLISHED','188 pp','Editorial Design'],
-  ['BYX-2502','Index Viewer','ARCHIVE.KR','UIUX','Web',2025,'LIVE','—','UI / UX / Front-end'],
-  ['BYX-2501','Double Ground','Private','HOUSE','Jeju, KR',2025,'BUILT','186 m²','Architecture'],
-  ['BYX-2405','Soft Brutal','NOON Coffee','BRAND','Seoul, KR',2024,'DELIVERED','—','Brand Identity'],
-  ['BYX-2404','White Frame','Ilsan Cultural Fdn.','GUIDELINE','Goyang, KR',2024,'DELIVERED','96 pp','Design Guideline'],
-  ['BYX-2403','Two Roofs','Private','HOUSE','Paju, KR',2024,'BUILT','242 m²','Architecture'],
-  ['BYX-2402','Shadow Bench','Suwon City','OBJECT','Suwon, KR',2024,'BUILT','L 4,200 mm','Street Furniture'],
-  ['BYX-2401','Thin Wall Office','Studio Ganjang','INTERIOR','Seoul, KR',2024,'BUILT','310 m²','Interior'],
-  ['BYX-2303','Loop Garden','Sejong Land Co.','LANDSCAPE','Sejong, KR',2023,'BUILT','3,400 m²','Landscape'],
-  ['BYX-2302','Column Chair','Self-initiated','FURNITURE','Product',2023,'PROTOTYPE','H 780 mm','Furniture'],
-  ['BYX-2301','Black Box Apt.','Daehan Housing','APT','Incheon, KR',2023,'BUILT','24,600 m²','Design Architect']
+  ['2604','Slit House','Private','HOUSE','Yangpyeong, KR',2026,'IN PROGRESS','214 m²','Architecture / Interior'],
+  ['2603','Paper Terrace','Hanul Development','APT','Hanam, KR',2026,'IN PROGRESS','12,480 m²','Design Architect'],
+  ['2602','Bar Code','Seongsu F&B','INTERIOR','Seoul, KR',2026,'BUILT','96 m²','Interior / Signage'],
+  ['2601','Grey Field','Gangneung City','LANDSCAPE','Gangneung, KR',2026,'BUILT','8,100 m²','Landscape / Masterplan'],
+  ['2506','Stack Stool','MUJUN','FURNITURE','Product',2025,'PRODUCTION','H 450 mm','Product Design'],
+  ['2505','Half Mirror','Self-initiated','OBJECT','Studio',2025,'BUILT','600×900 mm','Object'],
+  ['2504','Long Section','Seoul Museum of Craft','EXHIBITION','Seoul, KR',2025,'BUILT','640 m²','Exhibition Design'],
+  ['2503','Concrete Diary','Openhouse Press','GRAPHIC','Print',2025,'PUBLISHED','188 pp','Editorial Design'],
+  ['2502','Index Viewer','ARCHIVE.KR','UIUX','Web',2025,'LIVE','—','UI / UX / Front-end'],
+  ['2501','Double Ground','Private','HOUSE','Jeju, KR',2025,'BUILT','186 m²','Architecture'],
+  ['2405','Soft Brutal','NOON Coffee','BRAND','Seoul, KR',2024,'DELIVERED','—','Brand Identity'],
+  ['2404','White Frame','Ilsan Cultural Fdn.','GUIDELINE','Goyang, KR',2024,'DELIVERED','96 pp','Design Guideline'],
+  ['2403','Two Roofs','Private','HOUSE','Paju, KR',2024,'BUILT','242 m²','Architecture'],
+  ['2402','Shadow Bench','Suwon City','OBJECT','Suwon, KR',2024,'BUILT','L 4,200 mm','Street Furniture'],
+  ['2401','Thin Wall Office','Studio Ganjang','INTERIOR','Seoul, KR',2024,'BUILT','310 m²','Interior'],
+  ['2303','Loop Garden','Sejong Land Co.','LANDSCAPE','Sejong, KR',2023,'BUILT','3,400 m²','Landscape'],
+  ['2302','Column Chair','Self-initiated','FURNITURE','Product',2023,'PROTOTYPE','H 780 mm','Furniture'],
+  ['2301','Black Box Apt.','Daehan Housing','APT','Incheon, KR',2023,'BUILT','24,600 m²','Design Architect']
 ].map((a, i) => ({
   id: 'seed-p' + i, code:a[0], name:a[1], client:a[2], type:a[3], loc:a[4], year:a[5],
-  status:a[6], area:a[7], role:a[8], img:'', shots:[], sort: 1000 - i,
+  month: +a[0].slice(-2),          // demo codes end in the project number; reuse it as a month
+  status:a[6], area:a[7], role:a[8], img:'', shots:[], sort: (a[5] * 100) + (+a[0].slice(-2)),
   descr: DESCR(a[1], a[4], a[3], a[5], a[6], a[8], a[2])
 }));
 
@@ -684,11 +710,11 @@ const SEED_NEWS = [
   ['2025.09.22','Concrete Diary 출간','PUBLISH','지난 5년간의 현장 기록을 담은 188쪽 분량의 책이 나왔습니다.'],
   ['2025.07.14','Stack Stool 양산 시작','PRODUCT','MUJUN 과 협업한 적층 스툴이 양산에 들어갔습니다.'],
   ['2025.04.30','Double Ground 준공','PROJECT','제주 단독주택이 준공되었습니다.']
-].map((a, i) => ({ id:'seed-n'+i, d:a[0], t:a[1], k:a[2], x:a[3], sort: 1000 - i }));
+].map((a, i) => ({ id:'seed-n'+i, d:a[0], t:a[1], k:a[2], x:a[3], sort: dnum(a[0]) }));
 
 const SEED_POSTS = [
   { id:'seed-b0', slug:'why-black-and-white', d:'2026.06.02', k:'ESSAY', t:'Why Black and White',
-    x:'색을 빼면 무엇이 남는가에 대한 짧은 기록.', sort:1000, body:[
+    x:'색을 빼면 무엇이 남는가에 대한 짧은 기록.', sort:20260602, body:[
     {t:'p',v:'설계를 시작할 때 우리는 색을 정하지 않는다. 정확히는, 색을 정하는 일을 가능한 한 뒤로 미룬다. 색은 형태보다 강하고, 강한 것이 먼저 도착하면 그 뒤에 오는 것들은 모두 색을 설명하는 일에 동원되기 때문이다.'},
     {t:'p',v:'흑백으로 도면을 그리면 남는 것은 선의 두께와 간격, 그리고 비어 있는 면적이다. 이 세 가지가 정리되지 않은 도면은 색을 입혀도 정리되지 않는다. 반대로 이 세 가지가 정리된 도면은 색이 없어도 이미 완성되어 있다.'},
     {t:'q',v:'흑백은 취향이 아니라 검증 방법이다.'},
@@ -697,47 +723,81 @@ const SEED_POSTS = [
     {t:'img',v:svgArt('essay-bw-1',1400,900),c:'노출 콘크리트 표면의 시간대별 조도 변화 스터디'},
     {t:'p',v:'이 웹사이트도 같은 원칙 위에 있다. 이미지 이외의 모든 요소는 검정과 흰색, 그리고 1px 의 선으로만 구성되어 있다. 프로젝트가 늘어나도 시스템은 변하지 않는다.'}]},
   { id:'seed-b1', slug:'index-as-drawing', d:'2026.04.18', k:'METHOD', t:'Index as Drawing',
-    x:'프로젝트 목록을 표로 보는 일에 대하여.', sort:900, body:[
+    x:'프로젝트 목록을 표로 보는 일에 대하여.', sort:20260418, body:[
     {t:'p',v:'포트폴리오는 보통 이미지로 시작한다. 그런데 실무에서 우리가 실제로 가장 자주 여는 화면은 이미지가 아니라 표다. 프로젝트 코드, 발주처, 연도, 규모, 상태. 이 다섯 개의 열이 사무소의 실제 모습에 훨씬 가깝다.'},
     {t:'p',v:'그래서 PROJECT 페이지에는 두 개의 뷰가 있다. GRID 는 보여주기 위한 화면이고, INDEX 는 확인하기 위한 화면이다. 둘은 같은 데이터를 다른 밀도로 그린 두 장의 도면이다.'},
     {t:'h',v:'정렬은 편집이다'},
     {t:'p',v:'INDEX 뷰의 열 제목을 누르면 정렬이 바뀐다. 연도로 정렬하면 사무소의 성장 곡선이 보이고, 유형으로 정렬하면 우리가 무엇을 반복해왔는지가 보인다. 클라이언트로 정렬하면 관계가 보인다. 같은 목록인데 매번 다른 이야기가 나온다.'},
     {t:'q',v:'표는 가장 압축된 형태의 도면이다.'}]},
   { id:'seed-b2', slug:'seven-underscores', d:'2026.02.26', k:'IDENTITY', t:'The Blank Line',
-    x:'_______BY X 라는 이름에 대하여.', sort:800, body:[
+    x:'_______BY X 라는 이름에 대하여.', sort:20260226, body:[
     {t:'p',v:'사무소 이름을 정할 때 우리는 무엇을 하는 곳인지 먼저 정의하지 않기로 했다. 건축사사무소라고 쓰면 건축만 하게 되고, 디자인 스튜디오라고 쓰면 건축을 못 하게 된다. 그래서 앞자리를 비워두었다.'},
     {t:'p',v:'_______BY X. 비어 있는 줄은 채워질 자리다. LANDSCAPE BY X, FURNITURE BY X, GUIDELINE BY X. 무엇이 들어가도 문장이 성립한다. 로고를 누를 때마다 그 자리가 슬롯머신처럼 돌아가는 것은 농담이면서 동시에 선언이다.'},
     {t:'h',v:'우연에 대한 신뢰'},
     {t:'p',v:'슬롯머신은 멈출 단어를 미리 알지 못한다. 우리도 다음 프로젝트가 무엇일지 알지 못한다. 다만 어떤 단어가 나와도 그 뒤에 BY X 를 붙일 수 있도록 준비되어 있을 뿐이다.'},
     {t:'img',v:svgArt('identity-slot',1400,900),c:'로고 슬롯 릴의 감속 곡선 스터디'}]},
   { id:'seed-b3', slug:'one-millimeter', d:'2025.11.20', k:'DETAIL', t:'One Millimeter',
-    x:'줄눈 1mm 를 두고 세 번 회의한 기록.', sort:700, body:[
+    x:'줄눈 1mm 를 두고 세 번 회의한 기록.', sort:20251120, body:[
     {t:'p',v:'Thin Wall Office 의 벽체 줄눈을 3mm 로 할지 4mm 로 할지를 두고 세 번 회의했다. 도면상으로는 아무 차이가 없고, 시공사도 어느 쪽이든 상관없다고 했다.'},
     {t:'p',v:'결국 3mm 로 갔다. 이유는 단순하다. 조명이 벽을 스치는 각도에서 4mm 는 선이 아니라 홈으로 보였기 때문이다. 우리는 선을 원했지 홈을 원한 것이 아니었다.'},
     {t:'q',v:'디테일은 결정의 흔적이지 장식이 아니다.'},
     {t:'p',v:'완공 후 이 줄눈을 알아본 사람은 아무도 없었다. 그것이 성공의 증거라고 생각한다.'}]},
   { id:'seed-b4', slug:'drawing-with-code', d:'2025.08.09', k:'TOOL', t:'Drawing with Code',
-    x:'이미지 없이 이미지를 만드는 방법.', sort:600, body:[
+    x:'이미지 없이 이미지를 만드는 방법.', sort:20250809, body:[
     {t:'p',v:'이 웹사이트에서 사진이 아직 등록되지 않은 프로젝트의 썸네일은 사진이 아니다. 프로젝트 코드를 씨앗으로 삼아 코드가 그 자리에서 그려낸 흑백 도형이다. 같은 코드는 언제나 같은 그림을 만들고, 다른 코드는 절대 같은 그림을 만들지 않는다.'},
     {t:'p',v:'실제 사진을 올리면 그 즉시 도형은 사라지고 사진이 자리를 대신한다. 자리 표시자도 디자인의 일부여야 한다.'},
     {t:'h',v:'용량이라는 재료'},
     {t:'p',v:'저장 공간도 하나의 재료다. 수천 개의 단어를 파일에 적어두는 대신 어근과 접사를 조합해 수만 개를 만들어내는 방식, 이미지 파일 대신 좌표를 계산하는 방식. 가벼움은 성능의 문제이기 이전에 태도의 문제다.'}]},
   { id:'seed-b5', slug:'apartment-again', d:'2025.05.16', k:'ESSAY', t:'Apartment, Again',
-    x:'아파트를 다시 그리는 일에 대한 메모.', sort:500, body:[
+    x:'아파트를 다시 그리는 일에 대한 메모.', sort:20250516, body:[
     {t:'p',v:'아파트는 한국 건축가에게 가장 어려운 과제다. 평면은 이미 결정되어 있고, 법규는 촘촘하며, 발코니 확장은 협상 대상이 아니다. 그럼에도 우리는 아파트 일을 계속 받는다.'},
     {t:'p',v:'Black Box Apt. 에서 우리가 바꿀 수 있었던 것은 입면의 개구부 비율과 저층부의 공용공간 배치, 두 가지뿐이었다. 그 두 가지만으로도 단지의 인상은 충분히 달라졌다.'},
     {t:'q',v:'제약이 많은 일일수록 결정의 밀도가 높다.'},
     {t:'p',v:'24,600㎡ 안에서 우리가 실제로 설계한 면적은 아마 3%도 되지 않을 것이다. 그 3%가 나머지 97%를 어떻게 보이게 하는지가 이 프로젝트의 주제였다.'}]}
 ];
 
-const PEOPLE = [
-  {n:'PARK', r:'Principal / Architect'},
-  {n:'KIM',  r:'Partner / Design Director'},
-  {n:'LEE',  r:'Senior Architect'},
-  {n:'JUNG', r:'Architect'},
-  {n:'CHOI', r:'Designer'},
-  {n:'YOON', r:'Graphic / Web'}
-];
+/* ABOUT / CONTACT text lives in the `settings` table so it can be edited from
+   ADMIN. These are the defaults shown until the table is filled in (and the
+   whole content of both pages in demo mode). List fields are "KEY | VALUE"
+   per line — the plainest thing a non-developer can type. */
+const DEFAULT_ABOUT = {
+  lede: '이름의 앞자리를 비워둔 것은 무엇을 다룰지 미리 정하지 않기 위해서입니다. 대지, 건물, 방, 가구, 사물, 인쇄물, 화면 — 스케일이 달라져도 우리는 같은 질문을 반복합니다. 이 선은 꼭 필요한가. 필요하다면 얼마나 두꺼워야 하는가.',
+  studio: '2019년 서울 성수동에서 시작했습니다. 여섯 명이 하나의 테이블에서 일하며, 프로젝트의 규모와 무관하게 모든 결정을 함께 검토합니다. 도면과 모형, 그리고 실제 크기의 목업을 같은 비중으로 신뢰합니다.\n\n협업은 초기 단계에서 시작될수록 좋다고 믿습니다. 브랜드가 정해지기 전의 공간, 공간이 정해지기 전의 브랜드 — 둘 중 어느 쪽에서 출발해도 상관없습니다.',
+  facts: [
+    'Founded | 2019',
+    'Studio | Seoul, KR',
+    'Team | 6',
+    'Registration | 대한민국 건축사사무소',
+    'Scope | Architecture / Interior / Landscape / Object / Graphic',
+    'Language | KR / EN'
+  ].join('\n'),
+  records: [
+    '2026 | Korean Architecture Award — Finalist / Double Ground',
+    '2025 | Seoul Design Award — Selected / Long Section',
+    '2024 | Young Architect Prize — Winner',
+    '2023 | Public Design Competition, Sejong — 1st Prize',
+    '2021 | Emerging Studio of the Year — Nominee',
+    '2019 | Studio founded in Seongsu, Seoul'
+  ].join('\n'),
+  people: [
+    'PARK | Principal / Architect',
+    'KIM | Partner / Design Director',
+    'LEE | Senior Architect',
+    'JUNG | Architect',
+    'CHOI | Designer',
+    'YOON | Graphic / Web'
+  ].join('\n')
+};
+
+const DEFAULT_CONTACT = {
+  email:   'hello@byx.kr',
+  address: '2F, 14 Seongsui-ro, Seongdong-gu, Seoul, KR',
+  phone:   '+82 2 000 0000',
+  hours:   'MON–FRI 10:00–19:00 (방문은 사전 예약)',
+  transit: '수인분당선 서울숲역 4번 출구 도보 6분',
+  visit:   '서울숲 북측, 성수동 골목 안쪽 2층입니다. 별도의 간판은 없습니다. 방문은 사전에 메일로 일정을 잡아주세요.',
+  map:     ''
+};
 
 /* ============================================================
    3. DATA LAYER
@@ -746,10 +806,66 @@ const PEOPLE = [
 let sb = null;           // supabase client (null = demo mode)
 let session = null;      // logged-in admin
 
+/* ---- image downscaling -------------------------------------------------
+   Photos come off a camera at 6000px / 8MB. Nothing on this site is ever
+   drawn wider than the viewport, and the largest slot is a full-bleed shot
+   on a 2560px (QHD/2K) display — so 2560px on the long edge is the point
+   past which extra pixels are invisible. WebP at q0.82 lands a typical
+   photo around 300-600KB, roughly a tenth of the original, which keeps the
+   Supabase free tier (1GB storage / 5GB egress) comfortable for hundreds of
+   images. GIF and SVG are passed through: resampling would break them. */
+const IMG_MAX = 2560;
+const IMG_Q   = 0.82;
+
+const kb = n => n >= 1048576 ? (n / 1048576).toFixed(1) + 'MB' : Math.round(n / 1024) + 'KB';
+
+let webpOK = null;
+function canWebp(){
+  if (webpOK === null){
+    const c = document.createElement('canvas'); c.width = c.height = 1;
+    webpOK = c.toDataURL('image/webp').startsWith('data:image/webp');
+  }
+  return webpOK;
+}
+
+async function shrink(file){
+  if (!file || file.shrunk) return file;              // idempotent: upload() calls this too
+  if (!file.type || !file.type.startsWith('image/')) return file;
+  if (/gif|svg/.test(file.type)) return file;
+
+  let bmp = null;
+  try{ bmp = await createImageBitmap(file); }catch(e){ return file; }
+
+  const scale = Math.min(1, IMG_MAX / Math.max(bmp.width, bmp.height));
+  const w = Math.max(1, Math.round(bmp.width * scale));
+  const h = Math.max(1, Math.round(bmp.height * scale));
+
+  const cv = document.createElement('canvas');
+  cv.width = w; cv.height = h;
+  const cx = cv.getContext('2d');
+  cx.imageSmoothingEnabled = true;
+  cx.imageSmoothingQuality = 'high';
+
+  const type = canWebp() ? 'image/webp' : 'image/jpeg';
+  if (type === 'image/jpeg'){ cx.fillStyle = '#fff'; cx.fillRect(0, 0, w, h); }  // JPEG has no alpha
+  cx.drawImage(bmp, 0, 0, w, h);
+  if (bmp.close) bmp.close();
+
+  const blob = await new Promise(r => cv.toBlob(r, type, IMG_Q));
+  if (!blob || blob.size >= file.size){ try{ file.shrunk = true; }catch(e){} return file; }
+
+  const base = file.name.replace(/\.[^.]+$/, '') || 'image';
+  const out = new File([blob], base + (type === 'image/webp' ? '.webp' : '.jpg'), {type});
+  out.shrunk = true;
+  return out;
+}
+
 const DB = {
   projects: [], news: [], posts: [],
+  settings: { about: {...DEFAULT_ABOUT}, contact: {...DEFAULT_CONTACT} },
   ready: false,
   lastError: null,      // why the Supabase connection was refused, if it was
+  settingsError: null,  // the `settings` table is optional; note it, do not fail
 
   get demo(){ return !sb; },
 
@@ -789,6 +905,31 @@ const DB = {
     DB.projects = p.data || [];
     DB.news     = n.data || [];
     DB.posts    = (b.data || []).map(r => ({...r, body: typeof r.body === 'string' ? JSON.parse(r.body) : (r.body || [])}));
+    await DB.loadSettings();
+  },
+
+  /* ABOUT / CONTACT copy. Optional table — if it is missing the site keeps
+     running on the defaults and only ADMIN mentions the problem. */
+  async loadSettings(){
+    DB.settings = { about: {...DEFAULT_ABOUT}, contact: {...DEFAULT_CONTACT} };
+    if (!sb) return;
+    try{
+      const { data, error } = await sb.from('settings').select('*');
+      if (error){ DB.settingsError = error.message || String(error); return; }
+      DB.settingsError = null;
+      (data || []).forEach(r => {
+        const v = typeof r.v === 'string' ? JSON.parse(r.v) : (r.v || {});
+        if (DB.settings[r.k]) DB.settings[r.k] = {...DB.settings[r.k], ...v};
+      });
+    }catch(e){ DB.settingsError = (e && e.message) || String(e); }
+  },
+
+  async saveSettings(key, obj){
+    DB.settings[key] = {...obj};
+    if (!sb) return;
+    const { error } = await sb.from('settings').upsert({k: key, v: obj}).select();
+    if (error) throw error;
+    await DB.loadSettings();
   },
 
   async save(table, row){
@@ -812,8 +953,10 @@ const DB = {
     await DB.refresh();
   },
 
-  /* file -> public URL (Supabase Storage) or data-URL (demo) */
-  async upload(file){
+  /* file -> public URL (Supabase Storage) or data-URL (demo).
+     Everything is shrunk first — see shrink() for the sizing rationale. */
+  async upload(raw){
+    const file = await shrink(raw);
     if (!sb){
       return await new Promise((res, rej) => {
         const fr = new FileReader();
@@ -942,7 +1085,7 @@ function render(){
   else if (page === 'admin')   html = viewAdmin();
   else                         html = viewProjects();
 
-  app.innerHTML = '<div class="page">' + html + '</div>';
+  app.innerHTML = '<div class="page">' + (page === 'admin' ? '' : editBar(page, arg)) + html + '</div>';
   $$('#nav a').forEach(a => a.classList.toggle('on', a.dataset.p === page));
   document.body.classList.remove('menu');
   window.scrollTo({top:0, behavior:'instant'});
@@ -950,6 +1093,50 @@ function render(){
   bindPage(page, arg);
 }
 window.addEventListener('hashchange', render);
+
+/* Shortcut into ADMIN from the page you are looking at.
+   Only rendered while logged in — visitors never see it. */
+function editBar(page, arg){
+  if (!session) return '';
+  let btns = [];
+  if (page === 'project' && !arg)
+    btns = [['new:projects','+ 새 프로젝트'], ['list:projects','프로젝트 관리']];
+  else if (page === 'project'){
+    const p = DB.projects.find(x => x.code === arg);
+    if (p) btns.push(['one:projects:' + p.id, '이 프로젝트 편집']);
+    btns.push(['new:projects','+ 새 프로젝트']);
+  }
+  else if (page === 'news')
+    btns = [['new:news','+ 새 소식'], ['list:news','소식 관리']];
+  else if (page === 'blog' && !arg)
+    btns = [['new:posts','+ 새 글'], ['list:posts','글 관리']];
+  else if (page === 'blog'){
+    const p = DB.posts.find(x => x.slug === arg);
+    if (p) btns.push(['one:posts:' + p.id, '이 글 편집']);
+    btns.push(['new:posts','+ 새 글']);
+  }
+  else if (page === 'about')   btns = [['set:about','ABOUT 편집']];
+  else if (page === 'contact') btns = [['set:contact','CONTACT 편집']];
+  else return '';
+
+  return `<div class="editbar">
+    <span class="lb">Admin</span>
+    ${btns.map(([k,l]) => `<button class="abtn sm" data-ed="${k}">${l}</button>`).join('')}
+  </div>`;
+}
+
+/* open ADMIN already focused on the thing you were looking at */
+function gotoAdmin(spec){
+  const [kind, tab, id] = spec.split(':');
+  AD.back = location.hash || '#/';
+  AD.tab  = tab;
+  if (kind === 'new')       AD.draft = blank(tab);
+  else if (kind === 'one')  { const r = DB[tab].find(x => String(x.id) === id); AD.draft = r ? JSON.parse(JSON.stringify(r)) : null; }
+  else if (kind === 'set')  AD.draft = {...DB.settings[tab]};
+  else                      AD.draft = null;
+  if (tab === 'posts' && AD.draft) AD.draft.bodyText = bodyToText(AD.draft.body);
+  if (location.hash === '#/admin') render(); else location.hash = '#/admin';
+}
 
 /* ============================================================
    6. PUBLIC VIEWS
@@ -962,7 +1149,9 @@ function filtered(){
   const list = DB.projects.slice();
   const k = PV.sort;
   return list.sort((a, b) => {
-    let x = a[k], y = b[k];
+    let x, y;
+    if (k === 'year'){ x = ymNum(a); y = ymNum(b); }         // year+month, not year alone
+    else { x = a[k]; y = b[k]; }
     if (typeof x === 'string'){ x = x.toLowerCase(); y = String(y||'').toLowerCase(); }
     return x < y ? -PV.dir : x > y ? PV.dir : 0;
   });
@@ -974,14 +1163,14 @@ function cardHTML(p){
     <span class="im"><img src="${artOf(p)}" alt="${esc(p.name)}" loading="lazy"><span class="badge">${esc(p.type)}</span></span>
     <span class="cap">
       <span class="l1"><span class="nm">${esc(p.name)}</span><span class="cd">${esc(p.code)}</span></span>
-      <span class="l2"><span>${esc(p.client)}</span><span>${esc(p.loc)}</span><span>${esc(p.year)}</span></span>
+      <span class="l2"><span>${esc(p.client)}</span><span>${esc(p.loc)}</span><span>${esc(ymText(p))}</span></span>
     </span>
   </a>`;
 }
 
 function viewProjects(){
   const list = filtered();
-  const cols = [['code','Code'],['name','Project'],['client','Client'],['type','Type'],['loc','Location'],['year','Year'],['status','Status']];
+  const cols = [['code','Code'],['name','Project'],['client','Client'],['type','Type'],['loc','Location'],['year','Date'],['status','Status']];
   const head = '<th class="thumbcol"></th>' + cols.map(([k,l]) =>
     `<th data-sort="${k}" class="${PV.sort===k?'sorted':''}">${l} <span class="ar">${PV.dir>0?'↑':'↓'}</span></th>`).join('');
   const body = list.map(p => `
@@ -992,7 +1181,7 @@ function viewProjects(){
       <td>${esc(p.client)}</td>
       <td class="c-dim">${esc(p.type)}</td>
       <td class="c-dim">${esc(p.loc)}</td>
-      <td class="c-code">${esc(p.year)}</td>
+      <td class="c-code">${esc(ymText(p))}</td>
       <td><span class="st">${esc(p.status)}</span></td>
     </tr>`).join('');
 
@@ -1039,7 +1228,7 @@ function viewProjectDetail(code){
   const p = list[i];
   const prev = list[(i - 1 + list.length) % list.length];
   const next = list[(i + 1) % list.length];
-  const rows = [['Code',p.code],['Client',p.client],['Type',p.type],['Location',p.loc],['Year',p.year],['Area',p.area],['Role',p.role],['Status',p.status]];
+  const rows = [['Code',p.code],['Client',p.client],['Type',p.type],['Location',p.loc],['Date',ymText(p)],['Area',p.area],['Role',p.role],['Status',p.status]];
   const shots = shotsOf(p);
   const paras = String(p.descr || '').split(/\n\s*\n/).filter(Boolean);
 
@@ -1097,6 +1286,8 @@ function viewBlog(){
       </span>
     </a>`;
 
+  if (!list.length) return `<div class="pane"><p class="mono mute">등록된 글이 없습니다.</p></div>`;
+
   return `
   ${featHTML}
   <div class="rows">${rest.map(p => `
@@ -1127,69 +1318,56 @@ function viewPost(slug){
 }
 
 function viewAbout(){
-  const facts = [['Founded','2019'],['Studio','Seoul, KR'],['Team','6'],['Registration','대한민국 건축사사무소'],['Scope','Architecture / Interior / Landscape / Object / Graphic'],['Language','KR / EN']];
-  const awards = [
-    ['2026','Korean Architecture Award — Finalist / Double Ground'],
-    ['2025','Seoul Design Award — Selected / Long Section'],
-    ['2024','Young Architect Prize — Winner'],
-    ['2023','Public Design Competition, Sejong — 1st Prize'],
-    ['2021','Emerging Studio of the Year — Nominee'],
-    ['2019','Studio founded in Seongsu, Seoul']
-  ];
+  const s = DB.settings.about;
+  const facts   = pairs(s.facts);
+  const records = pairs(s.records);
+  const people  = pairs(s.people);
+  const dl = arr => arr.map(([k,v]) => `<div class="k">${esc(k)}</div><div class="v">${esc(v)}</div>`).join('');
+
   return `
   <section class="hero">
-    <h1 class="display h-xl"><span class="blank blk-row" style="width:2.1em"></span>BY&nbsp;X</h1>
-    <p class="lede">이름의 앞자리를 비워둔 것은 무엇을 다룰지 미리 정하지 않기 위해서입니다. 대지, 건물, 방, 가구, 사물, 인쇄물, 화면 — 스케일이 달라져도 우리는 같은 질문을 반복합니다. 이 선은 꼭 필요한가. 필요하다면 얼마나 두꺼워야 하는가.</p>
+    <h1 class="display h-xl brandline"><span class="blank" style="width:2.1em"></span>&nbsp;BY&nbsp;X</h1>
+    <p class="lede">${esc(s.lede)}</p>
   </section>
 
   <div class="about-grid">
     <div>
       <h2 class="display h-m">Studio</h2>
-      <p style="max-width:52ch;margin-top:14px">2019년 서울 성수동에서 시작했습니다. 여섯 명이 하나의 테이블에서 일하며, 프로젝트의 규모와 무관하게 모든 결정을 함께 검토합니다. 도면과 모형, 그리고 실제 크기의 목업을 같은 비중으로 신뢰합니다.</p>
-      <p style="max-width:52ch">협업은 초기 단계에서 시작될수록 좋다고 믿습니다. 브랜드가 정해지기 전의 공간, 공간이 정해지기 전의 브랜드 — 둘 중 어느 쪽에서 출발해도 상관없습니다.</p>
-      <div class="deflist" style="margin-top:26px">${facts.map(([k,v]) => `<div class="k">${k}</div><div class="v">${esc(v)}</div>`).join('')}</div>
+      ${lines(s.studio).map((t,i) => `<p style="max-width:52ch${i===0?';margin-top:14px':''}">${esc(t)}</p>`).join('')}
+      <div class="deflist" style="margin-top:26px">${dl(facts)}</div>
     </div>
     <div>
       <h2 class="display h-m">Records</h2>
-      <div class="deflist" style="margin-top:14px">${awards.map(([k,v]) => `<div class="k">${k}</div><div class="v">${esc(v)}</div>`).join('')}</div>
+      <div class="deflist" style="margin-top:14px">${dl(records)}</div>
     </div>
   </div>
 
+  ${people.length ? `
   <div class="sechead" style="position:static"><h2>People</h2></div>
   <div class="people">
-    ${PEOPLE.map((m,i) => `<div class="person"><div class="im"><img src="${svgArt('person'+i,600,800)}" alt=""></div><div class="n">${m.n}</div><div class="r">${m.r}</div></div>`).join('')}
-  </div>
-
->`;
+    ${people.map(([n,r],i) => `<div class="person"><div class="im"><img src="${svgArt('person-'+n+i,600,800)}" alt=""></div><div class="n">${esc(n)}</div><div class="r">${esc(r)}</div></div>`).join('')}
+  </div>` : ''}`;
 }
 
 function viewContact(){
-  const mails = [
-    ['General / 일반 문의','hello@byx.kr'],
-    ['Career / 채용 지원','career@byx.kr'],
-    ['Press / 취재·자료','press@byx.kr']
-  ];
+  const s = DB.settings.contact;
+  const row = (k, v) => v ? `<div class="k">${k}</div><div class="v">${esc(v)}</div>` : '';
   return `
   <div class="contact">
     <div>
-      <p><a class="bigmail" href="mailto:hello@byx.kr">HELLO@BYX.KR</a></p>
-      <div class="deflist" style="margin-top:26px">
-        ${mails.map(([k,v]) => `<div class="k">${k.split(' / ')[0]}</div><div class="v"><a href="mailto:${v}" style="border-bottom:1px solid var(--faint)">${v}</a> <span class="mute">${k.split(' / ')[1]||''}</span></div>`).join('')}
-        <div class="k">Studio</div><div class="v">2F, 14 Seongsui-ro, Seongdong-gu, Seoul, KR</div>
-        <div class="k">Phone</div><div class="v">+82 2 000 0000</div>
-        <div class="k">Hours</div><div class="v">MON–FRI 10:00–19:00 (방문은 사전 예약)</div>
-        <div class="k">Transit</div><div class="v">수인분당선 서울숲역 4번 출구 도보 6분</div>
+      <div class="deflist">
+        <div class="k">Email</div>
+        <div class="v"><a href="mailto:${esc(s.email)}" style="border-bottom:1px solid var(--faint)">${esc(s.email)}</a></div>
+        ${row('Studio', s.address)}
+        ${row('Phone', s.phone)}
+        ${row('Hours', s.hours)}
+        ${row('Transit', s.transit)}
       </div>
     </div>
     <div>
-      <div class="map"><img src="${svgArt('map-seongsu',1600,900)}" alt="Studio location diagram"></div>
+      <div class="map"><img src="${esc(s.map || svgArt('map-seongsu',1600,900))}" alt="Studio location diagram"></div>
       <h2 class="display h-m" style="margin-top:26px">Visit</h2>
-      <p style="max-width:44ch;margin-top:12px">서울숲 북측, 성수동 골목 안쪽 2층입니다. 별도의 간판은 없습니다. 방문은 사전에 메일로 일정을 잡아주세요.</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px">
-        <a class="tag" href="https://instagram.com/" target="_blank" rel="noopener">INSTAGRAM</a>
-        <a class="tag" href="#/">BEHANCE</a>
-        <a class="tag" href="#/">LINKEDIN</a>
-      </div>
+      <p style="max-width:44ch;margin-top:12px">${esc(s.visit)}</p>
     </div>
   </div>`;
 }
@@ -1197,12 +1375,20 @@ function viewContact(){
 /* ============================================================
    7. ADMIN
    ============================================================ */
-const AD = { tab:'projects', draft:null };
-const TABS = [['projects','Project'],['news','News'],['posts','Blog'],['help','Setup']];
+const AD = { tab:'projects', draft:null, back:null };
+const TABS = [['projects','Project'],['news','News'],['posts','Blog'],['about','About'],['contact','Contact']];
+const SETTING_TABS = ['about','contact'];
 
 const F  = (label, key, val, type) => `<div class="fld"><label>${label}</label><input data-k="${key}" type="${type||'text'}" value="${esc(val)}"></div>`;
 const TA = (label, key, val, min)  => `<div class="fld"><label>${label}</label><textarea data-k="${key}" style="min-height:${min||110}px">${esc(val)}</textarea></div>`;
-const SEL= (label, key, val, opts) => `<div class="fld"><label>${label}</label><select data-k="${key}">${opts.map(o=>`<option${o===val?' selected':''}>${esc(o)}</option>`).join('')}</select></div>`;
+/* free text with suggestions from what has been typed before — new values are
+   simply new values, no list to maintain */
+const SUG= (label, key, val, opts, id) => `<div class="fld"><label>${label}</label>
+  <input data-k="${key}" list="${id}" value="${esc(val)}" autocomplete="off" placeholder="입력하거나 아래에서 고르세요">
+  <datalist id="${id}">${opts.map(o => `<option value="${esc(o)}"></option>`).join('')}</datalist></div>`;
+
+const typeOptions = () =>
+  Array.from(new Set(DB.projects.map(p => p.type).filter(Boolean).concat(TYPES))).sort();
 
 function imgField(label, url, delKey, dropKey, multi){
   return `
@@ -1217,7 +1403,7 @@ function viewAdmin(){
     <div class="pane login">
       <h2 class="display h-m">Admin</h2>
       ${!DB.demo ? `<div class="note" style="margin-top:18px">Supabase 계정으로 로그인하세요.</div>`
-        : DB.lastError ? `<div class="note warn" style="margin-top:18px"><b>연결 실패 — 데모 모드</b><br>${esc(DB.lastError)}<br><br>로그인은 되지만 저장은 되지 않습니다. 원인은 SETUP 탭에서 확인하세요.</div>`
+        : DB.lastError ? `<div class="note warn" style="margin-top:18px"><b>연결 실패 — 데모 모드</b><br>${esc(DB.lastError)}<br>${esc(hintFor(DB.lastError))}<br><br>로그인은 되지만 저장은 되지 않습니다.</div>`
         : `<div class="note warn" style="margin-top:18px"><b>데모 모드</b><br>Supabase 가 설정되지 않았습니다. 아무 값이나 입력하면 들어갈 수 있고, 편집 기능을 전부 시험해 볼 수 있습니다. 다만 새로고침하면 원래대로 돌아갑니다.</div>`}
       <form class="f" id="lform">
         <label for="l-e">Email</label><input id="l-e" type="email" value="${DB.demo?'demo@byx.kr':''}" required>
@@ -1230,22 +1416,29 @@ function viewAdmin(){
     <div class="adm-bar">
       ${TABS.map(([k,l]) => `<button data-tab="${k}" class="${AD.tab===k?'on':''}">${l}</button>`).join('')}
       <span class="sp"></span>
+      ${AD.back ? `<button data-act="back">← 사이트로</button>` : ''}
       <span class="who">${DB.demo?'DEMO · ':''}${esc((session.user&&session.user.email)||'')}</span>
       <button data-act="logout">Log out</button>
     </div>`;
 
+  const warn = DB.demo
+    ? `<div class="pane" style="padding-bottom:0"><div class="note warn"><b>${DB.lastError ? '연결 실패 — 데모 모드' : '데모 모드'}</b><br>${DB.lastError ? esc(DB.lastError) + '<br>' + esc(hintFor(DB.lastError)) : 'Supabase 가 설정되지 않았습니다. 편집은 되지만 새로고침하면 원래대로 돌아갑니다.'}</div></div>`
+    : (DB.settingsError && SETTING_TABS.includes(AD.tab))
+      ? `<div class="pane" style="padding-bottom:0"><div class="note warn"><b>settings 표가 없습니다</b><br>${esc(DB.settingsError)}<br>→ ABOUT / CONTACT 내용을 저장하려면 Supabase SQL Editor 에서 settings 표를 만들어야 합니다. 배포 가이드 3-2 를 보세요.</div></div>`
+      : '';
+
   let pane;
-  if (AD.tab === 'help')            pane = adminHelp();
-  else if (AD.draft)                pane = AD.tab === 'projects' ? edProject() : AD.tab === 'news' ? edNews() : edPost();
-  else                              pane = adminList();
-  return bar + pane;
+  if (SETTING_TABS.includes(AD.tab)) pane = edSettings(AD.tab);
+  else if (AD.draft)                 pane = AD.tab === 'projects' ? edProject() : AD.tab === 'news' ? edNews() : edPost();
+  else                               pane = adminList();
+  return bar + warn + pane;
 }
 
 function adminList(){
   const t = AD.tab;
   const rows = DB[t].map(r => {
     const title = t === 'projects' ? r.name : r.t;
-    const meta  = t === 'projects' ? `${esc(r.code)} · ${esc(r.type)} · ${esc(r.client)} · ${esc(r.year)}`
+    const meta  = t === 'projects' ? `${esc(r.code)} · ${esc(r.type)} · ${esc(r.client)} · ${esc(ymText(r))}`
                 : t === 'news'     ? `${esc(r.d)} · ${esc(r.k)}`
                 :                    `${esc(r.d)} · ${esc(r.k)} · /${esc(r.slug)}`;
     const th = t === 'projects' ? artOf(r)
@@ -1279,13 +1472,12 @@ function edProject(){
       ${F('Code / 프로젝트코드','code',d.code)}
       ${F('Name / 프로젝트명','name',d.name)}
       ${F('Client / 클라이언트','client',d.client)}
-      ${SEL('Type / 유형','type',d.type,TYPES)}
+      ${SUG('Type / 유형','type',d.type,typeOptions(),'dl-type')}
       ${F('Location / 위치','loc',d.loc)}
-      ${F('Year / 연도','year',d.year,'number')}
+      ${F('Date / 연월','ym',ymInput(d),'month')}
       ${F('Status / 상태','status',d.status)}
       ${F('Area / 규모','area',d.area)}
       ${F('Role / 업무범위','role',d.role)}
-      ${F('Sort / 정렬값 (클수록 위)','sort',d.sort,'number')}
     </div>
     ${TA('Description / 본문  (빈 줄로 문단 구분)','descr',d.descr,180)}
     ${imgField('Cover image / 대표 이미지', d.img, 'img', 'img', false)}
@@ -1301,8 +1493,7 @@ function edNews(){
     <h2 class="display h-m">${d.id ? 'Edit' : 'New'} News</h2>
     <div class="fgrid">
       ${F('Date / 날짜 (예: 2026.08.17)','d',d.d)}
-      ${F('Category / 분류 (예: PROJECT)','k',d.k)}
-      ${F('Sort / 정렬값','sort',d.sort,'number')}
+      ${SUG('Category / 분류','k',d.k,Array.from(new Set(DB.news.map(n=>n.k).filter(Boolean))).sort(),'dl-newsk')}
     </div>
     ${F('Title / 제목','t',d.t)}
     ${TA('Text / 내용','x',d.x,110)}
@@ -1310,49 +1501,97 @@ function edNews(){
   </div>`;
 }
 
+/* ---- post body <-> one plain-text field -----------------------------------
+   The stored shape stays a block array (that is what the public view reads),
+   but the editor is a single field you write straight through, like any blog
+   editor. Three marks, all typed inline:
+     ## heading        ->  {t:'h'}
+     > quote           ->  {t:'q'}
+     ![caption](url)   ->  {t:'img'}
+   A blank line ends a paragraph. Everything else is a paragraph. */
+function bodyToText(body){
+  return (body || []).map(b =>
+    b.t === 'h'   ? '## ' + b.v :
+    b.t === 'q'   ? '> ' + b.v :
+    b.t === 'img' ? '![' + (b.c || '') + '](' + b.v + ')' :
+    b.v
+  ).join('\n\n');
+}
+
+function textToBody(txt){
+  return String(txt == null ? '' : txt).split(/\n\s*\n/).map(s => s.trim()).filter(Boolean).map(s => {
+    let m;
+    if ((m = s.match(/^!\[([\s\S]*?)\]\(([\s\S]+)\)$/))) return {t:'img', v:m[2].trim(), c:m[1].trim()};
+    if ((m = s.match(/^##\s*([\s\S]*)$/)))               return {t:'h', v:m[1].trim()};
+    if ((m = s.match(/^>\s*([\s\S]*)$/)))                return {t:'q', v:m[1].replace(/\n>\s?/g, '\n').trim()};
+    return {t:'p', v:s};
+  });
+}
+
 function edPost(){
   const d = AD.draft;
-  const blocks = (d.body || []).map((b, i) => {
-    const name = {p:'문단',h:'소제목',q:'인용',img:'이미지'}[b.t] || b.t;
-    const content = b.t === 'img'
-      ? `${imgField('', b.v, 'blockimg:'+i, 'block:'+i, false)}
-         <input data-block="${i}:c" value="${esc(b.c||'')}" placeholder="캡션 / caption" style="margin-top:8px">`
-      : b.t === 'p'
-        ? `<textarea data-block="${i}:v" style="min-height:110px">${esc(b.v)}</textarea>`
-        : `<input data-block="${i}:v" value="${esc(b.v)}">`;
-    return `
-    <div class="b">
-      <div class="bh"><span>${i+1}. ${name}</span>
-        <span class="g">
-          <button class="abtn sm" data-bmove="${i}:-1">↑</button>
-          <button class="abtn sm" data-bmove="${i}:1">↓</button>
-          <button class="abtn sm" data-bdel="${i}">×</button>
-        </span>
-      </div>
-      ${content}
-    </div>`;
-  }).join('');
-
+  if (d.bodyText == null) d.bodyText = bodyToText(d.body);
   return `
   <div class="pane">
     <h2 class="display h-m">${d.id ? 'Edit' : 'New'} Post</h2>
     <div class="fgrid">
       ${F('Date / 날짜','d',d.d)}
-      ${F('Category / 분류','k',d.k)}
-      ${F('Slug / 주소 (영문·숫자·하이픈)','slug',d.slug)}
-      ${F('Sort / 정렬값','sort',d.sort,'number')}
+      ${SUG('Category / 분류','k',d.k,Array.from(new Set(DB.posts.map(p=>p.k).filter(Boolean))).sort(),'dl-postk')}
+      ${F('Slug / 주소 (비워두면 제목에서 자동 생성)','slug',d.slug)}
     </div>
     ${F('Title / 제목','t',d.t)}
     ${TA('Summary / 목록에 보일 한 줄','x',d.x,70)}
+
     <div class="flabel" style="margin-top:18px">Body / 본문</div>
-    <div class="blocks">${blocks || '<p class="mono mute">아래 버튼으로 블록을 추가하세요.</p>'}</div>
-    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
-      <button class="abtn sm" data-badd="p">+ 문단</button>
-      <button class="abtn sm" data-badd="h">+ 소제목</button>
-      <button class="abtn sm" data-badd="q">+ 인용</button>
-      <button class="abtn sm" data-badd="img">+ 이미지</button>
+    <div class="wtools">
+      <button class="abtn sm" data-ins="img">＋ 이미지</button>
+      <button class="abtn sm" data-ins="h">＋ 소제목</button>
+      <button class="abtn sm" data-ins="q">＋ 인용</button>
+      <span class="hint">빈 줄로 문단을 나눕니다 · 이미지는 이 칸에 끌어다 놓아도 됩니다</span>
     </div>
+    <textarea id="wbody" data-k="bodyText" class="wbody" placeholder="여기에 글을 씁니다.
+
+빈 줄을 하나 두면 다음 문단이 시작됩니다.
+
+## 이렇게 쓰면 소제목
+&gt; 이렇게 쓰면 인용">${esc(d.bodyText)}</textarea>
     ${actionsBar()}
+  </div>`;
+}
+
+/* ABOUT / CONTACT — the pages that are copy, not records.
+   List fields are one entry per line, "왼쪽 | 오른쪽". */
+function edSettings(which){
+  if (!AD.draft) AD.draft = {...DB.settings[which]};
+  const d = AD.draft;
+  const listNote = '한 줄에 하나씩. 세로줄 | 왼쪽이 라벨, 오른쪽이 내용입니다.';
+
+  const body = which === 'about' ? `
+    ${TA('Lede / 첫 문단 (제목 아래 큰 글)','lede',d.lede,110)}
+    ${TA('Studio / 소개 (빈 줄로 문단 구분)','studio',d.studio,150)}
+    ${TA('Facts / 기본 정보 — ' + listNote,'facts',d.facts,130)}
+    ${TA('Records / 수상·연혁 — ' + listNote,'records',d.records,150)}
+    ${TA('People / 구성원 — ' + listNote + ' (이름 | 직책)','people',d.people,150)}
+  ` : `
+    <div class="fgrid">
+      ${F('Email / 대표 메일','email',d.email)}
+      ${F('Phone / 전화','phone',d.phone)}
+    </div>
+    ${F('Studio / 주소','address',d.address)}
+    ${F('Hours / 운영 시간','hours',d.hours)}
+    ${F('Transit / 교통','transit',d.transit)}
+    ${TA('Visit / 방문 안내','visit',d.visit,90)}
+    ${imgField('Map / 약도 이미지 (비워두면 생성 도형)', d.map, 'map', 'map', false)}
+  `;
+
+  return `
+  <div class="pane">
+    <h2 class="display h-m">${which === 'about' ? 'About' : 'Contact'}</h2>
+    ${body}
+    <div class="acts-bar">
+      <button class="abtn solid" data-act="savesettings">저장 / Save</button>
+      <button class="abtn" data-act="resetsettings">기본값으로 되돌리기</button>
+    </div>
   </div>`;
 }
 
@@ -1366,104 +1605,29 @@ const actionsBar = () => `
 function hintFor(msg){
   const m = String(msg).toLowerCase();
   if (m.includes('does not exist') || m.includes('relation') || m.includes('schema cache'))
-    return '→ 표가 아직 없습니다. 아래 SQL 을 Supabase 의 SQL Editor 에서 실행하세요. (설정 순서 2번)';
+    return '→ 표가 아직 없습니다. 배포 가이드 3-2 의 SQL 을 Supabase 의 SQL Editor 에서 실행하세요.';
   if (m.includes('invalid api key') || m.includes('jwt') || m.includes('apikey') || m.includes('401'))
     return '→ key 값이 잘못되었습니다. Project Settings > API Keys 의 Publishable key 를 다시 복사하세요.';
   if (m.includes('failed to fetch') || m.includes('networkerror') || m.includes('load failed'))
     return '→ 주소(url)가 잘못되었거나 인터넷이 끊겼습니다. https://<프로젝트ID>.supabase.co 형식이 맞는지 확인하세요.';
   if (m.includes('permission') || m.includes('row-level'))
-    return '→ 보안 정책이 없습니다. 아래 SQL 의 policy 부분을 다시 실행하세요.';
+    return '→ 보안 정책이 없습니다. 배포 가이드 3-2 SQL 의 policy 부분을 다시 실행하세요.';
   return '→ 위 메시지를 그대로 복사해서 문의하시면 원인을 짚어드릴 수 있습니다.';
 }
 
-function adminHelp(){
-  const sql = [
-"-- 1. Supabase 대시보드 > SQL Editor 에 붙여넣고 RUN 하세요.",
-"",
-"create extension if not exists \"pgcrypto\";",
-"",
-"create table if not exists projects (",
-"  id uuid primary key default gen_random_uuid(),",
-"  code text, name text, client text, type text, loc text,",
-"  year int, status text, area text, role text,",
-"  img text, shots jsonb default '[]'::jsonb, descr text,",
-"  sort int default 0, created_at timestamptz default now()",
-");",
-"",
-"create table if not exists news (",
-"  id uuid primary key default gen_random_uuid(),",
-"  d text, t text, k text, x text,",
-"  sort int default 0, created_at timestamptz default now()",
-");",
-"",
-"create table if not exists posts (",
-"  id uuid primary key default gen_random_uuid(),",
-"  slug text unique, d text, k text, t text, x text,",
-"  body jsonb default '[]'::jsonb,",
-"  sort int default 0, created_at timestamptz default now()",
-");",
-"",
-"-- 2. 보안 정책: 누구나 읽기, 로그인한 사람만 쓰기",
-"alter table projects enable row level security;",
-"alter table news     enable row level security;",
-"alter table posts    enable row level security;",
-"",
-"create policy \"read all\"  on projects for select using (true);",
-"create policy \"write in\"  on projects for all    using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');",
-"create policy \"read all\"  on news     for select using (true);",
-"create policy \"write in\"  on news     for all    using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');",
-"create policy \"read all\"  on posts    for select using (true);",
-"create policy \"write in\"  on posts    for all    using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');"
-  ].join('\n');
-
-  const steps = [
-"1.  supabase.com 에서 무료 계정을 만들고 New project 를 누릅니다.",
-"    (Region 은 Northeast Asia (Seoul) 를 고르면 빠릅니다)",
-"",
-"2.  좌측 SQL Editor 에 아래 SQL 을 통째로 붙여넣고 RUN.",
-"",
-"3.  좌측 Storage > New bucket > 이름 media, Public bucket 켜기 > 생성.",
-"",
-"4.  Authentication > Sign In / Providers > Email 에서",
-"    'Allow new users to sign up' 을 끕니다.  ← 꼭 하세요.",
-"    이걸 켜둔 채로 두면 누구나 가입해서 글을 고칠 수 있습니다.",
-"",
-"5.  Authentication > Users > Add user 로 본인 이메일과 비밀번호를",
-"    등록합니다. 이게 ADMIN 계정이 됩니다. (Auto Confirm User 체크)",
-"",
-"6.  Project Settings > API Keys 에서 다음 두 가지를 복사합니다.",
-"      · Project URL           (https://xxxx.supabase.co)",
-"      · Publishable key       (sb_publishable_... 로 시작)",
-"    구버전 프로젝트라 Publishable key 가 없으면",
-"    Legacy API Keys 탭의 anon public 키를 쓰면 됩니다.",
-"",
-"7.  index.html 맨 위(17번째 줄 부근) BYX_CONFIG 의 url, key 두 곳에",
-"    붙여넣고 저장합니다. 끝입니다.",
-"",
-"※ Publishable / anon 키는 공개되어도 되는 키입니다. 아래 보안 정책",
-"   때문에 로그인하지 않은 사람은 읽기만 가능합니다. 단, 4번(가입 차단)을",
-"   반드시 해야 이 전제가 성립합니다."
-  ].join('\n');
-
-  const pre = 'white-space:pre-wrap;font-family:var(--font-mono);font-size:10.5px;line-height:1.75;border:1px solid var(--fg);padding:14px;overflow-x:auto;margin:10px 0 26px';
-
-  return `
-  <div class="pane">
-    <h2 class="display h-m">Supabase 연결하기</h2>
-    <div class="note${DB.demo && DB.lastError ? ' warn' : ''}" style="margin-top:16px">현재 상태 : <b>${
-      !DB.demo ? '연결됨 — 편집한 내용이 실제로 저장됩니다'
-      : DB.lastError ? '연결 실패 (데모 모드로 동작 중)'
-      : '설정 안 됨 — 데모 모드 (저장 안 됨)'}</b>${
-      DB.lastError ? '<br><br>오류 메시지<br>' + esc(DB.lastError) + '<br><br>' + hintFor(DB.lastError) : ''}</div>
-    <div class="flabel">설정 순서</div>
-    <div style="${pre}">${esc(steps)}</div>
-    <div class="flabel">SQL</div>
-    <div style="${pre}">${esc(sql)}</div>
-    <button class="abtn" data-act="copysql">SQL 복사</button>
-  </div>`;
+/* --- admin behaviour ------------------------------------------------ */
+/* after save / cancel: back to the page you came from, if you came from one */
+function leaveEditor(){
+  if (AD.back){
+    const h = AD.back;
+    AD.back = null; AD.draft = null;
+    if (location.hash === h) render(); else location.hash = h;
+    return;
+  }
+  AD.draft = SETTING_TABS.includes(AD.tab) ? {...DB.settings[AD.tab]} : null;
+  refreshAdmin();
 }
 
-/* --- admin behaviour ------------------------------------------------ */
 function refreshAdmin(){
   const y = window.scrollY;
   app.innerHTML = '<div>' + viewAdmin() + '</div>';
@@ -1482,26 +1646,50 @@ function pickFiles(multiple){
 
 async function handleFiles(key, files){
   if (!files.length) return;
-  toast('업로드 중…');
+  toast('이미지 정리 중…');
   try{
     const urls = [];
-    for (const f of files) urls.push(await DB.upload(f));
-    if (key === 'img')        AD.draft.img = urls[0];
-    else if (key === 'shots') AD.draft.shots = (AD.draft.shots || []).concat(urls);
-    else if (key.startsWith('block:')){
-      const i = +key.split(':')[1];
-      AD.draft.body[i].v = urls[0];
+    let before = 0, after = 0;
+    for (const f of files){
+      const small = await shrink(f);
+      before += f.size; after += small.size;
+      urls.push(await DB.upload(small));      // already shrunk; upload() no-ops on it
     }
-    toast('업로드 완료');
+    if (key === 'img')        AD.draft.img = urls[0];
+    else if (key === 'map')   AD.draft.map = urls[0];
+    else if (key === 'shots') AD.draft.shots = (AD.draft.shots || []).concat(urls);
+    toast(after < before ? `업로드 완료 · ${kb(before)} → ${kb(after)}` : '업로드 완료');
     refreshAdmin();
   }catch(e){ console.error(e); toast('업로드 실패: ' + (e.message || e)); }
 }
 
+/* upload an image and drop its mark at the caret, without re-rendering
+   (a re-render here would throw away the caret and the focus) */
+async function insertImageAt(ta){
+  const files = await pickFiles(false);
+  if (!files.length) return;
+  toast('이미지 정리 중…');
+  try{
+    const f = files[0], small = await shrink(f);
+    const url = await DB.upload(small);
+    insertAtCaret(ta, `\n\n![](${url})\n\n`);
+    toast(small.size < f.size ? `이미지 추가 · ${kb(f.size)} → ${kb(small.size)}` : '이미지 추가');
+  }catch(e){ console.error(e); toast('업로드 실패: ' + (e.message || e)); }
+}
+
+function insertAtCaret(ta, text){
+  const a = ta.selectionStart, b = ta.selectionEnd;
+  ta.value = ta.value.slice(0, a) + text + ta.value.slice(b);
+  const pos = a + text.length;
+  ta.focus(); ta.setSelectionRange(pos, pos);
+  AD.draft.bodyText = ta.value;
+}
+
 const blank = t => t === 'projects'
-  ? {code:'BYX-', name:'', client:'', type:TYPES[0], loc:'', year:new Date().getFullYear(), status:'IN PROGRESS', area:'', role:'', img:'', shots:[], descr:'', sort:(DB.projects[0]?.sort||1000)+10}
+  ? {code:'', name:'', client:'', type:'', loc:'', year:new Date().getFullYear(), month:new Date().getMonth()+1, status:'IN PROGRESS', area:'', role:'', img:'', shots:[], descr:''}
   : t === 'news'
-  ? {d:'', k:'PROJECT', t:'', x:'', sort:(DB.news[0]?.sort||1000)+10}
-  : {slug:'', d:'', k:'ESSAY', t:'', x:'', body:[], sort:(DB.posts[0]?.sort||1000)+10};
+  ? {d:'', k:'PROJECT', t:'', x:''}
+  : {slug:'', d:'', k:'ESSAY', t:'', x:'', body:[], bodyText:''};
 
 function bindAdmin(){
   const root = app;
@@ -1513,10 +1701,16 @@ function bindAdmin(){
     catch(err){ toast('로그인 실패: ' + (err.message || err)); }
   };
 
-  $$('[data-tab]', root).forEach(b => b.onclick = () => { AD.tab = b.dataset.tab; AD.draft = null; refreshAdmin(); });
+  $$('[data-tab]', root).forEach(b => b.onclick = () => {
+    AD.tab = b.dataset.tab;
+    AD.draft = SETTING_TABS.includes(AD.tab) ? {...DB.settings[AD.tab]} : null;
+    refreshAdmin();
+  });
   $$('[data-edit]', root).forEach(b => b.onclick = () => {
     const r = DB[AD.tab].find(x => String(x.id) === b.dataset.edit);
-    AD.draft = JSON.parse(JSON.stringify(r)); refreshAdmin();
+    AD.draft = JSON.parse(JSON.stringify(r));
+    if (AD.tab === 'posts') AD.draft.bodyText = bodyToText(AD.draft.body);
+    refreshAdmin();
   });
   $$('[data-del]', root).forEach(b => b.onclick = async () => {
     if (!confirm('정말 삭제할까요? 되돌릴 수 없습니다.')) return;
@@ -1527,12 +1721,38 @@ function bindAdmin(){
   /* field binding — no re-render while typing */
   $$('[data-k]', root).forEach(el => el.oninput = () => {
     const k = el.dataset.k;
+    if (k === 'ym'){                                  // one field, two columns
+      const m = String(el.value).match(/^(\d{4})\D(\d{1,2})/);
+      AD.draft.year  = m ? +m[1] : (+String(el.value).slice(0,4) || null);
+      AD.draft.month = m ? +m[2] : null;
+      return;
+    }
     AD.draft[k] = (el.type === 'number') ? (el.value === '' ? null : +el.value) : el.value;
   });
-  $$('[data-block]', root).forEach(el => el.oninput = () => {
-    const [i, f] = el.dataset.block.split(':');
-    AD.draft.body[+i][f] = el.value;
-  });
+
+  /* post body: insert marks / images at the caret, never re-render */
+  const wb = $('#wbody', root);
+  if (wb){
+    $$('[data-ins]', root).forEach(b => b.onclick = () => {
+      if (b.dataset.ins === 'img') return insertImageAt(wb);
+      insertAtCaret(wb, b.dataset.ins === 'h' ? '\n\n## ' : '\n\n> ');
+    });
+    wb.ondragover = e => { e.preventDefault(); wb.classList.add('on'); };
+    wb.ondragleave = () => wb.classList.remove('on');
+    wb.ondrop = async e => {
+      const files = Array.from(e.dataTransfer.files || []).filter(f => f.type.startsWith('image/'));
+      if (!files.length) return;
+      e.preventDefault(); wb.classList.remove('on');
+      toast('이미지 정리 중…');
+      try{
+        for (const f of files){
+          const small = await shrink(f);
+          insertAtCaret(wb, `\n\n![](${await DB.upload(small)})\n\n`);
+        }
+        toast('이미지 추가');
+      }catch(err){ console.error(err); toast('업로드 실패: ' + (err.message || err)); }
+    };
+  }
 
   /* images */
   $$('[data-drop]', root).forEach(z => {
@@ -1549,55 +1769,52 @@ function bindAdmin(){
   $$('[data-imgdel]', root).forEach(b => b.onclick = () => {
     const [key, i] = b.dataset.imgdel.split(':');
     if (key === 'img') AD.draft.img = '';
+    else if (key === 'map') AD.draft.map = '';
     else if (key === 'shots') AD.draft.shots.splice(+i, 1);
-    else if (key === 'blockimg') AD.draft.body[+i].v = '';
-    refreshAdmin();
-  });
-
-  /* blocks */
-  $$('[data-badd]', root).forEach(b => b.onclick = () => {
-    AD.draft.body = AD.draft.body || [];
-    AD.draft.body.push(b.dataset.badd === 'img' ? {t:'img', v:'', c:''} : {t:b.dataset.badd, v:''});
-    refreshAdmin();
-  });
-  $$('[data-bdel]', root).forEach(b => b.onclick = () => { AD.draft.body.splice(+b.dataset.bdel, 1); refreshAdmin(); });
-  $$('[data-bmove]', root).forEach(b => b.onclick = () => {
-    const [i, dir] = b.dataset.bmove.split(':').map(Number);
-    const j = i + dir, arr = AD.draft.body;
-    if (j < 0 || j >= arr.length) return;
-    [arr[i], arr[j]] = [arr[j], arr[i]];
     refreshAdmin();
   });
 
   /* actions */
   $$('[data-act]', root).forEach(b => b.onclick = async () => {
     const a = b.dataset.act;
-    if (a === 'logout'){ await DB.logout(); AD.draft = null; refreshAdmin(); return; }
+    if (a === 'logout'){ await DB.logout(); AD.draft = null; AD.back = null; refreshAdmin(); return; }
+    if (a === 'back'){ const h = AD.back; AD.back = null; AD.draft = null; location.hash = h || '#/'; return; }
     if (a === 'new'){ AD.draft = blank(AD.tab); refreshAdmin(); return; }
-    if (a === 'cancel'){ AD.draft = null; refreshAdmin(); return; }
-    if (a === 'copysql'){
-      const txt = $$('.pane > div', root).map(d => d.textContent).pop();
-      try{ await navigator.clipboard.writeText(txt); toast('복사됨'); }catch(e){ toast('복사 실패 — 직접 선택해 주세요'); }
-      return;
-    }
+    if (a === 'cancel'){ leaveEditor(); return; }
     if (a === 'delete'){
       if (!confirm('정말 삭제할까요?')) return;
-      try{ await DB.remove(AD.tab, AD.draft.id); AD.draft = null; toast('삭제됨'); refreshAdmin(); }
+      try{ await DB.remove(AD.tab, AD.draft.id); AD.draft = null; toast('삭제됨'); leaveEditor(); }
       catch(e){ toast('삭제 실패: ' + (e.message||e)); }
+      return;
+    }
+    if (a === 'savesettings'){
+      try{
+        await DB.saveSettings(AD.tab, {...AD.draft});
+        toast(DB.demo ? '저장되었습니다 (데모 — 새로고침하면 초기화)' : '저장되었습니다');
+        leaveEditor();
+      }catch(e){ console.error(e); toast('저장 실패: ' + (e.message||e)); }
+      return;
+    }
+    if (a === 'resetsettings'){
+      if (!confirm('편집 중인 내용을 버리고 기본값으로 되돌릴까요?')) return;
+      AD.draft = {...(AD.tab === 'about' ? DEFAULT_ABOUT : DEFAULT_CONTACT)};
+      refreshAdmin();
       return;
     }
     if (a === 'save'){
       const d = {...AD.draft};
       if (AD.tab === 'projects'){
         if (!d.code || !d.name){ toast('코드와 프로젝트명은 필수입니다'); return; }
-        d.year = +d.year || null; d.sort = +d.sort || 0;
+        d.year = +d.year || null;
+        d.month = +d.month || null;
       }
       if (AD.tab === 'posts'){
         if (!d.slug){ d.slug = (d.t || 'post').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || uid(); }
-        d.sort = +d.sort || 0;
+        d.body = textToBody(d.bodyText);
+        delete d.bodyText;
       }
-      if (AD.tab === 'news'){ d.sort = +d.sort || 0; }
-      try{ await DB.save(AD.tab, d); AD.draft = null; toast('저장되었습니다'); refreshAdmin(); }
+      d.sort = AD.tab === 'projects' ? ymNum(d) : dnum(d.d);   // ordering is derived, never typed
+      try{ await DB.save(AD.tab, d); AD.draft = null; toast('저장되었습니다'); leaveEditor(); }
       catch(e){ console.error(e); toast('저장 실패: ' + (e.message||e)); }
     }
   });
@@ -1611,6 +1828,7 @@ function bindPage(page, arg){
   if (bar) document.documentElement.style.setProperty('--pbar-h', bar.offsetHeight + 'px');
 
   $$('[data-go]', app).forEach(b => b.onclick = () => { PV.type = b.dataset.go; PV.view = 'grid'; location.hash = '#/'; render(); });
+  $$('[data-ed]', app).forEach(b => b.onclick = () => gotoAdmin(b.dataset.ed));
 
   if (IO && !(page === 'project' && !arg)){ IO.disconnect(); IO = null; }
 
