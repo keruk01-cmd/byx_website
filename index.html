@@ -176,7 +176,7 @@ body.menu #mobnav{transform:translateY(0);visibility:visible}
 .count{font-family:var(--font-mono);font-size:11px;color:var(--mute)}
 
 .display,#brand,#nav a,.row-i .t,.card .cap .nm,.yeardiv span,table.idx .c-name,.art h1,.art h3,
-.sechead h2,.person .n,.feature .ttl,.pd-nav .v,.arow .tt{font-variation-settings:'wght' 680}
+.sechead h2,.person .n,.feature .ttl,.pd-nav .v,.arow .tt,.post-cover h1,.art .tx-disp{font-variation-settings:'wght' 680}
 .display{font-family:var(--font-display);font-weight:400;text-transform:uppercase;line-height:.92;letter-spacing:-.005em;margin:0}
 .h-xl{font-size:clamp(44px,11.5vw,168px)}
 .h-l{font-size:clamp(30px,6vw,74px)}
@@ -335,7 +335,8 @@ table.idx .thumb{width:46px;min-width:46px;max-width:none;height:34px;object-fit
 .row-i .x{margin-top:5px;font-size:12.5px;color:var(--mute);max-width:70ch}
 .row-i .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;text-align:right;color:var(--mute)}
 
-.art{max-width:74ch;padding:clamp(26px,4.5vw,64px) var(--pad) clamp(30px,5vw,80px)}
+/* reading column — centred, left and right are margin */
+.art{max-width:78ch;margin-inline:auto;padding:clamp(26px,4.5vw,64px) var(--pad) clamp(30px,5vw,80px)}
 .art h1{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(28px,4.6vw,58px);line-height:1.02;margin:.1em 0 .3em}
 .art .by{font-family:var(--font-mono);font-size:11px;color:var(--mute);letter-spacing:.05em;text-transform:uppercase}
 .art p{font-size:clamp(13.5px,1.1vw,16px);line-height:1.72;margin:0 0 1.15em}
@@ -343,6 +344,74 @@ table.idx .thumb{width:46px;min-width:46px;max-width:none;height:34px;object-fit
 .art blockquote{margin:1.6em 0;padding-left:18px;border-left:2px solid var(--fg);font-size:clamp(15px,1.5vw,20px);line-height:1.45}
 .art figure{margin:1.8em 0}
 .art figcaption{font-family:var(--font-mono);font-size:10px;color:var(--mute);margin-top:7px;text-transform:uppercase;letter-spacing:.05em}
+.art img{width:100%;height:auto;display:block}
+
+/* per-block alignment */
+.al-c{text-align:center}
+.al-r{text-align:right}
+.al-c blockquote,.al-r blockquote{border-left:0;padding-left:0}
+
+/* inline marks. colour stays inside the four-token palette — the only
+   "colour" available is the black/white inversion. */
+.art strong{font-variation-settings:'wght' 700;font-weight:400}
+.art em{font-style:italic}
+.art s{text-decoration:line-through;text-decoration-thickness:var(--hair)}
+.art mark{background:var(--fg);color:var(--bg);padding:0 .22em}
+.art .tx-mute{color:var(--mute)}
+.art .tx-disp{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.02em}
+.art a[href]{border-bottom:var(--hair) solid var(--fg)}
+.art a[href]:hover{background:var(--fg);color:var(--bg)}
+
+/* post cover — pinned while the article slides up over it */
+.post-cover{
+  position:sticky;top:var(--head-h);z-index:0;
+  height:calc(100vh - var(--head-h));            /* fallback for no svh */
+  height:calc(100svh - var(--head-h));min-height:340px;
+  display:flex;flex-direction:column;justify-content:center;
+  background:var(--bg);overflow:hidden;
+}
+.post-cover .in{max-width:78ch;margin-inline:auto;width:100%;padding-inline:var(--pad);box-sizing:border-box}
+.post-cover .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.post-cover h1{
+  font-family:var(--font-display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(34px,6.4vw,86px);line-height:.98;letter-spacing:-.005em;
+  margin:.16em 0 0;border-bottom:3px solid var(--fg);padding-bottom:.06em;display:inline-block;
+}
+.post-cover .x{margin-top:18px;max-width:46ch;font-size:clamp(13px,1.15vw,16px);line-height:1.6;color:var(--mute)}
+.post-cover .sc{
+  position:absolute;left:var(--pad);right:var(--pad);bottom:22px;
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);
+}
+.post-cover .sc i{flex:1 1 auto;height:var(--hair);background:var(--faint);display:block}
+.post-sheet{position:relative;z-index:1;background:var(--bg);border-top:var(--hair) solid var(--fg)}
+
+/* image group — swipe horizontally. CSS scroll-snap, no library. */
+.gal{margin:1.8em 0;position:relative}
+.gal-track{
+  display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;
+}
+.gal-track::-webkit-scrollbar{display:none}
+.gal-s{flex:0 0 100%;scroll-snap-align:start;min-width:0}
+.gal-s figcaption{padding:0 2px}
+.gal-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+  background:var(--bg);border:var(--hair) solid var(--fg);
+  font-size:16px;line-height:1;transition:background .18s,color .18s,opacity .18s;
+}
+.gal-nav:hover{background:var(--fg);color:var(--bg)}
+.gal-nav[disabled]{opacity:.25;pointer-events:none}
+.gal-prev{left:10px}
+.gal-next{right:10px}
+.gal-dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.gal-dots i{width:6px;height:6px;background:var(--faint);display:block;transition:background .2s}
+.gal-dots i.on{background:var(--fg)}
+.gal-n{
+  position:absolute;top:10px;right:10px;background:var(--fg);color:var(--bg);
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.08em;padding:3px 7px;line-height:1;
+}
 
 /* ---------- ABOUT / CONTACT ---------- */
 .about-grid,.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-bottom:var(--hair) solid var(--fg)}
@@ -430,12 +499,24 @@ input:focus,textarea:focus,select:focus{border-bottom-width:2px;padding-bottom:8
 /* post writer — one field you write straight through */
 .wtools{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0}
 .wtools .hint{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.05em;color:var(--mute);text-transform:uppercase}
+.wtools .wb{font-variation-settings:'wght' 700}
+.wtools .wi{font-style:italic}
+.wtools .ws{text-decoration:line-through}
+.wsplit{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--hair);background:var(--fg)}
+.wsplit.on{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .wbody{
   min-height:56vh;border:var(--hair) solid var(--fg);padding:14px;
   line-height:1.8;font-size:13.5px;
 }
 .wbody:focus{border-width:2px;padding:13px}
 .wbody.on{background:var(--fg);color:var(--bg)}
+/* live preview — same renderer as the public post */
+.wprev{
+  border:var(--hair) solid var(--fg);background:var(--bg);
+  padding:14px;margin:0;max-width:none;overflow:auto;min-height:56vh;
+}
+.wprev>*:first-child{margin-top:0}
+@media (max-width:880px){ .wsplit.on{grid-template-columns:minmax(0,1fr)} }
 .acts-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px;padding-top:16px;border-top:var(--hair) solid var(--fg)}
 .acts-bar .right{margin-left:auto}
 #toast{
@@ -566,6 +647,34 @@ const dnum  = s => { const n = String(s == null ? '' : s).replace(/\D/g, ''); re
 const ymNum = p => (+p.year || 0) * 100 + (+p.month || 0);
 const ymText = p => !p.year ? '—' : (p.month ? p.year + '.' + String(p.month).padStart(2, '0') : String(p.year));
 const ymInput = p => !p.year ? '' : p.year + '-' + String(p.month || 1).padStart(2, '0');
+
+/* ---- inline text marks -------------------------------------------------
+   Post bodies are written as plain text, so formatting is typed inline.
+   esc() runs FIRST and the marks below are the only tags ever injected —
+   nothing the author types can become markup on its own.
+     **굵게**  *기울임*  ~~취소선~~  ==강조==  ((흐리게))  @@제목체@@
+     [보이는 글](주소)
+   Colour is deliberately absent: the palette is four tokens and ==강조== is
+   the black/white inversion the rest of the site already uses. */
+const SAFE_HREF = u => {
+  const s = String(u || '').trim();
+  return /^(https?:\/\/|mailto:|tel:|#|\/)/i.test(s) ? s : '#';
+};
+
+function rich(s){
+  let t = esc(s);
+  t = t.replace(/!?\[([^\]\n]*)\]\(([^)\s]+)\)/g,
+        (m, label, url) => `<a href="${esc(SAFE_HREF(url))}"${/^https?:/i.test(url) ? ' target="_blank" rel="noopener"' : ''}>${label || esc(url)}</a>`);
+  t = t.replace(/@@([\s\S]+?)@@/g, '<span class="tx-disp">$1</span>');
+  t = t.replace(/\(\(([\s\S]+?)\)\)/g, '<span class="tx-mute">$1</span>');
+  t = t.replace(/==([\s\S]+?)==/g, '<mark>$1</mark>');
+  t = t.replace(/~~([\s\S]+?)~~/g, '<s>$1</s>');
+  t = t.replace(/\*\*([\s\S]+?)\*\*/g, '<strong>$1</strong>');
+  t = t.replace(/\*([^*\n]+?)\*/g, '<em>$1</em>');
+  return t.replace(/\n/g, '<br>');          // single newline = line break
+}
+
+const alignClass = b => b && b.a === 'c' ? ' class="al-c"' : b && b.a === 'r' ? ' class="al-r"' : '';
 
 /* "KEY | VALUE" per line — how editable list settings are typed in ADMIN */
 const pairs = s => String(s == null ? '' : s).split('\n').map(l => l.trim()).filter(Boolean)
@@ -1298,23 +1407,55 @@ function viewBlog(){
     </a>`).join('')}</div>`;
 }
 
+/* shared by the public post view and the ADMIN preview */
+function postBodyHTML(body){
+  return (body || []).map(b => {
+    const a = alignClass(b);
+    if (b.t === 'p') return `<p${a}>${rich(b.v)}</p>`;
+    if (b.t === 'h') return `<h3${a}>${rich(b.v)}</h3>`;
+    if (b.t === 'q') return `<blockquote${a}>${rich(b.v)}</blockquote>`;
+    if (b.t === 'img') return `<figure${a}><img src="${esc(b.v)}" alt="" loading="lazy">${b.c ? `<figcaption>${rich(b.c)}</figcaption>` : ''}</figure>`;
+    if (b.t === 'gal') return galleryHTML(b);
+    return '';
+  }).join('');
+}
+
+/* horizontal swipe group. Scroll-snap does the swiping; the buttons and
+   dots are conveniences bound in bindGalleries(). */
+function galleryHTML(b){
+  const items = (b.items || []).filter(i => i && i.v);
+  if (!items.length) return '';
+  if (items.length === 1) return `<figure><img src="${esc(items[0].v)}" alt="" loading="lazy">${items[0].c ? `<figcaption>${rich(items[0].c)}</figcaption>` : ''}</figure>`;
+  return `
+  <div class="gal">
+    <div class="gal-track">
+      ${items.map(i => `<figure class="gal-s"><img src="${esc(i.v)}" alt="" loading="lazy">${i.c ? `<figcaption>${rich(i.c)}</figcaption>` : ''}</figure>`).join('')}
+    </div>
+    <span class="gal-n">1 / ${items.length}</span>
+    <button class="gal-nav gal-prev" aria-label="이전 이미지">‹</button>
+    <button class="gal-nav gal-next" aria-label="다음 이미지">›</button>
+    <div class="gal-dots">${items.map((_, i) => `<i class="${i === 0 ? 'on' : ''}"></i>`).join('')}</div>
+  </div>`;
+}
+
 function viewPost(slug){
   const p = DB.posts.find(x => x.slug === slug);
   if (!p) return `<section class="art"><h1>Not Found</h1><p><a class="tag" href="#/blog">← ALL POSTS</a></p></section>`;
-  const body = (p.body || []).map(b => {
-    if (b.t === 'p') return `<p>${esc(b.v)}</p>`;
-    if (b.t === 'h') return `<h3>${esc(b.v)}</h3>`;
-    if (b.t === 'q') return `<blockquote>${esc(b.v)}</blockquote>`;
-    if (b.t === 'img') return `<figure><img src="${esc(b.v)}" alt=""><figcaption>${esc(b.c||'')}</figcaption></figure>`;
-    return '';
-  }).join('');
   return `
-  <article class="art">
-    <div class="by">${esc(p.d)} · ${esc(p.k)}</div>
-    <h1>${esc(p.t)}</h1>
-    ${body}
-    <p style="margin-top:3em"><a class="tag" href="#/blog">← ALL POSTS</a></p>
-  </article>`;
+  <header class="post-cover">
+    <div class="in">
+      <div class="k">${esc(p.d)} · ${esc(p.k)}</div>
+      <h1>${esc(p.t)}</h1>
+      ${p.x ? `<p class="x">${esc(p.x)}</p>` : ''}
+    </div>
+    <div class="sc"><span>Scroll</span><i></i><span>↓</span></div>
+  </header>
+  <div class="post-sheet">
+    <article class="art">
+      ${postBodyHTML(p.body)}
+      <p style="margin-top:3em"><a class="tag" href="#/blog">← ALL POSTS</a></p>
+    </article>
+  </div>`;
 }
 
 function viewAbout(){
@@ -1375,7 +1516,7 @@ function viewContact(){
 /* ============================================================
    7. ADMIN
    ============================================================ */
-const AD = { tab:'projects', draft:null, back:null };
+const AD = { tab:'projects', draft:null, back:null, preview:false };
 const TABS = [['projects','Project'],['news','News'],['posts','Blog'],['about','About'],['contact','Contact']];
 const SETTING_TABS = ['about','contact'];
 
@@ -1504,27 +1645,47 @@ function edNews(){
 /* ---- post body <-> one plain-text field -----------------------------------
    The stored shape stays a block array (that is what the public view reads),
    but the editor is a single field you write straight through, like any blog
-   editor. Three marks, all typed inline:
-     ## heading        ->  {t:'h'}
-     > quote           ->  {t:'q'}
-     ![caption](url)   ->  {t:'img'}
-   A blank line ends a paragraph. Everything else is a paragraph. */
+   editor. Block marks:
+     ## heading                    ->  {t:'h'}
+     > quote                       ->  {t:'q'}
+     ![caption](url)               ->  {t:'img'}
+     several ![](…) lines in a row ->  {t:'gal'}  swipe group
+     [가운데] / [오른쪽] prefix      ->  b.a = 'c' | 'r'
+   A blank line ends a block. Everything else is a paragraph.
+   Inline marks (**굵게** etc.) are left in the text and resolved by rich()
+   at render time — they never need a block of their own. */
+const IMG_LINE = /^!\[([\s\S]*?)\]\(([^)\s]+)\)$/;
+
 function bodyToText(body){
-  return (body || []).map(b =>
-    b.t === 'h'   ? '## ' + b.v :
-    b.t === 'q'   ? '> ' + b.v :
-    b.t === 'img' ? '![' + (b.c || '') + '](' + b.v + ')' :
-    b.v
-  ).join('\n\n');
+  return (body || []).map(b => {
+    const pre = b.a === 'c' ? '[가운데] ' : b.a === 'r' ? '[오른쪽] ' : '';
+    if (b.t === 'h')   return pre + '## ' + b.v;
+    if (b.t === 'q')   return pre + '> ' + b.v;
+    if (b.t === 'img') return pre + '![' + (b.c || '') + '](' + b.v + ')';
+    if (b.t === 'gal') return pre + (b.items || []).map(i => '![' + (i.c || '') + '](' + i.v + ')').join('\n');
+    return pre + b.v;
+  }).join('\n\n');
 }
 
 function textToBody(txt){
   return String(txt == null ? '' : txt).split(/\n\s*\n/).map(s => s.trim()).filter(Boolean).map(s => {
+    let a = '';
+    const am = s.match(/^\[\s*(가운데|오른쪽|center|right)\s*\]\s*/i);
+    if (am){ a = /가운데|center/i.test(am[1]) ? 'c' : 'r'; s = s.slice(am[0].length).trim(); }
+    const set = o => a ? {...o, a} : o;          // omit `a` when left-aligned
+
+    /* a block made only of image lines is one image, or a swipe group */
+    const rows = s.split('\n').map(l => l.trim()).filter(Boolean);
+    const imgs = rows.map(l => l.match(IMG_LINE)).filter(Boolean);
+    if (rows.length && imgs.length === rows.length){
+      if (imgs.length === 1) return set({t:'img', v:imgs[0][2].trim(), c:imgs[0][1].trim()});
+      return set({t:'gal', items: imgs.map(m => ({v:m[2].trim(), c:m[1].trim()}))});
+    }
+
     let m;
-    if ((m = s.match(/^!\[([\s\S]*?)\]\(([\s\S]+)\)$/))) return {t:'img', v:m[2].trim(), c:m[1].trim()};
-    if ((m = s.match(/^##\s*([\s\S]*)$/)))               return {t:'h', v:m[1].trim()};
-    if ((m = s.match(/^>\s*([\s\S]*)$/)))                return {t:'q', v:m[1].replace(/\n>\s?/g, '\n').trim()};
-    return {t:'p', v:s};
+    if ((m = s.match(/^##\s*([\s\S]*)$/))) return set({t:'h', v:m[1].trim()});
+    if ((m = s.match(/^>\s*([\s\S]*)$/)))  return set({t:'q', v:m[1].replace(/\n>\s?/g, '\n').trim()});
+    return set({t:'p', v:s});
   });
 }
 
@@ -1544,17 +1705,34 @@ function edPost(){
 
     <div class="flabel" style="margin-top:18px">Body / 본문</div>
     <div class="wtools">
-      <button class="abtn sm" data-ins="img">＋ 이미지</button>
-      <button class="abtn sm" data-ins="h">＋ 소제목</button>
-      <button class="abtn sm" data-ins="q">＋ 인용</button>
-      <span class="hint">빈 줄로 문단을 나눕니다 · 이미지는 이 칸에 끌어다 놓아도 됩니다</span>
+      <button class="abtn sm wb" data-wrap="**" title="굵게">B</button>
+      <button class="abtn sm wi" data-wrap="*" title="기울임">I</button>
+      <button class="abtn sm ws" data-wrap="~~" title="취소선">S</button>
+      <button class="abtn sm" data-wrap="==" title="흑백 반전 강조">강조</button>
+      <button class="abtn sm" data-wrap="((|))" title="흐린 글자">흐리게</button>
+      <button class="abtn sm" data-wrap="@@" title="제목 서체(Anton)">제목체</button>
+      <button class="abtn sm" data-ins="link">링크</button>
     </div>
-    <textarea id="wbody" data-k="bodyText" class="wbody" placeholder="여기에 글을 씁니다.
+    <div class="wtools">
+      <button class="abtn sm" data-ins="h">소제목</button>
+      <button class="abtn sm" data-ins="q">인용</button>
+      <button class="abtn sm" data-ins="al-c">가운데</button>
+      <button class="abtn sm" data-ins="al-r">오른쪽</button>
+      <button class="abtn sm" data-ins="al-l">정렬 해제</button>
+      <button class="abtn sm solid" data-ins="img">＋ 이미지</button>
+      <button class="abtn sm" data-act="preview">${AD.preview ? '미리보기 닫기' : '미리보기'}</button>
+    </div>
+    <div class="wtools"><span class="hint">빈 줄로 문단을 나눕니다 · 사진 여러 장을 한 번에 넣으면 좌우로 넘기는 묶음이 됩니다</span></div>
+    <div class="wsplit${AD.preview ? ' on' : ''}">
+      <textarea id="wbody" data-k="bodyText" class="wbody" placeholder="여기에 글을 씁니다.
 
 빈 줄을 하나 두면 다음 문단이 시작됩니다.
 
 ## 이렇게 쓰면 소제목
-&gt; 이렇게 쓰면 인용">${esc(d.bodyText)}</textarea>
+&gt; 이렇게 쓰면 인용
+**굵게** *기울임* ~~취소선~~ ==강조==">${esc(d.bodyText)}</textarea>
+      ${AD.preview ? `<div class="wprev art" id="wprev">${postBodyHTML(textToBody(d.bodyText))}</div>` : ''}
+    </div>
     ${actionsBar()}
   </div>`;
 }
@@ -1663,17 +1841,22 @@ async function handleFiles(key, files){
   }catch(e){ console.error(e); toast('업로드 실패: ' + (e.message || e)); }
 }
 
-/* upload an image and drop its mark at the caret, without re-rendering
-   (a re-render here would throw away the caret and the focus) */
-async function insertImageAt(ta){
-  const files = await pickFiles(false);
-  if (!files.length) return;
+/* upload images and drop their marks at the caret, without re-rendering
+   (a re-render here would throw away the caret and the focus).
+   Several images at once become one swipe group — consecutive image lines. */
+async function insertImagesAt(ta, files){
+  if (!files || !files.length) return;
   toast('이미지 정리 중…');
   try{
-    const f = files[0], small = await shrink(f);
-    const url = await DB.upload(small);
-    insertAtCaret(ta, `\n\n![](${url})\n\n`);
-    toast(small.size < f.size ? `이미지 추가 · ${kb(f.size)} → ${kb(small.size)}` : '이미지 추가');
+    let before = 0, after = 0;
+    const marks = [];
+    for (const f of files){
+      const small = await shrink(f);
+      before += f.size; after += small.size;
+      marks.push(`![](${await DB.upload(small)})`);
+    }
+    insertAtCaret(ta, '\n\n' + marks.join('\n') + '\n\n');
+    toast(`${marks.length > 1 ? `이미지 ${marks.length}장 묶음 추가` : '이미지 추가'}${after < before ? ` · ${kb(before)} → ${kb(after)}` : ''}`);
   }catch(e){ console.error(e); toast('업로드 실패: ' + (e.message || e)); }
 }
 
@@ -1682,7 +1865,43 @@ function insertAtCaret(ta, text){
   ta.value = ta.value.slice(0, a) + text + ta.value.slice(b);
   const pos = a + text.length;
   ta.focus(); ta.setSelectionRange(pos, pos);
+  syncBody(ta);
+}
+
+/* wrap the selection in a mark pair; with nothing selected, park the caret
+   between the two halves so you can just start typing */
+function wrapSelection(ta, spec){
+  const [open, close] = spec.includes('|') ? spec.split('|') : [spec, spec];
+  const a = ta.selectionStart, b = ta.selectionEnd;
+  const sel = ta.value.slice(a, b);
+  ta.value = ta.value.slice(0, a) + open + sel + close + ta.value.slice(b);
+  ta.focus();
+  if (sel) ta.setSelectionRange(a + open.length, a + open.length + sel.length);
+  else     ta.setSelectionRange(a + open.length, a + open.length);
+  syncBody(ta);
+}
+
+/* put a token at the start of the block the caret sits in */
+function prefixBlock(ta, token, strip){
+  const v = ta.value, caret = ta.selectionStart;
+  let start = v.lastIndexOf('\n\n', Math.max(0, caret - 1));
+  start = start < 0 ? 0 : start + 2;
+  let line = v.slice(start);
+  const end = line.search(/\n\s*\n/);
+  line = end < 0 ? line : line.slice(0, end);
+  const bare = line.replace(strip, '');
+  const next = token + bare;
+  ta.value = v.slice(0, start) + next + v.slice(start + line.length);
+  const pos = start + next.length;
+  ta.focus(); ta.setSelectionRange(pos, pos);
+  syncBody(ta);
+}
+
+/* keep the draft and the live preview in step without re-rendering ADMIN */
+function syncBody(ta){
   AD.draft.bodyText = ta.value;
+  const pv = $('#wprev', app);
+  if (pv) pv.innerHTML = postBodyHTML(textToBody(ta.value));
 }
 
 const blank = t => t === 'projects'
@@ -1733,24 +1952,24 @@ function bindAdmin(){
   /* post body: insert marks / images at the caret, never re-render */
   const wb = $('#wbody', root);
   if (wb){
-    $$('[data-ins]', root).forEach(b => b.onclick = () => {
-      if (b.dataset.ins === 'img') return insertImageAt(wb);
-      insertAtCaret(wb, b.dataset.ins === 'h' ? '\n\n## ' : '\n\n> ');
+    wb.oninput = () => syncBody(wb);
+    $$('[data-wrap]', root).forEach(b => b.onclick = () => wrapSelection(wb, b.dataset.wrap));
+    $$('[data-ins]', root).forEach(b => b.onclick = async () => {
+      const k = b.dataset.ins;
+      if (k === 'img')  return insertImagesAt(wb, await pickFiles(true));
+      if (k === 'link') return wrapSelection(wb, '[|](https://)');
+      if (k === 'h')    return prefixBlock(wb, '## ', /^(\[\s*(?:가운데|오른쪽|center|right)\s*\]\s*)?(##\s*|>\s*)?/i);
+      if (k === 'q')    return prefixBlock(wb, '> ',  /^(\[\s*(?:가운데|오른쪽|center|right)\s*\]\s*)?(##\s*|>\s*)?/i);
+      const strip = /^\[\s*(?:가운데|오른쪽|center|right)\s*\]\s*/i;
+      prefixBlock(wb, k === 'al-c' ? '[가운데] ' : k === 'al-r' ? '[오른쪽] ' : '', strip);
     });
     wb.ondragover = e => { e.preventDefault(); wb.classList.add('on'); };
     wb.ondragleave = () => wb.classList.remove('on');
-    wb.ondrop = async e => {
+    wb.ondrop = e => {
       const files = Array.from(e.dataTransfer.files || []).filter(f => f.type.startsWith('image/'));
       if (!files.length) return;
       e.preventDefault(); wb.classList.remove('on');
-      toast('이미지 정리 중…');
-      try{
-        for (const f of files){
-          const small = await shrink(f);
-          insertAtCaret(wb, `\n\n![](${await DB.upload(small)})\n\n`);
-        }
-        toast('이미지 추가');
-      }catch(err){ console.error(err); toast('업로드 실패: ' + (err.message || err)); }
+      insertImagesAt(wb, files);
     };
   }
 
@@ -1780,6 +1999,7 @@ function bindAdmin(){
     if (a === 'logout'){ await DB.logout(); AD.draft = null; AD.back = null; refreshAdmin(); return; }
     if (a === 'back'){ const h = AD.back; AD.back = null; AD.draft = null; location.hash = h || '#/'; return; }
     if (a === 'new'){ AD.draft = blank(AD.tab); refreshAdmin(); return; }
+    if (a === 'preview'){ AD.preview = !AD.preview; refreshAdmin(); return; }
     if (a === 'cancel'){ leaveEditor(); return; }
     if (a === 'delete'){
       if (!confirm('정말 삭제할까요?')) return;
@@ -1842,7 +2062,52 @@ function bindPage(page, arg){
     });
     $$('table.idx tbody tr', app).forEach(tr => tr.onclick = () => { location.hash = '#/project/' + encodeURIComponent(tr.dataset.code); });
   }
+  if (page === 'blog' && arg) bindGalleries(app);
   if (page === 'admin') bindAdmin();
+}
+
+/* swipe groups: the scrolling is native, this only drives arrows and dots */
+function bindGalleries(root){
+  $$('.gal', root).forEach(g => {
+    const track = $('.gal-track', g);
+    const dots  = $$('.gal-dots i', g);
+    const count = $('.gal-n', g);
+    const prev  = $('.gal-prev', g);
+    const next  = $('.gal-next', g);
+    const n     = $$('.gal-s', g).length;
+
+    /* We animate scrollLeft ourselves instead of asking for behavior:'smooth'.
+       A UA smooth scroll is silently dropped where it cannot animate (hidden
+       tab, reduced motion) and, worse, the pending animation then swallows a
+       plain scrollLeft write — so the slide would never move. This always
+       lands on the slide, and only the animation is optional. */
+    const step = d => {
+      const w = track.clientWidth || 1;
+      const from = track.scrollLeft;
+      const to = Math.max(0, Math.min(n - 1, Math.round(from / w) + d)) * w;
+      if (Math.abs(to - from) < 2) return;
+      if (document.hidden || matchMedia('(prefers-reduced-motion:reduce)').matches){
+        track.scrollLeft = to; mark(); return;
+      }
+      const t0 = performance.now(), dur = 380, ease = x => 1 - Math.pow(1 - x, 3);
+      (function frame(now){
+        const k = Math.min(1, (now - t0) / dur);
+        track.scrollLeft = from + (to - from) * ease(k);
+        if (k < 1) requestAnimationFrame(frame); else mark();
+      })(t0);
+    };
+    prev.onclick = () => step(-1);
+    next.onclick = () => step(1);
+    const mark = () => {
+      const i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+      dots.forEach((d, j) => d.classList.toggle('on', j === i));
+      if (count) count.textContent = (i + 1) + ' / ' + n;
+      prev.disabled = i <= 0;
+      next.disabled = i >= n - 1;
+    };
+    track.addEventListener('scroll', mark, {passive:true});
+    mark();
+  });
 }
 
 /* ============================================================
