@@ -471,7 +471,33 @@ PARK | Principal | 서울대 건축학과 / 前 OMA Rotterdam | https://…/a.we
 - 주소가 실제로 존재하지 않으면 좌상단 장소 카드가 계속 도는 상태로 남고, 반전 때문에
   **검은 상자**처럼 보입니다. 코드 문제가 아니라 주소 문제입니다 (§9 참고)
 
-### 5-12. 로고 간격 — `.optical`
+### 5-12. 비밀글
+
+`posts.pub === false` 인 글은 사이트에 없는 것처럼 굽니다.
+
+- `livePosts()` 가 목록을 거릅니다. 로그인 중이면 거르지 않고 `.lock` 표시를 붙입니다
+- `viewPost()` 는 **주소를 직접 쳐도** `Not Found` 를 돌려줍니다. 목록에서 빼는 것만으로는
+  숨긴 것이 아닙니다
+- **`pub` 이 없으면 공개로 봅니다** (`p.pub === false` 만 숨김). 기존 글, 그리고 아직
+  칸이 없는 데이터베이스가 통째로 사라지면 안 됩니다
+- 편집 화면의 `.pubbar` 는 비밀글일 때 흑백이 반전됩니다. 저장 토스트도 상태를 말합니다
+- 새 글은 `blank()` 에서 `pub:false` 로 시작합니다 (§8 #51)
+
+### 5-13. 슬롯머신 연장
+
+`spin()` 은 돌고 있을 때 불려도 무시하지 않고 **이어 붙입니다**.
+
+- `reelY()` 로 현재 위치를 읽고 → 애니메이션을 `cancel()` → 그 위치를 인라인 transform 에
+  박아두고 → 릴 끝에 26개를 더 붙인 뒤 → 거기서부터 다시 애니메이트
+- **위치를 먼저 읽어야 합니다.** `cancel()` 이 transform 을 되돌립니다
+- 길이는 남은 거리에 비례해 잡되 1.5~4.6초로 자릅니다. 그래야 연장이 급해지지 않고
+  거의 끝난 릴이 굼뜨지 않습니다
+- 항목이 `REEL_MAX`(300)에 닿으면 더 붙이지 않고 마지막 항목의 단어만 바꿔 답니다
+- 착지는 `onfinish` **와** `dur + 260ms` 타이머 두 갈래입니다. 숨은 탭은 애니메이션을
+  `finished` 까지 돌려놓고도 이벤트를 안 줄 수 있어, 그때 릴이 영원히 중간에 섭니다.
+  두 경로 모두 `reelAnim !== anim` 이면 아무 것도 하지 않습니다
+
+### 5-14. 로고 간격 — `.optical`
 
 `#brand .fixed` 와 ABOUT `.brandline` 의 `&nbsp;BY&nbsp;X` 앞 공백은 **실제 공백 문자**라
 `BY X` 의 공백과 정의상 같습니다(§8 #28). 그런데도 좁아 보입니다 — `Y` 가 베이스라인
@@ -502,7 +528,7 @@ publishable(구 anon) 키는 **공개되어도 되는 키**입니다. RLS가 읽
 projects(id uuid pk, code, name, client, type, loc, year int, month int, status,
          area, role, img, shots jsonb, descr, people, sort int, created_at)
 news    (id uuid pk, d, t, k, x, img, url, sort int, created_at)
-posts   (id uuid pk, slug unique, d, k, t, x, body jsonb, sort int, created_at)
+posts   (id uuid pk, slug unique, d, k, t, x, body jsonb, pub bool, sort int, created_at)
 settings(k text pk, v jsonb, updated_at)
 ```
 - 열 이름이 짧은 건 초기 시드 데이터 구조를 그대로 옮겼기 때문입니다
@@ -513,8 +539,10 @@ settings(k text pk, v jsonb, updated_at)
   프로젝트는 `ymNum()` (`202607`), 소식·글은 `dnum(d)` (`20260728`).
   열을 남겨둔 건 Supabase 정렬을 그대로 쓰기 위해서입니다
 - `settings` 는 `k` 가 `'about'` / `'contact'` 두 행뿐입니다. 없어도 사이트는 돕니다
-- `projects.people` / `news.img` / `news.url` 은 **나중에 붙은 칸**이라 아직 없을 수
-  있습니다. `DB.refresh()` 가 첫 행의 키로 존재를 판정해 `DB.cols` 에 담고,
+- `posts.pub` 은 `default true` 로 만듭니다. 이미 올라간 글이 마이그레이션 한 번에
+  전부 사라지면 안 됩니다. 새 글만 `blank()` 에서 `pub:false` 로 시작합니다
+- `projects.people` / `news.img` / `news.url` / `posts.pub` 은 **나중에 붙은 칸**이라
+  아직 없을 수 있습니다. `DB.refresh()` 가 첫 행의 키로 존재를 판정해 `DB.cols` 에 담고,
   `DB.save()` 가 없는 칸만 payload 에서 뺍니다. 편집 화면에는 `miss()` 안내 상자가
   뜹니다. **이 폴백을 지우면 SQL 을 실행하지 않은 사이트에서 저장 전체가 실패합니다**
 - 표에 **행이 하나도 없으면 판정할 근거가 없어 "있다"로 둡니다.** 그 상태로 저장하면
@@ -592,6 +620,12 @@ GitHub(byx-website) --push--> Vercel --auto deploy--> https://…
 | 43 | 로고 `.optical` 보정값 | #28 로 공백은 실제로 같아졌는데도 좁아 보임. Y 가 베이스라인에서 열려 있어 뒤쪽 간격에 여백을 빌려주기 때문. 픽셀 스캔 실측 R→B 17px / Y→X 14px 인데 후자가 더 넓게 읽힘 → `.05em` 만 더함 |
 | 44 | 커서를 흑백 반전 이미지로 | 클라이언트 요청. OS 커서는 색을 지정할 수 없어 이미지 공급이 유일한 방법. 흰 밑깔기 + 검은 도형 2중 렌더 — 도형별 stroke 는 겹치는 곳에 흰 이음매가 생김 |
 | 45 | 지도 다크 그레이는 CSS 필터 | 키리스 임베드는 style 파라미터가 없음. `grayscale(1) invert(1)` 이면 스크립트 한 줄 없이 어두운 지도 + 밝은 라벨이 나옴 |
+| 46 | 커서 값을 `:root` 변수로 | 선택자 목록 하나로 깔았더니 `#brand`(id)·`table.idx tr`·`.cpick .sw` 처럼 이미 `cursor:pointer` 를 가진 더 강한 규칙이 이겨서 그 자리만 OS 커서로 돌아갔음. 변수는 특이도로 질 수 없음 |
+| 47 | 슬롯머신은 재시작이 아니라 연장 | 돌던 것을 끊고 다시 시작하면 클릭이 리셋처럼 보임. 현재 위치를 읽어 뒤에 항목을 이어 붙이면 "계속 돈다"로 읽힘. 항목 300개에서 멈춤 |
+| 48 | 프로젝트 기본 정렬을 `year` 로 | 기존 기본값 `code` 내림차순은 데모 코드가 연도로 시작해서 맞아 보였을 뿐. 실제 코드에는 날짜가 없음 |
+| 49 | 글 날짜는 8자리 + 달력 | 자유 텍스트라 구두점을 틀릴 수 있었음. 저장 형태(`2026.06.02`)는 그대로 두고 **편집 화면만** 숫자로. 공개 화면과 기존 데이터가 안 바뀜 |
+| 50 | 미리보기 기본 열림 | 표기법은 결과를 봐야 익혀짐. 닫는 버튼은 남겨둠 |
+| 51 | 새 글은 비밀글로 시작 | "쓰고 나서 공개"가 블로그의 기본 흐름. 대신 저장 토스트가 비밀글임을 말해주고, 편집 화면 맨 줄이 검게 반전됨 |
 
 ### 되돌린 것들 (다시 제안하지 마세요)
 - 다크모드 토글 — 삭제됨
@@ -619,9 +653,10 @@ GitHub(byx-website) --push--> Vercel --auto deploy--> https://…
       단, `settings` 는 아직 0행이라 ABOUT/CONTACT 는 파일 기본값이 보이는 상태입니다
 - [ ] **로그인 상태에서 실제 저장 확인** — 미검증. 계정이 없어 익명 읽기까지만 확인했습니다.
       ADMIN 로그인 → ABOUT 한 글자 수정 → 저장 → 새로고침으로 한 번 확인 필요
-- [ ] **새 열 3개 SQL 실행** — `projects.people`, `news.img`, `news.url`.
-      배포 가이드 3-2 의 "예전에 이미 이 단계를 한 적이 있다면" 상자.
-      실행 전에도 사이트는 정상이고, 그 세 칸만 저장되지 않습니다 (§6-2)
+- [ ] **새 열 4개 SQL 실행** — `projects.people`, `news.img`, `news.url`,
+      `posts.pub`(`default true`). 배포 가이드 3-2 의 "예전에 이미 이 단계를 한 적이
+      있다면" 상자. 실행 전에도 사이트는 정상이고, 그 네 칸만 저장되지 않습니다 (§6-2).
+      **비밀글은 이걸 해야 실제로 숨겨집니다** — 그 전에는 새로고침하면 공개로 돌아옵니다
 - [ ] 실제 프로젝트 사진·텍스트 입력 (ADMIN에서)
 - [ ] ABOUT/CONTACT 기본값이 여전히 지어낸 더미입니다. 이제 ADMIN에서 고칠 수 있으니
       실제 내용으로 교체 필요 (`DEFAULT_ABOUT` / `DEFAULT_CONTACT` 는 폴백일 뿐).
