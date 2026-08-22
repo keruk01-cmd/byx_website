@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>BY X — Architecture &amp; Design</title>
+<title>BYX</title>
 <meta name="description" content="BYX 건축사사무소 — Architecture, Object, Landscape, Graphic. Selected works and index.">
 <meta name="theme-color" content="#ffffff">
 <script>
@@ -20,7 +20,7 @@ window.BYX_CONFIG = {
   bucket: 'media'
 };
 </script>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='4' y='22' width='24' height='3' fill='%23000'/%3E%3Crect x='4' y='7' width='6' height='10' fill='%23000'/%3E%3Crect x='14' y='7' width='6' height='10' fill='%23000'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NjAgNTYwIj48ZGVmcz48Y2xpcFBhdGggaWQ9ImNsaXAtYiIgY2xpcFBhdGhVbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjEyMyIgY3k9IjI3NiIgcj0iMTA2Ii8+PC9jbGlwUGF0aD48Y2xpcFBhdGggaWQ9ImNsaXAteCIgY2xpcFBhdGhVbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjQzNyIgY3k9IjI3NiIgcj0iMTA2Ii8+PC9jbGlwUGF0aD48Y2xpcFBhdGggaWQ9ImNsaXAteSIgY2xpcFBhdGhVbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjI4MCIgY3k9IjQzMyIgcj0iMTA2Ii8+PC9jbGlwUGF0aD48L2RlZnM+PGNpcmNsZSBjeD0iMjgwIiBjeT0iMTIwIiByPSIxMDYiIGZpbGw9IiMwMDAiLz48Y2lyY2xlIGN4PSIxMjMiIGN5PSIyNzYiIHI9IjEwNiIgZmlsbD0iIzAwMCIvPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwLWIpIj48cGF0aCBmaWxsPSIjZmZmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9IiBNNTYgMTYwIEgxMjMgQzE2NiAxNjAgMTkzIDE4NiAxOTMgMjIxIEMxOTMgMjQ0IDE4MyAyNjAgMTY0IDI2OSBDMTg2IDI3NyAyMDEgMjk4IDIwMSAzMjYgQzIwMSAzNjUgMTczIDM5MiAxMjMgMzkyIEg1NiBaIE05NyAyMDUgVjI1NyBIMTIwIEMxNDEgMjU3IDE1MiAyNDggMTUyIDIzMSBDMTUyIDIxMyAxNDEgMjA1IDEyMCAyMDUgWiBNOTcgMjg5IFYzNDYgSDEyNCBDMTQ4IDM0NiAxNjAgMzM3IDE2MCAzMTggQzE2MCAyOTkgMTQ4IDI5MCAxMjQgMjkwIFogIi8+PC9nPjxjaXJjbGUgY3g9IjQzNyIgY3k9IjI3NiIgcj0iMTA2IiBmaWxsPSIjMDAwIi8+PGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAteCkiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9IiBNMzYwIDE4MCBMNDA1IDE1OCBMNDM4IDI0MCBMNDc0IDE1OCBMNTE4IDE4MSBMNDY0IDI3NCBMNTEwIDM3MSBMNDYyIDM4NSBMNDM2IDMxNSBMNDA4IDM4NiBMMzYwIDM2OSBMNDEwIDI3NCBaICIvPjwvZz48Y2lyY2xlIGN4PSIyODAiIGN5PSI0MzMiIHI9IjEwNiIgZmlsbD0iIzAwMCIvPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwLXkpIj48cGF0aCBmaWxsPSIjZmZmIiBkPSIgTTE5MCAzMzcgTDIzMiAzMTYgTDI4MSA0MzAgTDMzMCAzMTYgTDM3MSAzMzkgTDMwMyA0NjkgVjU1NSBIMjU4IFY0NjkgWiAiLz48L2c+PC9zdmc+">
 <style>
 /* Self-hosted webfonts, embedded as base64 so the site works offline.
    Anton (SIL OFL 1.1) — Compacta-class condensed display face.
@@ -34,6 +34,10 @@ window.BYX_CONFIG = {
    Single file. Optional Supabase back-end for the ADMIN editor.
    ============================================================ */
 :root{
+  /* the site is light-only. Without this, a browser (or OS) set to dark mode
+     paints form controls with its own dark canvas and the writing box comes
+     out black. */
+  color-scheme:light;
   --bg:#ffffff;
   --fg:#000000;
   --mute:#8e8e8e;
@@ -63,6 +67,22 @@ body{
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+/* ---------- CURSOR ----------
+   The OS arrow is white with a black outline; on a site that is mostly white
+   paper it reads as a hole. These are the same three shapes inverted — black
+   body, white outline — supplied as images, since a cursor's colour cannot be
+   set any other way. The trailing keyword is the fallback if the image is
+   refused. The numbers after the url() are the hotspot: the pixel that
+   actually points. */
+body{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2224%22%20viewBox%3D%220%200%2018%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M2%202%202%2018.5%206.5%2014.6%209.3%2021.2%2012.3%2019.9%209.6%2013.6%2014.5%2013.6Z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M2%202%202%2018.5%206.5%2014.6%209.3%2021.2%2012.3%2019.9%209.6%2013.6%2014.5%2013.6Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 2 2,default}
+a[href],button,label[for],summary,select,.drop,.card{
+  cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2226%22%20height%3D%2224%22%20viewBox%3D%220%200%2026%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M11%201.5c-1.1%200-2%20.9-2%202v9.2l-1.6-1.9c-.7-.8-1.9-.9-2.7-.2-.8.6-.9%201.8-.3%202.6l3.9%205.6c1.1%201.6%202.9%202.6%204.9%202.6h2.3c3.6%200%206.5-2.9%206.5-6.5v-3.4c0-1.1-.9-2-2-2-.4%200-.8.1-1.1.3-.3-.9-1.1-1.5-2.1-1.5-.5%200-1%20.2-1.4.5-.4-.7-1.1-1.1-2-1.1-.6%200-1.1.2-1.5.6V3.5c0-1.1-.9-2-2-2z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M11%201.5c-1.1%200-2%20.9-2%202v9.2l-1.6-1.9c-.7-.8-1.9-.9-2.7-.2-.8.6-.9%201.8-.3%202.6l3.9%205.6c1.1%201.6%202.9%202.6%204.9%202.6h2.3c3.6%200%206.5-2.9%206.5-6.5v-3.4c0-1.1-.9-2-2-2-.4%200-.8.1-1.1.3-.3-.9-1.1-1.5-2.1-1.5-.5%200-1%20.2-1.4.5-.4-.7-1.1-1.1-2-1.1-.6%200-1.1.2-1.5.6V3.5c0-1.1-.9-2-2-2z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 11 2,pointer;
+}
+input,textarea{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2224%22%20viewBox%3D%220%200%2016%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M4.5%203H11.5V5H9V19H11.5V21H4.5V19H7V5H4.5Z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M4.5%203H11.5V5H9V19H11.5V21H4.5V19H7V5H4.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 8 12,text}
+input[type=color],input[type=file],input[type=range],input[type=checkbox],input[type=radio]{
+  cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2226%22%20height%3D%2224%22%20viewBox%3D%220%200%2026%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M11%201.5c-1.1%200-2%20.9-2%202v9.2l-1.6-1.9c-.7-.8-1.9-.9-2.7-.2-.8.6-.9%201.8-.3%202.6l3.9%205.6c1.1%201.6%202.9%202.6%204.9%202.6h2.3c3.6%200%206.5-2.9%206.5-6.5v-3.4c0-1.1-.9-2-2-2-.4%200-.8.1-1.1.3-.3-.9-1.1-1.5-2.1-1.5-.5%200-1%20.2-1.4.5-.4-.7-1.1-1.1-2-1.1-.6%200-1.1.2-1.5.6V3.5c0-1.1-.9-2-2-2z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M11%201.5c-1.1%200-2%20.9-2%202v9.2l-1.6-1.9c-.7-.8-1.9-.9-2.7-.2-.8.6-.9%201.8-.3%202.6l3.9%205.6c1.1%201.6%202.9%202.6%204.9%202.6h2.3c3.6%200%206.5-2.9%206.5-6.5v-3.4c0-1.1-.9-2-2-2-.4%200-.8.1-1.1.3-.3-.9-1.1-1.5-2.1-1.5-.5%200-1%20.2-1.4.5-.4-.7-1.1-1.1-2-1.1-.6%200-1.1.2-1.5.6V3.5c0-1.1-.9-2-2-2z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 11 2,pointer;
+}
+[disabled]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2224%22%20viewBox%3D%220%200%2018%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M2%202%202%2018.5%206.5%2014.6%209.3%2021.2%2012.3%2019.9%209.6%2013.6%2014.5%2013.6Z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M2%202%202%2018.5%206.5%2014.6%209.3%2021.2%2012.3%2019.9%209.6%2013.6%2014.5%2013.6Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 2 2,not-allowed}
 ::selection{background:var(--fg);color:var(--bg)}
 
 .mono{font-family:var(--font-mono);font-size:.82em;letter-spacing:.02em}
@@ -115,8 +135,14 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   white-space:nowrap;overflow:hidden;
 }
 #reel .w{flex:0 0 auto;transform-origin:100% 50%}
-/* the gap before BY is a real space, so it is identical to the one in BY X */
-#brand .fixed{padding-left:0;white-space:pre}
+/* The gap before BY is a real space, so it is metrically identical to the one
+   in BY X — measured, both are the same nbsp advance. It still reads as the
+   tighter of the two, because Y opens up at the baseline and lends its gap
+   space that the word (or the rule under it) does not have. `.optical` is that
+   difference and nothing else: do not delete it as a stray value, and do not
+   grow it into a fake space — the space itself is a real character. */
+#brand .fixed{white-space:pre}
+.optical{padding-left:.05em}
 #brand:active{opacity:.6}
 
 #nav{display:flex;align-items:center;gap:clamp(14px,2.1vw,34px);flex:0 0 auto;margin-left:auto}
@@ -237,10 +263,9 @@ button.tag:hover,a.tag:hover{background:var(--fg);color:var(--bg)}
 .card .cap .nm{font-family:var(--font-display);font-size:clamp(20px,2.15vw,30px);text-transform:uppercase;letter-spacing:.02em;line-height:1.03}
 .card .cap .cd{font-family:var(--font-mono);font-size:11.5px;color:var(--mute);white-space:nowrap}
 .card .cap .l2{font-family:var(--font-mono);font-size:11.5px;text-transform:uppercase;color:var(--mute);display:flex;gap:14px;flex-wrap:wrap}
-.card .badge{
-  display:block;position:absolute;top:0;left:0;background:var(--fg);color:var(--bg);
-  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.09em;padding:4px 9px;line-height:1;
-}
+/* the type used to sit on the thumbnail as a black tag. It is in the INDEX
+   view and on the project page already, and on the image it read as a label
+   stuck onto the work. Removed on request. */
 /* infinite-scroll sentinel */
 #more{
   display:flex;align-items:center;justify-content:center;gap:10px;
@@ -334,6 +359,14 @@ table.idx .thumb{width:46px;min-width:46px;max-width:none;height:34px;object-fit
 .row-i .t{font-family:var(--font-display);font-size:clamp(17px,2.1vw,27px);text-transform:uppercase;line-height:1.06;letter-spacing:.015em}
 .row-i .x{margin-top:5px;font-size:12.5px;color:var(--mute);max-width:70ch}
 .row-i .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;text-align:right;color:var(--mute)}
+/* a news item may carry a picture and may point somewhere off the site */
+.row-i.pic{grid-template-columns:120px 132px minmax(0,1fr) 130px;align-items:start}
+.row-i .th{width:132px;aspect-ratio:4/3;overflow:hidden;background:var(--bg)}
+.row-i .th.empty{aspect-ratio:auto;height:0}
+.row-i .th img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.06)}
+.row-i:hover .th img{filter:none}
+.row-i .out{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.08em;color:var(--mute);margin-top:6px;display:inline-block}
+.row-i:hover .out{color:var(--bg)}
 
 /* reading column — centred, left and right are margin */
 .art{max-width:78ch;margin-inline:auto;padding:clamp(26px,4.5vw,64px) var(--pad) clamp(30px,5vw,80px)}
@@ -351,16 +384,29 @@ table.idx .thumb{width:46px;min-width:46px;max-width:none;height:34px;object-fit
 .al-r{text-align:right}
 .al-c blockquote,.al-r blockquote{border-left:0;padding-left:0}
 
-/* inline marks. colour stays inside the four-token palette — the only
-   "colour" available is the black/white inversion. */
+/* inline marks. ==강조== is the palette inversion; free colour is opt-in per
+   run of text and only ever arrives as a validated hex (see rich()). */
 .art strong{font-variation-settings:'wght' 700;font-weight:400}
 .art em{font-style:italic}
 .art s{text-decoration:line-through;text-decoration-thickness:var(--hair)}
+.art u{text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:var(--hair)}
 .art mark{background:var(--fg);color:var(--bg);padding:0 .22em}
 .art .tx-mute{color:var(--mute)}
 .art .tx-disp{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.02em}
+.art .tx-bg{padding:0 .22em}
+.art code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;background:rgba(128,128,128,.14);padding:.08em .34em}
 .art a[href]{border-bottom:var(--hair) solid var(--fg)}
 .art a[href]:hover{background:var(--fg);color:var(--bg)}
+
+/* lists and rules */
+.art ul,.art ol{margin:0 0 1.15em;padding-left:1.3em}
+.art li{font-size:clamp(13.5px,1.1vw,16px);line-height:1.72;margin:0 0 .35em}
+.art ul{list-style:none;padding-left:1.5em}
+.art ul>li{position:relative}
+.art ul>li::before{content:'—';position:absolute;left:-1.5em;color:var(--mute)}
+.art .al-c,.art .al-r{list-style-position:inside}
+.art ul.al-c>li::before,.art ul.al-r>li::before{position:static;margin-right:.4em}
+.art hr{border:0;border-top:var(--hair) solid var(--fg);margin:2.4em 0}
 
 /* post cover — pinned while the article slides up over it */
 .post-cover{
@@ -420,23 +466,49 @@ table.idx .thumb{width:46px;min-width:46px;max-width:none;height:34px;object-fit
 .deflist{display:grid;grid-template-columns:auto minmax(0,1fr)}
 .deflist .k,.deflist .v{border-bottom:var(--hair) solid var(--faint);padding:8px 0;font-size:12.5px}
 .deflist .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding-right:20px;white-space:nowrap}
-.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--hair);background:var(--fg);border-bottom:var(--hair) solid var(--fg)}
+/* auto-fit, not auto-fill: empty tracks would show the black backing through
+   as a slab beside the last member */
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--hair);background:var(--fg);border-bottom:var(--hair) solid var(--fg)}
 .person{background:var(--bg);padding:14px}
 .person .im{aspect-ratio:3/4;margin-bottom:9px;overflow:hidden}
 .person .im img{width:100%;height:100%;object-fit:cover}
 .person .n{font-family:var(--font-display);font-size:17px;text-transform:uppercase;line-height:1}
 .person .r{font-family:var(--font-mono);font-size:10px;color:var(--mute);text-transform:uppercase;margin-top:4px}
+/* career notes — one line per entry, written as "a / b / c" */
+.person .bio{font-size:11.5px;line-height:1.62;color:var(--mute);margin-top:8px;padding-top:8px;border-top:var(--hair) solid var(--faint)}
 .map{aspect-ratio:16/9;border:var(--hair) solid var(--fg);overflow:hidden}
 .map img{width:100%;height:100%;object-fit:cover}
+/* The keyless Maps embed takes no style parameter, so the dark grey treatment
+   is done here: drain the colour, then invert. A light map inverted is a dark
+   map with light labels — which is exactly the wanted result and costs no
+   script. Hover lifts the contrast a little; it does NOT flip back to the
+   light map, which would flash white on a dark page. */
+.map iframe{
+  width:100%;height:100%;border:0;display:block;
+  filter:grayscale(1) invert(1) contrast(.86) brightness(1.02);
+}
+.map:hover iframe{filter:grayscale(1) invert(1) contrast(1) brightness(1.08)}
+.map{background:#141414}
+.maplinks{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+.maplinks a{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);border-bottom:var(--hair) solid var(--faint)}
+.maplinks a:hover{color:var(--fg);border-bottom-color:var(--fg)}
+/* the address copies instead of launching a mail client */
+.copymail{display:inline-flex;align-items:baseline;gap:9px;text-align:left;border-bottom:var(--hair) solid var(--faint);font:inherit;font-size:12.5px}
+.copymail .cp{font-family:var(--font-mono);font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute)}
+.copymail:hover{border-bottom-color:var(--fg)}
+.copymail:hover .cp{color:var(--fg)}
+.copymail.done .cp{color:var(--fg)}
 
 /* ---------- FORMS (shared by contact + admin) ---------- */
 form.f{display:flex;flex-direction:column;max-width:560px}
 label,.flabel{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding-top:12px;display:block}
 input,textarea,select{
-  font:inherit;font-size:13px;font-family:var(--font-text);background:transparent;color:var(--fg);
+  /* white paper, black ink — stated outright so no UA theme can flip it */
+  font:inherit;font-size:13px;font-family:var(--font-text);background:var(--bg);color:var(--fg);
   border:0;border-bottom:var(--hair) solid var(--fg);border-radius:0;
   padding:7px 0 9px;outline:none;width:100%;
 }
+input::placeholder,textarea::placeholder{color:var(--mute);opacity:1}
 textarea{resize:vertical;min-height:96px}
 input:focus,textarea:focus,select:focus{border-bottom-width:2px;padding-bottom:8px}
 .submit,.abtn{
@@ -501,15 +573,32 @@ input:focus,textarea:focus,select:focus{border-bottom-width:2px;padding-bottom:8
 .wtools .hint{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.05em;color:var(--mute);text-transform:uppercase}
 .wtools .wb{font-variation-settings:'wght' 700}
 .wtools .wi{font-style:italic}
+.wtools .wu{text-decoration:underline}
 .wtools .ws{text-decoration:line-through}
 .wsplit{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--hair);background:var(--fg)}
 .wsplit.on{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .wbody{
   min-height:56vh;border:var(--hair) solid var(--fg);padding:14px;
-  line-height:1.8;font-size:13.5px;
+  line-height:1.8;font-size:13.5px;background:var(--bg);color:var(--fg);
 }
 .wbody:focus{border-width:2px;padding:13px}
-.wbody.on{background:var(--fg);color:var(--bg)}
+/* drag-over state. Outline only — a filled black box here used to look like
+   the writing area had gone dark if the drag ended without a drop. */
+.wbody.on{border-style:dashed;border-width:2px;padding:13px}
+/* colour pickers for the body text */
+.cpick{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 8px;padding:8px;border:var(--hair) solid var(--faint)}
+.cpick[hidden]{display:none}
+.cpick .sw{width:22px;height:22px;border:var(--hair) solid var(--faint);cursor:pointer}
+.cpick .sw:hover{outline:2px solid var(--fg);outline-offset:1px}
+.cpick .lb{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-right:2px}
+.cpick input[type=color]{width:34px;height:24px;padding:0;border:var(--hair) solid var(--faint);background:var(--bg);cursor:pointer}
+/* one row per member — where a profile photo is attached */
+.pshots{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px;margin-top:10px}
+.pshot{border:var(--hair) solid var(--faint);padding:8px;display:flex;flex-direction:column;gap:6px}
+.pshot .im{aspect-ratio:3/4;overflow:hidden;background:var(--bg)}
+.pshot .im img{width:100%;height:100%;object-fit:cover}
+.pshot .nm{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pshot .abtn{text-align:center}
 /* live preview — same renderer as the public post */
 .wprev{
   border:var(--hair) solid var(--fg);background:var(--bg);
@@ -550,8 +639,9 @@ footer{padding:18px var(--pad);border-top:var(--hair) solid var(--fg)}
   .pd-body .txt{border-right:0;border-bottom:var(--hair) solid var(--fg)}
   .about-grid,.contact{grid-template-columns:1fr}
   .about-grid>div+div,.contact>div+div{border-left:0;border-top:var(--hair) solid var(--fg)}
-  .row-i{grid-template-columns:1fr;gap:5px}
+  .row-i,.row-i.pic{grid-template-columns:1fr;gap:5px}
   .row-i .k{text-align:left}
+  .row-i .th{width:100%;aspect-ratio:16/9;margin:6px 0}
   .sechead,.pbar,.adm-bar{position:static}
   table.idx th{top:0;position:static}
   .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -580,11 +670,11 @@ footer{padding:18px var(--pad);border-top:var(--hair) solid var(--fg)}
 <header id="top">
   <button id="brand" aria-label="BY X — home (slot machine)">
     <span id="slotwrap"><span id="slot"><span id="reel"></span></span><span id="rule"></span></span>
-    <span class="fixed">&nbsp;BY&nbsp;X</span>
+    <span class="fixed optical">&nbsp;BY&nbsp;X</span>
   </button>
 
   <nav id="nav">
-    <a href="#/" data-p="project">Project</a>
+    <a href="#/" data-p="project">Works</a>
     <a href="#/news" data-p="news">News</a>
     <a href="#/blog" data-p="blog">Blog</a>
     <a href="#/about" data-p="about">About</a>
@@ -597,7 +687,7 @@ footer{padding:18px var(--pad);border-top:var(--hair) solid var(--fg)}
 
 <div id="mobnav">
   <div class="links">
-    <a href="#/">Project<span>01</span></a>
+    <a href="#/">Works<span>01</span></a>
     <a href="#/news">News<span>02</span></a>
     <a href="#/blog">Blog<span>03</span></a>
     <a href="#/about">About<span>04</span></a>
@@ -652,23 +742,48 @@ const ymInput = p => !p.year ? '' : p.year + '-' + String(p.month || 1).padStart
    Post bodies are written as plain text, so formatting is typed inline.
    esc() runs FIRST and the marks below are the only tags ever injected —
    nothing the author types can become markup on its own.
-     **굵게**  *기울임*  ~~취소선~~  ==강조==  ((흐리게))  @@제목체@@
-     [보이는 글](주소)
-   Colour is deliberately absent: the palette is four tokens and ==강조== is
-   the black/white inversion the rest of the site already uses. */
+     **굵게**  *기울임*  __밑줄__  ~~취소선~~  ==강조==  ((흐리게))
+     @@제목체@@  `코드`  [보이는 글](주소)
+     {글자색:#e02b2b|글자}   {배경색:#ffe600|글자}
+   The two colour marks are the one place free colour enters the site. The
+   value must survive safeColor() — a 3/6-digit hex and nothing else — so a
+   style attribute can never be steered anywhere but a colour. A mark whose
+   colour does not validate collapses to plain text. */
 const SAFE_HREF = u => {
   const s = String(u || '').trim();
   return /^(https?:\/\/|mailto:|tel:|#|\/)/i.test(s) ? s : '#';
 };
 
+const safeColor = c => /^#(?:[0-9a-f]{3}|[0-9a-f]{6})$/i.test(String(c || '').trim())
+  ? String(c).trim().toLowerCase() : '';
+
+/* ink that stays readable on a given paper — the author picks the background,
+   we pick black or white on top of it so nothing becomes invisible */
+function inkOn(hex){
+  let h = hex.slice(1);
+  if (h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+  const n = parseInt(h, 16);
+  const l = 0.299*((n>>16)&255) + 0.587*((n>>8)&255) + 0.114*(n&255);
+  return l > 150 ? '#000000' : '#ffffff';
+}
+
 function rich(s){
   let t = esc(s);
   t = t.replace(/!?\[([^\]\n]*)\]\(([^)\s]+)\)/g,
         (m, label, url) => `<a href="${esc(SAFE_HREF(url))}"${/^https?:/i.test(url) ? ' target="_blank" rel="noopener"' : ''}>${label || esc(url)}</a>`);
+  t = t.replace(/`([^`\n]+?)`/g, '<code>$1</code>');
+  t = t.replace(/\{\s*(글자색|배경색)\s*:\s*([^|}\s]+)\s*\|([\s\S]*?)\}/g, (m, kind, col, inner) => {
+    const c = safeColor(col);
+    if (!c) return inner;                                   // unknown colour -> just the text
+    return kind === '글자색'
+      ? `<span style="color:${c}">${inner}</span>`
+      : `<span class="tx-bg" style="background:${c};color:${inkOn(c)}">${inner}</span>`;
+  });
   t = t.replace(/@@([\s\S]+?)@@/g, '<span class="tx-disp">$1</span>');
   t = t.replace(/\(\(([\s\S]+?)\)\)/g, '<span class="tx-mute">$1</span>');
   t = t.replace(/==([\s\S]+?)==/g, '<mark>$1</mark>');
   t = t.replace(/~~([\s\S]+?)~~/g, '<s>$1</s>');
+  t = t.replace(/__([\s\S]+?)__/g, '<u>$1</u>');
   t = t.replace(/\*\*([\s\S]+?)\*\*/g, '<strong>$1</strong>');
   t = t.replace(/\*([^*\n]+?)\*/g, '<em>$1</em>');
   return t.replace(/\n/g, '<br>');          // single newline = line break
@@ -679,6 +794,10 @@ const alignClass = b => b && b.a === 'c' ? ' class="al-c"' : b && b.a === 'r' ? 
 /* "KEY | VALUE" per line — how editable list settings are typed in ADMIN */
 const pairs = s => String(s == null ? '' : s).split('\n').map(l => l.trim()).filter(Boolean)
   .map(l => { const i = l.indexOf('|'); return i < 0 ? [l, ''] : [l.slice(0, i).trim(), l.slice(i + 1).trim()]; });
+/* same lines, but every column — PEOPLE is "이름 | 직책 | 이력 | 사진주소".
+   Named `cells` because `cols` is already a local in svgArt/viewProjects. */
+const cells = s => String(s == null ? '' : s).split('\n').map(l => l.trim()).filter(Boolean)
+  .map(l => l.split('|').map(c => c.trim()));
 const lines = s => String(s == null ? '' : s).split(/\n\s*\n/).map(t => t.trim()).filter(Boolean);
 
 let toastT;
@@ -805,21 +924,28 @@ const SEED_PROJECTS = [
   id: 'seed-p' + i, code:a[0], name:a[1], client:a[2], type:a[3], loc:a[4], year:a[5],
   month: +a[0].slice(-2),          // demo codes end in the project number; reuse it as a month
   status:a[6], area:a[7], role:a[8], img:'', shots:[], sort: (a[5] * 100) + (+a[0].slice(-2)),
-  descr: DESCR(a[1], a[4], a[3], a[5], a[6], a[8], a[2])
+  descr: DESCR(a[1], a[4], a[3], a[5], a[6], a[8], a[2]),
+  people: 'Design | PARK, KIM\nProject | ' + ['LEE','JUNG','CHOI'][i % 3]
 }));
 
+/* 날짜, 제목, 분류, 내용, 연결할 주소(선택) */
 const SEED_NEWS = [
   ['2026.07.28','Slit House 착공','PROJECT','양평 주택 프로젝트가 착공했습니다. 2027년 상반기 준공 예정.'],
-  ['2026.06.11','2026 Korean Architecture Award 후보','AWARD','Double Ground 가 올해의 신인 건축가 부문 최종 후보에 올랐습니다.'],
+  ['2026.06.11','2026 Korean Architecture Award 후보','AWARD','Double Ground 가 올해의 신인 건축가 부문 최종 후보에 올랐습니다.','https://www.kia.or.kr/'],
   ['2026.05.02','Grey Field 개장','PROJECT','강릉 해안 공공 조경 프로젝트가 시민에게 개방되었습니다.'],
   ['2026.03.19','스튜디오 이전','STUDIO','성수동으로 스튜디오를 옮겼습니다. 새 주소는 CONTACT 에서 확인하실 수 있습니다.'],
   ['2026.02.07','Bar Code 준공','PROJECT','96㎡ 규모의 소형 F&B 인테리어 프로젝트가 완료되었습니다.'],
   ['2025.12.15','채용 공고 — 건축 디자이너 2인','HIRING','실무 2년 이상 경력자를 찾습니다. 포트폴리오는 hello@byx.kr 로.'],
-  ['2025.11.03','Long Section 전시 오픈','EXHIBIT','서울공예박물관 기획전 공간 디자인을 맡았습니다. 2026.02 까지.'],
+  ['2025.11.03','Long Section 전시 오픈','EXHIBIT','서울공예박물관 기획전 공간 디자인을 맡았습니다. 2026.02 까지.','https://craftmuseum.seoul.go.kr/'],
   ['2025.09.22','Concrete Diary 출간','PUBLISH','지난 5년간의 현장 기록을 담은 188쪽 분량의 책이 나왔습니다.'],
   ['2025.07.14','Stack Stool 양산 시작','PRODUCT','MUJUN 과 협업한 적층 스툴이 양산에 들어갔습니다.'],
   ['2025.04.30','Double Ground 준공','PROJECT','제주 단독주택이 준공되었습니다.']
-].map((a, i) => ({ id:'seed-n'+i, d:a[0], t:a[1], k:a[2], x:a[3], sort: dnum(a[0]) }));
+].map((a, i) => ({
+  id:'seed-n'+i, d:a[0], t:a[1], k:a[2], x:a[3], url:a[4] || '',
+  /* demo only — a real item gets its picture from ADMIN */
+  img: i % 3 === 0 ? svgArt('news-' + a[0] + a[1], 800, 600) : '',
+  sort: dnum(a[0])
+}));
 
 const SEED_POSTS = [
   { id:'seed-b0', slug:'why-black-and-white', d:'2026.06.02', k:'ESSAY', t:'Why Black and White',
@@ -888,13 +1014,14 @@ const DEFAULT_ABOUT = {
     '2021 | Emerging Studio of the Year — Nominee',
     '2019 | Studio founded in Seongsu, Seoul'
   ].join('\n'),
+  /* 이름 | 직책 | 이력 | 사진주소 — 사진은 ADMIN 의 사진 칸에서 넣습니다 */
   people: [
-    'PARK | Principal / Architect',
-    'KIM | Partner / Design Director',
-    'LEE | Senior Architect',
-    'JUNG | Architect',
-    'CHOI | Designer',
-    'YOON | Graphic / Web'
+    'PARK | Principal | 서울대 건축학과 / 前 OMA Rotterdam / 대한민국 건축사',
+    'KIM | Partner | 홍익대 건축학과 / 前 매스스터디스 / 2024 젊은건축가상',
+    'LEE | Senior Architect | 성균관대 건축학과 / 前 원오원 아키텍츠',
+    'JUNG | Architect | 국민대 건축학과 / 前 SoA',
+    'CHOI | Designer | 계원예대 실내건축 / 가구·오브제 담당',
+    'YOON | Graphic / Web | 서울시립대 시각디자인 / 브랜드·웹 담당'
   ].join('\n')
 };
 
@@ -905,7 +1032,8 @@ const DEFAULT_CONTACT = {
   hours:   'MON–FRI 10:00–19:00 (방문은 사전 예약)',
   transit: '수인분당선 서울숲역 4번 출구 도보 6분',
   visit:   '서울숲 북측, 성수동 골목 안쪽 2층입니다. 별도의 간판은 없습니다. 방문은 사전에 메일로 일정을 잡아주세요.',
-  map:     ''
+  mapq:    '',      // what the map looks for; blank = use `address`
+  map:     ''       // an uploaded diagram, which takes over from the map
 };
 
 /* ============================================================
@@ -975,6 +1103,10 @@ const DB = {
   ready: false,
   lastError: null,      // why the Supabase connection was refused, if it was
   settingsError: null,  // the `settings` table is optional; note it, do not fail
+  /* columns added after the first deploy. A site running on the older schema
+     must keep saving everything else, so the field is dropped from the
+     payload instead of letting the whole save fail. */
+  cols: { projectPeople: true, newsImg: true, newsUrl: true },
 
   get demo(){ return !sb; },
 
@@ -1011,6 +1143,13 @@ const DB = {
       sb.from('posts').select('*').order('sort', {ascending:false})
     ]);
     if (p.error || n.error || b.error) throw (p.error || n.error || b.error);
+    /* select('*') returns every column, null included — so the first row tells
+       us which of the later columns this database actually has */
+    if ((p.data || []).length) DB.cols.projectPeople = 'people' in p.data[0];
+    if ((n.data || []).length){
+      DB.cols.newsImg = 'img' in n.data[0];
+      DB.cols.newsUrl = 'url' in n.data[0];
+    }
     DB.projects = p.data || [];
     DB.news     = n.data || [];
     DB.posts    = (b.data || []).map(r => ({...r, body: typeof r.body === 'string' ? JSON.parse(r.body) : (r.body || [])}));
@@ -1050,6 +1189,11 @@ const DB = {
     }
     const payload = {...row};
     if (!payload.id) delete payload.id;
+    if (table === 'projects' && !DB.cols.projectPeople) delete payload.people;
+    if (table === 'news'){
+      if (!DB.cols.newsImg) delete payload.img;
+      if (!DB.cols.newsUrl) delete payload.url;
+    }
     const { error } = await sb.from(table).upsert(payload).select();
     if (error) throw error;
     await DB.refresh();
@@ -1174,6 +1318,9 @@ function spin(){
    5. ROUTER
    ============================================================ */
 const app = $('#app');
+/* the route the reel last landed on. null until the first render, so the
+   opening spin stays where boot schedules it (after the fonts settle). */
+let lastRoute = null;
 
 function parseHash(){
   const h = (location.hash || '#/').replace(/^#\/?/, '');
@@ -1198,8 +1345,17 @@ function render(){
   $$('#nav a').forEach(a => a.classList.toggle('on', a.dataset.p === page));
   document.body.classList.remove('menu');
   window.scrollTo({top:0, behavior:'instant'});
-  document.title = page === 'project' && !arg ? 'BY X — Architecture & Design' : page.toUpperCase() + ' — BY X';
+  /* tab title: "BYX" at home, "BYX│NEWS" elsewhere — the studio first, then
+     the page, joined by a vertical bar (not the em dash that used to sit
+     between them). The route is still `project`; only the label reads WORKS. */
+  document.title = (page === 'project' && !arg) ? 'BYX' : 'BYX│' + (page === 'project' ? 'WORKS' : page.toUpperCase());
   bindPage(page, arg);
+
+  /* a new word for every move. render() also runs for same-page changes
+     (grid/index toggle, column sort) — those keep the word they landed on. */
+  const route = page + '/' + (arg || '');
+  if (lastRoute !== null && route !== lastRoute) spin();
+  lastRoute = route;
 }
 window.addEventListener('hashchange', render);
 
@@ -1269,7 +1425,7 @@ function filtered(){
 function cardHTML(p){
   return `
   <a class="card" href="#/project/${encodeURIComponent(p.code)}">
-    <span class="im"><img src="${artOf(p)}" alt="${esc(p.name)}" loading="lazy"><span class="badge">${esc(p.type)}</span></span>
+    <span class="im"><img src="${artOf(p)}" alt="${esc(p.name)}" loading="lazy"></span>
     <span class="cap">
       <span class="l1"><span class="nm">${esc(p.name)}</span><span class="cd">${esc(p.code)}</span></span>
       <span class="l2"><span>${esc(p.client)}</span><span>${esc(p.loc)}</span><span>${esc(ymText(p))}</span></span>
@@ -1337,7 +1493,8 @@ function viewProjectDetail(code){
   const p = list[i];
   const prev = list[(i - 1 + list.length) % list.length];
   const next = list[(i + 1) % list.length];
-  const rows = [['Code',p.code],['Client',p.client],['Type',p.type],['Location',p.loc],['Date',ymText(p)],['Area',p.area],['Role',p.role],['Status',p.status]];
+  const rows = [['Code',p.code],['Client',p.client],['Type',p.type],['Location',p.loc],['Date',ymText(p)],['Area',p.area],['Role',p.role],['Status',p.status]]
+    .concat(pairs(p.people).map(([k, v]) => v ? [k, v] : ['Credit', k]));
   const shots = shotsOf(p);
   const paras = String(p.descr || '').split(/\n\s*\n/).filter(Boolean);
 
@@ -1359,20 +1516,38 @@ function viewProjectDetail(code){
 }
 
 const yearOf = s => (String(s).match(/\d{4}/) || ['—'])[0];
+/* "https://www.chosun.com/…" -> "chosun.com", shown so a visitor knows where
+   the row is about to take them */
+const hostOf = u => { try{ return new URL(u).hostname.replace(/^www\./, ''); }catch(e){ return '링크'; } };
 
 function viewNews(){
   const list = DB.news;
   const kinds = Array.from(new Set(list.map(n => n.k))).filter(Boolean);
+  /* once one item has a picture every row keeps the picture column, empty or
+     not — otherwise the titles step in and out along the left edge */
+  const anyPic = list.some(n => n.img);
   let last = null, rows = '';
   list.forEach(n => {
     const y = yearOf(n.d);
     if (y !== last){ last = y; rows += `<div class="yeardiv"><span>${y}</span><i></i></div>`; }
+    /* an item with a link becomes one — same row, just clickable */
+    const href = SAFE_HREF(n.url);
+    const linked = n.url && href !== '#';
+    const tag = linked ? 'a' : 'div';
+    const attr = linked ? ` href="${esc(href)}" target="_blank" rel="noopener"` : '';
     rows += `
-      <div class="row-i">
+      <${tag} class="row-i${anyPic ? ' pic' : ''}"${attr}>
         <div class="d">${esc(n.d)}</div>
-        <div><div class="t">${esc(n.t)}</div><div class="x">${esc(n.x)}</div></div>
+        ${!anyPic ? '' : n.img
+          ? `<div class="th"><img src="${esc(n.img)}" alt="" loading="lazy"></div>`
+          : `<div class="th empty"></div>`}
+        <div>
+          <div class="t">${esc(n.t)}</div>
+          <div class="x">${esc(n.x)}</div>
+          ${linked ? `<span class="out">${esc(hostOf(n.url))} ↗</span>` : ''}
+        </div>
         <div class="k">${esc(n.k)}</div>
-      </div>`;
+      </${tag}>`;
   });
 
   return `
@@ -1416,6 +1591,11 @@ function postBodyHTML(body){
     if (b.t === 'q') return `<blockquote${a}>${rich(b.v)}</blockquote>`;
     if (b.t === 'img') return `<figure${a}><img src="${esc(b.v)}" alt="" loading="lazy">${b.c ? `<figcaption>${rich(b.c)}</figcaption>` : ''}</figure>`;
     if (b.t === 'gal') return galleryHTML(b);
+    if (b.t === 'hr')  return '<hr>';
+    if (b.t === 'ul' || b.t === 'ol'){
+      const tag = b.t;
+      return `<${tag}${a}>${(b.items || []).map(i => `<li>${rich(i)}</li>`).join('')}</${tag}>`;
+    }
     return '';
   }).join('');
 }
@@ -1462,12 +1642,12 @@ function viewAbout(){
   const s = DB.settings.about;
   const facts   = pairs(s.facts);
   const records = pairs(s.records);
-  const people  = pairs(s.people);
+  const people  = cells(s.people);     // 이름 | 직책 | 이력 | 사진주소
   const dl = arr => arr.map(([k,v]) => `<div class="k">${esc(k)}</div><div class="v">${esc(v)}</div>`).join('');
 
   return `
   <section class="hero">
-    <h1 class="display h-xl brandline"><span class="blank" style="width:2.1em"></span>&nbsp;BY&nbsp;X</h1>
+    <h1 class="display h-xl brandline"><span class="blank" style="width:2.1em"></span><span class="optical">&nbsp;BY&nbsp;X</span></h1>
     <p class="lede">${esc(s.lede)}</p>
   </section>
 
@@ -1486,8 +1666,36 @@ function viewAbout(){
   ${people.length ? `
   <div class="sechead" style="position:static"><h2>People</h2></div>
   <div class="people">
-    ${people.map(([n,r],i) => `<div class="person"><div class="im"><img src="${svgArt('person-'+n+i,600,800)}" alt=""></div><div class="n">${esc(n)}</div><div class="r">${esc(r)}</div></div>`).join('')}
+    ${people.map(([n,r,bio,im],i) => `<div class="person">
+      <div class="im"><img src="${esc(im || svgArt('person-'+n+i,600,800))}" alt="" loading="lazy"></div>
+      <div class="n">${esc(n)}</div>
+      <div class="r">${esc(r)}</div>
+      ${bio ? `<div class="bio">${esc(bio).replace(/\s*\/\s*/g,'<br>')}</div>` : ''}
+    </div>`).join('')}
   </div>` : ''}`;
+}
+
+/* what the map should look for: an explicit search term if one was typed,
+   otherwise the studio address */
+const mapQuery = s => String(s.mapq || s.address || '').trim();
+
+/* An uploaded diagram always wins. With no diagram we embed Google Maps —
+   the query form needs no API key and no script, so the page still loads
+   nothing but supabase-js. Naver has no keyless embed, only a link. */
+function mapHTML(s){
+  if (s.map) return `<div class="map"><img src="${esc(s.map)}" alt="Studio location diagram"></div>`;
+  const q = mapQuery(s);
+  if (!q) return `<div class="map"><img src="${svgArt('map-seongsu',1600,900)}" alt="Studio location diagram"></div>`;
+  const e = encodeURIComponent(q);
+  return `
+  <div class="map">
+    <iframe src="https://www.google.com/maps?q=${e}&hl=en&z=16&output=embed"
+      title="Studio location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <div class="maplinks">
+    <a href="https://www.google.com/maps/search/?api=1&query=${e}&hl=en" target="_blank" rel="noopener">Google 지도에서 열기 →</a>
+    <a href="https://map.naver.com/p/search/${e}" target="_blank" rel="noopener">네이버 지도에서 열기 →</a>
+  </div>`;
 }
 
 function viewContact(){
@@ -1498,7 +1706,7 @@ function viewContact(){
     <div>
       <div class="deflist">
         <div class="k">Email</div>
-        <div class="v"><a href="mailto:${esc(s.email)}" style="border-bottom:1px solid var(--faint)">${esc(s.email)}</a></div>
+        <div class="v"><button class="copymail" data-copy="${esc(s.email)}" title="누르면 주소가 복사됩니다">${esc(s.email)}<span class="cp">복사</span></button></div>
         ${row('Studio', s.address)}
         ${row('Phone', s.phone)}
         ${row('Hours', s.hours)}
@@ -1506,7 +1714,7 @@ function viewContact(){
       </div>
     </div>
     <div>
-      <div class="map"><img src="${esc(s.map || svgArt('map-seongsu',1600,900))}" alt="Studio location diagram"></div>
+      ${mapHTML(s)}
       <h2 class="display h-m" style="margin-top:26px">Visit</h2>
       <p style="max-width:44ch;margin-top:12px">${esc(s.visit)}</p>
     </div>
@@ -1530,6 +1738,13 @@ const SUG= (label, key, val, opts, id) => `<div class="fld"><label>${label}</lab
 
 const typeOptions = () =>
   Array.from(new Set(DB.projects.map(p => p.type).filter(Boolean).concat(TYPES))).sort();
+
+/* shown next to a field whose column was never added to Supabase. Everything
+   else on the form still saves — only this one field is dropped. */
+const miss = what => `<div class="note warn" style="margin:10px 0 0">
+  <b>${what} 는 아직 저장되지 않습니다</b><br>
+  Supabase 에 ${what} 칸이 없습니다. 배포 가이드 3-2 의 <b>"예전에 이미 이 단계를 한 적이 있다면"</b>
+  상자에 있는 SQL 을 한 번 실행하면 저장됩니다. 그때까지 나머지 항목은 정상 저장됩니다.</div>`;
 
 function imgField(label, url, delKey, dropKey, multi){
   return `
@@ -1621,6 +1836,8 @@ function edProject(){
       ${F('Role / 업무범위','role',d.role)}
     </div>
     ${TA('Description / 본문  (빈 줄로 문단 구분)','descr',d.descr,180)}
+    ${TA('People / 참여자 — 한 줄에 하나씩. 세로줄 | 왼쪽이 역할, 오른쪽이 이름입니다 (예: Design | 박, 김)','people',d.people,110)}
+    ${DB.cols.projectPeople ? '' : miss('참여자')}
     ${imgField('Cover image / 대표 이미지', d.img, 'img', 'img', false)}
     ${imgField('Detail images / 상세 이미지', d.shots || [], 'shots', 'shots', true)}
     ${actionsBar()}
@@ -1638,6 +1855,10 @@ function edNews(){
     </div>
     ${F('Title / 제목','t',d.t)}
     ${TA('Text / 내용','x',d.x,110)}
+    ${F('Link / 연결할 주소 (비워두면 그냥 목록으로 보입니다)','url',d.url)}
+    ${DB.cols.newsUrl ? '' : miss('링크')}
+    ${imgField('Image / 사진 (없으면 글자만 나옵니다)', d.img, 'img', 'img', false)}
+    ${DB.cols.newsImg ? '' : miss('사진')}
     ${actionsBar()}
   </div>`;
 }
@@ -1650,17 +1871,25 @@ function edNews(){
      > quote                       ->  {t:'q'}
      ![caption](url)               ->  {t:'img'}
      several ![](…) lines in a row ->  {t:'gal'}  swipe group
+     - item  (every line)          ->  {t:'ul'}
+     1. item (every line)          ->  {t:'ol'}
+     ---                           ->  {t:'hr'}
      [가운데] / [오른쪽] prefix      ->  b.a = 'c' | 'r'
    A blank line ends a block. Everything else is a paragraph.
    Inline marks (**굵게** etc.) are left in the text and resolved by rich()
    at render time — they never need a block of their own. */
-const IMG_LINE = /^!\[([\s\S]*?)\]\(([^)\s]+)\)$/;
+const IMG_LINE  = /^!\[([\s\S]*?)\]\(([^)\s]+)\)$/;
+const BULLET    = /^[-•]\s+/;
+const NUMBERED  = /^\d+[.)]\s+/;
 
 function bodyToText(body){
   return (body || []).map(b => {
     const pre = b.a === 'c' ? '[가운데] ' : b.a === 'r' ? '[오른쪽] ' : '';
     if (b.t === 'h')   return pre + '## ' + b.v;
     if (b.t === 'q')   return pre + '> ' + b.v;
+    if (b.t === 'hr')  return pre + '---';
+    if (b.t === 'ul')  return pre + (b.items || []).map(i => '- ' + i).join('\n');
+    if (b.t === 'ol')  return pre + (b.items || []).map((i, n) => (n + 1) + '. ' + i).join('\n');
     if (b.t === 'img') return pre + '![' + (b.c || '') + '](' + b.v + ')';
     if (b.t === 'gal') return pre + (b.items || []).map(i => '![' + (i.c || '') + '](' + i.v + ')').join('\n');
     return pre + b.v;
@@ -1668,6 +1897,19 @@ function bodyToText(body){
 }
 
 function textToBody(txt){
+  /* Blank lines between list items are the natural way to type, but each
+     blank line closes a block — which would restart a numbered list at 1.
+     Neighbouring lists of the same kind and alignment are joined back up. */
+  const merged = [];
+  for (const b of textToBlocks(txt)){
+    const p = merged[merged.length - 1];
+    if (p && (b.t === 'ul' || b.t === 'ol') && p.t === b.t && p.a === b.a) p.items = p.items.concat(b.items);
+    else merged.push(b);
+  }
+  return merged;
+}
+
+function textToBlocks(txt){
   return String(txt == null ? '' : txt).split(/\n\s*\n/).map(s => s.trim()).filter(Boolean).map(s => {
     let a = '';
     const am = s.match(/^\[\s*(가운데|오른쪽|center|right)\s*\]\s*/i);
@@ -1682,11 +1924,33 @@ function textToBody(txt){
       return set({t:'gal', items: imgs.map(m => ({v:m[2].trim(), c:m[1].trim()}))});
     }
 
+    if (/^-{3,}$/.test(s)) return set({t:'hr'});
+    if (rows.length && rows.every(l => BULLET.test(l)))
+      return set({t:'ul', items: rows.map(l => l.replace(BULLET, '').trim())});
+    if (rows.length && rows.every(l => NUMBERED.test(l)))
+      return set({t:'ol', items: rows.map(l => l.replace(NUMBERED, '').trim())});
+
     let m;
     if ((m = s.match(/^##\s*([\s\S]*)$/))) return set({t:'h', v:m[1].trim()});
     if ((m = s.match(/^>\s*([\s\S]*)$/)))  return set({t:'q', v:m[1].replace(/\n>\s?/g, '\n').trim()});
     return set({t:'p', v:s});
   });
+}
+
+/* Ready-made colours, so most writing never needs the colour dial. The first
+   four are the site palette; the rest are a small, deliberately short set.
+   The dial next to them is there for the one case a brand colour is needed. */
+const SWATCHES = ['#000000','#ffffff','#8e8e8e','#d8d8d8',
+                  '#e02b2b','#f2711c','#f5c518','#2fae5a',
+                  '#1f6feb','#6b3fd4','#d63384','#8b5e3c'];
+
+function colorPicker(kind, label){
+  return `<div class="cpick" id="cp-${kind}" hidden>
+    <span class="lb">${label}</span>
+    ${SWATCHES.map(c => `<button class="sw" data-swatch="${kind}:${c}" style="background:${c}" title="${c}"></button>`).join('')}
+    <input type="color" data-cin="${kind}" value="${kind === 'fg' ? '#e02b2b' : '#ffe600'}">
+    <button class="abtn sm" data-capply="${kind}">직접 고른 색 적용</button>
+  </div>`;
 }
 
 function edPost(){
@@ -1707,22 +1971,34 @@ function edPost(){
     <div class="wtools">
       <button class="abtn sm wb" data-wrap="**" title="굵게">B</button>
       <button class="abtn sm wi" data-wrap="*" title="기울임">I</button>
+      <button class="abtn sm wu" data-wrap="__" title="밑줄">U</button>
       <button class="abtn sm ws" data-wrap="~~" title="취소선">S</button>
       <button class="abtn sm" data-wrap="==" title="흑백 반전 강조">강조</button>
       <button class="abtn sm" data-wrap="((|))" title="흐린 글자">흐리게</button>
       <button class="abtn sm" data-wrap="@@" title="제목 서체(Anton)">제목체</button>
+      <button class="abtn sm" data-wrap="\`" title="고정폭 글자">코드</button>
       <button class="abtn sm" data-ins="link">링크</button>
     </div>
     <div class="wtools">
+      <button class="abtn sm" data-pop="fg" title="고른 글자에 색을 입힙니다">글자색 ▾</button>
+      <button class="abtn sm" data-pop="bg" title="고른 글자 뒤에 색을 깝니다">배경색 ▾</button>
+      <button class="abtn sm" data-ins="nocolor">색 지우기</button>
+    </div>
+    ${colorPicker('fg','글자색')}
+    ${colorPicker('bg','배경색')}
+    <div class="wtools">
       <button class="abtn sm" data-ins="h">소제목</button>
       <button class="abtn sm" data-ins="q">인용</button>
+      <button class="abtn sm" data-ins="ul">목록</button>
+      <button class="abtn sm" data-ins="ol">번호 목록</button>
+      <button class="abtn sm" data-ins="hr">구분선</button>
       <button class="abtn sm" data-ins="al-c">가운데</button>
       <button class="abtn sm" data-ins="al-r">오른쪽</button>
       <button class="abtn sm" data-ins="al-l">정렬 해제</button>
       <button class="abtn sm solid" data-ins="img">＋ 이미지</button>
       <button class="abtn sm" data-act="preview">${AD.preview ? '미리보기 닫기' : '미리보기'}</button>
     </div>
-    <div class="wtools"><span class="hint">빈 줄로 문단을 나눕니다 · 사진 여러 장을 한 번에 넣으면 좌우로 넘기는 묶음이 됩니다</span></div>
+    <div class="wtools"><span class="hint">빈 줄로 문단을 나눕니다 · 사진 여러 장을 한 번에 넣으면 좌우로 넘기는 묶음이 됩니다 · 색은 글자를 고른 뒤 누르세요</span></div>
     <div class="wsplit${AD.preview ? ' on' : ''}">
       <textarea id="wbody" data-k="bodyText" class="wbody" placeholder="여기에 글을 씁니다.
 
@@ -1730,11 +2006,46 @@ function edPost(){
 
 ## 이렇게 쓰면 소제목
 &gt; 이렇게 쓰면 인용
-**굵게** *기울임* ~~취소선~~ ==강조==">${esc(d.bodyText)}</textarea>
+- 이렇게 쓰면 목록
+**굵게** *기울임* __밑줄__ ~~취소선~~ ==강조==">${esc(d.bodyText)}</textarea>
       ${AD.preview ? `<div class="wprev art" id="wprev">${postBodyHTML(textToBody(d.bodyText))}</div>` : ''}
     </div>
     ${actionsBar()}
   </div>`;
+}
+
+/* One tile per member, built from whatever names are in the PEOPLE field right
+   now. A member's line is  이름 | 직책 | 이력 | 사진주소  — the photo lives on
+   that member's own line, so it travels with the name and can never drift onto
+   somebody else, which a separate list keyed by position eventually would. */
+const PERSON_COLS = 4;
+
+function peopleShots(txt){
+  const rows = cells(txt);
+  if (!rows.length)
+    return `<div class="wtools"><span class="hint">이름을 먼저 적으면 여기에서 사진을 넣을 수 있습니다</span></div>`;
+  return `
+  <div class="flabel">People photos / 구성원 사진</div>
+  <div class="pshots">
+    ${rows.map(([n, r, bio, im], i) => `
+      <div class="pshot">
+        <div class="im"><img src="${esc(im || svgArt('person-' + n + i, 600, 800))}" alt=""></div>
+        <div class="nm">${esc(n || '(이름 없음)')}</div>
+        <button class="abtn sm" data-pimg="${i}">${im ? '사진 교체' : '사진 넣기'}</button>
+        ${im ? `<button class="abtn sm" data-pdel="${i}">사진 지우기</button>` : ''}
+      </div>`).join('')}
+  </div>
+  <div class="wtools"><span class="hint">사진을 넣지 않으면 이름에서 만들어진 도형이 대신 들어갑니다</span></div>`;
+}
+
+/* rewrite one member's photo column, leaving the rest of the line alone */
+function setPersonPhoto(i, url){
+  const rows = cells(AD.draft.people);
+  if (!rows[i]) return;
+  const c = rows[i].slice(0, PERSON_COLS);
+  while (c.length < PERSON_COLS) c.push('');
+  c[PERSON_COLS - 1] = url;
+  AD.draft.people = rows.map((r, j) => (j === i ? c : r).join(' | ').replace(/(\s*\|\s*)+$/, '')).join('\n');
 }
 
 /* ABOUT / CONTACT — the pages that are copy, not records.
@@ -1749,7 +2060,8 @@ function edSettings(which){
     ${TA('Studio / 소개 (빈 줄로 문단 구분)','studio',d.studio,150)}
     ${TA('Facts / 기본 정보 — ' + listNote,'facts',d.facts,130)}
     ${TA('Records / 수상·연혁 — ' + listNote,'records',d.records,150)}
-    ${TA('People / 구성원 — ' + listNote + ' (이름 | 직책)','people',d.people,150)}
+    ${TA('People / 구성원 — 한 줄에 한 사람. 이름 | 직책 | 이력  (이력은 " / " 로 나누면 줄이 바뀝니다)','people',d.people,170)}
+    ${peopleShots(d.people)}
   ` : `
     <div class="fgrid">
       ${F('Email / 대표 메일','email',d.email)}
@@ -1759,7 +2071,9 @@ function edSettings(which){
     ${F('Hours / 운영 시간','hours',d.hours)}
     ${F('Transit / 교통','transit',d.transit)}
     ${TA('Visit / 방문 안내','visit',d.visit,90)}
-    ${imgField('Map / 약도 이미지 (비워두면 생성 도형)', d.map, 'map', 'map', false)}
+    ${F('Map search / 지도에서 찾을 주소 (비워두면 위 Studio 주소를 씁니다)','mapq',d.mapq)}
+    <div class="wtools"><span class="hint">지도가 엉뚱한 곳을 가리키면 여기에 정확한 주소나 건물 이름을 적으세요</span></div>
+    ${imgField('Map image / 약도 이미지 — 넣으면 지도 대신 이 그림이 보입니다', d.map, 'map', 'map', false)}
   `;
 
   return `
@@ -1782,6 +2096,8 @@ const actionsBar = () => `
 
 function hintFor(msg){
   const m = String(msg).toLowerCase();
+  if (m.includes('column') && /'?(people|img|url)'?/.test(m))
+    return '→ 표에 아직 없는 칸이 있습니다. 배포 가이드 3-2 의 "예전에 이미 이 단계를 한 적이 있다면" SQL 을 실행하세요.';
   if (m.includes('does not exist') || m.includes('relation') || m.includes('schema cache'))
     return '→ 표가 아직 없습니다. 배포 가이드 3-2 의 SQL 을 Supabase 의 SQL Editor 에서 실행하세요.';
   if (m.includes('invalid api key') || m.includes('jwt') || m.includes('apikey') || m.includes('401'))
@@ -1869,9 +2185,12 @@ function insertAtCaret(ta, text){
 }
 
 /* wrap the selection in a mark pair; with nothing selected, park the caret
-   between the two halves so you can just start typing */
+   between the two halves so you can just start typing.
+   `spec` is "both", "open|close", or ['open','close'] when either half
+   contains a pipe of its own (the colour marks do). */
 function wrapSelection(ta, spec){
-  const [open, close] = spec.includes('|') ? spec.split('|') : [spec, spec];
+  const [open, close] = Array.isArray(spec) ? spec
+    : spec.includes('|') ? spec.split('|') : [spec, spec];
   const a = ta.selectionStart, b = ta.selectionEnd;
   const sel = ta.value.slice(a, b);
   ta.value = ta.value.slice(0, a) + open + sel + close + ta.value.slice(b);
@@ -1881,20 +2200,62 @@ function wrapSelection(ta, spec){
   syncBody(ta);
 }
 
-/* put a token at the start of the block the caret sits in */
-function prefixBlock(ta, token, strip){
+/* the block (paragraph) the caret sits in — blocks are split by blank lines */
+function blockAt(ta){
   const v = ta.value, caret = ta.selectionStart;
   let start = v.lastIndexOf('\n\n', Math.max(0, caret - 1));
   start = start < 0 ? 0 : start + 2;
-  let line = v.slice(start);
-  const end = line.search(/\n\s*\n/);
-  line = end < 0 ? line : line.slice(0, end);
-  const bare = line.replace(strip, '');
-  const next = token + bare;
-  ta.value = v.slice(0, start) + next + v.slice(start + line.length);
+  let text = v.slice(start);
+  const end = text.search(/\n\s*\n/);
+  return { start, text: end < 0 ? text : text.slice(0, end) };
+}
+
+function replaceBlock(ta, start, len, next){
+  ta.value = ta.value.slice(0, start) + next + ta.value.slice(start + len);
   const pos = start + next.length;
   ta.focus(); ta.setSelectionRange(pos, pos);
   syncBody(ta);
+}
+
+/* put a token at the start of the block the caret sits in */
+function prefixBlock(ta, token, strip){
+  const { start, text } = blockAt(ta);
+  replaceBlock(ta, start, text.length, token + text.replace(strip, ''));
+}
+
+/* turn the block the caret sits in into a list — every line gets a marker.
+   Pressing it again with the other kind swaps the markers over. */
+function listBlock(ta, kind){
+  const { start, text } = blockAt(ta);
+  let items = text.split('\n').map(l => l.trim()).filter(Boolean)
+    .map(l => l.replace(/^(?:[-•]\s+|\d+[.)]\s+)/, ''));
+  if (!items.length) items = [''];
+  replaceBlock(ta, start, text.length,
+    items.map((l, i) => (kind === 'ol' ? (i + 1) + '. ' : '- ') + l).join('\n'));
+}
+
+/* colour marks. Nothing selected -> the caret lands inside the mark, so the
+   next thing typed is coloured. */
+function applyColor(ta, kind, hex){
+  const c = safeColor(hex);
+  if (!c){ toast('색 값을 읽지 못했습니다'); return; }
+  wrapSelection(ta, ['{' + (kind === 'fg' ? '글자색' : '배경색') + ':' + c + '|', '}']);
+}
+
+/* strip colour marks from the selection, or from the whole block if nothing
+   is selected. The text inside the mark stays. */
+function clearColor(ta){
+  const CM = /\{\s*(?:글자색|배경색)\s*:\s*[^|}]*\|([\s\S]*?)\}/g;
+  const a = ta.selectionStart, b = ta.selectionEnd;
+  if (a !== b){
+    const next = ta.value.slice(a, b).replace(CM, '$1');
+    ta.value = ta.value.slice(0, a) + next + ta.value.slice(b);
+    ta.focus(); ta.setSelectionRange(a, a + next.length);
+    syncBody(ta);
+    return;
+  }
+  const { start, text } = blockAt(ta);
+  replaceBlock(ta, start, text.length, text.replace(CM, '$1'));
 }
 
 /* keep the draft and the live preview in step without re-rendering ADMIN */
@@ -1905,9 +2266,9 @@ function syncBody(ta){
 }
 
 const blank = t => t === 'projects'
-  ? {code:'', name:'', client:'', type:'', loc:'', year:new Date().getFullYear(), month:new Date().getMonth()+1, status:'IN PROGRESS', area:'', role:'', img:'', shots:[], descr:''}
+  ? {code:'', name:'', client:'', type:'', loc:'', year:new Date().getFullYear(), month:new Date().getMonth()+1, status:'IN PROGRESS', area:'', role:'', img:'', shots:[], descr:'', people:''}
   : t === 'news'
-  ? {d:'', k:'PROJECT', t:'', x:''}
+  ? {d:'', k:'PROJECT', t:'', x:'', img:'', url:''}
   : {slug:'', d:'', k:'ESSAY', t:'', x:'', body:[], bodyText:''};
 
 function bindAdmin(){
@@ -1949,6 +2310,11 @@ function bindAdmin(){
     AD.draft[k] = (el.type === 'number') ? (el.value === '' ? null : +el.value) : el.value;
   });
 
+  /* the member tiles are built from the names above them — rebuild once the
+     name field is left, never while it is being typed in */
+  const pf = AD.tab === 'about' ? $('[data-k="people"]', root) : null;
+  if (pf) pf.onchange = () => refreshAdmin();
+
   /* post body: insert marks / images at the caret, never re-render */
   const wb = $('#wbody', root);
   if (wb){
@@ -1960,8 +2326,27 @@ function bindAdmin(){
       if (k === 'link') return wrapSelection(wb, '[|](https://)');
       if (k === 'h')    return prefixBlock(wb, '## ', /^(\[\s*(?:가운데|오른쪽|center|right)\s*\]\s*)?(##\s*|>\s*)?/i);
       if (k === 'q')    return prefixBlock(wb, '> ',  /^(\[\s*(?:가운데|오른쪽|center|right)\s*\]\s*)?(##\s*|>\s*)?/i);
+      if (k === 'ul' || k === 'ol') return listBlock(wb, k);
+      if (k === 'hr')      return insertAtCaret(wb, '\n\n---\n\n');
+      if (k === 'nocolor') return clearColor(wb);
       const strip = /^\[\s*(?:가운데|오른쪽|center|right)\s*\]\s*/i;
       prefixBlock(wb, k === 'al-c' ? '[가운데] ' : k === 'al-r' ? '[오른쪽] ' : '', strip);
+    });
+
+    /* colour pickers — toggled by hand so the caret survives (no re-render) */
+    $$('[data-pop]', root).forEach(b => b.onclick = () => {
+      const me = $('#cp-' + b.dataset.pop, root);
+      $$('.cpick', root).forEach(p => { if (p !== me) p.hidden = true; });
+      me.hidden = !me.hidden;
+    });
+    $$('[data-swatch]', root).forEach(b => b.onclick = () => {
+      const [kind, hex] = b.dataset.swatch.split(':');
+      applyColor(wb, kind, hex);
+    });
+    $$('[data-capply]', root).forEach(b => b.onclick = () => {
+      const kind = b.dataset.capply;
+      const inp = $('[data-cin="' + kind + '"]', root);
+      applyColor(wb, kind, inp ? inp.value : '');
     });
     wb.ondragover = e => { e.preventDefault(); wb.classList.add('on'); };
     wb.ondragleave = () => wb.classList.remove('on');
@@ -1985,6 +2370,24 @@ function bindAdmin(){
       handleFiles(key, Array.from(e.dataTransfer.files || []).filter(f => f.type.startsWith('image/')));
     };
   });
+  /* member photos — one file, straight onto that member's line */
+  $$('[data-pimg]', root).forEach(b => b.onclick = async () => {
+    const files = await pickFiles(false);
+    if (!files.length) return;
+    toast('이미지 정리 중…');
+    try{
+      const small = await shrink(files[0]);
+      const url = await DB.upload(small);
+      setPersonPhoto(+b.dataset.pimg, url);
+      toast(small.size < files[0].size ? `사진 추가 · ${kb(files[0].size)} → ${kb(small.size)}` : '사진 추가');
+      refreshAdmin();
+    }catch(e){ console.error(e); toast('업로드 실패: ' + (e.message || e)); }
+  });
+  $$('[data-pdel]', root).forEach(b => b.onclick = () => {
+    setPersonPhoto(+b.dataset.pdel, '');
+    refreshAdmin();
+  });
+
   $$('[data-imgdel]', root).forEach(b => b.onclick = () => {
     const [key, i] = b.dataset.imgdel.split(':');
     if (key === 'img') AD.draft.img = '';
@@ -2049,6 +2452,33 @@ function bindPage(page, arg){
 
   $$('[data-go]', app).forEach(b => b.onclick = () => { PV.type = b.dataset.go; PV.view = 'grid'; location.hash = '#/'; render(); });
   $$('[data-ed]', app).forEach(b => b.onclick = () => gotoAdmin(b.dataset.ed));
+
+  /* copy-to-clipboard instead of a mailto: link — opening a mail client the
+     visitor never set up is worse than handing them the address */
+  $$('[data-copy]', app).forEach(b => b.onclick = async () => {
+    const text = b.dataset.copy;
+    /* the modern call needs a secure context AND a focused document; the old
+       one needs neither. Try the first, fall through to the second. */
+    let ok = false;
+    if (navigator.clipboard && window.isSecureContext){
+      try{ await navigator.clipboard.writeText(text); ok = true; }catch(e){ ok = false; }
+    }
+    if (!ok){
+      try{
+        const t = document.createElement('textarea');
+        t.value = text; t.setAttribute('readonly', '');
+        t.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+        document.body.appendChild(t);
+        t.select(); t.setSelectionRange(0, text.length);
+        ok = document.execCommand('copy');
+        t.remove();
+      }catch(e){ ok = false; }
+    }
+    if (!ok){ toast('복사하지 못했습니다 — 주소는 ' + text + ' 입니다'); return; }
+    b.classList.add('done');
+    const cp = $('.cp', b); if (cp) cp.textContent = '복사됨';
+    toast('메일 주소가 복사되었습니다 · ' + text);
+  });
 
   if (IO && !(page === 'project' && !arg)){ IO.disconnect(); IO = null; }
 

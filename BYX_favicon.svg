@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="title desc">
+  <title id="title">BY X favicon</title>
+  <desc id="desc">Four black circles arranged in a diamond. Oversized white B, X and Y letterforms are cropped by the circles.</desc>
+
+  <defs>
+    <clipPath id="clip-b" clipPathUnits="userSpaceOnUse">
+      <circle cx="123" cy="276" r="106"/>
+    </clipPath>
+    <clipPath id="clip-x" clipPathUnits="userSpaceOnUse">
+      <circle cx="437" cy="276" r="106"/>
+    </clipPath>
+    <clipPath id="clip-y" clipPathUnits="userSpaceOnUse">
+      <circle cx="280" cy="433" r="106"/>
+    </clipPath>
+  </defs>
+
+  <!-- Empty upper circle -->
+  <circle cx="280" cy="120" r="106" fill="#000"/>
+
+  <!-- B: broad outer bowls with compact counters, matching the supplied CAD linework -->
+  <circle cx="123" cy="276" r="106" fill="#000"/>
+  <g clip-path="url(#clip-b)">
+    <path fill="#fff" fill-rule="evenodd" d="
+      M56 160 H123
+      C166 160 193 186 193 221
+      C193 244 183 260 164 269
+      C186 277 201 298 201 326
+      C201 365 173 392 123 392
+      H56 Z
+
+      M97 205 V257 H120
+      C141 257 152 248 152 231
+      C152 213 141 205 120 205 Z
+
+      M97 289 V346 H124
+      C148 346 160 337 160 318
+      C160 299 148 290 124 290 Z
+    "/>
+  </g>
+
+  <!-- X: splayed terminals extend to, and are cropped by, the circle -->
+  <circle cx="437" cy="276" r="106" fill="#000"/>
+  <g clip-path="url(#clip-x)">
+    <path fill="#fff" d="
+      M360 180
+      L405 158
+      L438 240
+      L474 158
+      L518 181
+      L464 274
+      L510 371
+      L462 385
+      L436 315
+      L408 386
+      L360 369
+      L410 274 Z
+    "/>
+  </g>
+
+  <!-- Y: wide fork and straight stem cropped at the lower circle -->
+  <circle cx="280" cy="433" r="106" fill="#000"/>
+  <g clip-path="url(#clip-y)">
+    <path fill="#fff" d="
+      M190 337
+      L232 316
+      L281 430
+      L330 316
+      L371 339
+      L303 469
+      V555
+      H258
+      V469 Z
+    "/>
+  </g>
+</svg>
