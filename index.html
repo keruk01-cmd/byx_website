@@ -38,6 +38,12 @@ window.BYX_CONFIG = {
      paints form controls with its own dark canvas and the writing box comes
      out black. */
   color-scheme:light;
+  /* Cursors live here so no rule can out-specify them. Every cursor
+     declaration in this file points at one of these three — see the CURSOR
+     block below for why they are images at all. */
+  --cur-arrow:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2224%22%20viewBox%3D%220%200%2018%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M2%202%202%2018.5%206.5%2014.6%209.3%2021.2%2012.3%2019.9%209.6%2013.6%2014.5%2013.6Z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M2%202%202%2018.5%206.5%2014.6%209.3%2021.2%2012.3%2019.9%209.6%2013.6%2014.5%2013.6Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 2 2,default;
+  --cur-hand:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2226%22%20height%3D%2224%22%20viewBox%3D%220%200%2026%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M11%201.5c-1.1%200-2%20.9-2%202v9.2l-1.6-1.9c-.7-.8-1.9-.9-2.7-.2-.8.6-.9%201.8-.3%202.6l3.9%205.6c1.1%201.6%202.9%202.6%204.9%202.6h2.3c3.6%200%206.5-2.9%206.5-6.5v-3.4c0-1.1-.9-2-2-2-.4%200-.8.1-1.1.3-.3-.9-1.1-1.5-2.1-1.5-.5%200-1%20.2-1.4.5-.4-.7-1.1-1.1-2-1.1-.6%200-1.1.2-1.5.6V3.5c0-1.1-.9-2-2-2z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M11%201.5c-1.1%200-2%20.9-2%202v9.2l-1.6-1.9c-.7-.8-1.9-.9-2.7-.2-.8.6-.9%201.8-.3%202.6l3.9%205.6c1.1%201.6%202.9%202.6%204.9%202.6h2.3c3.6%200%206.5-2.9%206.5-6.5v-3.4c0-1.1-.9-2-2-2-.4%200-.8.1-1.1.3-.3-.9-1.1-1.5-2.1-1.5-.5%200-1%20.2-1.4.5-.4-.7-1.1-1.1-2-1.1-.6%200-1.1.2-1.5.6V3.5c0-1.1-.9-2-2-2z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 11 2,pointer;
+  --cur-text:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2224%22%20viewBox%3D%220%200%2016%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M4.5%203H11.5V5H9V19H11.5V21H4.5V19H7V5H4.5Z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M4.5%203H11.5V5H9V19H11.5V21H4.5V19H7V5H4.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 8 12,text;
   --bg:#ffffff;
   --fg:#000000;
   --mute:#8e8e8e;
@@ -66,23 +72,24 @@ body{
 }
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:var(--cur-hand)}
 /* ---------- CURSOR ----------
    The OS arrow is white with a black outline; on a site that is mostly white
    paper it reads as a hole. These are the same three shapes inverted — black
    body, white outline — supplied as images, since a cursor's colour cannot be
-   set any other way. The trailing keyword is the fallback if the image is
-   refused. The numbers after the url() are the hotspot: the pixel that
-   actually points. */
-body{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2224%22%20viewBox%3D%220%200%2018%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M2%202%202%2018.5%206.5%2014.6%209.3%2021.2%2012.3%2019.9%209.6%2013.6%2014.5%2013.6Z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M2%202%202%2018.5%206.5%2014.6%209.3%2021.2%2012.3%2019.9%209.6%2013.6%2014.5%2013.6Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 2 2,default}
-a[href],button,label[for],summary,select,.drop,.card{
-  cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2226%22%20height%3D%2224%22%20viewBox%3D%220%200%2026%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M11%201.5c-1.1%200-2%20.9-2%202v9.2l-1.6-1.9c-.7-.8-1.9-.9-2.7-.2-.8.6-.9%201.8-.3%202.6l3.9%205.6c1.1%201.6%202.9%202.6%204.9%202.6h2.3c3.6%200%206.5-2.9%206.5-6.5v-3.4c0-1.1-.9-2-2-2-.4%200-.8.1-1.1.3-.3-.9-1.1-1.5-2.1-1.5-.5%200-1%20.2-1.4.5-.4-.7-1.1-1.1-2-1.1-.6%200-1.1.2-1.5.6V3.5c0-1.1-.9-2-2-2z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M11%201.5c-1.1%200-2%20.9-2%202v9.2l-1.6-1.9c-.7-.8-1.9-.9-2.7-.2-.8.6-.9%201.8-.3%202.6l3.9%205.6c1.1%201.6%202.9%202.6%204.9%202.6h2.3c3.6%200%206.5-2.9%206.5-6.5v-3.4c0-1.1-.9-2-2-2-.4%200-.8.1-1.1.3-.3-.9-1.1-1.5-2.1-1.5-.5%200-1%20.2-1.4.5-.4-.7-1.1-1.1-2-1.1-.6%200-1.1.2-1.5.6V3.5c0-1.1-.9-2-2-2z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 11 2,pointer;
-}
-input,textarea{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2224%22%20viewBox%3D%220%200%2016%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M4.5%203H11.5V5H9V19H11.5V21H4.5V19H7V5H4.5Z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M4.5%203H11.5V5H9V19H11.5V21H4.5V19H7V5H4.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 8 12,text}
-input[type=color],input[type=file],input[type=range],input[type=checkbox],input[type=radio]{
-  cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2226%22%20height%3D%2224%22%20viewBox%3D%220%200%2026%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M11%201.5c-1.1%200-2%20.9-2%202v9.2l-1.6-1.9c-.7-.8-1.9-.9-2.7-.2-.8.6-.9%201.8-.3%202.6l3.9%205.6c1.1%201.6%202.9%202.6%204.9%202.6h2.3c3.6%200%206.5-2.9%206.5-6.5v-3.4c0-1.1-.9-2-2-2-.4%200-.8.1-1.1.3-.3-.9-1.1-1.5-2.1-1.5-.5%200-1%20.2-1.4.5-.4-.7-1.1-1.1-2-1.1-.6%200-1.1.2-1.5.6V3.5c0-1.1-.9-2-2-2z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M11%201.5c-1.1%200-2%20.9-2%202v9.2l-1.6-1.9c-.7-.8-1.9-.9-2.7-.2-.8.6-.9%201.8-.3%202.6l3.9%205.6c1.1%201.6%202.9%202.6%204.9%202.6h2.3c3.6%200%206.5-2.9%206.5-6.5v-3.4c0-1.1-.9-2-2-2-.4%200-.8.1-1.1.3-.3-.9-1.1-1.5-2.1-1.5-.5%200-1%20.2-1.4.5-.4-.7-1.1-1.1-2-1.1-.6%200-1.1.2-1.5.6V3.5c0-1.1-.9-2-2-2z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 11 2,pointer;
-}
-[disabled]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2224%22%20viewBox%3D%220%200%2018%2024%22%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M2%202%202%2018.5%206.5%2014.6%209.3%2021.2%2012.3%2019.9%209.6%2013.6%2014.5%2013.6Z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M2%202%202%2018.5%206.5%2014.6%209.3%2021.2%2012.3%2019.9%209.6%2013.6%2014.5%2013.6Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 2 2,not-allowed}
+   set any other way. The shapes are drawn twice: a fat white copy underneath,
+   the black shape on top, so the outline follows the whole silhouette instead
+   of showing a seam wherever two parts overlap.
+
+   The values are in :root (--cur-arrow / --cur-hand / --cur-text). Use those,
+   never a bare keyword — a bare keyword in a rule that out-specifies
+   this block drops back to the OS cursor, and the colour changes under the
+   hand as you move across the page. */
+body{cursor:var(--cur-arrow)}
+a[href],button,label[for],summary,select,input[type=date],.drop,.card{cursor:var(--cur-hand)}
+input,textarea{cursor:var(--cur-text)}
+input[type=color],input[type=file],input[type=date],input[type=month],input[type=range],input[type=checkbox],input[type=radio]{cursor:var(--cur-hand)}
+[disabled]{cursor:var(--cur-arrow)}
 ::selection{background:var(--fg);color:var(--bg)}
 
 .mono{font-family:var(--font-mono);font-size:.82em;letter-spacing:.02em}
@@ -103,7 +110,7 @@ input[type=color],input[type=file],input[type=range],input[type=checkbox],input[
   font-family:var(--font-display);
   font-size:clamp(33px,5.25vw,57px);
   line-height:1;letter-spacing:.005em;
-  cursor:pointer;user-select:none;flex:0 0 auto;
+  cursor:var(--cur-hand);user-select:none;flex:0 0 auto;
 }
 #slotwrap{
   position:relative;display:block;flex:0 0 auto;
@@ -281,13 +288,13 @@ table.idx th{
   text-align:left;font-family:var(--font-mono);font-weight:400;font-size:10px;
   letter-spacing:.09em;text-transform:uppercase;color:var(--mute);
   padding:9px 12px;border-bottom:var(--hair) solid var(--fg);
-  position:sticky;top:calc(var(--head-h) + var(--pbar-h,42px));background:var(--bg);z-index:30;cursor:pointer;white-space:nowrap;
+  position:sticky;top:calc(var(--head-h) + var(--pbar-h,42px));background:var(--bg);z-index:30;cursor:var(--cur-hand);white-space:nowrap;
 }
 table.idx th:hover{color:var(--fg)}
 table.idx th .ar{opacity:0}
 table.idx th.sorted .ar{opacity:1}
 table.idx td{padding:9px 12px;border-bottom:var(--hair) solid var(--faint);vertical-align:middle;font-size:12.5px;white-space:nowrap}
-table.idx tr{cursor:pointer;transition:background .12s}
+table.idx tr{cursor:var(--cur-hand);transition:background .12s}
 table.idx tbody tr:hover{background:var(--fg);color:var(--bg)}
 table.idx tbody tr:hover td{border-bottom-color:var(--fg)}
 table.idx .c-code{font-family:var(--font-mono);font-size:11px}
@@ -559,8 +566,35 @@ input:focus,textarea:focus,select:focus{border-bottom-width:2px;padding-bottom:8
 .arow .mm{font-family:var(--font-mono);font-size:10px;color:var(--mute);text-transform:uppercase;margin-top:3px}
 .arow .acts{display:flex;gap:6px}
 .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0 22px}
+/* eight digits + a calendar button, on one line */
+.dfield{display:flex;align-items:center;gap:10px}
+.dfield input[data-k]{flex:1 1 auto;min-width:0;letter-spacing:.08em}
+.dfield input[type=date]{
+  flex:0 0 auto;width:auto;padding:6px 0 8px;
+  border-bottom:var(--hair) solid var(--faint);font-size:12px;color:var(--mute);
+}
+.dfield input[type=date]:focus{border-bottom-color:var(--fg);color:var(--fg)}
+/* 공개 / 비밀글 state, said out loud at the top of the post editor */
+.pubbar{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  border:var(--hair) solid var(--fg);padding:10px 12px;margin-top:16px;
+}
+.pubbar.off{background:var(--fg);color:var(--bg)}
+.pubbar.off .abtn{border-color:var(--bg)}
+.pubbar.off .abtn.solid{background:var(--bg);color:var(--fg)}
+.pubbar.off .abtn:hover{background:var(--bg);color:var(--fg)}
+.pubbar .st{font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;margin-left:6px}
+/* a draft, wherever it is listed while logged in */
+.lock{
+  font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  border:var(--hair) solid currentColor;padding:2px 5px;margin-left:9px;vertical-align:middle;
+  white-space:nowrap;
+}
+.row-i.hid .d,.row-i.hid .x,.arow.hid .mm{opacity:.55}
+.row-i.hid,.arow.hid,.feature.hid{background:repeating-linear-gradient(135deg,transparent 0 7px,rgba(128,128,128,.09) 7px 14px)}
+.row-i.hid:hover{background:var(--fg)}
 .drop{
-  border:1px dashed var(--fg);padding:18px;text-align:center;cursor:pointer;margin-top:8px;
+  border:1px dashed var(--fg);padding:18px;text-align:center;cursor:var(--cur-hand);margin-top:8px;
   font-family:var(--font-mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);
 }
 .drop:hover,.drop.on{background:var(--fg);color:var(--bg);border-style:solid}
@@ -588,10 +622,10 @@ input:focus,textarea:focus,select:focus{border-bottom-width:2px;padding-bottom:8
 /* colour pickers for the body text */
 .cpick{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 8px;padding:8px;border:var(--hair) solid var(--faint)}
 .cpick[hidden]{display:none}
-.cpick .sw{width:22px;height:22px;border:var(--hair) solid var(--faint);cursor:pointer}
+.cpick .sw{width:22px;height:22px;border:var(--hair) solid var(--faint);cursor:var(--cur-hand)}
 .cpick .sw:hover{outline:2px solid var(--fg);outline-offset:1px}
 .cpick .lb{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-right:2px}
-.cpick input[type=color]{width:34px;height:24px;padding:0;border:var(--hair) solid var(--faint);background:var(--bg);cursor:pointer}
+.cpick input[type=color]{width:34px;height:24px;padding:0;border:var(--hair) solid var(--faint);background:var(--bg);cursor:var(--cur-hand)}
 /* one row per member — where a profile photo is attached */
 .pshots{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px;margin-top:10px}
 .pshot{border:var(--hair) solid var(--faint);padding:8px;display:flex;flex-direction:column;gap:6px}
@@ -737,6 +771,15 @@ const dnum  = s => { const n = String(s == null ? '' : s).replace(/\D/g, ''); re
 const ymNum = p => (+p.year || 0) * 100 + (+p.month || 0);
 const ymText = p => !p.year ? '—' : (p.month ? p.year + '.' + String(p.month).padStart(2, '0') : String(p.year));
 const ymInput = p => !p.year ? '' : p.year + '-' + String(p.month || 1).padStart(2, '0');
+
+/* Dates are stored as they are shown on the site — "2026.06.02". The editor
+   works in bare digits (20260602) with a calendar beside it, so there is no
+   punctuation to get wrong. A value that is not eight digits is handed back
+   untouched rather than mangled. */
+const d8    = s => String(s == null ? '' : s).replace(/\D/g, '').slice(0, 8);
+const d8Dot = n => { const s = d8(n); return s.length === 8 ? s.slice(0,4)+'.'+s.slice(4,6)+'.'+s.slice(6,8) : String(n == null ? '' : n); };
+const d8Iso = n => { const s = d8(n); return s.length === 8 ? s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8) : ''; };
+const today8 = () => { const t = new Date(); return String(t.getFullYear()) + String(t.getMonth()+1).padStart(2,'0') + String(t.getDate()).padStart(2,'0'); };
 
 /* ---- inline text marks -------------------------------------------------
    Post bodies are written as plain text, so formatting is typed inline.
@@ -1106,7 +1149,7 @@ const DB = {
   /* columns added after the first deploy. A site running on the older schema
      must keep saving everything else, so the field is dropped from the
      payload instead of letting the whole save fail. */
-  cols: { projectPeople: true, newsImg: true, newsUrl: true },
+  cols: { projectPeople: true, newsImg: true, newsUrl: true, postPub: true },
 
   get demo(){ return !sb; },
 
@@ -1150,6 +1193,7 @@ const DB = {
       DB.cols.newsImg = 'img' in n.data[0];
       DB.cols.newsUrl = 'url' in n.data[0];
     }
+    if ((b.data || []).length) DB.cols.postPub = 'pub' in b.data[0];
     DB.projects = p.data || [];
     DB.news     = n.data || [];
     DB.posts    = (b.data || []).map(r => ({...r, body: typeof r.body === 'string' ? JSON.parse(r.body) : (r.body || [])}));
@@ -1194,6 +1238,7 @@ const DB = {
       if (!DB.cols.newsImg) delete payload.img;
       if (!DB.cols.newsUrl) delete payload.url;
     }
+    if (table === 'posts' && !DB.cols.postPub) delete payload.pub;
     const { error } = await sb.from(table).upsert(payload).select();
     if (error) throw error;
     await DB.refresh();
@@ -1260,6 +1305,10 @@ const landingWord = () => LANDING[Math.random()*LANDING.length|0];
 
 const slot = $('#slot'), reel = $('#reel');
 let spinning = false, currentWord = '';
+let reelAnim = null, blurTimers = [];
+/* Extending forever would grow the reel without bound; past this many items a
+   further click only re-times the run it is already on. ~7 clicks' worth. */
+const REEL_MAX = 300;
 
 function makeItem(word){
   const it = document.createElement('span'); it.className = 'it';
@@ -1283,35 +1332,79 @@ function setStatic(word){
   fitItems();
 }
 
+/* where the reel sits right now, in px (0 when standing still) */
+function reelY(){
+  const t = getComputedStyle(reel).transform;
+  if (!t || t === 'none') return 0;
+  const m = t.match(/matrix\(([^)]+)\)/);
+  return m ? parseFloat(m[1].split(',')[5]) || 0 : 0;
+}
+
+/* Called on a route change and on every click of the logo. Clicking mid-spin
+   does not restart it and is not ignored — more items are pinned onto the end
+   of the reel and the run continues from wherever it currently is, so the
+   thing simply keeps going for as long as you keep pressing. */
 function spin(){
-  if (spinning) return;
   const target = landingWord();
   if (matchMedia('(prefers-reduced-motion: reduce)').matches){ setStatic(target); return; }
+
+  const RUN = 42;                       // items in a fresh run
+  const ADD = 26;                       // items pinned on by a mid-spin click
+  let from = 0;
+
+  if (spinning){
+    from = reelY();                     // read before cancelling — cancel resets it
+    if (reelAnim) reelAnim.cancel();
+    reel.style.transform = 'translateY(' + from + 'px)';
+    blurTimers.forEach(clearTimeout); blurTimers = [];
+    if (reel.children.length < REEL_MAX){
+      for (let i = 1; i < ADD; i++) reel.appendChild(makeItem(makeWord()));
+      reel.appendChild(makeItem(target));
+    } else {
+      /* at the cap: keep the reel as it is and just re-aim the last item */
+      $('.w', reel.lastChild).textContent = target;
+    }
+  } else {
+    reel.innerHTML = '';
+    reel.appendChild(makeItem(currentWord));
+    for (let i = 1; i < RUN - 1; i++) reel.appendChild(makeItem(makeWord()));
+    reel.appendChild(makeItem(target));
+  }
+  fitItems();
   spinning = true;
 
-  const N = 42;
-  reel.innerHTML = '';
-  reel.appendChild(makeItem(currentWord));
-  for (let i = 1; i < N - 1; i++) reel.appendChild(makeItem(makeWord()));
-  reel.appendChild(makeItem(target));
-  fitItems();
-
-  const ih = reel.firstChild.getBoundingClientRect().height;
-  const total = ih * (N - 1);
-  const fast  = ih * Math.round((N - 1) * 0.46);
-  const dur   = 2700;
+  const ih    = reel.firstChild.getBoundingClientRect().height;
+  const total = ih * (reel.children.length - 1);
+  const left  = total + from;                                  // `from` is negative
+  /* one full run is 2700ms; a shorter or longer remaining distance is timed to
+     match, so an extension does not race and a near-finished reel does not crawl */
+  const dur   = Math.max(1500, Math.min(4600, 2700 * (left / (ih * (RUN - 1)))));
+  const fast  = ih * Math.round(left * 0.46 / ih);
 
   slot.className = 'sp1';
   const anim = reel.animate([
-    { transform:'translateY(0)',                              offset:0,    easing:'cubic-bezier(.42,0,.72,.42)' },
-    { transform:'translateY(' + (-fast) + 'px)',              offset:0.34, easing:'cubic-bezier(.08,.55,.22,1)' },
-    { transform:'translateY(' + (-(total + ih*0.10)) + 'px)', offset:0.93, easing:'cubic-bezier(.33,0,.25,1)' },
-    { transform:'translateY(' + (-total) + 'px)',             offset:1 }
+    { transform:'translateY(' + from + 'px)',                   offset:0,    easing:'cubic-bezier(.42,0,.72,.42)' },
+    { transform:'translateY(' + (from - fast) + 'px)',          offset:0.34, easing:'cubic-bezier(.08,.55,.22,1)' },
+    { transform:'translateY(' + (-(total + ih*0.10)) + 'px)',   offset:0.93, easing:'cubic-bezier(.33,0,.25,1)' },
+    { transform:'translateY(' + (-total) + 'px)',               offset:1 }
   ], { duration: dur, fill:'forwards' });
+  reelAnim = anim;
 
-  setTimeout(() => { slot.className = 'sp2'; }, dur * 0.40);
-  setTimeout(() => { slot.className = 'sp3'; }, dur * 0.70);
-  anim.onfinish = () => { setStatic(target); anim.cancel(); slot.className = ''; spinning = false; };
+  /* Landing. A hidden tab runs the animation to `finished` but can withhold the
+     finish event, which used to leave the reel mid-run forever — hence the
+     timer as well. Both paths are guarded by the identity check, so whichever
+     arrives first lands it and the other does nothing. */
+  const land = () => {
+    if (reelAnim !== anim) return;      // superseded by a click; that run owns the end
+    setStatic(target); anim.cancel(); reelAnim = null;
+    slot.className = ''; spinning = false;
+  };
+  anim.onfinish = land;
+  blurTimers = [
+    setTimeout(() => { slot.className = 'sp2'; }, dur * 0.40),
+    setTimeout(() => { slot.className = 'sp3'; }, dur * 0.70),
+    setTimeout(land, dur + 260)
+  ];
 }
 
 /* ============================================================
@@ -1407,7 +1500,10 @@ function gotoAdmin(spec){
    6. PUBLIC VIEWS
    ============================================================ */
 const BATCH = 6;                 // cards loaded per scroll step
-let PV = { view:'grid', sort:'code', dir:-1, shown: BATCH };
+/* default order is time, newest first. It used to be `code` descending, which
+   only looked right because the demo codes happen to start with the year —
+   real codes carry no date. */
+let PV = { view:'grid', sort:'year', dir:-1, shown: BATCH };
 let IO = null;                   // scroll observer
 
 function filtered(){
@@ -1418,7 +1514,11 @@ function filtered(){
     if (k === 'year'){ x = ymNum(a); y = ymNum(b); }         // year+month, not year alone
     else { x = a[k]; y = b[k]; }
     if (typeof x === 'string'){ x = x.toLowerCase(); y = String(y||'').toLowerCase(); }
-    return x < y ? -PV.dir : x > y ? PV.dir : 0;
+    if (x < y) return -PV.dir;
+    if (x > y) return PV.dir;
+    /* same key — fall back to the date so the order never depends on the
+       order rows came back from the database */
+    return ymNum(b) - ymNum(a);
   });
 }
 
@@ -1554,30 +1654,37 @@ function viewNews(){
   <div class="rows">${rows || '<div class="pane"><p class="mono mute">등록된 소식이 없습니다.</p></div>'}</div>`;
 }
 
+/* A post with `pub === false` is a draft: it stays off the site until it is
+   switched to 공개. While logged in it is still listed, marked, so the author
+   can read it back. `pub` missing (older rows, or a database without the
+   column) counts as public — silence must not hide anything. */
+const isHidden  = p => p && p.pub === false;
+const livePosts = () => DB.posts.filter(p => session || !isHidden(p));
+const lockTag   = p => isHidden(p) ? '<span class="lock">비밀글</span>' : '';
+
 function viewBlog(){
-  const list = DB.posts;
+  const list = livePosts();
   const [feat, ...rest] = list;
-  const kinds = Array.from(new Set(list.map(p => p.k))).filter(Boolean);
+
+  if (!list.length) return `<div class="pane"><p class="mono mute">등록된 글이 없습니다.</p></div>`;
 
   const featHTML = !feat ? '' : `
-    <a class="feature" href="#/blog/${encodeURIComponent(feat.slug)}">
+    <a class="feature${isHidden(feat) ? ' hid' : ''}" href="#/blog/${encodeURIComponent(feat.slug)}">
       <span class="im"><img src="${esc(((feat.body||[]).find(b=>b.t==='img')||{}).v || svgArt(feat.slug,1600,1000))}" alt=""></span>
       <span class="tx">
-        <span class="by">${esc(feat.d)} · ${esc(feat.k)} · LATEST</span>
+        <span class="by">${esc(feat.d)} · ${esc(feat.k)} · ${isHidden(feat) ? '비밀글' : 'LATEST'}</span>
         <span class="display h-m ttl">${esc(feat.t)}</span>
         <span class="sum">${esc(feat.x)}</span>
         <span class="tag" style="margin-top:16px">READ →</span>
       </span>
     </a>`;
 
-  if (!list.length) return `<div class="pane"><p class="mono mute">등록된 글이 없습니다.</p></div>`;
-
   return `
   ${featHTML}
   <div class="rows">${rest.map(p => `
-    <a class="row-i" href="#/blog/${encodeURIComponent(p.slug)}">
+    <a class="row-i${isHidden(p) ? ' hid' : ''}" href="#/blog/${encodeURIComponent(p.slug)}">
       <div class="d">${esc(p.d)}</div>
-      <div><div class="t">${esc(p.t)}</div><div class="x">${esc(p.x)}</div></div>
+      <div><div class="t">${esc(p.t)}${lockTag(p)}</div><div class="x">${esc(p.x)}</div></div>
       <div class="k">${esc(p.k)}</div>
     </a>`).join('')}</div>`;
 }
@@ -1620,11 +1727,13 @@ function galleryHTML(b){
 
 function viewPost(slug){
   const p = DB.posts.find(x => x.slug === slug);
-  if (!p) return `<section class="art"><h1>Not Found</h1><p><a class="tag" href="#/blog">← ALL POSTS</a></p></section>`;
+  /* a draft is not merely unlisted — the address itself gives nothing away */
+  if (!p || (isHidden(p) && !session))
+    return `<section class="art"><h1>Not Found</h1><p><a class="tag" href="#/blog">← ALL POSTS</a></p></section>`;
   return `
   <header class="post-cover">
     <div class="in">
-      <div class="k">${esc(p.d)} · ${esc(p.k)}</div>
+      <div class="k">${esc(p.d)} · ${esc(p.k)}${isHidden(p) ? ' · 비밀글' : ''}</div>
       <h1>${esc(p.t)}</h1>
       ${p.x ? `<p class="x">${esc(p.x)}</p>` : ''}
     </div>
@@ -1632,6 +1741,7 @@ function viewPost(slug){
   </header>
   <div class="post-sheet">
     <article class="art">
+      ${isHidden(p) ? '<div class="note warn" style="margin:0 0 2em"><b>비밀글입니다</b><br>지금은 로그인한 나에게만 보입니다. 방문자에게 보이게 하려면 편집 화면에서 <b>공개</b>로 바꾸고 저장하세요.</div>' : ''}
       ${postBodyHTML(p.body)}
       <p style="margin-top:3em"><a class="tag" href="#/blog">← ALL POSTS</a></p>
     </article>
@@ -1724,7 +1834,8 @@ function viewContact(){
 /* ============================================================
    7. ADMIN
    ============================================================ */
-const AD = { tab:'projects', draft:null, back:null, preview:false };
+/* preview starts open — the marks are only readable once you see what they do */
+const AD = { tab:'projects', draft:null, back:null, preview:true };
 const TABS = [['projects','Project'],['news','News'],['posts','Blog'],['about','About'],['contact','Contact']];
 const SETTING_TABS = ['about','contact'];
 
@@ -1735,6 +1846,12 @@ const TA = (label, key, val, min)  => `<div class="fld"><label>${label}</label><
 const SUG= (label, key, val, opts, id) => `<div class="fld"><label>${label}</label>
   <input data-k="${key}" list="${id}" value="${esc(val)}" autocomplete="off" placeholder="입력하거나 아래에서 고르세요">
   <datalist id="${id}">${opts.map(o => `<option value="${esc(o)}"></option>`).join('')}</datalist></div>`;
+/* eight digits, plus a calendar that fills them in */
+const DATE8 = (label, key, val) => `<div class="fld"><label>${label}</label>
+  <div class="dfield">
+    <input data-k="${key}" value="${esc(val)}" inputmode="numeric" maxlength="8" placeholder="20260602" autocomplete="off">
+    <input type="date" data-dpick="${key}" value="${esc(d8Iso(val))}" aria-label="달력에서 고르기" title="달력에서 고르기">
+  </div></div>`;
 
 const typeOptions = () =>
   Array.from(new Set(DB.projects.map(p => p.type).filter(Boolean).concat(TYPES))).sort();
@@ -1793,17 +1910,17 @@ function viewAdmin(){
 function adminList(){
   const t = AD.tab;
   const rows = DB[t].map(r => {
-    const title = t === 'projects' ? r.name : r.t;
+    const title = (t === 'projects' ? r.name : r.t);
     const meta  = t === 'projects' ? `${esc(r.code)} · ${esc(r.type)} · ${esc(r.client)} · ${esc(ymText(r))}`
                 : t === 'news'     ? `${esc(r.d)} · ${esc(r.k)}`
-                :                    `${esc(r.d)} · ${esc(r.k)} · /${esc(r.slug)}`;
+                :                    `${esc(r.d)} · ${esc(r.k)} · /${esc(r.slug)}${isHidden(r) ? ' · 비밀글' : ''}`;
     const th = t === 'projects' ? artOf(r)
              : t === 'posts'    ? ((r.body||[]).find(b=>b.t==='img')||{}).v || svgArt(r.slug||r.id,600,450)
              :                    svgArt(r.id||r.t,600,450);
     return `
-    <div class="arow" data-id="${esc(r.id)}">
+    <div class="arow${t === 'posts' && isHidden(r) ? ' hid' : ''}" data-id="${esc(r.id)}">
       <img class="th" src="${esc(th)}" alt="" loading="lazy">
-      <div><div class="tt">${esc(title)}</div><div class="mm">${meta}</div></div>
+      <div><div class="tt">${esc(title)}${t === 'posts' ? lockTag(r) : ''}</div><div class="mm">${meta}</div></div>
       <div class="acts">
         <button class="abtn sm" data-edit="${esc(r.id)}">Edit</button>
         <button class="abtn sm" data-del="${esc(r.id)}">Del</button>
@@ -1956,11 +2073,23 @@ function colorPicker(kind, label){
 function edPost(){
   const d = AD.draft;
   if (d.bodyText == null) d.bodyText = bodyToText(d.body);
+  if (d.d8 == null) d.d8 = d8(d.d);
+  const hidden = d.pub === false;
   return `
   <div class="pane">
     <h2 class="display h-m">${d.id ? 'Edit' : 'New'} Post</h2>
+
+    <div class="pubbar${hidden ? ' off' : ''}">
+      <button class="abtn sm${hidden ? '' : ' solid'}" data-pub="1">공개</button>
+      <button class="abtn sm${hidden ? ' solid' : ''}" data-pub="0">비밀글</button>
+      <span class="st">${hidden
+        ? '지금은 <b>비밀글</b>입니다 — 방문자에게 보이지 않고, 로그인한 나에게만 보입니다'
+        : '지금은 <b>공개</b>입니다 — 저장하면 누구나 볼 수 있습니다'}</span>
+    </div>
+    ${DB.cols.postPub ? '' : miss('공개 / 비밀 상태')}
+
     <div class="fgrid">
-      ${F('Date / 날짜','d',d.d)}
+      ${DATE8('Date / 날짜 (YYYYMMDD)','d8',d.d8)}
       ${SUG('Category / 분류','k',d.k,Array.from(new Set(DB.posts.map(p=>p.k).filter(Boolean))).sort(),'dl-postk')}
       ${F('Slug / 주소 (비워두면 제목에서 자동 생성)','slug',d.slug)}
     </div>
@@ -1996,7 +2125,7 @@ function edPost(){
       <button class="abtn sm" data-ins="al-r">오른쪽</button>
       <button class="abtn sm" data-ins="al-l">정렬 해제</button>
       <button class="abtn sm solid" data-ins="img">＋ 이미지</button>
-      <button class="abtn sm" data-act="preview">${AD.preview ? '미리보기 닫기' : '미리보기'}</button>
+      <button class="abtn sm" data-act="preview">${AD.preview ? '미리보기 접기' : '미리보기 펼치기'}</button>
     </div>
     <div class="wtools"><span class="hint">빈 줄로 문단을 나눕니다 · 사진 여러 장을 한 번에 넣으면 좌우로 넘기는 묶음이 됩니다 · 색은 글자를 고른 뒤 누르세요</span></div>
     <div class="wsplit${AD.preview ? ' on' : ''}">
@@ -2269,7 +2398,8 @@ const blank = t => t === 'projects'
   ? {code:'', name:'', client:'', type:'', loc:'', year:new Date().getFullYear(), month:new Date().getMonth()+1, status:'IN PROGRESS', area:'', role:'', img:'', shots:[], descr:'', people:''}
   : t === 'news'
   ? {d:'', k:'PROJECT', t:'', x:'', img:'', url:''}
-  : {slug:'', d:'', k:'ESSAY', t:'', x:'', body:[], bodyText:''};
+  /* a new post starts hidden — you write it, then decide to show it */
+  : {slug:'', d:d8Dot(today8()), d8:today8(), k:'ESSAY', t:'', x:'', body:[], bodyText:'', pub:false};
 
 function bindAdmin(){
   const root = app;
@@ -2314,6 +2444,26 @@ function bindAdmin(){
      name field is left, never while it is being typed in */
   const pf = AD.tab === 'about' ? $('[data-k="people"]', root) : null;
   if (pf) pf.onchange = () => refreshAdmin();
+
+  /* date: eight digits and a calendar, kept in step both ways */
+  $$('[data-dpick]', root).forEach(p => p.onchange = () => {
+    const key = p.dataset.dpick, n = d8(p.value);
+    if (!n) return;
+    AD.draft[key] = n;
+    const t = $('[data-k="' + key + '"]', root);
+    if (t) t.value = n;
+  });
+  $$('[data-dpick]', root).forEach(p => {
+    const t = $('[data-k="' + p.dataset.dpick + '"]', root);
+    if (t) t.addEventListener('input', () => { p.value = d8Iso(t.value); });
+  });
+
+  /* 공개 / 비밀글. Re-renders because the whole bar changes state — safe here,
+     it is a button press, not typing. */
+  $$('[data-pub]', root).forEach(b => b.onclick = () => {
+    AD.draft.pub = b.dataset.pub === '1';
+    refreshAdmin();
+  });
 
   /* post body: insert marks / images at the caret, never re-render */
   const wb = $('#wbody', root);
@@ -2433,11 +2583,18 @@ function bindAdmin(){
       }
       if (AD.tab === 'posts'){
         if (!d.slug){ d.slug = (d.t || 'post').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || uid(); }
+        /* the editor works in bare digits; the site reads 2026.06.02 */
+        if (d.d8 != null){ d.d = d8Dot(d.d8); delete d.d8; }
+        d.pub = d.pub !== false;
         d.body = textToBody(d.bodyText);
         delete d.bodyText;
       }
       d.sort = AD.tab === 'projects' ? ymNum(d) : dnum(d.d);   // ordering is derived, never typed
-      try{ await DB.save(AD.tab, d); AD.draft = null; toast('저장되었습니다'); leaveEditor(); }
+      /* say it plainly — a draft saved without a word reads as a save that failed */
+      const note = AD.tab === 'posts' && d.pub === false
+        ? '비밀글로 저장되었습니다 — 아직 방문자에게 보이지 않습니다'
+        : '저장되었습니다';
+      try{ await DB.save(AD.tab, d); AD.draft = null; toast(note); leaveEditor(); }
       catch(e){ console.error(e); toast('저장 실패: ' + (e.message||e)); }
     }
   });
@@ -2544,8 +2701,10 @@ function bindGalleries(root){
    9. CHROME + BOOT
    ============================================================ */
 $('#brand').addEventListener('click', () => {
-  spin();
+  /* away from home the route change is what spins, so do not also spin here —
+     that would count as two presses for one click */
   if (location.hash !== '#/' && location.hash !== '') location.hash = '#/';
+  else spin();
 });
 $('#burger').addEventListener('click', () => document.body.classList.toggle('menu'));
 $$('#mobnav a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu')));
