@@ -1,74 +1,75 @@
-# 01 — Brand Identity & X System
-**Status:** DRAFT 0.1.0
+# 01 — Brand Identity & X Expression System
+**Status:** DRAFT 0.2.0 · **Review-first, not a fixed logo manual**
 
 ## Core identity
-- Name: BYX (pronounced 바이엑스).
-- Formal EN: ARCHITECTS BYX. Formal KO: 바이엑스건축사사무소.
-- Modular discipline signature: ARCHITECTURE BY X / FURNITURE BY X / LANDSCAPE BY X / UIUX BY X.
-- Identity principle: **Variable X × eXperience X**.
-- Voice: analytical, experimental, playful through interaction; never gimmicky or overdecorated.
+- Name: BYX, pronounced 바이엑스.
+- Official English: ARCHITECTS BYX. Official Korean: 바이엑스건축사사무소.
+- Open project syntax: ARCHITECTURE BY X / FURNITURE BY X / LANDSCAPE BY X / UIUX BY X / ...
+- **Two conceptual axes, unlimited expressions:** Variable X and eXperience X.
+- The designers formulate the **function** that turns input conditions and accumulated experience into design.
 
-## Master X: geometry
-**LOCKED rules**
-- The master mark must be recognizable as a capital X.
-- **No fillets, rounded corners, rounded stroke caps, soft blobs, bevels or decorative curves** in the Master X. No XR logo tracing.
-- Prefer straight edges, planar geometry, precise intersections, sharp terminals and optical balance.
-- Master X originates from custom vector geometry, rather than assuming a font glyph is automatically the logo.
-- The same underlying geometric construction must generate Variable X and eXperience X.
-- Derivatives must retain legibility at small sizes; provide a simple static fallback.
+## Typographic X, not a Master X
+**DECISION:** Do **not** create, enforce, or freeze a dedicated geometric Master X symbol.
+- The X motif is derived from the X glyph of the chosen display typography (and its editorial contexts).
+- The exact letterform is allowed to adapt through code, material, size, cropping, motion and contextual composition.
+- The X is a **living typographic motif**, not an additional immutable logo.
+- No fillets or synthetic rounded corners in identity-focused X artworks. Prefer crisp, flat, unrounded geometry.
+- Do not trace Athletics XR or any other reference symbol.
+- A static BYX wordmark can remain simple and readable; animated X expressions are primarily an editorial layer.
+- Display typeface is pending review. **Examples use provisional fallback glyphs, not approved artwork.**
 
-**PROVISIONAL study axes (not approved logo dimensions)**
-- Normalized 100 × 100 square construction frame.
-- Start with a 1:1 envelope and crossed diagonals, then test stroke thickness as a normalized parameter.
-- Evaluate center counters, overlap artifacts, endpoints, optical alignment, monochrome reproduction, and 16/24 px icon legibility.
-- After approval, freeze geometry in a single vector Master X asset. Never redraw the approved symbol by eye.
+## Meaning: two principles, not two animations
+### A. Variable X / INPUT → TRANSFORMATION
+The X responds to conditions. Suggested families of behaviors:
+- **Stretch / Compress:** width and aspect changes.
+- **Weight / Density:** a typeface's true weight axis if available, otherwise explicit safe graphic treatments (never fake an approved font asset).
+- **Slice / Recompose:** parts of a typographic X rearrange under a rule.
+- **Crop / Frame:** enlarged X defines a graphic aperture.
+- **Grid / Field:** many small X instances respond to a parameter space.
+- **Interactive X:** movement and pointer/scroll position adjust the state.
 
-## Variable X — transformation
-Meaning: diverse inputs alter the design outcome.
+### B. eXperience X / MEMORY → ACCUMULATION
+The X conveys accumulated judgment and process:
+- **Trace:** faint previous states remain visible.
+- **Layers / Registration:** recorded versions sit in aligned stacks.
+- **Archive:** multiple X-based states or projects are indexed.
+- **Convergence:** disparate states resolve into a legible X.
+- **Time / Sequence:** evidence of prior decisions forms a visible path.
+- **Process Overlay:** selected intermediate states appear as analytical annotation.
 
-Allowed transformations, under a constrained generative grammar:
-1. Stroke width / density.
-2. Horizontal-to-vertical proportion / extent.
-3. Structural slicing, crop or framing from the Master X silhouette.
-4. Controlled position and scale within a consistent grid.
+### C. Hybrid expressions
+- A Variable X may accumulate traces over repeated interaction.
+- An X can frame real project imagery while responding to data and revealing process.
+- The number of expressions is **unbounded**; the semantic families are not a quota.
+- New behaviors belong in [04 — X Expression Library](04-x-expression-library.md) and must include a short semantic description, controllable inputs, static fallback, and intended usage.
 
-Guardrails:
-- Keep diagonal identity clear; do not add corner roundings.
-- Never claim parameter values literally encode real site/permit data unless they do.
-- Establish min/max values and a static reference state before programming motion.
-- Animated and print states must be generated from the same original X asset.
+## Graphic constraints
+- Predominantly white canvas and black typographic X. Occasional black-and-white inversion.
+- No obligatory brand accent; if a project introduces color, keep it to deliberately defined surfaces.
+- No bevels, soft-gradient glow, blob distortions, animated corner rounding or decorative fillet transitions.
+- Identifiable X relationship through source glyph, cropping or recorded states; abstract expressions should be accompanied by editorial explanation when necessary.
+- Never place motion or large X graphics over essential architectural drawings, accessibility labels or other high-information content.
+- Reduced-motion and static print modes are first-class outputs.
+- Don't suggest parameter values encode real site measurements unless connected to real project data.
 
-## eXperience X — accumulation
-Meaning: years of projects, decisions and judgement accumulate.
+## Website / ABOUT page concept
+1. **Introduction:** ARCHITECTS BYX and succinct thesis, minimal black type on white.
+2. **Variable:** interactive or timed type-X experiment with visible input logic.
+3. **eXperience:** recorded/accumulated iterations and the judgment dimension.
+4. **X Expressions:** a gallery of distinct code-generated experiments; users may browse, not only one Variable X and one Experience X.
+5. **Practice:** link the abstract system back to real building work, people and project decisions.
 
-Allowed transformation families:
-1. 2–5 contour or silhouette layers with measured offsets.
-2. Registered traces and successive states that converge into the Master X.
-3. Analytical overlays (process or decision states) anchored on the same X geometry.
+ABOUT should communicate the philosophy, not force visitors to complete a simulation. Animations must have fallbacks.
 
-Guardrails:
-- Use layering, offsets, linework or masks: **not blur/glow/soft gradients**.
-- Layer order and opacity must be consistent and reproducible.
-- For construction documents, use fine-print compatible linework, not visual noise.
-- Every output ends in a recognizable X or explains the connection.
+## Wordmark and formal-use rules
+- Use BYX / ARCHITECTS BYX in ordinary typography until the approved wordmark is released.
+- Don't distort a signed-off wordmark or apply procedural behaviors to the legal name in contracts or CAD title blocks.
+- When contracts require registered identity, show the full Korean and/or English formal name.
+- Clear space, minimum dimensions and optical alignment are decided only after final wordmark and display type are selected.
+- ABYX/game-controller and architectural axes are supporting narratives, not mandatory independent graphics.
+- X cursor remains optional and secondary; use native text insertion and other accessibility-appropriate cursors where needed.
 
-## Logo / signature usage
-- Approved primary artwork: pending custom Master X and BYX wordmark design.
-- Preferred background: white / black mark.
-- Reverse: black background / white mark when required.
-- Never stretch, shear, round, put a gradient on, add arbitrary outlines/shadows, or rebuild the logo from ad-hoc fonts.
-- Clear space and minimum size are to be measured after artwork approval; do not invent them.
-- Display the formal legal/registered name in contracts and documents requiring it.
-- A disciplinary label [DISCIPLINE] BY X is a flexible communication line, not a separate legal entity or independently redesigned logo.
-
-## Application priority
-1. Static wordmark and crisp Master X for formal documents, drawing titles, legal documents and stationery.
-2. Variable X for web, identity animation, project introduction, thumbnails and brand-led presentations.
-3. eXperience X for portfolio process pages, research, archives and documentation.
-4. X cursor is a minor interaction on desktop. Preserve browser-native text, drag, resize and accessibility behavior.
-
-## Voice and labeling
-- Short, precise, direct.
-- Headline: concise English or Korean.
-- Long-form explanation: Korean first where appropriate, with Wanted Sans.
-- Never overprint an X on essential dimensions, drawings, legal text or important imagery.
+## Inspiration (not templates)
+- Athletics XR: conceptual emphasis on adaptive letterforms and procedural graphics; **not the rounded XR letterform**.
+- Studio Dumbar: choreography and typography as an identity language.
+- Echo X / Plus X / NomadX: X as an expandable graphic idea.
