@@ -1,5 +1,5 @@
 # 02 — Design Foundations
-**Status:** DRAFT 0.1.0. All numerical presets below are PROVISIONAL unless stated LOCKED.
+**Status:** DRAFT 0.2.0. All numerical presets below are PROVISIONAL unless stated LOCKED.
 
 ## Color architecture
 **LOCKED:** white-first black-and-white. The brand graphic system, headings, lines and UI chrome default to achromatic color. Color may appear in project photography and explicitly selected accent areas only. An accent is not a compulsory part of any page.
@@ -53,7 +53,7 @@ Base rhythm: **4-unit** system for screens; print templates translate spacing in
 - Reference existing website's --pad and --hair; do not break its layout by hard-coding new margins before migration.
 
 ## Geometry, lines, icons and shape
-- Master X: unfilleted, angular, planar; butt/square caps and sharp joins, with optical correction where needed.
+- Typographic X expressions derive from the display typeface's X, without a separately commissioned Master X. Keep identity-focused X treatments crisp, angular and free of synthetic fillets.
 - Interface and functional components may have small radii to improve affordance and interaction clarity; this does not authorize fillets in the logo or identity X.
 - Use consistent stroke families for diagrams (e.g. 1 px UI separators; 1.5/2 px symbols at a defined viewing size); avoid vague optical blurring.
 - Icons: use a coherent outline family, consistent viewBox, stroke and optical size; default black, not decorative multicolor icons.
@@ -73,7 +73,7 @@ Base rhythm: **4-unit** system for screens; print templates translate spacing in
 - Motion must explain state or express variable behavior, not obscure navigation.
 - Offer a static alternative and respect prefers-reduced-motion.
 - Native text cursor, selection, form input, resize and drag take priority over experimental X cursor. Keep targets keyboard-accessible and focus visible.
-- X animations use geometric interpolation, never automatic fillet/morphing into rounded forms.
+- X expressions may vary in number and form across projects; animate typographic width, crop, layers and layout without synthetic fillet or corner rounding.
 - Ensure responsive behavior, zoom and touch-screen use.
 
 ## Branding vs accessibility vs media
