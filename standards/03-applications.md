@@ -1,5 +1,5 @@
 # 03 — Application Standards
-**Status:** DRAFT 0.1.0. Measurements are initial template defaults, not final approved masters.
+**Status:** DRAFT 0.2.0. Measurements are initial template defaults, not final approved masters.
 
 ## Shared identity footer / document metadata
 Use official name ARCHITECTS BYX and, where required, 바이엑스건축사사무소. Recommended metadata slots:
@@ -16,9 +16,9 @@ Logo is an identifier, not a page ornament. Show it once in an intentional ancho
 ## Business card / stationery
 - Begin with a 90 × 50 mm prototype; verify preferred local print trim and bleed with printer.
 - White-first side: name / title / email / phone / address with Wanted Sans.
-- Reverse: black Master X / BYX or compact official signature. Prohibit fillets, emboss substitutes that distort form, and unnecessary colored fields.
+- Reverse: black typographic X / BYX or compact official signature. Prohibit fillets, emboss substitutes that distort form, and unnecessary colored fields.
 - Suggested safe inset >= 4 mm; add printer-specific 3 mm bleed where requested.
-- Use only approved logo SVG or vector outline. Fonts must be embedded or outlined for print vendors as allowed by license.
+- Use only approved wordmark artwork or properly licensed type outlines. Fonts must be embedded or outlined for print vendors as allowed by license.
 - Prefer natural monochrome printing. If accent is used, explicitly approve each run.
 
 ## Presentations (PowerPoint / Keynote / Google Slides)
@@ -50,14 +50,14 @@ Logo is an identifier, not a page ornament. Show it once in an intentional ancho
 ## Web (existing BYX WEBSITE)
 - Existing implementation is a single index.html + Supabase. Treat this as production legacy until migration approved.
 - Do not introduce a framework, extra runtime fonts, stylesheets, new mandatory tokens, background accents or CDN by documenting a new standard.
-- Planned future migration checklist: evaluate Wanted Sans font packaging; approve display font; define master vector X; replace legacy rounded X/favicons only as part of reviewed release; test cursor hot spots; preserve editor and admin functions.
+- Planned future migration checklist: evaluate Wanted Sans font packaging; approve display font; define display typography and open-ended X expression rules; only replace legacy favicon/logo as part of a reviewed release; test cursor hot spots; preserve editor and admin functions.
 - Preserve existing responsive layout, routes, hashing, Supabase behavior and media management.
 - For future web: white-first, B&W navigation, strong identity heading, large project images, semantic components, keyboard focus and reduced-motion.
 - Project photography is exempt from brand color limits. Explicitly nominated thumbnail/feature accents permitted; background green/teal UI not permitted by default.
 
 ## Software / tools made by BYX
 - Reuse semantic color and typography role definitions; individual platforms use accessible native controls where appropriate.
-- Favor functional corner radii, state feedback and clear input/validation/error/success content. Brand's sharp X is NOT a ban on normal UI corner radii.
+- Favor functional corner radii, state feedback and clear input/validation/error/success content. Brand's angular typographic X is NOT a ban on normal UI corner radii.
 - Buttons: distinguish primary/secondary/destructive by text, outline or weight; do not make an emerald-filled default primary button.
 - Layout: consistent spacing scale, 44 × 44 CSS px touch target aspirational baseline where touch applies; at least WCAG minimums when applicable.
 - Tables and forms: predictable alignment and keyboard navigation; dark mode is not mandatory.
@@ -83,6 +83,6 @@ Logo is an identifier, not a page ornament. Show it once in an intentional ancho
 ## Governance
 - Use semantic versioning for standards: 0.x exploration; 1.0 after two-architect sign-off.
 - Log changes in standards/CHANGELOG.md.
-- Store approved vector masters and templates in versioned assets under standards/assets/ later; do not silently replace them.
+- Store approved wordmarks, templates, animations and exported X stills in versioned assets under standards/assets/ later; do not silently replace them.
 - Every new BYX product links to this standards/README.md or exports a versioned copy. Reuse tokens where technologically feasible.
 - Separate formal brand principles (must follow) from sample layouts (may adapt).
