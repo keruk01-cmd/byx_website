@@ -1,0 +1,112 @@
+{
+  "testedAt": "2026-11-03T09:08:41.810Z",
+  "results": [
+    {
+      "width": 2560,
+      "routes": 10,
+      "columns": 7,
+      "cardWidth": 365.703125,
+      "titleSize": "30px",
+      "indexMeta": "16px",
+      "footer": true,
+      "infinite": true,
+      "backToTop": "viewport position constant",
+      "dateRange": true,
+      "status": true,
+      "mapSelection": "mock tiles",
+      "about": "full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion",
+      "header": {
+        "blur": "blur(22px)",
+        "background": "color(srgb 1 1 1 / 0.72)"
+      },
+      "mobileScroll": "desktop",
+      "feed": "latest feature and compact archive, publication and links preserved"
+    },
+    {
+      "width": 1920,
+      "routes": 10,
+      "columns": 5,
+      "cardWidth": 384,
+      "titleSize": "22.656px",
+      "indexMeta": "12.48px",
+      "footer": true,
+      "infinite": true,
+      "backToTop": "viewport position constant",
+      "dateRange": true,
+      "status": true,
+      "mapSelection": "mock tiles",
+      "about": "full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion",
+      "header": {
+        "blur": "blur(22px)",
+        "background": "color(srgb 1 1 1 / 0.72)"
+      },
+      "mobileScroll": "desktop",
+      "feed": "latest feature and compact archive, publication and links preserved"
+    },
+    {
+      "width": 1440,
+      "routes": 10,
+      "columns": 4,
+      "cardWidth": 360,
+      "titleSize": "22px",
+      "indexMeta": "12px",
+      "footer": true,
+      "infinite": true,
+      "backToTop": "viewport position constant",
+      "dateRange": true,
+      "status": true,
+      "mapSelection": "mock tiles",
+      "about": "full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion",
+      "header": {
+        "blur": "blur(22px)",
+        "background": "color(srgb 1 1 1 / 0.72)"
+      },
+      "mobileScroll": "desktop",
+      "feed": "latest feature and compact archive, publication and links preserved"
+    },
+    {
+      "width": 390,
+      "routes": 10,
+      "columns": 1,
+      "cardWidth": 390,
+      "titleSize": "22px",
+      "indexMeta": "12px",
+      "footer": true,
+      "infinite": true,
+      "backToTop": "viewport position constant",
+      "dateRange": true,
+      "status": true,
+      "mapSelection": "mock tiles",
+      "about": "full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion",
+      "header": {
+        "blur": "blur(22px)",
+        "background": "color(srgb 1 1 1 / 0.72)"
+      },
+      "mobileScroll": "single viewport scroll verified",
+      "feed": "latest feature and compact archive, publication and links preserved"
+    },
+    {
+      "width": 320,
+      "routes": 10,
+      "columns": 1,
+      "cardWidth": 320,
+      "titleSize": "22px",
+      "indexMeta": "12px",
+      "footer": true,
+      "infinite": true,
+      "backToTop": "viewport position constant",
+      "dateRange": true,
+      "status": true,
+      "mapSelection": "mock tiles",
+      "about": "full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion",
+      "header": {
+        "blur": "blur(22px)",
+        "background": "color(srgb 1 1 1 / 0.72)"
+      },
+      "mobileScroll": "single viewport scroll verified",
+      "feed": "latest feature and compact archive, publication and links preserved"
+    }
+  ],
+  "errors": [],
+  "limitations": "Demo memory only; map tiles mocked; no remote writes or schema execution."
+}

@@ -1,0 +1,248 @@
+{
+  "testedAt": "2026-11-03T03:25:54.337Z",
+  "checks": "Responsive layout, embedded fonts, frozen logo font, slot extension/landing/fixed rule, font selection, modal/Escape, grid/index/date sorting, detail, mobile menu, X presets/ranges, reduced motion, direct file preview, no-JS content",
+  "results": [
+    {
+      "variant": "a",
+      "width": 1440,
+      "scroll": 1440,
+      "fonts": [
+        {
+          "font": "Gasoek One",
+          "loaded": true
+        },
+        {
+          "font": "Archivo Black",
+          "loaded": true
+        },
+        {
+          "font": "Anton",
+          "loaded": true
+        },
+        {
+          "font": "Wanted Sans",
+          "loaded": true
+        }
+      ],
+      "cards": 6
+    },
+    {
+      "variant": "a",
+      "width": 880,
+      "scroll": 880,
+      "fonts": [
+        {
+          "font": "Gasoek One",
+          "loaded": true
+        },
+        {
+          "font": "Archivo Black",
+          "loaded": true
+        },
+        {
+          "font": "Anton",
+          "loaded": true
+        },
+        {
+          "font": "Wanted Sans",
+          "loaded": true
+        }
+      ],
+      "cards": 6
+    },
+    {
+      "variant": "a",
+      "width": 768,
+      "scroll": 768,
+      "fonts": [
+        {
+          "font": "Gasoek One",
+          "loaded": true
+        },
+        {
+          "font": "Archivo Black",
+          "loaded": true
+        },
+        {
+          "font": "Anton",
+          "loaded": true
+        },
+        {
+          "font": "Wanted Sans",
+          "loaded": true
+        }
+      ],
+      "cards": 6
+    },
+    {
+      "variant": "a",
+      "width": 390,
+      "scroll": 390,
+      "fonts": [
+        {
+          "font": "Gasoek One",
+          "loaded": true
+        },
+        {
+          "font": "Archivo Black",
+          "loaded": true
+        },
+        {
+          "font": "Anton",
+          "loaded": true
+        },
+        {
+          "font": "Wanted Sans",
+          "loaded": true
+        }
+      ],
+      "cards": 6
+    },
+    {
+      "variant": "a",
+      "width": 320,
+      "scroll": 320,
+      "fonts": [
+        {
+          "font": "Gasoek One",
+          "loaded": true
+        },
+        {
+          "font": "Archivo Black",
+          "loaded": true
+        },
+        {
+          "font": "Anton",
+          "loaded": true
+        },
+        {
+          "font": "Wanted Sans",
+          "loaded": true
+        }
+      ],
+      "cards": 6
+    },
+    {
+      "variant": "b",
+      "width": 1440,
+      "scroll": 1440,
+      "fonts": [
+        {
+          "font": "Gasoek One",
+          "loaded": true
+        },
+        {
+          "font": "Archivo Black",
+          "loaded": true
+        },
+        {
+          "font": "Anton",
+          "loaded": true
+        },
+        {
+          "font": "Wanted Sans",
+          "loaded": true
+        }
+      ],
+      "cards": 6
+    },
+    {
+      "variant": "b",
+      "width": 880,
+      "scroll": 880,
+      "fonts": [
+        {
+          "font": "Gasoek One",
+          "loaded": true
+        },
+        {
+          "font": "Archivo Black",
+          "loaded": true
+        },
+        {
+          "font": "Anton",
+          "loaded": true
+        },
+        {
+          "font": "Wanted Sans",
+          "loaded": true
+        }
+      ],
+      "cards": 6
+    },
+    {
+      "variant": "b",
+      "width": 768,
+      "scroll": 768,
+      "fonts": [
+        {
+          "font": "Gasoek One",
+          "loaded": true
+        },
+        {
+          "font": "Archivo Black",
+          "loaded": true
+        },
+        {
+          "font": "Anton",
+          "loaded": true
+        },
+        {
+          "font": "Wanted Sans",
+          "loaded": true
+        }
+      ],
+      "cards": 6
+    },
+    {
+      "variant": "b",
+      "width": 390,
+      "scroll": 390,
+      "fonts": [
+        {
+          "font": "Gasoek One",
+          "loaded": true
+        },
+        {
+          "font": "Archivo Black",
+          "loaded": true
+        },
+        {
+          "font": "Anton",
+          "loaded": true
+        },
+        {
+          "font": "Wanted Sans",
+          "loaded": true
+        }
+      ],
+      "cards": 6
+    },
+    {
+      "variant": "b",
+      "width": 320,
+      "scroll": 320,
+      "fonts": [
+        {
+          "font": "Gasoek One",
+          "loaded": true
+        },
+        {
+          "font": "Archivo Black",
+          "loaded": true
+        },
+        {
+          "font": "Anton",
+          "loaded": true
+        },
+        {
+          "font": "Wanted Sans",
+          "loaded": true
+        }
+      ],
+      "cards": 6
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

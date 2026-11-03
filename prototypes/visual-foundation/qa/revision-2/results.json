@@ -1,0 +1,129 @@
+{
+  "testedAt": "2026-11-03T06:10:40.312Z",
+  "results": [
+    {
+      "variant": "original",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "columns": 3,
+      "cardWidth": 479.328125,
+      "titleSize": "30px",
+      "font": "Anton, \"SUIT Variable\", \"Archivo Narrow\", \"Arial Narrow\", Impact, sans-serif",
+      "hasHero": false,
+      "routes": 9
+    },
+    {
+      "variant": "original",
+      "width": 390,
+      "scrollWidth": 390,
+      "columns": 1,
+      "cardWidth": 390,
+      "titleSize": "20px",
+      "font": "Anton, \"SUIT Variable\", \"Archivo Narrow\", \"Arial Narrow\", Impact, sans-serif",
+      "hasHero": false,
+      "routes": 9
+    },
+    {
+      "variant": "original",
+      "width": 320,
+      "scrollWidth": 320,
+      "columns": 1,
+      "cardWidth": 320,
+      "titleSize": "20px",
+      "font": "Anton, \"SUIT Variable\", \"Archivo Narrow\", \"Arial Narrow\", Impact, sans-serif",
+      "hasHero": false,
+      "routes": 9
+    },
+    {
+      "variant": "a",
+      "width": 1920,
+      "scrollWidth": 1920,
+      "columns": 5,
+      "cardWidth": 384,
+      "titleSize": "25px",
+      "font": "Anton, \"SUIT Variable\", \"Archivo Narrow\", \"Arial Narrow\", Impact, sans-serif",
+      "hasHero": false,
+      "routes": 9
+    },
+    {
+      "variant": "a",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "columns": 4,
+      "cardWidth": 360,
+      "titleSize": "23.76px",
+      "font": "Anton, \"SUIT Variable\", \"Archivo Narrow\", \"Arial Narrow\", Impact, sans-serif",
+      "hasHero": false,
+      "routes": 9
+    },
+    {
+      "variant": "a",
+      "width": 390,
+      "scrollWidth": 390,
+      "columns": 1,
+      "cardWidth": 390,
+      "titleSize": "20px",
+      "font": "Anton, \"SUIT Variable\", \"Archivo Narrow\", \"Arial Narrow\", Impact, sans-serif",
+      "hasHero": false,
+      "routes": 9
+    },
+    {
+      "variant": "a",
+      "width": 320,
+      "scrollWidth": 320,
+      "columns": 1,
+      "cardWidth": 320,
+      "titleSize": "20px",
+      "font": "Anton, \"SUIT Variable\", \"Archivo Narrow\", \"Arial Narrow\", Impact, sans-serif",
+      "hasHero": false,
+      "routes": 9
+    },
+    {
+      "variant": "b",
+      "width": 1920,
+      "scrollWidth": 1920,
+      "columns": 5,
+      "cardWidth": 384,
+      "titleSize": "25px",
+      "font": "Anton, \"SUIT Variable\", \"Archivo Narrow\", \"Arial Narrow\", Impact, sans-serif",
+      "hasHero": false,
+      "routes": 9
+    },
+    {
+      "variant": "b",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "columns": 4,
+      "cardWidth": 360,
+      "titleSize": "23.76px",
+      "font": "Anton, \"SUIT Variable\", \"Archivo Narrow\", \"Arial Narrow\", Impact, sans-serif",
+      "hasHero": false,
+      "routes": 9
+    },
+    {
+      "variant": "b",
+      "width": 390,
+      "scrollWidth": 390,
+      "columns": 1,
+      "cardWidth": 390,
+      "titleSize": "20px",
+      "font": "Anton, \"SUIT Variable\", \"Archivo Narrow\", \"Arial Narrow\", Impact, sans-serif",
+      "hasHero": false,
+      "routes": 9
+    },
+    {
+      "variant": "b",
+      "width": 320,
+      "scrollWidth": 320,
+      "columns": 1,
+      "cardWidth": 320,
+      "titleSize": "20px",
+      "font": "Anton, \"SUIT Variable\", \"Archivo Narrow\", \"Arial Narrow\", Impact, sans-serif",
+      "hasHero": false,
+      "routes": 9
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "scope": "Isolated original-based demo only. Production CMS not tested."
+}
