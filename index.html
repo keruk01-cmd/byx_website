@@ -703,7 +703,7 @@ footer{padding:18px var(--pad);border-top:var(--hair) solid var(--fg)}
 body.guidelines #top,body.guidelines #mobnav,body.guidelines>footer{display:none}
 body.guidelines #app{padding:0;min-height:100vh}
 body.guidelines .page{animation:none}
-.gd{--gd-ink:#000;--gd-secondary:#595959;--gd-line:#d8d8d8;--gd-surface:#f5f5f7;--gd-accent:#007f73;--gd-hover:#00665d;font-family:'Wanted Sans',var(--font-text);font-size:16px;line-height:1.75;color:var(--gd-ink);background:#fff;letter-spacing:0;font-variation-settings:normal;min-height:100vh}
+.gd{--gd-ink:#000;--gd-secondary:#595959;--gd-line:#d8d8d8;--gd-surface:#f5f5f5;--gd-accent:#000000;--gd-hover:#333333;font-family:'Wanted Sans',var(--font-text);font-size:16px;line-height:1.75;color:var(--gd-ink);background:#fff;letter-spacing:0;font-variation-settings:normal;min-height:100vh}
 .gd *{font-variation-settings:normal}
 .gd h1,.gd h2,.gd h3,.gd p,.gd ul,.gd figure{margin:0}
 .gd h1{font-family:Anton,'Wanted Sans',sans-serif;font-weight:400;font-size:clamp(40px,5vw,72px);line-height:1.05;letter-spacing:-.015em;overflow-wrap:anywhere}
@@ -731,7 +731,7 @@ body.guidelines .page{animation:none}
 .gd-nav-group h2{font-size:11px!important;letter-spacing:.09em;text-transform:uppercase;color:var(--gd-secondary);margin:0 12px 6px}
 .gd .gd-nav-link{display:flex;align-items:center;min-height:44px;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5}
 .gd-nav-link:hover{background:var(--gd-surface)}
-.gd .gd-nav-link[aria-current=page]{background:#e8f3f0;color:#00665d;font-weight:650}
+.gd .gd-nav-link[aria-current=page]{background:#eeeeee;color:#333333;font-weight:650}
 .gd-workspace{display:grid;grid-template-columns:minmax(0,1fr);gap:40px;padding:48px clamp(20px,4vw,64px) 96px;min-width:0}
 .gd-main{min-width:0;max-width:900px;width:100%;margin:auto}
 .gd-eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gd-secondary);margin-bottom:24px!important}
@@ -748,12 +748,12 @@ body.guidelines .page{animation:none}
 .gd-preview-white{background:#fff!important}
 .gd .gd-button{display:inline-flex;justify-content:center;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid transparent;background:var(--gd-accent);color:#fff;font:650 14px/1.4 'Wanted Sans',sans-serif;transition:background 150ms var(--ease),box-shadow 150ms var(--ease);text-align:center}
 .gd .gd-button:hover,.gd .gd-button[data-state=hover]{background:var(--gd-hover)}
-.gd .gd-button:active,.gd .gd-button[data-state=pressed]{background:#00564f}
+.gd .gd-button:active,.gd .gd-button[data-state=pressed]{background:#555555}
 .gd .gd-button[data-state=focus]{outline:2px solid #000;outline-offset:3px}
 .gd .gd-button.secondary{background:#fff;border-color:#767676;color:#000}
 .gd .gd-button.secondary:hover{background:#e9e9e9}
-.gd .gd-button.tertiary{background:transparent;color:#00665d}
-.gd .gd-button.tertiary:hover{background:#e8f3f0}
+.gd .gd-button.tertiary{background:transparent;color:#333333}
+.gd .gd-button.tertiary:hover{background:#eeeeee}
 .gd .gd-button:disabled{background:#e5e5e5;border-color:#e5e5e5;color:#595959;cursor:var(--cur-arrow)}
 .gd-button-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .gd-controls{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:24px;margin-bottom:32px;border-bottom:1px solid var(--gd-line)}
@@ -767,7 +767,7 @@ body.guidelines .page{animation:none}
 .gd caption{text-align:left;font-size:12px;color:var(--gd-secondary);padding-bottom:8px}
 .gd-usage{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .gd-usage>div{padding:24px;border:1px solid var(--gd-line);border-radius:20px;font-size:14px}
-.gd-usage h3{margin-bottom:12px;color:#00665d;font-size:13px}
+.gd-usage h3{margin-bottom:12px;color:#333333;font-size:13px}
 .gd-usage .gd-bad h3{color:#000}
 .gd .gd-usage .gd-bad{border-style:dashed}
 .gd-usage p{color:var(--gd-secondary)}
@@ -791,8 +791,8 @@ body.guidelines .page{animation:none}
 .gd-bottom{margin-top:48px;font-size:11px;color:var(--gd-secondary);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
 .gd-bottom a{text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
 .gd-mobile-menu{display:none!important}
-.gd-login{max-width:520px;padding:96px 24px;margin:auto}
-.gd-login h1{font-size:clamp(40px,5vw,64px)}
+.gd-message{max-width:520px;padding:96px 24px;margin:auto}
+.gd-message h1{font-size:clamp(40px,5vw,64px)}
 .gd-form{display:grid;gap:12px;margin-top:32px}
 .gd-form label{font-size:13px;font-weight:550}
 .gd .gd-field{width:100%;min-height:44px;padding:12px 16px;border:1px solid #767676;border-radius:12px;font:400 16px/1.5 'Wanted Sans',sans-serif;background:#fff;color:#000}
@@ -812,10 +812,10 @@ body.guidelines .page{animation:none}
 .gd-space-row span{width:40px}
 .gd-space-row i{height:16px;width:var(--space);background:var(--gd-accent);border-radius:4px}
 .gd-grid-demo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:8px}
-.gd-grid-demo span{background:#d5e9e3;min-height:144px;display:grid;place-items:center;font-size:11px}
+.gd-grid-demo span{background:#dddddd;min-height:144px;display:grid;place-items:center;font-size:11px}
 .gd-curves{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .gd-curves div{padding:40px 8px;background:#fff;text-align:center;font-size:12px;border:1px solid var(--gd-line);border-radius:var(--radius)}
-.gd-glass-stage{padding:48px 16px;background:repeating-linear-gradient(125deg,#202b2a 0 14px,#8baaa2 14px 48px,#e4e8e1 48px 90px);border-radius:20px}
+.gd-glass-stage{padding:48px 16px;background:repeating-linear-gradient(125deg,#202020 0 14px,#999999 14px 48px,#e4e4e4 48px 90px);border-radius:20px}
 .gd .gd-glass{padding:24px;border-radius:20px;border:1px solid #0000001f;background:#fff;box-shadow:0 8px 32px #0000000f}
 @supports (backdrop-filter:blur(20px)){.gd .gd-glass,.gd-top{background:rgb(255 255 255 / .88);backdrop-filter:blur(20px) saturate(120%);-webkit-backdrop-filter:blur(20px) saturate(120%)}}
 .gd-card-demo{max-width:440px;border:1px solid var(--gd-line);border-radius:24px;padding:24px;background:#fff}
@@ -825,7 +825,7 @@ body.guidelines .page{animation:none}
 .gd-card-demo details p{margin:12px 0 0}
 .gd-demo-nav{display:flex;flex-wrap:wrap;gap:8px;padding:8px;background:#fff;border-radius:16px;border:1px solid var(--gd-line)}
 .gd-demo-nav button{min-height:44px;border-radius:12px;padding:8px 16px;font-size:13px}
-.gd-demo-nav button[aria-pressed=true]{background:#e8f3f0;color:#00665d;font-weight:650}
+.gd-demo-nav button[aria-pressed=true]{background:#eeeeee;color:#333333;font-weight:650}
 .gd-dialog{color:#000;font-family:'Wanted Sans',sans-serif;width:min(480px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:auto;margin:auto;padding:32px;border:1px solid var(--gd-line);border-radius:32px;background:#fff}
 .gd-dialog::backdrop{background:rgb(0 0 0 / .25)}
 .gd-dialog h2{margin-bottom:16px}
@@ -837,7 +837,7 @@ body.guidelines .page{animation:none}
 .gd-preview-sheet.gd-slide{aspect-ratio:16/9;display:flex;flex-direction:column;justify-content:space-between}
 .gd-preview-sheet.gd-document{max-width:360px;min-height:360px;margin:auto}
 .gd-preview-sheet.gd-social{max-width:300px;aspect-ratio:4/5;margin:auto;display:flex;flex-direction:column;justify-content:space-between}
-.gd-preview-sheet.gd-video{aspect-ratio:16/9;background:#1a2421;color:#fff;display:flex;align-items:end;justify-content:center}
+.gd-preview-sheet.gd-video{aspect-ratio:16/9;background:#1a1a1a;color:#fff;display:flex;align-items:end;justify-content:center}
 .gd-subtitle-demo{background:#000;padding:8px 16px;font-size:14px!important;text-align:center}
 .gd .gd-drawing{display:block;width:100%;height:auto;background:#fff}
 .gd-preview .gd-technical-table{font-size:12px;background:#fff}
@@ -852,12 +852,12 @@ body.guidelines .page{animation:none}
 @supports (corner-shape:squircle){.gd-preview,.gd-card-demo,.gd-category-card,.gd-curves div,.gd-dialog{corner-shape:squircle}}
 @media(min-width:1280px){.gd-workspace{grid-template-columns:minmax(0,1fr) 140px}.gd-toc{display:block}.gd-local-toc{display:none}}
 @media(max-width:1100px){.gd-layout{grid-template-columns:224px minmax(0,1fr)}.gd-sidebar{padding-left:20px}.gd-workspace{padding-right:24px;padding-left:24px}}
-@media(max-width:899px){.gd-top{min-height:64px;gap:12px}.gd-brand span{max-width:150px;font-size:12px}.gd-top-actions{gap:8px}.gd-top-actions .gd-website{display:none}.gd-layout{display:block}.gd-mobile-menu{display:flex!important;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border:1px solid var(--gd-line);border-radius:999px;font-size:12px;white-space:nowrap}.gd-sidebar{display:none;position:static;height:auto;max-height:calc(100dvh - 64px);padding:24px var(--pad);border-right:0;border-bottom:1px solid var(--gd-line)}.gd-sidebar.is-open{display:block}.gd-workspace{padding:32px var(--pad) 64px}.gd-section{margin-top:48px}.gd-top-actions .gd-badge{display:none}.gd-preview{padding:24px!important}.gd-login{padding-top:64px}}
+@media(max-width:899px){.gd-top{min-height:64px;gap:12px}.gd-brand span{max-width:150px;font-size:12px}.gd-top-actions{gap:8px}.gd-top-actions .gd-website{display:none}.gd-layout{display:block}.gd-mobile-menu{display:flex!important;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border:1px solid var(--gd-line);border-radius:999px;font-size:12px;white-space:nowrap}.gd-sidebar{display:none;position:static;height:auto;max-height:calc(100dvh - 64px);padding:24px var(--pad);border-right:0;border-bottom:1px solid var(--gd-line)}.gd-sidebar.is-open{display:block}.gd-workspace{padding:32px var(--pad) 64px}.gd-section{margin-top:48px}.gd-top-actions .gd-badge{display:none}.gd-preview{padding:24px!important}.gd-message{padding-top:64px}}
 @media(max-width:520px){.gd-top{padding-inline:16px}.gd-brand{gap:10px!important}.gd-brand span{padding-left:10px;max-width:110px}.gd-top-actions{font-size:12px}.gd-usage{grid-template-columns:1fr}.gd-palette{grid-template-columns:1fr 1fr}.gd-preview{padding:16px!important}.gd-category-card{padding:20px;min-height:160px}.gd-category-card strong{font-size:clamp(17px,4vw,22px)}.gd-curves{gap:8px}.gd th{width:36%;padding-right:16px}.gd-grid-demo{gap:4px}.gd .gd-button{padding-inline:16px}.gd-heading-row{align-items:start}.gd-role-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-transparency:reduce){.gd-top,.gd .gd-glass{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}}
 @media(prefers-reduced-motion:reduce){body.guidelines,body.guidelines *,body.guidelines *::before,body.guidelines *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media(forced-colors:active){.gd .gd-button,.gd .gd-nav-link[aria-current=page],.gd-demo-nav button{border:1px solid ButtonText}.gd .gd-button:focus-visible{outline-color:Highlight}}
-@media print{body.guidelines #app{padding:0}.gd-top,.gd-sidebar,.gd-toc,.gd-code-head button,.gd-next,.gd-bottom,.gd-controls,.gd-login{display:none!important}.gd-layout,.gd-workspace{display:block;padding:0}.gd{font-size:11pt}.gd h1{font-size:32pt}.gd h2{font-size:18pt}.gd-preview,.gd-usage>div,.gd pre{border-radius:0;box-shadow:none;background:#fff;break-inside:avoid}.gd-section{margin-top:24pt}.gd-glass{background:#fff!important;backdrop-filter:none!important}.gd th,.gd td{font-size:10pt}.gd thead{display:table-header-group}.gd tr{break-inside:avoid}}
+@media print{body.guidelines #app{padding:0}.gd-top,.gd-sidebar,.gd-toc,.gd-code-head button,.gd-next,.gd-bottom,.gd-controls,.gd-message{display:none!important}.gd-layout,.gd-workspace{display:block;padding:0}.gd{font-size:11pt}.gd h1{font-size:32pt}.gd h2{font-size:18pt}.gd-preview,.gd-usage>div,.gd pre{border-radius:0;box-shadow:none;background:#fff;break-inside:avoid}.gd-section{margin-top:24pt}.gd-glass{background:#fff!important;backdrop-filter:none!important}.gd th,.gd td{font-size:10pt}.gd thead{display:table-header-group}.gd tr{break-inside:avoid}}
 
 </style>
 </head>
@@ -1324,7 +1324,7 @@ const DB = {
         sb = window.supabase.createClient(CFG.url, CFG.key);
         const { data } = await sb.auth.getSession();
         session = data ? data.session : null;
-        sb.auth.onAuthStateChange((event, s) => { session = s; gdAuthChanged(event); });
+        sb.auth.onAuthStateChange((event, s) => { session = s; });
         await DB.refresh();
         DB.ready = true;
         return;
@@ -2871,45 +2871,29 @@ function bindGalleries(root){
   });
 }
 
-/* Handbook data is fetched only after server-side authorization. */
-const GD = { data:null, error:'', loading:false, request:0, controller:null, timer:null, search:'', focusNext:false };
+/* URL-accessible handbook; no account, token or role is required. */
+const GD = { data:null, error:'', loading:false, request:0, controller:null, search:'', focusNext:false };
 function gdClear(){
   GD.request++; GD.controller?.abort(); GD.controller=null;
-  clearTimeout(GD.timer); GD.timer=null; GD.data=null; GD.loading=false; GD.search='';
+  GD.data=null; GD.loading=false; GD.search='';
 }
-function gdAuthChanged(event){
-  if (event === 'SIGNED_OUT' || event === 'USER_DELETED') {
-    gdClear(); GD.error='';
-    if (parseHash().page === 'guidelines') render();
-  }
-}
-async function gdLoad(background=false){
-  if (parseHash().page !== 'guidelines' || GD.loading || document.hidden) return;
-  if (!sb) { GD.error='연결된 계정으로 로그인해야 열람할 수 있습니다. 데모 로그인은 내부 가이드 권한을 제공하지 않습니다.'; return; }
+async function gdLoad(){
+  if (parseHash().page !== 'guidelines' || GD.loading) return;
   GD.loading=true; GD.controller=new AbortController();
   const request=++GD.request;
-  clearTimeout(GD.timer);
   try {
-    const {data, error}=await sb.auth.getSession();
-    if (error || !data?.session?.access_token) throw new Error('내부 계정으로 로그인해 주세요.');
-    const response=await fetch('/api/guidelines', {headers:{Authorization:'Bearer '+data.session.access_token},cache:'no-store',signal:GD.controller.signal});
-    const payload=await response.json().catch(()=>({error:'문서 서버에 연결할 수 없습니다. Vercel 접근 설정을 확인하세요.'}));
+    const response=await fetch('/api/guidelines', {cache:'no-store',signal:GD.controller.signal});
+    const payload=await response.json().catch(()=>({error:'문서를 불러올 수 없습니다. 잠시 후 다시 시도하세요.'}));
     if (!response.ok) throw new Error(payload.error || '문서를 불러오지 못했습니다.');
     if (!Array.isArray(payload.articles) || !payload.tokens) throw new Error('문서 형식을 확인할 수 없습니다.');
     if (request!==GD.request || parseHash().page!=='guidelines') return;
-    GD.data=payload; GD.error=''; GD.loading=false;
-    if (!background) render();
-    GD.timer=setTimeout(()=>gdLoad(true),60000);
+    GD.data=payload; GD.error=''; GD.loading=false; render();
   } catch(error) {
     if(request!==GD.request) return;
     GD.data=null; GD.error=error.name==='AbortError'?'요청이 중단되었습니다. 다시 시도하세요.':error.message; GD.loading=false;
     if(parseHash().page==='guidelines') render();
   }
 }
-document.addEventListener('visibilitychange',()=>{
-  if (parseHash().page!=='guidelines') return;
-  if (document.hidden) { gdClear(); GD.error=''; render(); } else { render(); }
-});
 window.addEventListener('pagehide',gdClear);
 window.addEventListener('pageshow',e=>{if(e.persisted && parseHash().page==='guidelines'){gdClear();render();}});
 const gdLink=id=>'#/guidelines/'+encodeURIComponent(id);
@@ -2918,7 +2902,7 @@ function gdTop(ready){
   return `<a class="gd-skip" href="#gd-content" data-gd-jump="gd-content">본문으로 건너뛰기</a>
   <header class="gd-top"><a class="gd-brand" href="${gdLink('overview')}"><strong>BYX</strong><span>Design Guidelines</span></a>
   <div class="gd-top-actions"><span class="gd-badge">Internal · Draft 0.1</span><a class="gd-website" href="#/">Website ↗</a>
-  ${ready?'<button type="button" id="gd-logout">로그아웃</button><button type="button" class="gd-mobile-menu" id="gd-menu" aria-controls="gd-sidebar" aria-expanded="false">메뉴</button>':''}</div></header>`;
+  ${ready?'<button type="button" class="gd-mobile-menu" id="gd-menu" aria-controls="gd-sidebar" aria-expanded="false">메뉴</button>':''}</div></header>`;
 }
 function gdNav(articles,current){
   const query=GD.search.trim().toLocaleLowerCase();
@@ -2926,7 +2910,7 @@ function gdNav(articles,current){
   return { count:visible.length, html:[...new Set(visible.map(a=>a.group))].map(group=>`<section class="gd-nav-group"><h2>${esc(group)}</h2>${visible.filter(a=>a.group===group).map(a=>`<a class="gd-nav-link" href="${gdLink(a.id)}" ${a.id===current?'aria-current="page"':''}>${esc(a.title)}</a>`).join('')}</section>`).join('') || '<p class="gd-status">검색 결과가 없습니다. 다른 단어로 검색해 보세요.</p>' };
 }
 function gdArt(){
-  return `<svg viewBox="0 0 480 210" role="img" aria-label="빛과 재료의 관계를 표현한 개념도. 실제 프로젝트 사진이 아닙니다."><rect width="480" height="210" fill="#e3e5de"/><path d="M0 160 210 40 480 150V210H0Z" fill="#bfc6bb"/><path d="M110 170V50H310V170Z" fill="#fff"/><path d="M310 50 400 90V210L310 170Z" fill="#8b998c"/><path d="M150 170V100H230V170" fill="#263930"/><path d="M110 170 240 210H480L310 170Z" fill="#a5afa2"/></svg>`;
+  return `<svg viewBox="0 0 480 210" role="img" aria-label="빛과 재료의 관계를 표현한 개념도. 실제 프로젝트 사진이 아닙니다."><rect width="480" height="210" fill="#e3e3e3"/><path d="M0 160 210 40 480 150V210H0Z" fill="#bfbfbf"/><path d="M110 170V50H310V170Z" fill="#fff"/><path d="M310 50 400 90V210L310 170Z" fill="#8b8b8b"/><path d="M150 170V100H230V170" fill="#262626"/><path d="M110 170 240 210H480L310 170Z" fill="#a5a5a5"/></svg>`;
 }
 function gdDrawing(){
   return `<svg class="gd-drawing" viewBox="0 0 620 390" role="img" aria-label="축척 없는 평면도와 표제란의 구성 예제"><rect x="12" y="12" width="596" height="366" fill="white" stroke="black"/><g fill="none" stroke="black"><path d="M48 66H432V306H48Z" stroke-width="5"/><path d="M240 66V190H432M240 230V306M48 190H160" stroke-width="3"/><path d="M160 190A40 40 0 0 1 200 230M160 190V230M240 190A40 40 0 0 0 200 230M240 190V230" stroke-width="1"/><path d="M48 42H432M48 32V52M432 32V52M464 66V306M454 66H474M454 306H474" stroke-width=".8"/><path d="M488 12V378M488 205H608M488 260H608M488 315H608M488 350H608" stroke-width="1"/></g><g fill="black" font-family="sans-serif" font-size="10"><text x="221" y="35">DIMENSION</text><text x="78" y="128">SPACE 01</text><text x="278" y="128">SPACE 02</text><text x="124" y="270">SPACE 03</text><text x="501" y="40" font-size="22">BYX</text><text x="501" y="227">PROJECT</text><text x="501" y="244">SAMPLE ONLY</text><text x="501" y="282">FLOOR PLAN</text><text x="501" y="336">A-101 / P01</text><text x="501" y="368">NTS / EXAMPLE</text><text x="48" y="350">SCHEMATIC · NOT TO SCALE · 가상 예제</text></g></svg>`;
@@ -2958,25 +2942,21 @@ function gdPreview(a){
     schedules:()=>'<table class="gd-technical-table"><caption>마감 목록 · 가상 예제</caption><thead><tr><th scope="col">ID</th><th scope="col">위치</th><th scope="col">두께 (mm)</th><th scope="col">상태</th></tr></thead><tbody><tr><th scope="row">F-01</th><td>1F 공용부</td><td>미정</td><td>검토 중</td></tr><tr><th scope="row">W-01</th><td>1F 벽체</td><td>미정</td><td>검토 중</td></tr></tbody></table>',
     output:()=>'<div class="gd-preview-sheet"><h3>출력 전 확인</h3><div class="gd-form" style="margin-top:16px">'+['용지 크기와 축척','서체 포함과 누락','선굵기와 회색 명도','문서번호와 개정','작성·검토·승인 정보'].map((s,i)=>`<label class="gd-checkbox"><input type="checkbox" data-gd-printcheck="${i}">${s}</label>`).join('')+'</div><p class="gd-status" id="gd-demo-status" role="status">0 / 5 확인 · 이 목록은 저장되지 않습니다.</p></div>',
     about:()=>'<p class="gd-type-display">ARCHITECTURE<br>BY X.</p><p class="gd-type-body">프로젝트의 조건과 가능성을 함께 탐구합니다.</p><p class="gd-status">브랜드 소개의 문맥에서만 X를 설명합니다.</p>',
-    access:()=>'<div class="gd-role-grid">'+[['Viewer','승인된 내부 열람'],['Editor','열람 + 별도 GitHub 변경 제안'],['Admin','열람 + 별도 권한 관리 절차'],['Anonymous','문서 데이터 차단']].map(([role,desc])=>`<div><strong>${role}</strong>${desc}</div>`).join('')+'</div>'
+    access:()=>'<div class="gd-role-grid">'+[['Read','지정 URL에서 누구나 열람'],['Account','별도 로그인·계정 승인 없음'],['Edit','GitHub 변경 제안과 검토'],['Release','검토 후 버전 승인·매체별 이관']].map(([role,desc])=>`<div><strong>${role}</strong>${desc}</div>`).join('')+'</div>'
   };
   return (examples[a.demo] || (()=>''))();
 }
 function viewGuidelines(arg){
   if(!GD.data){
-    return `<div class="gd">${gdTop(false)}<main class="gd-login" id="gd-content" tabindex="-1"><p class="gd-eyebrow">BYX / INTERNAL DESIGN SYSTEM</p><h1>One shared<br>standard.</h1><p class="gd-subtitle">내부 브랜드 가이드</p><p class="gd-intro">승인된 BYX 계정으로 로그인해 제작 기준과 예제를 확인하세요.</p>
-    <p class="gd-status" id="gd-auth-status" role="status">${esc(GD.error || (session?'열람 권한을 확인하고 있습니다…':'문서 내용은 권한 확인 후에만 표시됩니다.'))}</p>
-    <form class="gd-form" id="gd-login"><label for="gd-email">이메일</label><input class="gd-field" id="gd-email" type="email" autocomplete="username" required><label for="gd-password">비밀번호</label><input class="gd-field" id="gd-password" type="password" autocomplete="current-password" required><button class="gd-button" type="submit" ${!sb?'disabled':''}>로그인</button></form>
-    ${session?'<div class="gd-button-row" style="margin-top:24px"><button class="gd-button secondary" id="gd-retry">권한 다시 확인</button><button class="gd-button tertiary" id="gd-logout">로그아웃</button></div>':''}
-    <p class="gd-note">초대·권한 부여는 내부 관리자에게 요청하세요. 데모 계정이나 일반 회원 가입으로는 열람할 수 없습니다.</p><p class="gd-status"><a href="#/">← BYX 웹사이트</a></p></main></div>`;
+    return `<div class="gd">${gdTop(false)}<main class="gd-message" id="gd-content" tabindex="-1"><p class="gd-eyebrow">BYX / DESIGN SYSTEM</p><h1>Design Guidelines</h1><p class="gd-status" role="status">${esc(GD.error || '가이드를 불러오고 있습니다…')}</p>${GD.error?'<button class="gd-button secondary" id="gd-retry">다시 불러오기</button>':''}<p class="gd-status"><a href="#/">← BYX 웹사이트</a></p></main></div>`;
   }
-  const {articles,tokens,role}=GD.data;
+  const {articles,tokens}=GD.data;
   const a=articles.find(a=>a.id===(arg||'overview'));
-  if(!a) return `<div class="gd">${gdTop(true)}<main class="gd-login" id="gd-content"><h1>Page not found.</h1><p class="gd-intro">해당 문서가 없습니다.</p><a class="gd-button" href="${gdLink('overview')}">가이드 처음으로</a></main></div>`;
+  if(!a) return `<div class="gd">${gdTop(true)}<main class="gd-message" id="gd-content"><h1>Page not found.</h1><p class="gd-intro">해당 문서가 없습니다.</p><a class="gd-button" href="${gdLink('overview')}">가이드 처음으로</a></main></div>`;
   const nav=gdNav(articles,a.id), index=articles.indexOf(a);
   const sectionHead=(id,label,num)=>`<section class="gd-section" id="gd-${id}"><div class="gd-section-head"><h2>${label}</h2><span class="gd-section-number">${num}</span></div>`;
   const code=(type,value)=>`<div class="gd-code-head"><span>${type} · Draft</span><button type="button" data-gd-copy="${type}">복사</button></div><pre><code>${esc(value)}</code></pre>`;
-  return `<div class="gd">${gdTop(true)}<div class="gd-layout"><aside class="gd-sidebar" id="gd-sidebar"><label class="gd-search-label" for="gd-search">Search guidelines</label><input id="gd-search" type="search" placeholder="키워드, 수치, 코드 검색" value="${esc(GD.search)}" autocomplete="off" aria-controls="gd-nav"><p class="gd-search-meta" id="gd-search-meta" role="status">${nav.count}개 문서 · ${esc(role)}</p><nav aria-label="가이드 카테고리" id="gd-nav">${nav.html}</nav></aside>
+  return `<div class="gd">${gdTop(true)}<div class="gd-layout"><aside class="gd-sidebar" id="gd-sidebar"><label class="gd-search-label" for="gd-search">Search guidelines</label><input id="gd-search" type="search" placeholder="키워드, 수치, 코드 검색" value="${esc(GD.search)}" autocomplete="off" aria-controls="gd-nav"><p class="gd-search-meta" id="gd-search-meta" role="status">${nav.count}개 문서 · URL access</p><nav aria-label="가이드 카테고리" id="gd-nav">${nav.html}</nav></aside>
   <div class="gd-workspace"><main class="gd-main" id="gd-content" tabindex="-1"><div id="gd-overview"><div class="gd-heading-row"><p class="gd-eyebrow">${esc(a.group)} / ${esc(a.title)}</p><span class="gd-badge">Draft v${esc(tokens.version)}</span></div><h1 tabindex="-1" id="gd-title">${esc(a.title)}</h1><p class="gd-subtitle">${esc(a.subtitle)}</p><p class="gd-intro">${esc(a.intro)}</p><p class="gd-note">Draft v0.1 — 명시된 기존 값 외 세부 수치는 검토용 제안입니다. 최종 승인 후 산출물과 템플릿에 이관합니다.</p></div>
   <details class="gd-local-toc"><summary>이 페이지 목차</summary>${gdSectionNames.map(([id,label])=>`<button type="button" data-gd-jump="gd-${id}">${label}</button>`).join('')}</details>
   ${sectionHead('preview','Live preview','01')}<div class="gd-preview"><p class="gd-preview-label"><span>BYX / ${esc(a.title)}</span><span>Draft · Example</span></p>${gdPreview(a)}</div></section>
@@ -2994,19 +2974,11 @@ async function gdCopy(value,button){
 function bindGuidelines(arg){
   const menu=$('#gd-menu');
   if(menu) menu.onclick=()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));$('#gd-sidebar')?.classList.toggle('is-open',open);if(open)$('#gd-search')?.focus();};
-  $$('#gd-logout').forEach(button=>button.onclick=async()=>{gdClear();GD.error='';await DB.logout();render();});
-  const login=$('#gd-login');
-  if(login) login.onsubmit=async event=>{
-    event.preventDefault();const button=$('button[type=submit]',login);button.disabled=true;
-    $('#gd-auth-status').textContent='로그인하고 권한을 확인하고 있습니다…';
-    try {if(!sb)throw new Error('계정 연결을 확인하세요.');await DB.login($('#gd-email').value,$('#gd-password').value);GD.error='';await gdLoad();}
-    catch {$('#gd-auth-status').textContent='로그인할 수 없습니다. 이메일과 비밀번호 또는 계정 연결을 확인하세요.';button.disabled=false;}
-  };
   if($('#gd-retry')) $('#gd-retry').onclick=()=>{GD.error='';gdLoad();};
   $$('[data-gd-jump]').forEach(button=>button.onclick=event=>{event.preventDefault();const target=document.getElementById(button.dataset.gdJump);if(target){target.scrollIntoView({behavior:'instant',block:'start'});target.setAttribute('tabindex','-1');target.focus({preventScroll:true});}});
-  if(!GD.data){if(session && !GD.error && !GD.loading) gdLoad();return;}
+  if(!GD.data){if(!GD.error && !GD.loading) gdLoad();return;}
   const a=GD.data.articles.find(a=>a.id===(arg||'overview'));if(!a)return;
-  $('#gd-search').oninput=event=>{GD.search=event.target.value;const results=gdNav(GD.data.articles,a.id);$('#gd-nav').innerHTML=results.html;$('#gd-search-meta').textContent=results.count+'개 문서 · '+GD.data.role;};
+  $('#gd-search').oninput=event=>{GD.search=event.target.value;const results=gdNav(GD.data.articles,a.id);$('#gd-nav').innerHTML=results.html;$('#gd-search-meta').textContent=results.count+'개 문서 · URL access';};
   $$('[data-gd-copy]').forEach(button=>button.onclick=()=>gdCopy(button.dataset.gdCopy==='HTML'?a.html:a.css,button));
   $('#gd-tokens').onclick=()=>gdCopy(JSON.stringify(GD.data.tokens,null,2),$('#gd-tokens'));
   if($('#gd-curve-support')) $('#gd-curve-support').textContent=CSS.supports('corner-shape','squircle')?'이 브라우저: squircle 점진적 개선 적용':'이 브라우저: border-radius 원호 fallback 적용';
@@ -3064,8 +3036,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') document.bod
   }
   setStatic('');
   app.innerHTML = '<div class="pane"><p class="mono mute">LOADING…</p></div>';
+  if (parseHash().page === 'guidelines') render();
   await DB.init();
-  render();
+  if (parseHash().page !== 'guidelines') render();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitItems);
   setTimeout(() => { if (!spinning && parseHash().page !== 'guidelines') spin(); }, 700);
 })();

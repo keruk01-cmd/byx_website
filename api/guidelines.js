@@ -1,8 +1,8 @@
-/* Internal handbook. Vercel executes this file; never ship its payload in index.html.
-   This repository is public: keep client/project confidential information out of source. */
+/* URL-accessible handbook, per user request. No authentication is required.
+   Keep client/project confidential information out of this public payload. */
 const tokens = {
   version: '0.1', status: 'draft', updated: '2026-11-03',
-  color: { ink: '#000000', paper: '#ffffff', secondary: '#595959', line: '#d8d8d8', surface: '#f5f5f7', accent: '#007F73', accentHover: '#00665D' },
+  color: { ink: '#000000', paper: '#ffffff', secondary: '#595959', line: '#d8d8d8', surface: '#f5f5f5', accent: '#000000', accentHover: '#333333' },
   font: { body: 'Wanted Sans', display: 'Anton', legacyBody: 'SUIT Variable' },
   space: [4, 8, 12, 16, 24, 32, 48, 64, 96],
   radius: { control: 12, card: 24, panel: 32, pill: 999 },
@@ -15,16 +15,16 @@ const article = (id, group, title, subtitle, intro, demo, specs, good, bad, html
 const articles = [
   article('overview', 'Start here', 'Design Guidelines', '명확한 기준. 일관된 경험.',
     '건축이 중심이 되고, 디자인은 이해를 돕습니다. 화면에서 도면까지 서체·정렬·정보 위계를 공유하는 BYX의 내부 제작 기준입니다. Apple HIG의 탐색 구조와 명료한 인터페이스 원칙을 참고하되, 아래 수치는 BYX가 검토할 제안입니다.', 'overview',
-    [['문서 상태', 'Internal · Draft v0.1 · 2026.11.03'], ['확인된 기존 값', 'Anton / SUIT Variable, 흑백, 1px 선, --pad 16–44px'], ['요청 반영', 'Wanted Sans, 제한된 청록, 둥근 surface, 반투명 UI'], ['미확정', '청록 HEX, 크기 체계, 모서리, 출력·매체별 수치 모두 draft']],
+    [['문서 상태', 'Internal · Draft v0.1 · 2026.11.03'], ['확인된 기존 값', 'Anton / SUIT Variable, 흑백, 1px 선, --pad 16–44px'], ['요청 반영', 'Wanted Sans, 흑백·중립 회색, 둥근 surface, 반투명 UI'], ['미확정', '크기 체계, 모서리, 출력·매체별 수치 모두 draft']],
     '프로젝트 이미지와 기술 정보의 정확성을 먼저 확보하고, 공통 토큰으로 화면을 구성합니다.', '이 초안을 최종 승인된 브랜드 매뉴얼이나 건축 기술 표준으로 인용하지 않습니다.',
     '<main><h1>Project title</h1><p>건축과 공간을 설명하는 본문.</p></main>',
     'main { color: #000; background: #fff; }',
     ['Surface는 둥글게, Content는 정확하게. 도면·표·사진의 내용을 장식 때문에 자르지 않습니다.', 'X는 About의 브랜드 설명에만 사용합니다. 버튼, 로딩, 카드 장식에는 반복하지 않습니다.', '기존 사이트 전체의 리디자인은 포함하지 않습니다. 이 가이드에서 새 기준을 검토한 뒤 매체별로 이관합니다.']),
-  article('colors', 'Foundations', 'Color', '흑백을 기본으로, 청록은 필요한 순간에.',
-    '검정과 흰색이 정보의 대부분을 담당합니다. 청록은 선택·주요 액션에 제한합니다. 색만으로 상태를 전달하지 않고 텍스트 또는 아이콘을 함께 사용합니다.', 'colors',
-    [['Ink / Paper', '#000000 / #FFFFFF · 기존 기준'], ['Secondary / Line', '#595959 / #D8D8D8 · draft'], ['Accent / Hover', '#007F73 / #00665D · draft'], ['대비', '흰색–Accent 약 4.90:1 · 검정–흰색 21:1'], ['강조 면적', '한 화면 약 5% 이내를 출발점으로 검토 · draft']],
-    '주요 버튼 하나와 현재 선택에만 청록을 씁니다. 보조 본문은 #595959로 읽기 대비를 확보합니다.', '기존 #8E8E8E 보조색을 흰 바탕의 작은 본문에 그대로 쓰거나, 강조색을 넓은 배경 전체에 쓰지 않습니다.',
-    '<button class="primary">검토 요청</button>', '.primary { color: #fff; background: #007f73; }\n.primary:hover { background: #00665d; }',
+  article('colors', 'Foundations', 'Color', '흑백 중심, 별도의 시그니처 컬러 없이.',
+    '검정과 흰색을 기본으로 중립 회색만 사용합니다. 별도의 시그니처 컬러는 지정하지 않습니다. 선택·주요 액션은 명도, 굵기, 테두리와 텍스트로 구별합니다.', 'colors',
+    [['Ink / Paper', '#000000 / #FFFFFF · 기존 기준'], ['Secondary / Line', '#595959 / #D8D8D8 · draft'], ['Action / Hover', '#000000 / #333333 · 동작 상태용 중립색'], ['대비', '흰색–검정 액션 21:1 · 검정–흰색 21:1'], ['Signature color', '별도 지정하지 않음 · 청록 사용 안 함']],
+    '주요 버튼은 검정 바탕·흰색 글자로, 현재 선택은 중립 회색 배경과 굵기로 구별합니다. 보조 본문은 #595959를 사용합니다.', '기존 #8E8E8E 보조색을 흰 바탕의 작은 본문에 그대로 쓰거나, 강조색을 넓은 배경 전체에 쓰지 않습니다.',
+    '<button class="primary">검토 요청</button>', '.primary { color: #fff; background: #000000; }\n.primary:hover { background: #333333; }',
     ['대비 값은 불투명 sRGB 색상 기준 계산값입니다. 이미지·반투명 바탕에서는 실제 합성 결과를 다시 확인합니다.', '선 색 #D8D8D8은 장식 구분선용입니다. 입력 경계와 포커스에는 #767676 이상으로 구별되는 선을 사용합니다.']),
   article('typography', 'Foundations', 'Typography', 'Wanted Sans로 읽고, Anton으로 시작합니다.',
     '기존 저장소의 디스플레이 서체는 Anton입니다. Gasoek One으로 임의 변경하지 않습니다. Wanted Sans는 새 가이드의 본문·UI에 적용하며, 공개 사이트의 SUIT는 기존 상태로 유지합니다.', 'typography',
@@ -56,7 +56,7 @@ const articles = [
     '한 작업 영역의 가장 중요한 행동 하나를 primary로 표시합니다. 페이지 이동에는 링크, 상태 변경에는 button을 사용합니다. 아래 컨트롤로 형태·크기·상태를 직접 비교할 수 있습니다.', 'buttons',
     [['Height', 'Default 44px · Large 48px'], ['Padding / Radius', '좌우 20px / 999px'], ['Text', 'Wanted Sans 14px / 650'], ['States', 'Default · Hover · Pressed · Focus · Disabled · Loading'], ['Focus / Motion', '2px #000 outline + 3px offset / 150ms']],
     '“검토 요청”처럼 결과를 알 수 있는 동사를 씁니다. 로딩에는 작업 중 라벨과 aria-busy를 제공합니다.', '“확인”만 반복하거나 비활성 버튼의 색만 보고 이유를 추측하게 하지 않습니다.',
-    '<button class="byx-button" type="button">검토 요청</button>\n<button class="byx-button" disabled>저장 중…</button>', '.byx-button { min-height:44px; padding:0 20px; border-radius:999px; background:#007f73; color:#fff; font:650 14px "Wanted Sans",sans-serif; transition:background 150ms; }\n.byx-button:hover { background:#00665d; }\n.byx-button:active { background:#00564f; }\n.byx-button:focus-visible { outline:2px solid #000; outline-offset:3px; }\n.byx-button:disabled { background:#e5e5e5; color:#595959; }'),
+    '<button class="byx-button" type="button">검토 요청</button>\n<button class="byx-button" disabled>저장 중…</button>', '.byx-button { min-height:44px; padding:0 20px; border-radius:999px; background:#000000; color:#fff; font:650 14px "Wanted Sans",sans-serif; transition:background 150ms; }\n.byx-button:hover { background:#333333; }\n.byx-button:active { background:#555555; }\n.byx-button:focus-visible { outline:2px solid #000; outline-offset:3px; }\n.byx-button:disabled { background:#e5e5e5; color:#595959; }'),
   article('inputs', 'Components', 'Inputs & selection', '라벨을 남기고, 오류는 바로 설명합니다.',
     '항상 보이는 라벨과 도움말을 제공합니다. placeholder는 예시일 뿐 라벨을 대신하지 않습니다. 아래 양식은 로컬 예제이며 입력 내용을 전송·저장하지 않습니다.', 'inputs',
     [['Input', 'min-height 44px · padding 12px 16px · radius 12px'], ['Border', '1px #767676 · focus outline 2px #000'], ['Text / Label gap', '16px / 8px'], ['Error', '텍스트 + aria-invalid + aria-describedby'], ['Selection', 'native checkbox / select · 클릭 영역 44px']],
@@ -71,7 +71,7 @@ const articles = [
     '전역 메뉴는 단순하게 유지하고, 문서의 카테고리는 사이드바로 분리합니다. 현재 문서는 aria-current="page"로 표시합니다. 접히는 메뉴는 실제 button으로 열고 닫습니다.', 'navigation',
     [['Top bar', 'min-height 64px · 선택적으로 glass'], ['Navigation target', 'min-height 44px'], ['Sidebar', '244px · <900px 접이식'], ['Search', '전체 문서 제목·설명·수치·코드 검색'], ['TOC', 'Overview / Preview / Specifications / Usage / Code']],
     '현재 위치를 색과 굵기로 함께 표시하고, 모바일에서는 선택 후 메뉴를 닫습니다.', '아이콘만으로 목적지를 추측하게 하거나 키보드 초점을 보이지 않게 만들지 않습니다.',
-    '<nav aria-label="문서"><a href="#/guidelines/buttons" aria-current="page">Buttons</a></nav>', 'nav a { display:flex; align-items:center; min-height:44px; padding:8px 12px; }\nnav a[aria-current="page"] { background:#e8f3f0; color:#00665d; font-weight:650; }'),
+    '<nav aria-label="문서"><a href="#/guidelines/buttons" aria-current="page">Buttons</a></nav>', 'nav a { display:flex; align-items:center; min-height:44px; padding:8px 12px; }\nnav a[aria-current="page"] { background:#eeeeee; color:#333333; font-weight:650; }'),
   article('modals', 'Components', 'Modals', '필요한 결정에만 집중합니다.',
     '짧고 집중이 필요한 작업에 dialog를 씁니다. 긴 설명과 일반 탐색은 페이지에서 제공합니다. 네이티브 dialog.showModal()로 배경 상호작용과 포커스 범위를 제어합니다.', 'modals',
     [['Width', 'min(480px, viewport − 32px)'], ['Panel / Padding', 'radius 32px / 32px'], ['Backdrop', 'rgba(0,0,0,.25)'], ['Keyboard', 'Escape 닫기 · Tab 내부 순환 · 닫힌 뒤 트리거 복귀'], ['Actions', '취소 / 명확한 주 행동 · 파괴 작업 자동 실행 금지']],
@@ -90,7 +90,7 @@ const articles = [
     '<figure><img src="project.webp" alt="중정에서 바라본 외벽과 보행 동선" width="1600" height="1200"><figcaption>Project · Seoul · 2026</figcaption></figure>', 'figure { margin:0; }\nfigure img { width:100%; height:auto; }\nfigcaption { margin-top:12px; font-size:13px; }'),
   article('ppt', 'Applications', 'Presentation', '한 장에 하나의 판단.',
     '표지·섹션·이미지·비교·데이터 슬라이드의 정렬선을 공유합니다. 아래는 웹 미리보기이며 PPTX 템플릿 파일은 아직 제작되지 않았습니다.', 'ppt',
-    [['Canvas', '16:9 · 33.867 × 19.05cm'], ['Margin / Grid', '좌우 1.5cm · 12열 · gutter 0.5cm'], ['Title / Body / Caption', '32–44pt / 20–24pt / 12–14pt'], ['Colors', '흑백 중심 · 청록 강조 1곳'], ['Effects', '반투명 최소 · 사진은 원본 · X 사용 안 함']],
+    [['Canvas', '16:9 · 33.867 × 19.05cm'], ['Margin / Grid', '좌우 1.5cm · 12열 · gutter 0.5cm'], ['Title / Body / Caption', '32–44pt / 20–24pt / 12–14pt'], ['Colors', '흑백·중립 회색 · 별도 시그니처 컬러 없음'], ['Effects', '반투명 최소 · 사진은 원본 · X 사용 안 함']],
     '프레젠테이션은 멀리서 읽도록 작성하고 폰트 포함·대체 여부를 PDF로 확인합니다.', '웹의 16px를 PPT의 16pt와 같은 읽기 크기로 간주하지 않습니다.',
     '<section class="slide"><h2>공간을 잇는 중정</h2><p>한 장에 하나의 핵심 메시지.</p></section>', '.slide { aspect-ratio:16/9; padding:4.43%; background:#fff; color:#000; }'),
   article('documents', 'Applications', 'Documents', '읽기와 검토에 집중하는 문서.',
@@ -140,18 +140,18 @@ const articles = [
     [['Paper', 'A4 210×297 / A3 297×420 / A1 594×841mm'], ['Raster', '최종 출력 크기 기준 사진 300ppi 목표'], ['PDF', '텍스트·선은 벡터 유지 · 서체 포함·대체 확인'], ['Scale', '실제 크기 100% 출력 · fit-to-page 여부 확인'], ['File naming', 'BYX_Project_DocNo_Rev_YYYYMMDD.pdf']],
     '페이지 크기·축척·선굵기·회색 명도·폰트·누락·파일명을 확인하고 교차 검토합니다.', '화면 스크린샷을 최종 도면 PDF로 쓰거나 RGB 값을 인쇄 잉크 값과 같다고 보지 않습니다.',
     '<footer>BYX · Project · A-101 · P01 · 2026.11.03 · 1/12</footer>', '@media print { @page { size:A3 landscape; margin:10mm; }\n  * { box-shadow:none !important; backdrop-filter:none !important; } }',
-    ['인쇄소와 CMYK/ICC·PDF/X 요구사항을 협의합니다. RGB 청록을 임의 CMYK 수치로 확정하지 않습니다.', '도련·재단선은 제본·인쇄 방식에 따라 별도 지정합니다. 화면 미리보기는 실제 축척이 아닙니다.']),
+    ['인쇄소와 CMYK/ICC·PDF/X 요구사항을 협의합니다. 중립색도 RGB를 임의 CMYK 수치로 변환해 확정하지 않습니다.', '도련·재단선은 제본·인쇄 방식에 따라 별도 지정합니다. 화면 미리보기는 실제 축척이 아닙니다.']),
   article('about', 'Governance', 'About BYX', '브랜드의 의미는 소개의 맥락에서.',
     'BY X의 열린 의미는 브랜드 소개에서 설명합니다. X는 반복 장식이나 UI 기호 시스템으로 확장하지 않습니다. 저장소에 있는 기존 로고·슬롯머신은 별도 브랜드 자산으로 유지합니다.', 'about',
     [['Display face', '기존 Anton 유지'], ['Body direction', 'Wanted Sans · 가이드 적용 / 공개 사이트 이관 별도'], ['Motif', 'X의 의미는 About에서만 소개'], ['Source of truth', '이 가이드의 draft 토큰 → 검토 → 버전 승인 → 매체별 이관']],
     '실제 프로젝트와 제작자의 역할을 정확하게 설명합니다.', '모든 버튼을 X 형태로 만들거나 미확정 로고 변형을 공식 자산으로 배포하지 않습니다.',
     '<section aria-labelledby="about-title"><h2 id="about-title">Architecture by X</h2><p>프로젝트의 조건과 가능성을 함께 탐구합니다.</p></section>', 'section { color:#000; background:#fff; }'),
-  article('access', 'Governance', 'Access & releases', '열람 권한과 기준의 승인을 분리합니다.',
-    '기존 Supabase 계정으로 로그인한 뒤 서버가 현재 사용자와 app_metadata.byx_guidelines_role을 검증합니다. 로그인만으로 열람을 허용하지 않습니다. 콘텐츠 수정·승인은 현재 GitHub 검토 절차에서 관리합니다.', 'access',
-    [['Viewer', '승인된 내부 계정 · 읽기와 코드/토큰 복사'], ['Editor', '열람 가능 · 변경 제안은 별도 GitHub 권한 필요'], ['Admin', '열람 가능 · 계정 역할 부여와 최종 승인은 별도 관리자 절차'], ['Denied', '익명 / 미승인 / anonymous user / 설정 실패 시 차단'], ['Cache', 'private, no-store · 60초 재검증 · 로그아웃 시 메모리 제거']],
-    '관리자가 승인한 app_metadata 역할을 사용하고 사용자별 철회·접근 테스트를 수행합니다.', 'URL 비공개·robots·user_metadata·localStorage 플래그를 권한 검증으로 사용하지 않습니다.',
-    '<a href="/guidelines">내부 가이드 로그인</a>', '/* 문서 데이터는 인증 후 GET /api/guidelines 로만 전달합니다.\n   UI를 숨기는 CSS는 접근 보호가 아닙니다. */',
-    ['중요: 이 GitHub 저장소는 공개입니다. 이 문서의 일반 디자인 규칙 소스는 공개될 수 있습니다. 프로젝트 기밀·계약서·비공개 DWG/PDF를 커밋하지 않습니다.', '실제 비공개 원본은 비공개 저장소 또는 RLS/private Storage로 옮기고 서버 권한 검증을 유지해야 합니다. 이 초안에는 다운로드 템플릿 파일을 포함하지 않습니다.', '버전 승인 시 토큰·웹 예제·PPT·DOCX·도면 템플릿을 함께 개정합니다. 기존 파일은 자동으로 바뀌지 않습니다.'])
+  article('access', 'Governance', 'Access & releases', '지정 URL에서 바로 열람합니다.',
+    '현재 가이드는 별도 로그인·계정 승인 없이 지정 URL로 접속하면 볼 수 있습니다. 공개 메뉴에는 링크를 추가하지 않습니다. 콘텐츠 수정·승인은 기존 GitHub 검토 절차로 관리합니다.', 'access',
+    [['Read', 'URL을 아는 누구나 열람 · 로그인 없음'], ['Edit', '별도 GitHub 쓰기 권한과 변경 검토 필요'], ['Discovery', '공개 메뉴에 링크 없음 · noindex, nofollow, noarchive'], ['Privacy', 'URL 비공개와 검색 제외는 접근 보호가 아님'], ['Release', 'Draft 검토 → 승인 → 산출물·템플릿별 이관']],
+    '일반 디자인 규칙을 열람하고 공유하며, 변경 사항은 검토 후 버전을 갱신합니다.', '주소를 숨긴 것만으로 비공개 문서라고 간주하거나 고객·계약·기밀 도면을 올리지 않습니다.',
+    '<a href="/guidelines">BYX 디자인 가이드 보기</a>', '/* GET /api/guidelines는 로그인 없이 문서를 제공합니다.\n   검색 노출 제외는 접근 보호가 아닙니다. */',
+    ['지정 URL과 문서 API는 로그인 없이 열립니다. URL을 전달받은 사람도 열람할 수 있습니다.', '프로젝트 기밀·계약서·비공개 DWG/PDF는 포함하지 않습니다. 실제 비공개 파일은 별도 보호된 저장소가 필요합니다.', '버전 승인 시 토큰·웹 예제·PPT·DOCX·도면 템플릿을 함께 개정합니다. 기존 파일은 자동으로 바뀌지 않습니다.'])
 ];
 
 const keywords = {
@@ -167,32 +167,12 @@ const keywords = {
 };
 articles.forEach(a => { a.keywords = keywords[a.id] || ''; });
 
-async function handler(req, res) {
-  res.setHeader('Cache-Control', 'private, no-store, max-age=0');
+function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store, max-age=0');
   res.setHeader('Vercel-CDN-Cache-Control', 'no-store');
   res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  const reply = (status, error) => res.status(status).json({ error });
-  if (req.method !== 'GET') { res.setHeader('Allow', 'GET'); return reply(405, '허용되지 않은 요청입니다.'); }
-  const authorization = req.headers.authorization || '';
-  if (!/^Bearer [A-Za-z0-9._-]+$/.test(authorization) || authorization.length > 8192) return reply(401, '로그인이 필요합니다.');
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_PUBLISHABLE_KEY;
-  // Fail closed; the frontend demo login is never a handbook credential.
-  if (!url || !/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/.test(url) || !key) return reply(503, '내부 가이드 접근 설정이 필요합니다. 관리자에게 문의하세요.');
-  try {
-    const auth = await fetch(`${url.replace(/\/$/, '')}/auth/v1/user`, {
-      headers: { apikey: key, Authorization: authorization },
-      cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(8000)
-    });
-    if (auth.status === 401 || auth.status === 403) return reply(401, '로그인이 만료되었습니다. 다시 로그인하세요.');
-    if (!auth.ok) return reply(503, '권한을 확인할 수 없습니다. 잠시 후 다시 시도하세요.');
-    const user = await auth.json();
-    const role = user.app_metadata?.byx_guidelines_role;
-    if (!user.id || !user.email_confirmed_at || user.is_anonymous === true || !['viewer', 'editor', 'admin'].includes(role)) return reply(403, '내부 가이드 열람 승인이 필요합니다. 관리자에게 문의하세요.');
-    return res.status(200).json({ role, tokens, articles });
-  } catch {
-    return reply(503, '권한을 확인할 수 없습니다. 잠시 후 다시 시도하세요.');
-  }
+  if (req.method !== 'GET') { res.setHeader('Allow', 'GET'); return res.status(405).json({ error:'허용되지 않은 요청입니다.' }); }
+  return res.status(200).json({ access:'url', tokens, articles });
 }
 module.exports = handler;
