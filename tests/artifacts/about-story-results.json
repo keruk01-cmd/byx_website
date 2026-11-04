@@ -1,0 +1,49 @@
+{
+  "testedAt": "2026-11-04T06:36:56.827Z",
+  "results": [
+    {
+      "width": 1440,
+      "chapters": 3,
+      "conditions": true,
+      "journey": true,
+      "dataSources": true,
+      "keyboard": true,
+      "cmsPreserved": true,
+      "escaped": true,
+      "footer": true,
+      "noOverflow": true,
+      "routeCleanup": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 390,
+      "chapters": 3,
+      "conditions": true,
+      "journey": true,
+      "dataSources": true,
+      "keyboard": true,
+      "cmsPreserved": true,
+      "escaped": true,
+      "footer": true,
+      "noOverflow": true,
+      "routeCleanup": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 320,
+      "chapters": 3,
+      "conditions": true,
+      "journey": true,
+      "dataSources": true,
+      "keyboard": true,
+      "cmsPreserved": true,
+      "escaped": true,
+      "footer": true,
+      "noOverflow": true,
+      "routeCleanup": true,
+      "reducedMotion": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated demo only. No operational settings writes, database changes or real-device Safari/Firefox test."
+}
