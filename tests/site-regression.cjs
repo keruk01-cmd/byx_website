@@ -74,7 +74,7 @@ async function main(){
       await page.evaluate(()=>{DB.projects=SEED_PROJECTS.map(p=>({...p}));location.hash='#/about';});
       await page.waitForSelector('.x-cloud-section');
       assert(!(await page.locator('#works-top').isVisible()));
-      assert((await page.locator('.person').first().boundingBox()).width<=220);
+      assert((await page.locator('.person').first().boundingBox()).width<=320);
       assert.equal(await page.locator('.x-cloud').count(),1);
       assert.equal(await page.locator('.x-cloud-section svg,.x-cloud-section img,.x-cloud-section image').count(),0);
       assert.equal(await page.locator('[data-x-pause]').count(),0);
@@ -101,6 +101,7 @@ async function main(){
       await page.mouse.move(0,0);assert.equal(+(await canvas.getAttribute('data-dispersal')),0);
       if(width<=390){await canvas.dispatchEvent('pointerdown',{pointerType:'touch',pointerId:1,clientX:box.x+box.width/2,clientY:box.y+box.height/2});assert(+(await canvas.getAttribute('data-dispersal'))>0);await canvas.dispatchEvent('pointerup',{pointerType:'touch',pointerId:1});assert.equal(+(await canvas.getAttribute('data-dispersal')),0);}
       await page.emulateMedia({reducedMotion:'no-preference'});
+      await page.evaluate(()=>{const run=document.querySelector('.cloud-scroll-runway'),r=run.getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;scrollTo(0,r.top+scrollY-head+(r.height-(innerHeight-head))*.8);});
       await page.waitForFunction(()=>document.querySelector('.x-field').dataset.motion==='running');
       const moving=await canvas.getAttribute('data-frame');await page.waitForTimeout(200);assert(+(await canvas.getAttribute('data-frame'))>+moving);
       if(width===2560)await page.locator('.x-field').screenshot({path:path.join(out,'cloud-sphere.png')});

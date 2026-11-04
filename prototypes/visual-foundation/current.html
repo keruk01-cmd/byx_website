@@ -73,6 +73,8 @@ body{
   transition:background .25s linear,color .25s linear;
 }
 img{display:block;max-width:100%}
+html,body,.about-story *,.people-dialog{scrollbar-width:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar,.about-story *::-webkit-scrollbar,.people-dialog::-webkit-scrollbar{display:none}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:var(--cur-hand)}
 /* ---------- CURSOR ----------
@@ -360,8 +362,8 @@ table.idx .st{display:inline-block;max-width:100%;white-space:normal;overflow-wr
 /* blog feature */
 .feed-feature{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);border-bottom:var(--hair) solid var(--fg)}
 .feed-image{display:block;overflow:hidden;aspect-ratio:16/10;background:var(--bg)}
-.feed-image img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .3s var(--ease)}
-a:hover>.feed-image img,a:focus-visible>.feed-image img{filter:none}
+.feed-image img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.02);transition:transform .7s var(--ease),filter .5s ease}
+a:hover>.feed-image img,a:focus-visible>.feed-image img{transform:scale(1.035);filter:grayscale(0) contrast(1)}
 .feed-feature>.feed-image{aspect-ratio:auto;height:clamp(300px,34vw,600px);border-right:var(--hair) solid var(--fg)}
 .feed-copy{padding:clamp(18px,2.5vw,48px) var(--pad);min-width:0}
 .feed-feature>.feed-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:18px}
@@ -523,15 +525,20 @@ a:hover>.feed-image img,a:focus-visible>.feed-image img{filter:none}
 .deflist{display:grid;grid-template-columns:auto minmax(0,1fr)}
 .deflist .k,.deflist .v{border-bottom:var(--hair) solid var(--faint);padding:8px 0;font-size:12.5px}
 .deflist .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding-right:20px;white-space:nowrap}
-/* auto-fit, not auto-fill: empty tracks would show the black backing through
-   as a slab beside the last member */
-.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),220px));justify-content:start;gap:0;background:var(--bg);border-bottom:var(--hair) solid var(--fg)}
-.person{border-right:var(--hair) solid var(--fg);border-bottom:var(--hair) solid var(--fg)}
-.person{background:var(--bg);padding:14px}
-.person .im{aspect-ratio:3/4;margin-bottom:9px;overflow:hidden}
+/* One accessible group, with visual copies for the continuous People conveyor. */
+.people{overflow:hidden;background:var(--bg);padding-block:24px 48px;touch-action:pan-y pinch-zoom}
+.people-track,.people-group{display:flex;width:max-content;gap:18px}
+.people-track{gap:0;will-change:transform}
+.people-group{padding-right:18px}
+.person{flex:0 0 auto;width:clamp(220px,22vw,320px);background:var(--bg);padding:14px;text-align:left;border:var(--hair) solid var(--fg);color:var(--fg)}
+.person .im{display:block;aspect-ratio:3/4;margin-bottom:9px;overflow:hidden}
 .person .im img{width:100%;height:100%;object-fit:cover}
 .person .n{font-family:var(--font-display);font-size:17px;text-transform:uppercase;line-height:1}
 .person .r{font-family:var(--font-mono);font-size:10px;color:var(--mute);text-transform:uppercase;margin-top:4px}
+.person .n,.person .r{display:block}
+.person:focus-visible{outline:2px solid var(--fg);outline-offset:5px}
+.person:hover .im img{transform:scale(1.035)}
+.person .im img{transition:transform .5s var(--ease)}
 /* career notes — one line per entry, written as "a / b / c" */
 .person .bio{font-size:11.5px;line-height:1.62;color:var(--mute);margin-top:8px;padding-top:8px;border-top:var(--hair) solid var(--faint)}
 .x-cloud-section{border-bottom:var(--hair) solid var(--fg);background:var(--fg);color:var(--bg)}
@@ -542,14 +549,24 @@ a:hover>.feed-image img,a:focus-visible>.feed-image img{filter:none}
 .x-label{position:absolute;z-index:1;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-variation-settings:'wght' 680;font-weight:400;line-height:1.1;font-size:clamp(22px,2.5vw,56px);margin:0;white-space:nowrap;color:var(--bg);pointer-events:none}
 .x-label-left{left:var(--pad)}.x-label-right{right:var(--pad)}
 @media(max-width:760px){.x-label{top:28px;transform:none}}
-@media(max-width:520px){.people{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* ABOUT: three chapters, one continuous introduction to the studio. */
 .about-story{--story-space:clamp(64px,9vw,152px)}
 .story-eyebrow{font-family:var(--font-mono);font-size:clamp(10px,.85vw,12px);letter-spacing:.12em;text-transform:uppercase;line-height:1.5}
 .story-hero{min-height:calc(100svh - var(--head-h));padding:clamp(44px,6vw,100px) var(--pad) 30px;display:flex;flex-direction:column;justify-content:space-between;gap:44px}
+.about-story{background:var(--bg)}
+body.about-story-page{background:var(--fg);transition:none}
+body.about-story-page>footer{background:var(--bg)}
+.hero-scroll-runway{height:155svh;background:var(--fg);color:var(--bg)}
+.hero-scroll-runway .story-hero{position:sticky;top:var(--head-h);background:var(--fg);color:var(--bg)}
+.hero-scroll-runway .story-hero-copy{border-color:var(--mute)}
+.cloud-scroll-runway{height:230svh;position:relative}
+.cloud-scroll-runway .x-cloud-section{position:sticky;top:var(--head-h);height:calc(100svh - var(--head-h));display:flex;align-items:center}
+.story-system .cloud-scroll-runway .x-field{height:calc(100svh - var(--head-h))}
+@media(prefers-reduced-motion:reduce){.hero-scroll-runway,.cloud-scroll-runway{height:auto}.hero-scroll-runway .story-hero,.cloud-scroll-runway .x-cloud-section{position:relative;top:0}}
 .story-hero-top{display:flex;justify-content:space-between;gap:20px}
 .story-title{font-family:var(--font-display);font-weight:400;font-size:clamp(44px,17.4vw,240px);line-height:.94;letter-spacing:-.025em;margin:0}
 .story-title>span{display:block}
+.story-title .scramble-letter{display:inline-block;text-align:center}
 .story-hero-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;padding-top:22px;border-top:var(--hair) solid var(--fg)}
 .story-hero-copy h2{font-size:clamp(25px,3.4vw,52px);font-weight:550;font-variation-settings:'wght' 550;letter-spacing:-.055em;line-height:1.35;margin:0;word-break:keep-all}
 .story-hero-copy p{max-width:46ch;margin:0 0 4px auto;font-size:clamp(14px,1.25vw,18px);line-height:1.9;word-break:keep-all}
@@ -561,17 +578,8 @@ a:hover>.feed-image img,a:focus-visible>.feed-image img{filter:none}
 .story-system .story-eyebrow{color:var(--mute)}
 .story-system .x-cloud-section{border:0}
 .story-system .x-field{height:clamp(420px,43vw,740px)}
-.system-console{padding:0 var(--pad) clamp(48px,6vw,88px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
-.system-options{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.system-options button{font-size:clamp(12px,1.1vw,15px);border:var(--hair) solid var(--mute);padding:12px 18px;border-radius:999px;color:inherit;min-height:44px}
-.system-options button[aria-pressed="true"]{background:var(--bg);color:var(--fg);border-color:var(--bg)}
-.system-options button:hover{border-color:var(--bg)}
-.system-result{border-top:var(--hair) solid var(--mute);padding-top:20px}
-.system-result h3{font-size:clamp(22px,2.5vw,36px);font-weight:500;font-variation-settings:'wght' 500;letter-spacing:-.035em;line-height:1.4;margin:0 0 14px;word-break:keep-all}
-.system-result p{font-size:clamp(13px,1.1vw,16px);line-height:1.8;max-width:48ch;margin:0;color:var(--bg);opacity:.74;word-break:keep-all}
 .system-equation{display:flex;justify-content:space-between;gap:16px;margin-top:30px;padding-top:18px;border-top:var(--hair) solid var(--mute);font-family:var(--font-mono);font-size:clamp(10px,.85vw,12px);letter-spacing:.04em}
 .story-experience{padding-bottom:var(--story-space)}
-.experience-stage{margin:18px var(--pad) 0;border-block:var(--hair) solid var(--fg);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .experience-drawing{position:relative;min-height:440px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-right:var(--hair) solid var(--fg);background:var(--bg)}
 .experience-drawing>svg{width:85%;height:auto;max-height:400px;color:var(--fg);overflow:visible}
 .experience-route{stroke:var(--faint);stroke-width:1;fill:none}
@@ -581,59 +589,89 @@ a:hover>.feed-image img,a:focus-visible>.feed-image img{filter:none}
 .experience-drawing text{font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;fill:var(--mute)}
 .experience-drawing .experience-label{fill:var(--fg);font-family:var(--font-display);font-size:45px;letter-spacing:0}
 .experience-marker{position:absolute;bottom:22px;left:24px;right:24px;display:flex;justify-content:space-between;gap:12px;color:var(--mute)}
-.experience-content{padding:clamp(26px,4vw,64px);display:flex;flex-direction:column;justify-content:space-between;gap:34px}
-.experience-counter{font-family:var(--font-display);font-size:clamp(56px,7vw,112px);line-height:1;letter-spacing:-.025em}
-.experience-counter b{font-weight:400}
-.experience-counter span{font-family:var(--font-mono);font-size:12px;color:var(--mute);letter-spacing:.08em;margin-left:12px}
-.experience-content h3{font-size:clamp(24px,2.8vw,42px);font-weight:500;font-variation-settings:'wght' 500;letter-spacing:-.04em;line-height:1.4;word-break:keep-all;margin:0 0 18px}
-.experience-content p{font-size:clamp(13px,1.15vw,16px);line-height:1.9;word-break:keep-all;margin:0;max-width:44ch;color:var(--mute)}
-.experience-footnote{font-size:12px;line-height:1.8;border-top:var(--hair) solid var(--faint);padding-top:18px;color:var(--mute)}
-.experience-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0 var(--pad)}
-.experience-steps button{display:flex;flex-direction:column;text-align:left;gap:10px;padding:22px 16px 22px 0;border-bottom:var(--hair) solid var(--faint);font-size:clamp(12px,1.15vw,16px);line-height:1.4;min-height:84px}
-.experience-steps button span{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:.06em}
-.experience-steps button[aria-pressed="true"]{box-shadow:inset 0 -2px 0 var(--fg)}
 .story-tech{border-top:var(--hair) solid var(--fg);padding-bottom:var(--story-space)}
-.tech-workbench{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin:0 var(--pad);border-block:var(--hair) solid var(--fg)}
-.tech-sources{padding:24px 40px 32px 0;border-right:var(--hair) solid var(--fg)}
-.tech-sources>p{margin:0 0 20px;color:var(--mute)}
-.tech-sources button{display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;min-height:66px;padding:18px 0;text-align:left;border-top:var(--hair) solid var(--faint);font-size:clamp(17px,1.8vw,26px);letter-spacing:-.025em}
-.tech-sources button span:last-child{font-family:var(--font-mono);font-size:11px;color:var(--mute)}
-.tech-sources button[aria-pressed="true"] span:last-child{color:var(--fg)}
-.tech-sources button[aria-pressed="true"]::before{content:'×';font-size:22px}
-.tech-sources button>span:first-child{margin-right:auto}
-.tech-insight{padding:clamp(24px,4vw,64px);display:flex;flex-direction:column;justify-content:space-between;gap:32px}
-.tech-flow{display:flex;align-items:center;gap:16px;min-height:68px}
-.tech-flow>i{height:1px;flex:1;background:var(--fg);position:relative}
-.tech-flow>i::after{content:'';position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid var(--fg);border-right:1px solid var(--fg);transform:rotate(45deg)}
-.tech-flow strong{font-family:var(--font-display);font-size:clamp(28px,4vw,52px);font-weight:400;line-height:1;white-space:nowrap}
-.tech-flow>span{font-family:var(--font-mono);font-size:10px;letter-spacing:.06em}
-.tech-insight h3{font-size:clamp(23px,2.8vw,40px);font-weight:500;font-variation-settings:'wght' 500;letter-spacing:-.04em;line-height:1.4;margin:0 0 18px;word-break:keep-all}
-.tech-insight p{font-size:clamp(13px,1.15vw,16px);line-height:1.9;max-width:46ch;margin:0;color:var(--mute);word-break:keep-all}
+.system-reading{padding:0 var(--pad) var(--story-space)}
+.system-reading .system-equation{margin-top:0;margin-bottom:48px}
+.system-narrative{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:32px;border-top:var(--hair) solid var(--mute);padding:38px 0;align-items:start}
+.system-narrative>span{font-size:13px;color:var(--mute)}
+.system-narrative h3{font-size:clamp(24px,2.8vw,42px);font-weight:500;font-variation-settings:'wght' 500;line-height:1.4;letter-spacing:-.04em;margin:0 0 16px;word-break:keep-all}
+.system-narrative p{max-width:46ch;line-height:1.9;font-size:clamp(14px,1.15vw,17px);margin:0;opacity:.76;word-break:keep-all}
+.journey-scroll,.function-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);margin:12px var(--pad) 0;align-items:start}
+.journey-visual,.function-visual{position:sticky;top:calc(var(--head-h) + 24px);align-self:start;background:var(--bg)}
+.journey-visual .experience-drawing{height:clamp(320px,55vh,560px);min-height:0;border:var(--hair) solid var(--fg)}
+.reading-step{padding:clamp(38px,5vw,72px) 0;min-height:clamp(320px,48vh,520px);border-top:var(--hair) solid var(--fg);display:flex;flex-direction:column;justify-content:center;scroll-margin-top:calc(var(--head-h) + 30px)}
+.reading-step>span{font-size:12px;color:var(--mute);margin-bottom:22px}
+.reading-step h3{font-size:clamp(25px,2.9vw,43px);font-weight:500;font-variation-settings:'wght' 500;letter-spacing:-.04em;line-height:1.4;margin:0 0 20px;word-break:keep-all}
+.reading-step p{font-size:clamp(14px,1.15vw,17px);line-height:1.9;word-break:keep-all;color:var(--mute);margin:0;max-width:45ch}
+.reading-step.is-current{border-top-width:2px}
+.function-stage{height:clamp(320px,55vh,560px);border:var(--hair) solid var(--fg);position:relative;overflow:hidden}
+.function-canvas{width:100%;height:100%;display:block}
+.function-caption{font-size:12px;line-height:1.8;color:var(--mute);margin:18px 0 0;word-break:keep-all}
+.people-section{border-top:var(--hair) solid var(--fg);padding-top:var(--story-space);padding-bottom:32px}
+.people-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;padding:0 var(--pad) 44px;align-items:end}
+.people-intro h2{font-size:clamp(32px,4.7vw,76px);font-weight:550;font-variation-settings:'wght' 550;line-height:1.3;letter-spacing:-.05em;word-break:keep-all;margin:0}
+.people-intro p{font-size:clamp(14px,1.2vw,18px);line-height:1.9;word-break:keep-all;max-width:43ch;margin:0 0 24px}
+.people-pause{font-size:12px;border:var(--hair) solid var(--fg);border-radius:999px;padding:10px 16px;min-height:40px}
+.people-dialog{width:min(980px,calc(100% - 28px));max-height:calc(100svh - 28px);padding:0;margin:auto;overflow:auto;border:var(--hair) solid var(--fg);background:var(--bg);color:var(--fg)}
+.people-dialog::backdrop{background:rgba(0,0,0,.52);backdrop-filter:blur(8px)}
+.profile-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 24px;border-bottom:var(--hair) solid var(--fg);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em}
+.profile-close{width:44px;height:44px;border:var(--hair) solid var(--fg);border-radius:50%;font-size:25px;line-height:1}
+.profile-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}
+.profile-photo{background:var(--faint);aspect-ratio:3/4;overflow:hidden;align-self:start}
+.profile-photo img{width:100%;height:100%;object-fit:cover}
+.profile-copy{padding:clamp(24px,4vw,56px)}
+.profile-copy h2{font-family:var(--font-display);font-size:clamp(36px,4vw,62px);font-weight:400;line-height:1.2;margin:0 0 12px;overflow-wrap:anywhere}
+.profile-role{font-size:13px;color:var(--mute);margin:0 0 32px}
+.profile-intro{font-size:clamp(15px,1.25vw,18px);line-height:1.9;word-break:keep-all;white-space:pre-line;margin:0 0 32px}
+.profile-career{padding:0;margin:0;list-style:none;border-top:var(--hair) solid var(--faint)}
+.profile-career li{padding:12px 0;border-bottom:var(--hair) solid var(--faint);font-size:13px;line-height:1.8;word-break:keep-all}
+.people-dialog button:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+.contact-invitation{background:var(--fg);color:var(--bg);padding:var(--story-space) var(--pad);border-top:var(--hair) solid var(--fg)}
+.contact-invitation h2{font-family:var(--font-display);font-size:clamp(54px,12vw,190px);font-weight:400;line-height:1;letter-spacing:-.02em;margin:0 0 36px}
+.contact-invitation p{font-size:clamp(18px,2.1vw,30px);line-height:1.6;word-break:keep-all;margin:0 0 32px}
+.contact-launch{border:var(--hair) solid currentColor;border-radius:999px;padding:16px 26px;font-size:clamp(14px,1.2vw,18px);color:inherit;min-height:52px}
+.contact-launch:hover{background:var(--bg);color:var(--fg)}
+.contact-dialog{width:min(760px,calc(100% - 28px));scrollbar-width:none}
+.contact-dialog::-webkit-scrollbar{display:none}
+.contact-form{padding:clamp(22px,4vw,48px)}
+.contact-form h2{font-size:clamp(26px,3vw,40px);font-weight:500;font-variation-settings:'wght' 500;line-height:1.4;letter-spacing:-.04em;margin:0 0 28px}
+.contact-form label{display:block;font-size:13px;line-height:1.6;margin-bottom:18px}
+.contact-form input:not([type="checkbox"]),.contact-form textarea{display:block;width:100%;background:var(--bg);color:var(--fg);border:var(--hair) solid var(--fg);border-radius:0;padding:12px;margin-top:8px;font:inherit}
+.contact-form textarea{min-height:150px;resize:vertical}
+.contact-form .contact-consent{display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.8}
+.contact-form .contact-consent input{margin:5px 0 0;width:18px;height:18px;min-width:18px;flex:0 0 18px;padding:0;accent-color:var(--fg)}
+.contact-form .contact-consent span{flex:1;min-width:0;word-break:keep-all}
+.contact-honeypot{position:absolute;left:-9999px;opacity:0;pointer-events:none}
+.contact-feedback{font-size:13px;line-height:1.8;min-height:24px;white-space:pre-line}
+.inquiry-item{border-bottom:var(--hair) solid var(--faint)}
+.inquiry-item summary{padding:22px 0;cursor:var(--cur-hand);font-size:18px;line-height:1.5;overflow-wrap:anywhere}
+.inquiry-meta{font-size:12px;color:var(--mute);line-height:1.9;margin-bottom:20px;overflow-wrap:anywhere}
+.inquiry-body{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.9;margin:20px 0 32px}
+@media(max-width:760px){
+  .system-narrative,.journey-scroll,.function-layout,.people-intro{grid-template-columns:1fr;gap:24px}
+  .journey-visual,.function-visual{top:var(--head-h);z-index:2;padding-block:12px}
+  .journey-visual .experience-drawing,.function-stage{height:230px}
+  .reading-step{min-height:400px;padding-block:48px}
+  .function-caption{display:none}
+  .profile-layout{grid-template-columns:1fr}
+  .profile-photo{aspect-ratio:4/3;max-height:340px}
+}
+@media(prefers-reduced-motion:reduce){
+  .people{overflow-x:auto;touch-action:auto}
+  .people-track{transform:none!important}
+  .people-group[data-copy]{display:none}
+  .people-group [data-fill]{display:none}
+  .person .im img{transition:none}
+}
 .story-promise{margin:var(--story-space) var(--pad) 0;max-width:28ch;font-size:clamp(25px,3.7vw,58px);font-weight:500;font-variation-settings:'wght' 500;line-height:1.5;letter-spacing:-.045em;word-break:keep-all}
-.story-studio{border-top:var(--hair) solid var(--fg)}
-.story-studio-head{padding:36px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:20px}
-.story-studio-head .brandline{font-size:clamp(24px,3vw,40px);margin:0}
-.story-studio .about-grid{border-top:var(--hair) solid var(--fg)}
-.story-studio .lede{font-size:clamp(15px,1.45vw,21px);max-width:56ch;margin:18px 0 28px;line-height:1.8}
-.story-studio details{border-bottom:var(--hair) solid var(--fg)}
-.story-studio summary{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px var(--pad);font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;cursor:var(--cur-hand);list-style:none}
-.story-studio summary::-webkit-details-marker{display:none}
-.story-studio summary::after{content:'+';font-size:22px;line-height:1}
-.story-studio details[open]>summary::after{content:'−'}
-.story-studio .deflist{padding-bottom:10px}
 .story-admin-note{margin:18px 0;padding:16px;border:var(--hair) solid var(--faint);font-size:12px;line-height:1.8}
 .about-story button:focus-visible,.story-chapter h2:focus-visible{outline:2px solid currentColor;outline-offset:5px}
 .story-reveal{transition:opacity .6s ease,transform .6s var(--ease)}
 .about-story.is-enhanced .story-reveal:not(.is-visible){opacity:.64;transform:translateY(14px)}
 @media(max-width:760px){
-  .story-hero-copy,.story-chapter-head,.system-console{grid-template-columns:1fr;gap:26px}
+  .story-hero-copy,.story-chapter-head{grid-template-columns:1fr;gap:26px}
   .story-hero-copy p,.story-chapter-head p{margin-left:0;max-width:48ch}
-  .experience-stage,.tech-workbench{grid-template-columns:1fr}
   .experience-drawing{min-height:310px;border-right:0;border-bottom:var(--hair) solid var(--fg)}
-  .experience-content{min-height:340px}
-  .tech-sources{padding:24px 0;border-right:0;border-bottom:var(--hair) solid var(--fg)}
-  .tech-insight{min-height:330px;padding-inline:0}
-  .story-studio-head{align-items:flex-start;flex-direction:column}
 }
 @media(prefers-reduced-motion:reduce){.about-story.is-enhanced .story-reveal:not(.is-visible){opacity:1;transform:none}.experience-progress{transition:none}}
 .map{aspect-ratio:16/9;border:var(--hair) solid var(--fg);overflow:hidden}
@@ -1426,7 +1464,9 @@ const ABOUT_STORY = {
   story_experience_body:'우리의 일은 고객의 경험에서 시작됩니다. 공간에서 살아갈 경험을 설계하고, 그 공간을 함께 만들어가는 경험도 설계합니다. 처음 나누는 대화부터 마지막 결정을 내리는 순간까지, 이해하고 선택하는 과정이 즐거울 수 있도록.',
   story_technology_title:'건축을 이해하고,\n필요한 기술을 만듭니다.',
   story_technology_body:'우리는 건축가이자 소프트웨어 개발자입니다. AI와 기술을 실제 프로젝트에 맞게 연결하고, 필요한 도구와 일하는 방식까지 직접 설계합니다. 흩어진 정보를 하나의 흐름으로 엮어 더 명확한 판단과 더 나은 서비스를 만듭니다.',
-  story_promise:'프로젝트의 경계를 열어두고,\n당신의 가능성을 함께 넓힙니다.'
+  story_promise:'프로젝트의 경계를 열어두고,\n당신의 가능성을 함께 넓힙니다.',
+  story_people_title:'최고의 전문가들이\n함께합니다.',
+  story_people_body:'서로 다른 전문성과 경험을 가진 사람들이 하나의 팀으로 일합니다. 각자의 관점을 연결해 프로젝트에 필요한 해답을 함께 만듭니다.'
 };
 const ABOUT_CONDITIONS = [
   {label:'공간의 조건',title:'작은 가능성도, 넓게 바라봅니다.',body:'대지와 주변 환경, 규모와 예산을 함께 읽습니다. 주어진 조건 안에 숨어 있는 가능성을 찾아, 그 장소에 어울리는 해답을 만듭니다.'},
@@ -1574,7 +1614,7 @@ async function shrink(file){
 }
 
 const DB = {
-  projects: [], news: [], posts: [],
+  projects: [], news: [], posts: [], inquiries:[],
   settings: { about: {...DEFAULT_ABOUT}, contact: {...DEFAULT_CONTACT} },
   ready: false,
   lastError: null,      // why the Supabase connection was refused, if it was
@@ -1723,9 +1763,19 @@ const DB = {
     if (error) throw error;
     session = data.session;
   },
+  async loadInquiries(){
+    if(!sb)return;
+    const {data,error}=await sb.from('contact_requests').select('id,created_at,subject,email,phone,body,status').order('created_at',{ascending:false}).limit(100);
+    if(error)throw error;DB.inquiries=data||[];
+  },
+  async setInquiryStatus(id,status){
+    if(!['new','reviewed','closed'].includes(status))return;
+    if(sb){const {error}=await sb.from('contact_requests').update({status}).eq('id',id);if(error)throw error;}
+    const row=DB.inquiries.find(item=>item.id===id);if(row)row.status=status;
+  },
   async logout(){
     if (sb) await sb.auth.signOut();
-    session = null;
+    session = null;DB.inquiries=[];
   }
 };
 
@@ -1875,6 +1925,7 @@ function render(){
   pageCleanup(); pageCleanup = () => {};
   const picker = $('#location-picker'); if (picker && picker.open) picker.close();
   const { page, arg } = parseHash();
+  document.body.classList.toggle('about-story-page',page==='about');
   const isGuidelines = page === 'guidelines';
   if (isGuidelines) app.removeAttribute('role'); else app.setAttribute('role', 'main');
   document.body.classList.toggle('guidelines', isGuidelines);
@@ -2253,9 +2304,9 @@ function aboutMotionHTML(){
   return `<section class="x-cloud-section" aria-label="Variable X와 eXperience">
     <div class="x-universe">
       <h2 class="x-label x-label-left">Variable X</h2>
-      <div class="x-field" data-motion="static"><canvas class="x-cloud" id="x-cloud" tabindex="0" role="img" aria-label="크기가 다른 흰 X 점군이 회전하며 구, 정사면체, 정육면체, 정팔면체로 변합니다. 마우스와 터치로 흩어지고 다시 모입니다. 클릭하면 더 넓게 퍼집니다. 방향키로도 반응 위치를 이동할 수 있습니다." aria-describedby="x-cloud-hint">회전하며 형태를 바꾸는 X 점군</canvas></div>
+      <div class="x-field" data-motion="static"><canvas class="x-cloud" id="x-cloud" tabindex="0" role="img" aria-label="별처럼 흩어진 X들이 스크롤에 따라 모여 구, 정사면체, 정육면체, 정팔면체를 이룹니다." aria-describedby="x-cloud-hint">스크롤에 따라 모여 형태를 만드는 X 점군</canvas></div>
       <h2 class="x-label x-label-right">eXperience</h2>
-      <p class="sr-only" id="x-cloud-hint">마우스나 터치로 X들을 흩어보세요. 클릭하면 더 넓게 퍼집니다.</p>
+      <p class="sr-only" id="x-cloud-hint">스크롤하며 형성되는 도형을 볼 수 있습니다. 방향키로도 점군에 반응을 줄 수 있습니다.</p>
     </div>
   </section>`;
 }
@@ -2270,7 +2321,7 @@ function makeXCloudPoints(count){
     let tetra=Infinity;
     for(const n of normals){const dot=-(n[0]*x+n[1]*y+n[2]*z);if(dot>1e-7)tetra=Math.min(tetra,.45/dot);}
     const radii=[1.08,tetra,.76/Math.max(Math.abs(x),Math.abs(y),Math.abs(z)),1.35/(Math.abs(x)+Math.abs(y)+Math.abs(z))];
-    return {forms:radii.map(q=>({x:x*q*layer,y:y*q*layer,z:z*q*layer})),size:.65+Math.pow(random(),2.5)*2.4,aspect:.65+random()*.65,angle:(random()-.5)*.5,weight:.6+random()*.65,ox:0,oy:0,vx:0,vy:0,memory:0,depth:0,sx:0,sy:0,perspective:1};
+    return {forms:radii.map(q=>({x:x*q*layer,y:y*q*layer,z:z*q*layer})),size:.65+Math.pow(random(),2.5)*2.4,aspect:.65+random()*.65,angle:(random()-.5)*.5,weight:.6+random()*.65,starX:random(),starY:random(),ox:0,oy:0,vx:0,vy:0,memory:0,depth:0,sx:0,sy:0,perspective:1};
   });
 }
 
@@ -2282,80 +2333,66 @@ function xCloudPhase(milliseconds){
 
 function viewAbout(){
   const s = DB.settings.about;
-  const facts   = pairs(s.facts);
-  const records = pairs(s.records);
   const people  = cells(s.people);     // 이름 | 직책 | 이력 | 사진주소
-  const dl = arr => arr.map(([k,v]) => `<div class="k">${esc(k)}</div><div class="v">${esc(v)}</div>`).join('');
   const copy = key => esc(s[key] || ABOUT_STORY[key]).replace(/\n/g,'<br>');
-  const condition=ABOUT_CONDITIONS[0],journey=ABOUT_JOURNEY[0],data=ABOUT_DATA[0];
+  const titleLine=text=>`<span aria-hidden="true">${Array.from(text).map(c=>/[A-Z]/.test(c)?`<span class="scramble-letter" data-final="${c}">${c}</span>`:esc(c)).join('')}</span>`;
 
   return `
   <div class="about-story">
-    <section class="story-hero" aria-labelledby="about-title">
+    <div class="hero-scroll-runway"><section class="story-hero" aria-labelledby="about-title">
       <div class="story-hero-top story-eyebrow">ARCHITECTS BY X</div>
-      <h1 class="story-title" id="about-title"><span>POSSIBILITIES.</span><span>BY X.</span></h1>
+      <h1 class="story-title" id="about-title" aria-label="POSSIBILITIES. BY X.">${titleLine('POSSIBILITIES.')}${titleLine('BY X.')}</h1>
       <div class="story-hero-copy"><h2>${copy('story_headline')}</h2><p>${copy('story_intro')}</p></div>
-    </section>
+    </section></div>
 
     <section class="story-chapter story-system" id="about-system" aria-labelledby="system-title">
       <div class="story-chapter-head story-reveal"><h2 id="system-title">${copy('story_system_title')}</h2><p>${copy('story_system_body')}</p></div>
-      ${aboutMotionHTML()}
-      <div class="system-console">
-        <div><p class="story-eyebrow">어디에서 시작해볼까요?</p><div class="system-options" role="group" aria-label="프로젝트를 바라보는 세 가지 관점">${ABOUT_CONDITIONS.map((c,i)=>`<button type="button" data-about-condition="${i}" aria-pressed="${i===0}" aria-controls="system-result">${esc(c.label)}</button>`).join('')}</div><div class="system-equation"><span>Variable X</span><span>×</span><span>eXperience</span><span>→</span><span>해답</span></div></div>
-        <div class="system-result" id="system-result" aria-live="polite" aria-atomic="true"><h3>${esc(condition.title)}</h3><p>${esc(condition.body)}</p></div>
+      <div class="cloud-scroll-runway">${aboutMotionHTML()}</div>
+      <div class="system-reading">
+        <div class="system-equation"><span>Variable X</span><span>×</span><span>eXperience</span><span>→</span><span>해답</span></div>
+        ${ABOUT_CONDITIONS.map(c=>`<article class="system-narrative story-reveal"><span>${esc(c.label)}</span><div><h3>${esc(c.title)}</h3><p>${esc(c.body)}</p></div></article>`).join('')}
       </div>
     </section>
 
     <section class="story-chapter story-experience" id="about-experience" aria-labelledby="experience-title">
       <div class="story-chapter-head story-reveal"><h2 id="experience-title">${copy('story_experience_title')}</h2><p>${copy('story_experience_body')}</p></div>
-      <div class="experience-stage">
-        <div class="experience-drawing" aria-hidden="true">
+      <div class="journey-scroll">
+        <div class="journey-visual"><div class="experience-drawing" aria-hidden="true">
           <svg viewBox="0 0 500 380" fill="none"><path d="M65 100H250V280H435" class="experience-route"/><path d="M65 100H250V280H435" pathLength="100" class="experience-progress"/>
             ${[[65,100],[250,100],[250,280],[435,280]].map(([x,y],i)=>`<circle class="experience-node" data-journey-node="${i}" data-active="${i===0}" cx="${x}" cy="${y}" r="7"/>`).join('')}
             <text class="experience-label" x="65" y="213">eXperience.</text>
           </svg>
-          <div class="experience-marker story-eyebrow"><span id="journey-drawing-label">${esc(journey.label)}</span></div>
-        </div>
-        <div class="experience-content" id="experience-result" aria-live="polite" aria-atomic="true"><div class="experience-counter"><b id="journey-number">01</b><span>/ 04</span></div><div><h3 id="journey-title">${esc(journey.title)}</h3><p id="journey-body">${esc(journey.body)}</p></div><div class="experience-footnote" id="journey-note">${esc(journey.note)}</div></div>
+          <div class="experience-marker story-eyebrow"><span id="journey-drawing-label">${esc(ABOUT_JOURNEY[0].label)}</span></div>
+        </div></div>
+        <div>${ABOUT_JOURNEY.map((j,i)=>`<article class="reading-step" data-journey-step="${i}"><span>${esc(j.label)}</span><h3>${esc(j.title)}</h3><p>${esc(j.body)}</p></article>`).join('')}</div>
       </div>
-      <div class="experience-steps" role="group" aria-label="함께 만드는 과정">${ABOUT_JOURNEY.map((j,i)=>`<button type="button" data-about-journey="${i}" aria-pressed="${i===0}" aria-controls="experience-result"><span>0${i+1}</span>${esc(j.label)}</button>`).join('')}</div>
     </section>
 
     <section class="story-chapter story-tech" id="about-technology" aria-labelledby="technology-title">
       <div class="story-chapter-head story-reveal"><h2 id="technology-title">${copy('story_technology_title')}</h2><p>${copy('story_technology_body')}</p></div>
-      <div class="tech-workbench">
-        <div class="tech-sources"><p class="story-eyebrow">흩어진 정보가, 더 나은 판단으로.</p><div role="group" aria-label="연결하는 데이터와 도구">${ABOUT_DATA.map((d,i)=>`<button type="button" data-about-data="${i}" aria-pressed="${i===0}" aria-controls="tech-result"><span>${esc(d.label)}</span><span>${d.en}</span></button>`).join('')}</div></div>
-        <div class="tech-insight" id="tech-result" aria-live="polite" aria-atomic="true"><div class="tech-flow" aria-hidden="true"><span id="tech-input">${data.input}</span><i></i><strong>BY X</strong><i></i><span>판단과 설계</span></div><div><h3 id="tech-title">${esc(data.title)}</h3><p id="tech-body">${esc(data.body)}</p></div></div>
+      <div class="function-layout">
+        <div class="function-visual"><div class="function-stage" data-motion="static"><canvas class="function-canvas" id="byx-function" role="img" aria-label="기하학적 데이터 심볼이 BYX 함수 상자로 들어가 공간과 설계 심볼로 나오는 애니메이션">데이터가 BYX의 설계 과정을 거쳐 공간과 설계로 연결됩니다.</canvas></div><p class="function-caption">법령·연산·맥락·협업 정보를 연결해 판단과 설계로 이어갑니다.</p></div>
+        <div>${ABOUT_DATA.map((d,i)=>`<article class="reading-step" data-source-step="${i}"><span>${esc(d.label)}</span><h3>${esc(d.title)}</h3><p>${esc(d.body)}</p></article>`).join('')}</div>
       </div>
       <p class="story-promise story-reveal">${copy('story_promise')}</p>
     </section>
 
-    <section class="story-studio" aria-label="스튜디오와 구성원">
-    <div class="story-studio-head"><h2 class="display brandline"><span class="blank" style="width:2.1em"></span><span class="optical">&nbsp;BY&nbsp;X</span></h2></div>
-    <details><summary>STUDIO NOTES &amp; RECORDS</summary><div class="about-grid">
-    <div>
-      <h2 class="display h-m">Studio</h2>
-      <p class="lede">${esc(s.lede)}</p>
-      ${lines(s.studio).map((t,i) => `<p style="max-width:52ch${i===0?';margin-top:14px':''}">${esc(t)}</p>`).join('')}
-      <div class="deflist" style="margin-top:26px">${dl(facts)}</div>
-    </div>
-    <div>
-      <h2 class="display h-m">Records</h2>
-      <div class="deflist" style="margin-top:14px">${dl(records)}</div>
-    </div>
-    </div></details>
-
-  ${people.length ? `
-  <div class="sechead" style="position:static"><h2>People</h2></div>
-  <div class="people">
-    ${people.map(([n,r,bio,im],i) => `<div class="person">
-      <div class="im"><img src="${esc(im || svgArt('person-'+n+i,600,800))}" alt="" loading="lazy"></div>
-      <div class="n">${esc(n)}</div>
-      <div class="r">${esc(r)}</div>
-      ${bio ? `<div class="bio">${esc(bio).replace(/\s*\/\s*/g,'<br>')}</div>` : ''}
-    </div>`).join('')}
-  </div>` : ''}
-    </section>
+    ${people.length?`<section class="people-section" aria-labelledby="people-title">
+      <div class="people-intro"><h2 id="people-title">${copy('story_people_title')}</h2><div><p>${copy('story_people_body')}</p><button type="button" class="people-pause" aria-pressed="false">움직임 멈추기</button></div></div>
+      <div class="people" aria-label="구성원 소개"><div class="people-track"><div class="people-group">${people.map(([n,r,bio,im],i)=>`<button type="button" class="person" data-person="${i}" aria-label="${esc(n)} 소개 보기" aria-haspopup="dialog"><span class="im"><img src="${esc(im || svgArt('person-'+n+i,600,800))}" alt="" loading="lazy"></span><span class="n">${esc(n)}</span><span class="r">${esc(r)}</span></button>`).join('')}</div></div></div>
+      <dialog class="people-dialog" id="people-dialog" aria-labelledby="profile-name"><div id="profile-content"></div></dialog>
+    </section>`:''}
+    <section class="contact-invitation" aria-labelledby="contact-invitation-title"><h2 id="contact-invitation-title">LET'S DO IT!</h2><p>함께 만들고 싶은 프로젝트가 있나요?</p><button type="button" class="contact-launch" data-contact-launch aria-haspopup="dialog">프로젝트 문의하기</button></section>
+    <dialog class="people-dialog contact-dialog" id="contact-dialog" aria-labelledby="contact-modal-title"><div class="profile-head"><span>CONTACT / BYX</span><button type="button" class="profile-close" data-contact-close aria-label="문의 창 닫기">×</button></div>
+      <form class="contact-form" id="contact-form"><h2 id="contact-modal-title">프로젝트 이야기를 들려주세요.</h2>
+        <label>제목<input name="subject" required minlength="3" maxlength="160" autocomplete="off"></label>
+        <div class="fgrid"><label>이메일<input name="email" type="email" required maxlength="254" autocomplete="email"></label><label>연락처 (선택)<input name="phone" type="tel" maxlength="40" autocomplete="tel"></label></div>
+        <label>설명<textarea name="body" required minlength="10" maxlength="8000"></textarea></label>
+        <label class="contact-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+        <label class="contact-consent"><input name="consent" type="checkbox" required><span>문의 답변을 위한 이메일·연락처 및 문의 내용의 수집·이용에 동의합니다.</span></label>
+        <p class="contact-feedback" id="contact-feedback" role="status" aria-live="polite"></p><button type="submit" class="abtn solid">문의 보내기</button>
+      </form>
+    </dialog>
   </div>`;
 }
 
@@ -2409,8 +2446,8 @@ function viewContact(){
    7. ADMIN
    ============================================================ */
 /* preview starts open — the marks are only readable once you see what they do */
-const AD = { tab:'projects', draft:null, back:null, preview:true };
-const TABS = [['projects','Project'],['news','News'],['posts','Blog'],['about','About'],['contact','Contact']];
+const AD = { tab:'projects', draft:null, back:null, preview:true,inquiryLoading:false,inquiryError:'' };
+const TABS = [['projects','Project'],['news','News'],['posts','Blog'],['about','About'],['contact','Contact'],['inquiries','문의함']];
 const SETTING_TABS = ['about','contact'];
 
 const F  = (label, key, val, type) => `<div class="fld"><label>${label}</label><input data-k="${key}" type="${type||'text'}" value="${esc(val)}"></div>`;
@@ -2475,10 +2512,15 @@ function viewAdmin(){
       : '';
 
   let pane;
-  if (SETTING_TABS.includes(AD.tab)) pane = edSettings(AD.tab);
+  if (AD.tab==='inquiries') pane=adminInquiries();
+  else if (SETTING_TABS.includes(AD.tab)) pane = edSettings(AD.tab);
   else if (AD.draft)                 pane = AD.tab === 'projects' ? edProject() : AD.tab === 'news' ? edNews() : edPost();
   else                               pane = adminList();
   return bar + warn + pane;
+}
+
+function adminInquiries(){
+  return `<div class="pane"><div class="location-head"><h2 class="display h-m">문의함</h2><button type="button" class="abtn" data-inquiry-refresh>새로고침</button></div><p class="inquiry-meta">최근 접수된 문의를 최대 100개 표시합니다.</p>${AD.inquiryLoading?'<p role="status">문의 불러오는 중…</p>':AD.inquiryError?`<p role="alert">${esc(AD.inquiryError)}</p>`:DB.inquiries.length?DB.inquiries.map(row=>`<details class="inquiry-item"><summary>${esc(row.subject)} <span class="mono">· ${esc({new:'새 문의',reviewed:'확인',closed:'완료'}[row.status]||row.status)}</span></summary><div class="inquiry-meta">${esc(new Date(row.created_at).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'}))}<br>이메일: ${esc(row.email)}<br>연락처: ${esc(row.phone||'미기재')}</div><label>처리 상태 <select data-inquiry-status="${esc(row.id)}">${[['new','새 문의'],['reviewed','확인'],['closed','완료']].map(([key,label])=>`<option value="${key}"${row.status===key?' selected':''}>${label}</option>`).join('')}</select></label><p class="inquiry-body">${esc(row.body)}</p></details>`).join(''):'<p class="mute">접수된 문의가 없습니다.</p>'}</div>`;
 }
 
 function adminList(){
@@ -2731,12 +2773,13 @@ function peopleShots(txt){
   return `
   <div class="flabel">People photos / 구성원 사진</div>
   <div class="pshots">
-    ${rows.map(([n, r, bio, im], i) => `
+    ${rows.map(([n, r, bio, im, intro], i) => `
       <div class="pshot">
         <div class="im"><img src="${esc(im || svgArt('person-' + n + i, 600, 800))}" alt=""></div>
         <div class="nm">${esc(n || '(이름 없음)')}</div>
         <button class="abtn sm" data-pimg="${i}">${im ? '사진 교체' : '사진 넣기'}</button>
         ${im ? `<button class="abtn sm" data-pdel="${i}">사진 지우기</button>` : ''}
+        <label class="flabel" for="person-intro-${i}">직원 소개</label><textarea id="person-intro-${i}" data-pintro="${i}" rows="4" placeholder="프로필 모달에 표시할 소개">${esc((intro||'').replace(/\\n/g,'\n'))}</textarea>
       </div>`).join('')}
   </div>
   <div class="wtools"><span class="hint">사진을 넣지 않으면 이름에서 만들어진 도형이 대신 들어갑니다</span></div>`;
@@ -2746,10 +2789,17 @@ function peopleShots(txt){
 function setPersonPhoto(i, url){
   const rows = cells(AD.draft.people);
   if (!rows[i]) return;
-  const c = rows[i].slice(0, PERSON_COLS);
+  const c = rows[i].slice();
   while (c.length < PERSON_COLS) c.push('');
   c[PERSON_COLS - 1] = url;
   AD.draft.people = rows.map((r, j) => (j === i ? c : r).join(' | ').replace(/(\s*\|\s*)+$/, '')).join('\n');
+}
+
+function setPersonIntro(i,text){
+  const rows=cells(AD.draft.people);if(!rows[i])return;
+  while(rows[i].length<5)rows[i].push('');
+  rows[i][4]=String(text).replace(/\|/g,'｜').replace(/\r?\n/g,'\\n');
+  AD.draft.people=rows.map(row=>row.join(' | ').replace(/(\s*\|\s*)+$/,'')).join('\n');
 }
 
 /* ABOUT / CONTACT — the pages that are copy, not records.
@@ -2760,7 +2810,7 @@ function edSettings(which){
   const listNote = '한 줄에 하나씩. 세로줄 | 왼쪽이 라벨, 오른쪽이 내용입니다.';
 
   const body = which === 'about' ? `
-    <p class="story-admin-note">첫 화면과 세 챕터의 문구입니다. 제목은 줄바꿈할 수 있고, 비워두면 기본 소개 문구를 사용합니다. 기존 스튜디오·연혁·구성원 정보는 페이지 아래에서 계속 표시됩니다.</p>
+    <p class="story-admin-note">첫 화면·세 챕터·구성원 소개의 문구입니다. 비워두면 기본 문구를 사용합니다. Studio·Records는 공개 페이지에서 숨기고 기존 데이터를 보관합니다.</p>
     ${TA('첫 화면 / 제목','story_headline',d.story_headline ?? ABOUT_STORY.story_headline,90)}
     ${TA('첫 화면 / 소개','story_intro',d.story_intro ?? ABOUT_STORY.story_intro,110)}
     ${TA('01 시스템 / 제목','story_system_title',d.story_system_title ?? ABOUT_STORY.story_system_title,90)}
@@ -2770,11 +2820,13 @@ function edSettings(which){
     ${TA('03 건축과 기술 / 제목','story_technology_title',d.story_technology_title ?? ABOUT_STORY.story_technology_title,90)}
     ${TA('03 건축과 기술 / 소개','story_technology_body',d.story_technology_body ?? ABOUT_STORY.story_technology_body,130)}
     ${TA('마무리 / 약속','story_promise',d.story_promise ?? ABOUT_STORY.story_promise,90)}
+    ${TA('People / 제목','story_people_title',d.story_people_title ?? ABOUT_STORY.story_people_title,90)}
+    ${TA('People / 소개','story_people_body',d.story_people_body ?? ABOUT_STORY.story_people_body,110)}
     ${TA('Studio notes / 기존 소개 문단','lede',d.lede,110)}
     ${TA('Studio / 소개 (빈 줄로 문단 구분)','studio',d.studio,150)}
     ${TA('Facts / 기본 정보 — ' + listNote,'facts',d.facts,130)}
     ${TA('Records / 수상·연혁 — ' + listNote,'records',d.records,150)}
-    ${TA('People / 구성원 — 한 줄에 한 사람. 이름 | 직책 | 이력  (이력은 " / " 로 나누면 줄이 바뀝니다)','people',d.people,170)}
+    ${TA('People / 구성원 — 이름 | 직책 | 이력 | 사진주소 | 소개(선택). 이력은 " / " 로 구분합니다.','people',d.people,170)}
     ${peopleShots(d.people)}
   ` : `
     <div class="fgrid">
@@ -3039,6 +3091,13 @@ function openLocationPicker(){
 
 function bindAdmin(){
   const root = app;
+  const reloadInquiries=async()=>{
+    AD.inquiryLoading=true;AD.inquiryError='';refreshAdmin();
+    try{await DB.loadInquiries();}catch(error){AD.inquiryError='문의를 불러오지 못했습니다. 관리자 권한과 연결을 확인해주세요.';}
+    finally{AD.inquiryLoading=false;if(AD.tab==='inquiries'&&session)refreshAdmin();}
+  };
+  $$('[data-inquiry-refresh]',root).forEach(button=>button.onclick=reloadInquiries);
+  $$('[data-inquiry-status]',root).forEach(select=>select.onchange=async()=>{try{await DB.setInquiryStatus(select.dataset.inquiryStatus,select.value);$('.mono',select.closest('.inquiry-item')).textContent='· '+{new:'새 문의',reviewed:'확인',closed:'완료'}[select.value];toast('문의 상태를 변경했습니다.');}catch{toast('상태를 변경하지 못했습니다.');}});
   $$('[data-pick-location]',root).forEach(b=>b.onclick=()=>openLocationPicker());
   $$('[data-clear-location]',root).forEach(b=>b.onclick=()=>{AD.draft.location_point=null;refreshAdmin();});
   $$('[data-project-calendar]',root).forEach(calendar=>{
@@ -3059,6 +3118,7 @@ function bindAdmin(){
     AD.tab = b.dataset.tab;
     AD.draft = SETTING_TABS.includes(AD.tab) ? {...DB.settings[AD.tab]} : null;
     refreshAdmin();
+    if(AD.tab==='inquiries')reloadInquiries();
   });
   $$('[data-edit]', root).forEach(b => b.onclick = () => {
     const r = DB[AD.tab].find(x => String(x.id) === b.dataset.edit);
@@ -3088,6 +3148,10 @@ function bindAdmin(){
      name field is left, never while it is being typed in */
   const pf = AD.tab === 'about' ? $('[data-k="people"]', root) : null;
   if (pf) pf.onchange = () => refreshAdmin();
+  $$('[data-pintro]',root).forEach(input=>input.oninput=()=>{
+    setPersonIntro(+input.dataset.pintro,input.value);
+    const people=$('[data-k="people"]',root);if(people)people.value=AD.draft.people;
+  });
 
   /* date: eight digits and a calendar, kept in step both ways */
   $$('[data-dpick]', root).forEach(p => p.onchange = () => {
@@ -3270,11 +3334,11 @@ function bindAboutMotion(){
   const ctx=canvas.getContext('2d');
   if(!ctx)return()=>{};
   const reduced=matchMedia('(prefers-reduced-motion:reduce)');
-  let points=[],order=[],width=0,height=0,dpr=0,raf=0,last=0,clock=0,visible=false,disposed=false,frames=0;
+  let points=[],order=[],width=0,height=0,dpr=0,raf=0,last=0,clock=0,visible=false,disposed=false,frames=0,formation=0,scrollFrame=0;
   const pointer={active:false,x:0,y:0,vx:0,vy:0,burst:0};
   function draw(delta=0){
     if(!width||!height||disposed)return;
-    const phase=xCloudPhase(clock),seconds=clock/1000,step=Math.min(delta,64)/16.667;
+    const phase=xCloudPhase(clock),seconds=clock/1000,step=Math.min(delta,64)/16.667,assembled=reduced.matches?1:formation*formation*(3-2*formation);
     const yaw=seconds*.18,pitch=.24+Math.sin(seconds*.13)*.2,roll=Math.sin(seconds*.09)*.11;
     const cy=Math.cos(yaw),sy=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch),cr=Math.cos(roll),sr=Math.sin(roll);
     const radius=Math.min(width,height)*.35,reach=Math.min(280,Math.min(width,height)*.43)*(1+pointer.burst*.5),sizeScale=Math.max(.85,Math.min(1.3,width/1000));
@@ -3283,10 +3347,13 @@ function bindAboutMotion(){
       const p=points[i],a=p.forms[phase.from],b=p.forms[phase.to];
       const x=a.x+(b.x-a.x)*phase.mix,y=a.y+(b.y-a.y)*phase.mix,z=a.z+(b.z-a.z)*phase.mix;
       const rx=x*cy+z*sy,rz=-x*sy+z*cy,ry=y*cp-rz*sp,depth=y*sp+rz*cp;
-      const perspective=4.5/(4.5-depth),px=width/2+(rx*cr-ry*sr)*radius*perspective,py=height/2+(rx*sr+ry*cr)*radius*perspective;
+      const perspective=4.5/(4.5-depth),targetX=width/2+(rx*cr-ry*sr)*radius*perspective,targetY=height/2+(rx*sr+ry*cr)*radius*perspective;
+      const flightAngle=p.starX*Math.PI*2,flightRadius=.56+p.starY*1.1;
+      const starX=width/2+Math.cos(flightAngle)*width*flightRadius,starY=height/2+Math.sin(flightAngle)*height*flightRadius;
+      const px=starX+(targetX-starX)*assembled,py=starY+(targetY-starY)*assembled;
       let dx=px+p.ox-pointer.x,dy=py+p.oy-pointer.y,dist=Math.hypot(dx,dy);
       if(dist<.1){dx=Math.cos(i*goldenAngle());dy=Math.sin(i*goldenAngle());dist=1;}
-      const influence=pointer.active?Math.pow(Math.max(0,1-dist/reach),1.6):0;
+      const influence=pointer.active?Math.pow(Math.max(0,1-dist/reach),1.6)*assembled:0;
       if(reduced.matches){p.ox=dx/dist*influence*reach*1.1;p.oy=dy/dist*influence*reach*1.1;p.vx=p.vy=p.memory=0;}
       else if(step){
         // Preserve direct input strength; let touched points settle more slowly.
@@ -3300,7 +3367,7 @@ function bindAboutMotion(){
         p.ox=Math.max(-width*.45,Math.min(width*.45,p.ox+p.vx*step));p.oy=Math.max(-height*.45,Math.min(height*.45,p.oy+p.vy*step));
       }
       dispersal=Math.max(dispersal,Math.hypot(p.ox,p.oy));
-      p.sx=px+p.ox;p.sy=py+p.oy;p.depth=depth;p.perspective=perspective;
+      p.sx=px+p.ox*assembled;p.sy=py+p.oy*assembled;p.depth=depth;p.perspective=perspective;
     }
     pointer.vx*=.85;pointer.vy*=.85;pointer.burst*=Math.pow(.95,step);
     order.sort((a,b)=>a.depth-b.depth);
@@ -3312,7 +3379,7 @@ function bindAboutMotion(){
       ctx.beginPath();ctx.moveTo(p.sx+ax,p.sy+ay);ctx.lineTo(p.sx-ax,p.sy-ay);ctx.moveTo(p.sx+bx,p.sy+by);ctx.lineTo(p.sx-bx,p.sy-by);ctx.stroke();
     }
     ctx.globalAlpha=1;
-    canvas.dataset.shape=String(phase.from);canvas.dataset.points=String(points.length);canvas.dataset.frame=String(++frames);canvas.dataset.dispersal=dispersal.toFixed(2);
+    canvas.dataset.shape=String(phase.from);canvas.dataset.points=String(points.length);canvas.dataset.frame=String(++frames);canvas.dataset.dispersal=dispersal.toFixed(2);canvas.dataset.formation=(reduced.matches?1:formation).toFixed(3);
   }
   function goldenAngle(){return Math.PI*(3-Math.sqrt(5));}
   function tick(now){
@@ -3324,7 +3391,7 @@ function bindAboutMotion(){
   function sync(){
     if(disposed)return;
     cancelAnimationFrame(raf);raf=0;last=0;
-    const running=visible&&!document.hidden&&!reduced.matches;
+    const running=visible&&!document.hidden&&!reduced.matches&&!$('#people-dialog[open],#contact-dialog[open]',app);
     field.dataset.motion=running?'running':reduced.matches?'static':'idle';draw();
     if(running)raf=requestAnimationFrame(tick);
   }
@@ -3336,8 +3403,17 @@ function bindAboutMotion(){
     const count=width<600?800:1400;
     if(points.length!==count){points=makeXCloudPoints(count);order=points.slice();}
     else for(const p of points){p.ox*=width/oldWidth;p.oy*=width/oldWidth;}
-    sync();
+    updateFormation();sync();
   }
+  function updateFormation(){
+    scrollFrame=0;
+    const box=canvas.getBoundingClientRect(),runway=canvas.closest('.cloud-scroll-runway');
+    if(runway){const r=runway.getBoundingClientRect(),head=$('#top').getBoundingClientRect().height,travel=Math.max(1,r.height-(innerHeight-head));formation=Math.max(0,Math.min(1,(head-r.top)/(travel*.62)));}
+    else formation=Math.max(0,Math.min(1,(innerHeight-box.top)/(innerHeight*.78)));
+    if(visible&&!raf)draw();
+  }
+  const scroll=()=>{if(!scrollFrame)scrollFrame=requestAnimationFrame(updateFormation);};
+  window.addEventListener('scroll',scroll,{passive:true});
   function move(event){
     const box=canvas.getBoundingClientRect(),x=event.clientX-box.left,y=event.clientY-box.top;
     pointer.vx=pointer.active?x-pointer.x:0;pointer.vy=pointer.active?y-pointer.y:0;pointer.x=x;pointer.y=y;pointer.active=true;
@@ -3359,55 +3435,214 @@ function bindAboutMotion(){
   field.addEventListener('byx:condition',condition);
   const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:0});observer.observe(field);
   const sizing=new ResizeObserver(resize);sizing.observe(field);window.addEventListener('resize',resize);
-  document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',preference);resize();
-  return()=>{disposed=true;cancelAnimationFrame(raf);observer.disconnect();sizing.disconnect();window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',sync);reduced.removeEventListener('change',preference);field.removeEventListener('byx:condition',condition);};
+  document.addEventListener('visibilitychange',sync);document.addEventListener('byx:modal',sync);reduced.addEventListener('change',preference);resize();
+  return()=>{disposed=true;cancelAnimationFrame(raf);cancelAnimationFrame(scrollFrame);observer.disconnect();sizing.disconnect();window.removeEventListener('resize',resize);window.removeEventListener('scroll',scroll);document.removeEventListener('visibilitychange',sync);document.removeEventListener('byx:modal',sync);reduced.removeEventListener('change',preference);field.removeEventListener('byx:condition',condition);};
+}
+
+function bindAboutTitle(root){
+  const title=$('#about-title',root),letters=$$('[data-final]',title),reduced=matchMedia('(prefers-reduced-motion:reduce)');
+  let raf=0,disposed=false,started=false,start=0;
+  const finish=()=>{cancelAnimationFrame(raf);raf=0;letters.forEach(letter=>{letter.textContent=letter.dataset.final;letter.style.width='';});title.dataset.motion='settled';};
+  function tick(now){
+    if(disposed)return;
+    if(!start)start=now;
+    const time=now-start;
+    letters.forEach((letter,index)=>{
+      const settled=time>550+index*48;
+      letter.textContent=settled?letter.dataset.final:String.fromCharCode(65+(index*11+Math.floor(time/55)*7)%26);
+    });
+    if(time>550+letters.length*48)finish();else raf=requestAnimationFrame(tick);
+  }
+  async function begin(){
+    if(started||disposed)return;started=true;
+    await document.fonts?.ready;if(disposed)return;
+    if(reduced.matches||document.hidden){finish();return;}
+    letters.forEach(letter=>{letter.style.width=letter.getBoundingClientRect().width+'px';});
+    title.dataset.motion='scrambling';raf=requestAnimationFrame(tick);
+  }
+  const observer=new IntersectionObserver(entries=>{if(entries[0].isIntersecting)begin();else if(started)finish();});observer.observe(title);
+  const preference=()=>{if(reduced.matches||document.hidden)finish();};
+  document.addEventListener('visibilitychange',preference);reduced.addEventListener('change',preference);window.addEventListener('resize',finish);
+  return()=>{disposed=true;finish();observer.disconnect();document.removeEventListener('visibilitychange',preference);reduced.removeEventListener('change',preference);window.removeEventListener('resize',finish);};
+}
+
+function drawFunctionSymbol(ctx,kind,x,y,size,output=false){
+  ctx.save();ctx.translate(x,y);ctx.lineWidth=1.4;ctx.beginPath();
+  if(output&&kind%3===0){
+    ctx.moveTo(0,-size);ctx.lineTo(size,-size*.45);ctx.lineTo(size,size*.5);ctx.lineTo(0,size);ctx.lineTo(-size,size*.5);ctx.lineTo(-size,-size*.45);ctx.closePath();
+    ctx.moveTo(-size,-size*.45);ctx.lineTo(0,0);ctx.lineTo(size,-size*.45);ctx.moveTo(0,0);ctx.lineTo(0,size);
+  }else if(output&&kind%3===1){
+    ctx.rect(-size,-size,size*2,size*2);ctx.moveTo(-size,0);ctx.lineTo(size*.4,0);ctx.moveTo(0,-size);ctx.lineTo(0,size);ctx.moveTo(0,size*.5);ctx.lineTo(size,size*.5);
+  }else if(output){
+    ctx.moveTo(-size,size);ctx.lineTo(-size,-size*.2);ctx.lineTo(0,-size);ctx.lineTo(size,-size*.2);ctx.lineTo(size,size);ctx.closePath();ctx.moveTo(-size,-size*.2);ctx.lineTo(size,-size*.2);ctx.moveTo(0,-size);ctx.lineTo(0,size);
+  }else if(kind%4===0){ctx.rect(-size*.7,-size,size*1.4,size*2);ctx.moveTo(-size*.35,-size*.4);ctx.lineTo(size*.35,-size*.4);ctx.moveTo(-size*.35,size*.2);ctx.lineTo(size*.35,size*.2);}
+  else if(kind%4===1){ctx.rect(-size,-size,size*2,size*2);ctx.moveTo(-size*.6,0);ctx.lineTo(size*.6,0);ctx.moveTo(0,-size*.6);ctx.lineTo(0,size*.6);}
+  else if(kind%4===2){ctx.moveTo(0,-size);ctx.lineTo(size,size);ctx.lineTo(-size,size);ctx.closePath();ctx.moveTo(0,-size);ctx.lineTo(0,size);}
+  else{ctx.arc(0,0,size,0,Math.PI*2);ctx.moveTo(-size,0);ctx.lineTo(size,0);ctx.moveTo(0,-size);ctx.lineTo(0,size);}
+  ctx.stroke();ctx.restore();
+}
+
+function bindAboutFunction(root){
+  const canvas=$('#byx-function',root),stage=canvas?.parentElement,ctx=canvas?.getContext('2d');
+  if(!ctx)return()=>{};
+  const reduced=matchMedia('(prefers-reduced-motion:reduce)');
+  let width=0,height=0,dpr=1,clock=0,raf=0,last=0,visible=false,disposed=false,frames=0;
+  function draw(){
+    if(!width||!height||disposed)return;
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#fff';ctx.fillRect(0,0,width,height);ctx.strokeStyle='#000';ctx.fillStyle='#000';
+    const boxWidth=Math.max(84,Math.min(190,width*.26)),boxHeight=Math.min(220,height*.44),left=(width-boxWidth)/2,right=left+boxWidth,center=height/2;
+    const inset=Math.max(24,width*.07),symbol=Math.max(8,Math.min(19,width*.026));
+    ctx.lineWidth=1;ctx.globalAlpha=.18;
+    for(let i=0;i<4;i++){
+      const y=height*(.21+i*.19),outY=height*(.24+(i%3)*.26);
+      ctx.beginPath();ctx.moveTo(inset,y);ctx.bezierCurveTo(width*.28,y,left-20,center,left,center);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(right,center);ctx.bezierCurveTo(right+20,center,width*.76,outY,width-inset,outY);ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+    for(let i=0;i<4;i++){
+      const phase=reduced.matches?.12:(clock/5600+i*.25)%1,input=phase<.5,u=input?phase*2:(phase-.5)*2;
+      const smooth=u*u*(3-2*u),startY=height*(.21+i*.19),endY=height*(.24+(i%3)*.26);
+      const x=input?inset+(left-inset)*u:right+(width-inset-right)*u;
+      const y=input?startY+(center-startY)*smooth:center+(endY-center)*smooth;
+      ctx.globalAlpha=reduced.matches?1:Math.min(1,Math.min(u,1-u)*7+.15);
+      drawFunctionSymbol(ctx,i,x,y,symbol,!input);
+      if(reduced.matches)drawFunctionSymbol(ctx,i,width-inset,endY,symbol,true);
+    }
+    ctx.globalAlpha=1;ctx.fillStyle='#fff';ctx.fillRect(left,center-boxHeight/2,boxWidth,boxHeight);ctx.lineWidth=1.5;ctx.strokeRect(left,center-boxHeight/2,boxWidth,boxHeight);
+    ctx.fillStyle='#000';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font=`${Math.max(30,Math.min(64,boxWidth*.38))}px Anton, sans-serif`;ctx.fillText('BYX',width/2,center);
+    ctx.font='12px SUIT, sans-serif';ctx.fillText('데이터',inset,26);ctx.fillText('설계',width-inset,26);
+    ctx.font='12px monospace';ctx.fillText('f(x)',width/2,center+boxHeight*.33);
+    canvas.dataset.frame=String(++frames);canvas.dataset.phase=((clock%5600)/5600).toFixed(3);
+  }
+  function tick(now){raf=0;if(disposed||!visible||document.hidden||reduced.matches)return;if(!last)last=now;if(now-last>=1000/30){clock+=Math.min(64,now-last);last=now;draw();}raf=requestAnimationFrame(tick);}
+  function sync(){cancelAnimationFrame(raf);raf=0;last=0;const running=visible&&!document.hidden&&!reduced.matches&&!$('#people-dialog[open],#contact-dialog[open]',root);stage.dataset.motion=running?'running':reduced.matches?'static':'idle';draw();if(running)raf=requestAnimationFrame(tick);}
+  function resize(){const rect=canvas.getBoundingClientRect();width=rect.width;height=rect.height;dpr=Math.min(devicePixelRatio||1,1.75);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);draw();}
+  const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();});observer.observe(stage);
+  const sizing=new ResizeObserver(resize);sizing.observe(stage);resize();
+  document.addEventListener('visibilitychange',sync);document.addEventListener('byx:modal',sync);reduced.addEventListener('change',sync);document.fonts?.ready.then(()=>{if(!disposed)draw();});
+  return()=>{disposed=true;cancelAnimationFrame(raf);observer.disconnect();sizing.disconnect();document.removeEventListener('visibilitychange',sync);document.removeEventListener('byx:modal',sync);reduced.removeEventListener('change',sync);};
+}
+
+function bindAboutPeople(root){
+  const viewport=$('.people',root),track=$('.people-track',root),group=$('.people-group',root),dialog=$('#people-dialog',root),content=$('#profile-content',root),pause=$('.people-pause',root);
+  if(!viewport||!dialog)return()=>{};
+  const reduced=matchMedia('(prefers-reduced-motion:reduce)'),members=cells(DB.settings.about.people);
+  const base=$$('[data-person]',group),moving=base.length>1;
+  let width=0,phase=0,raf=0,last=0,visible=false,hovered=false,focused=false,userPaused=false,disposed=false,focusOffset=null,trigger=null,previousOverflow='',modalLocked=false;
+  const isOpen=()=>dialog.open||!!$('#contact-dialog[open]',root);
+  function draw(){track.style.transform=reduced.matches||!moving?'none':`translateX(${focusOffset ?? phase-width}px)`;viewport.dataset.offset=phase.toFixed(2);}
+  function tick(now){raf=0;if(disposed)return;if(last)phase=(phase+Math.min(64,now-last)*.018)%width;last=now;draw();raf=requestAnimationFrame(tick);}
+  function sync(){
+    cancelAnimationFrame(raf);raf=0;last=0;
+    const running=moving&&width>0&&visible&&!document.hidden&&!reduced.matches&&!hovered&&!focused&&!userPaused&&!isOpen();
+    viewport.dataset.motion=running?'running':reduced.matches||!moving?'static':'paused';
+    pause.hidden=reduced.matches||!moving;pause.textContent=userPaused?'움직임 재개':'움직임 멈추기';pause.setAttribute('aria-pressed',String(userPaused));
+    draw();if(running)raf=requestAnimationFrame(tick);
+  }
+  function concealCopy(node){node.setAttribute('aria-hidden','true');$$('button',node).forEach(button=>button.tabIndex=-1);}
+  function resize(){
+    $$('[data-copy]',track).forEach(node=>node.remove());$$('[data-fill]',group).forEach(node=>node.remove());
+    if(moving&&!reduced.matches){
+      const baseWidth=group.getBoundingClientRect().width,target=viewport.clientWidth+base[0].getBoundingClientRect().width;
+      for(let n=1;n<Math.ceil(target/Math.max(1,baseWidth));n++)for(const card of base){const clone=card.cloneNode(true);clone.dataset.fill='';clone.setAttribute('aria-hidden','true');clone.tabIndex=-1;group.appendChild(clone);}
+      for(const side of ['before','after']){const clone=group.cloneNode(true);clone.dataset.copy=side;concealCopy(clone);if(side==='before')track.prepend(clone);else track.append(clone);}
+    }
+    width=group.getBoundingClientRect().width;phase=width?phase%width:0;focusOffset=null;sync();
+  }
+  function closeProfile(){
+    if(!modalLocked)return;modalLocked=false;
+    document.body.style.overflow=previousOverflow;content.replaceChildren();
+    document.dispatchEvent(new Event('byx:modal'));
+    if(!disposed&&trigger?.isConnected)trigger.focus({preventScroll:true});
+    sync();
+  }
+  function openProfile(index){
+    const member=members[index];if(!member)return;
+    const [name,role,bio,photo,intro]=member;
+    trigger=base.find(button=>+button.dataset.person===index)||pause;
+    content.innerHTML=`<div class="profile-head"><span>PEOPLE / BYX</span><button type="button" class="profile-close" aria-label="직원 소개 닫기" autofocus>×</button></div><div class="profile-layout"><div class="profile-photo"><img src="${esc(photo||svgArt('person-'+name+index,600,800))}" alt="${esc(name)}"></div><div class="profile-copy"><h2 id="profile-name">${esc(name)}</h2><p class="profile-role">${esc(role)}</p>${intro?`<p class="profile-intro">${esc(intro.replace(/\\n/g,'\n'))}</p>`:''}${bio?`<ul class="profile-career">${bio.split(/\s*\/\s*/).filter(Boolean).map(line=>`<li>${esc(line)}</li>`).join('')}</ul>`:''}</div></div>`;
+    previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden';modalLocked=true;
+    dialog.showModal();dialog.scrollTop=0;$('.profile-close',content).onclick=()=>dialog.close();$('.profile-close',content).focus();
+    document.dispatchEvent(new Event('byx:modal'));sync();
+  }
+  const click=event=>{const button=event.target.closest('[data-person]');if(button)openProfile(+button.dataset.person);};
+  const pointerDown=event=>{if(event.target.closest('[data-copy],[data-fill]'))event.preventDefault();};
+  const enter=event=>{if(event.pointerType!=='touch'){hovered=true;sync();}},leave=()=>{hovered=false;sync();};
+  const focusIn=event=>{
+    focused=true;
+    const button=event.target.closest('[data-person]');
+    if(button&&!reduced.matches&&moving){const ownX=button.getBoundingClientRect().left-group.getBoundingClientRect().left;focusOffset=-width-ownX+12;}
+    sync();
+  };
+  const focusOut=event=>{if(!viewport.contains(event.relatedTarget)){focused=false;focusOffset=null;sync();}};
+  viewport.addEventListener('click',click);viewport.addEventListener('mousedown',pointerDown);viewport.addEventListener('pointerenter',enter);viewport.addEventListener('pointerleave',leave);viewport.addEventListener('focusin',focusIn);viewport.addEventListener('focusout',focusOut);
+  pause.onclick=()=>{userPaused=!userPaused;sync();};
+  dialog.addEventListener('close',closeProfile);
+  dialog.onkeydown=event=>{if(event.key!=='Tab')return;const buttons=$$('button,a[href],input,textarea,select,[tabindex="0"]',dialog),first=buttons[0],last=buttons.at(-1);if(!first)return;if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}};
+  dialog.onclick=event=>{const r=dialog.getBoundingClientRect();if(event.target===dialog&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))dialog.close();};
+  const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();});observer.observe(viewport);
+  const sizing=new ResizeObserver(resize);sizing.observe(viewport);resize();
+  document.addEventListener('visibilitychange',sync);document.addEventListener('byx:modal',sync);reduced.addEventListener('change',resize);
+  return()=>{disposed=true;cancelAnimationFrame(raf);observer.disconnect();sizing.disconnect();document.removeEventListener('visibilitychange',sync);document.removeEventListener('byx:modal',sync);reduced.removeEventListener('change',resize);if(dialog.open)dialog.close();if(modalLocked){modalLocked=false;document.body.style.overflow=previousOverflow;document.dispatchEvent(new Event('byx:modal'));}dialog.removeEventListener('close',closeProfile);};
+}
+
+function bindAboutContact(root){
+  const dialog=$('#contact-dialog',root),form=$('#contact-form',root),launch=$('[data-contact-launch]',root),close=$('[data-contact-close]',root),feedback=$('#contact-feedback',root),submit=$('[type="submit"]',form);
+  if(!dialog)return()=>{};
+  let previousOverflow='',disposed=false,busy=false,accepted=false,controller=null,modalLocked=false;
+  const restore=()=>{if(!modalLocked)return;modalLocked=false;document.body.style.overflow=previousOverflow;document.dispatchEvent(new Event('byx:modal'));if(!disposed)launch.focus({preventScroll:true});};
+  launch.onclick=()=>{
+    if(accepted){form.reset();feedback.textContent='';accepted=false;submit.disabled=false;submit.textContent='문의 보내기';}
+    previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden';modalLocked=true;dialog.showModal();close.focus();document.dispatchEvent(new Event('byx:modal'));
+  };
+  close.onclick=()=>dialog.close();dialog.addEventListener('close',restore);
+  dialog.onclick=event=>{const r=dialog.getBoundingClientRect();if(event.target===dialog&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))dialog.close();};
+  dialog.onkeydown=event=>{if(event.key!=='Tab')return;const fields=$$('button,input:not([tabindex="-1"]),textarea',dialog).filter(el=>!el.disabled),first=fields[0],last=fields.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}};
+  form.onsubmit=async event=>{
+    event.preventDefault();if(busy||accepted||!form.reportValidity())return;
+    const data=new FormData(form),payload={subject:String(data.get('subject')).trim(),email:String(data.get('email')).trim(),phone:String(data.get('phone')||'').trim(),body:String(data.get('body')).trim(),consent:data.get('consent')==='on',website:String(data.get('website')||'')};
+    if(payload.subject.length<3||payload.body.length<10){feedback.textContent='제목은 3자 이상, 설명은 10자 이상 입력해주세요.';return;}
+    busy=true;submit.disabled=true;feedback.textContent='문의를 접수하고 있습니다…';
+    try{
+      if(DB.demo){DB.inquiries.unshift({...payload,id:uid(),created_at:new Date().toISOString(),status:'new'});feedback.textContent='데모 문의가 접수되었습니다. 실제로 전송되지는 않습니다.';}
+      else{
+        controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),15000);
+        let result;try{result=await fetch(CFG.url.replace(/\/$/,'')+'/functions/v1/contact-inquiry',{method:'POST',headers:{'Content-Type':'application/json',apikey:CFG.key},body:JSON.stringify(payload),signal:controller.signal});}finally{clearTimeout(timeout);}
+        const message=await result.json().catch(()=>({}));if(!result.ok||!message.accepted)throw Error(message.error||'접수하지 못했습니다. 잠시 후 다시 시도해주세요.');
+        if(!disposed)feedback.textContent='문의가 접수되었습니다.';
+      }
+      accepted=true;
+    }catch(error){if(!disposed)feedback.textContent=error.name==='AbortError'?'응답을 확인하지 못했습니다. 잠시 후 다시 시도해주세요.':error.message;}
+    finally{busy=false;controller=null;if(!disposed){submit.disabled=accepted;submit.textContent=accepted?'접수 완료':'문의 보내기';}}
+  };
+  return()=>{disposed=true;controller?.abort();if(dialog.open)dialog.close();restore();dialog.removeEventListener('close',restore);};
 }
 
 function bindAboutStory(){
   const root=$('.about-story',app);
   if(!root)return()=>{};
-  const cleanMotion=bindAboutMotion();
+  const cleaners=[bindAboutTitle(root),bindAboutMotion(),bindAboutFunction(root),bindAboutPeople(root),bindAboutContact(root)];
   root.classList.add('is-enhanced');
-  const pressed=(selector,index)=>$$(selector,root).forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));
-  $$('[data-about-condition]',root).forEach(button=>button.onclick=()=>{
-    const index=+button.dataset.aboutCondition,condition=ABOUT_CONDITIONS[index];
-    if(!condition)return;
-    pressed('[data-about-condition]',index);
-    $('#system-result h3',root).textContent=condition.title;
-    $('#system-result p',root).textContent=condition.body;
-    $('.x-field',root).dispatchEvent(new CustomEvent('byx:condition',{detail:{index}}));
-  });
-  $$('[data-about-journey]',root).forEach(button=>button.onclick=()=>{
-    const index=+button.dataset.aboutJourney,journey=ABOUT_JOURNEY[index];
-    if(!journey)return;
-    pressed('[data-about-journey]',index);
-    $('#journey-number',root).textContent=String(index+1).padStart(2,'0');
-    $('#journey-title',root).textContent=journey.title;$('#journey-body',root).textContent=journey.body;
-    $('#journey-note',root).textContent=journey.note;$('#journey-drawing-label',root).textContent=journey.label;
-    $('.experience-progress',root).style.setProperty('--journey-offset',String(100-[0,34,67,100][index]));
-    $$('[data-journey-node]',root).forEach((node,i)=>node.dataset.active=String(i<=index));
-  });
-  $$('[data-about-data]',root).forEach(button=>button.onclick=()=>{
-    const index=+button.dataset.aboutData,data=ABOUT_DATA[index];
-    if(!data)return;
-    pressed('[data-about-data]',index);
-    $('#tech-input',root).textContent=data.input;$('#tech-title',root).textContent=data.title;$('#tech-body',root).textContent=data.body;
-  });
-  for(const selector of ['[data-about-condition]','[data-about-journey]','[data-about-data]']){
-    const buttons=$$(selector,root);
-    buttons.forEach((button,index)=>button.onkeydown=event=>{
-      let next;
-      if(event.key==='ArrowRight')next=(index+1)%buttons.length;
-      else if(event.key==='ArrowLeft')next=(index+buttons.length-1)%buttons.length;
-      else if(event.key==='Home')next=0;
-      else if(event.key==='End')next=buttons.length-1;
-      if(next===undefined)return;
-      event.preventDefault();buttons[next].focus();buttons[next].click();
-    });
-  }
+  const steps=new IntersectionObserver(entries=>{
+    for(const entry of entries){
+      if(!entry.isIntersecting)continue;
+      const target=entry.target;
+      if(target.hasAttribute('data-journey-step')){
+        const index=+target.dataset.journeyStep;
+        $$('[data-journey-step]',root).forEach(item=>item.classList.toggle('is-current',item===target));
+        $('#journey-drawing-label',root).textContent=ABOUT_JOURNEY[index].label;
+        $('.experience-progress',root).style.setProperty('--journey-offset',String(100-[0,34,67,100][index]));
+        $$('[data-journey-node]',root).forEach((node,i)=>node.dataset.active=String(i<=index));
+      }else{
+        $$('[data-source-step]',root).forEach(item=>item.classList.toggle('is-current',item===target));
+        $('#byx-function',root).dataset.source=target.dataset.sourceStep;
+      }
+    }
+  },{rootMargin:'-35% 0px -35% 0px',threshold:0});
+  $$('[data-journey-step],[data-source-step]',root).forEach(step=>steps.observe(step));
   const reveal=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');reveal.unobserve(entry.target);}}),{threshold:.1});
   $$('.story-reveal',root).forEach(element=>reveal.observe(element));
-  return()=>{cleanMotion();reveal.disconnect();};
+  return()=>{cleaners.forEach(clean=>clean());steps.disconnect();reveal.disconnect();};
 }
 
 function bindPage(page, arg){
@@ -3731,6 +3966,7 @@ function updateHeaderTone(){
 window.addEventListener('scroll',scheduleHeaderTone,{passive:true});
 window.addEventListener('resize',scheduleHeaderTone,{passive:true});
 document.addEventListener('visibilitychange',scheduleHeaderTone);
+document.body.addEventListener('transitionend',event=>{if(event.target===document.body)scheduleHeaderTone();});
 new MutationObserver(scheduleHeaderTone).observe(document.body,{attributes:true,attributeFilter:['class']});
 document.fonts?.ready.then(scheduleHeaderTone);
 

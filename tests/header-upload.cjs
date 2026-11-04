@@ -27,10 +27,14 @@ async function main(){
       const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'});
       page.on('pageerror',error=>errors.push(error.message));
       await page.goto(origin+'/#/about');await page.waitForSelector('.x-cloud-section');
+      await page.waitForFunction(()=>document.querySelector('#top').dataset.tone==='dark');
+      await page.evaluate(()=>location.hash='#/contact');await page.waitForSelector('.contact');
       await page.waitForFunction(()=>document.querySelector('#top').dataset.tone==='light');
+      await page.waitForFunction(()=>getComputedStyle(document.querySelector('#top')).color==='rgb(0, 0, 0)');
       const light=await page.locator('#top').evaluate(el=>({color:getComputedStyle(el).color,background:getComputedStyle(el).backgroundColor}));
       assert.equal(light.color,'rgb(0, 0, 0)');
       await page.screenshot({path:path.join(out,'adaptive-header-light-'+width+'.png')});
+      await page.evaluate(()=>location.hash='#/about');await page.waitForSelector('.x-cloud-section');
       await page.evaluate(()=>scrollTo(0,document.querySelector('.x-cloud-section').getBoundingClientRect().top+scrollY+100));
       await page.waitForFunction(()=>document.querySelector('#top').dataset.tone==='dark');
       await page.waitForFunction(()=>getComputedStyle(document.querySelector('#top')).color==='rgb(255, 255, 255)');
