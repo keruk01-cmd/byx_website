@@ -31,7 +31,7 @@ async function main(){
   const api=await get(new URL('/api/guidelines',base));assert.equal(api.status,200);
   const data=JSON.parse(api.body);assert.equal(data.articles.length,26);assert.equal(data.access,'url');
   const result={testedAt:new Date().toISOString(),base,sha256:hash(expected),results,api:{status:api.status,articles:data.articles.length,access:data.access},limitations:'Read-only HTTP artifact/routing verification; no administrator login or production file upload.'};
-  fs.writeFileSync(path.join(__dirname,'artifacts/deployment-results.json'),JSON.stringify(result,null,2)+'\n');
+  if(!process.argv.includes('--check-only'))fs.writeFileSync(path.join(__dirname,'artifacts/deployment-results.json'),JSON.stringify(result,null,2)+'\n');
   console.log(JSON.stringify(result));
 }
 main().catch(error=>{console.error(error.message);process.exitCode=1;});

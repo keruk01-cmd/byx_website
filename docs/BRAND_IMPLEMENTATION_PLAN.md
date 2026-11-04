@@ -14,6 +14,8 @@
 
 ## 2. 소스 분석 기준선
 
+- 2026-11-04 ABOUT 후속: `viewAbout()`의 3개 챕터와 `bindAboutStory()`가 기존 X 점군 수명주기를 합성합니다. ABOUT 문구는 `settings.v`의 선택 필드로 추가하며 테이블·운영 값·서체·설정 객체·Vercel 설정은 바꾸지 않습니다. 사용자 제공 사업자 정보만 공통 푸터에 추가했습니다. [ABOUT 검증 기록](ABOUT_STORY_2026-11-04.md).
+
 - 2026-11-04 후속 기준: 운영 `main`의 별도 브랜드 가이드(`/guidelines`, `/api/guidelines`, 가이드 전용 Wanted Sans와 추가 Vercel rewrite)가 존재해 현재 디자인 브랜치에 통합·보존했습니다. 본문 SUIT/영문 Anton은 유지합니다. 유리 헤더는 60% 흑백 전환형으로 갱신했으며, 운영 Storage INSERT 정책 누락은 별도 수정했습니다. 아래 수치·구조는 11-03 분석 당시 기록입니다. [최신 작업 기록](SITE_UPDATES_2026-11-04.md).
 
 - 기준 브랜치: `design/byx-brand-identitycodex`. 검토 시작 커밋: `c0e684c` (`branding renewal`). 2026-11-03 로컬 작업 트리 기준이며 운영 사이트의 버전을 뜻하지 않습니다.
