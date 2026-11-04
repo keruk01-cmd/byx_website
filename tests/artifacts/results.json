@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-03T09:08:41.810Z",
+  "testedAt": "2026-11-04T03:53:26.682Z",
   "results": [
     {
       "width": 2560,
@@ -16,8 +16,8 @@
       "mapSelection": "mock tiles",
       "about": "full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion",
       "header": {
-        "blur": "blur(22px)",
-        "background": "color(srgb 1 1 1 / 0.72)"
+        "blur": "blur(22px) saturate(1.2)",
+        "background": "color(srgb 1 1 1 / 0.6)"
       },
       "mobileScroll": "desktop",
       "feed": "latest feature and compact archive, publication and links preserved"
@@ -37,8 +37,8 @@
       "mapSelection": "mock tiles",
       "about": "full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion",
       "header": {
-        "blur": "blur(22px)",
-        "background": "color(srgb 1 1 1 / 0.72)"
+        "blur": "blur(22px) saturate(1.2)",
+        "background": "color(srgb 1 1 1 / 0.6)"
       },
       "mobileScroll": "desktop",
       "feed": "latest feature and compact archive, publication and links preserved"
@@ -58,8 +58,8 @@
       "mapSelection": "mock tiles",
       "about": "full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion",
       "header": {
-        "blur": "blur(22px)",
-        "background": "color(srgb 1 1 1 / 0.72)"
+        "blur": "blur(22px) saturate(1.2)",
+        "background": "color(srgb 1 1 1 / 0.6)"
       },
       "mobileScroll": "desktop",
       "feed": "latest feature and compact archive, publication and links preserved"
@@ -79,8 +79,8 @@
       "mapSelection": "mock tiles",
       "about": "full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion",
       "header": {
-        "blur": "blur(22px)",
-        "background": "color(srgb 1 1 1 / 0.72)"
+        "blur": "blur(22px) saturate(1.2)",
+        "background": "color(srgb 1 1 1 / 0.6)"
       },
       "mobileScroll": "single viewport scroll verified",
       "feed": "latest feature and compact archive, publication and links preserved"
@@ -100,8 +100,8 @@
       "mapSelection": "mock tiles",
       "about": "full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion",
       "header": {
-        "blur": "blur(22px)",
-        "background": "color(srgb 1 1 1 / 0.72)"
+        "blur": "blur(22px) saturate(1.2)",
+        "background": "color(srgb 1 1 1 / 0.6)"
       },
       "mobileScroll": "single viewport scroll verified",
       "feed": "latest feature and compact archive, publication and links preserved"

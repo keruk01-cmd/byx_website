@@ -14,6 +14,8 @@
 
 ## 2. 소스 분석 기준선
 
+- 2026-11-04 후속 기준: 운영 `main`의 별도 브랜드 가이드(`/guidelines`, `/api/guidelines`, 가이드 전용 Wanted Sans와 추가 Vercel rewrite)가 존재해 현재 디자인 브랜치에 통합·보존했습니다. 본문 SUIT/영문 Anton은 유지합니다. 유리 헤더는 60% 흑백 전환형으로 갱신했으며, 운영 Storage INSERT 정책 누락은 별도 수정했습니다. 아래 수치·구조는 11-03 분석 당시 기록입니다. [최신 작업 기록](SITE_UPDATES_2026-11-04.md).
+
 - 기준 브랜치: `design/byx-brand-identitycodex`. 검토 시작 커밋: `c0e684c` (`branding renewal`). 2026-11-03 로컬 작업 트리 기준이며 운영 사이트의 버전을 뜻하지 않습니다.
 - `index.html` 2,728줄, 584,499바이트(재검토 시점). 폰트·파비콘·CSS·JS가 내장된 단일 실행 파일입니다. 기존 문서의 줄 수·용량 설명은 일부 오래되었습니다.
 - 폰트는 Anton과 SUIT Variable, 외부 JS는 고정 버전 `supabase-js@2.112.3`입니다. CONTACT에는 Google Maps iframe 외부 로드가 추가될 수 있습니다.

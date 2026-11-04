@@ -1,0 +1,7 @@
+tests/
+*.md
+.env*
+.git/
+.claude/
+prototypes/
+docs/

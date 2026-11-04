@@ -1,0 +1,126 @@
+{
+  "testedAt": "2026-11-04T03:56:48.470Z",
+  "headers": [
+    {
+      "width": 1440,
+      "light": {
+        "color": "rgb(0, 0, 0)",
+        "background": "color(srgb 1 1 1 / 0.6)"
+      },
+      "dark": {
+        "color": "rgb(255, 255, 255)",
+        "background": "color(srgb 0 0 0 / 0.6)",
+        "blur": "blur(22px) saturate(1.2)",
+        "rule": "rgb(255, 255, 255)",
+        "underline": "rgb(255, 255, 255)"
+      },
+      "menu": true,
+      "photograph": true,
+      "reducedTransparency": true,
+      "guidelines": true
+    },
+    {
+      "width": 390,
+      "light": {
+        "color": "rgb(0, 0, 0)",
+        "background": "color(srgb 1 1 1 / 0.6)"
+      },
+      "dark": {
+        "color": "rgb(255, 255, 255)",
+        "background": "color(srgb 0 0 0 / 0.6)",
+        "blur": "blur(22px) saturate(1.2)",
+        "rule": "rgb(255, 255, 255)",
+        "underline": "rgb(255, 255, 255)"
+      },
+      "menu": true,
+      "photograph": true,
+      "reducedTransparency": true,
+      "guidelines": true
+    },
+    {
+      "width": 320,
+      "light": {
+        "color": "rgb(0, 0, 0)",
+        "background": "color(srgb 1 1 1 / 0.6)"
+      },
+      "dark": {
+        "color": "rgb(255, 255, 255)",
+        "background": "color(srgb 0 0 0 / 0.6)",
+        "blur": "blur(22px) saturate(1.2)",
+        "rule": "rgb(255, 255, 255)",
+        "underline": "rgb(255, 255, 255)"
+      },
+      "menu": true,
+      "photograph": true,
+      "reducedTransparency": true,
+      "guidelines": true
+    }
+  ],
+  "images": {
+    "results": [
+      {
+        "name": "architecture.jpeg",
+        "input": 1496544,
+        "output": 191720,
+        "type": "image/webp",
+        "width": 2560,
+        "height": 1664,
+        "idempotent": true
+      },
+      {
+        "name": "architecture.png",
+        "input": 630218,
+        "output": 187840,
+        "type": "image/webp",
+        "width": 2560,
+        "height": 1664,
+        "idempotent": true
+      },
+      {
+        "name": "architecture.webp",
+        "input": 320850,
+        "output": 191004,
+        "type": "image/webp",
+        "width": 2560,
+        "height": 1664,
+        "idempotent": true
+      },
+      {
+        "name": "architecture.avif",
+        "input": 24879,
+        "output": 24732,
+        "type": "image/webp",
+        "width": 800,
+        "height": 520,
+        "idempotent": true
+      }
+    ],
+    "missingMime": "image/webp",
+    "decoderFallback": "image/webp",
+    "jpegFallback": {
+      "type": "image/jpeg",
+      "name": "fallback.jpg"
+    },
+    "gifUnchanged": true,
+    "svgUnchanged": true,
+    "decodeFailureUnchanged": true
+  },
+  "upload": {
+    "uploaded": {
+      "path": "2026/idtay5srwjmw1l4tze.png",
+      "type": "image/png",
+      "options": {
+        "cacheControl": "31536000",
+        "upsert": false,
+        "contentType": "image/png"
+      }
+    },
+    "url": "https://example.test/2026/idtay5srwjmw1l4tze.png",
+    "authCalls": 1,
+    "storageCalls": 1,
+    "expired": "로그인이 만료되었습니다. 다시 로그인한 뒤 이미지를 추가해주세요.",
+    "denied": "이미지 저장소의 업로드 권한이 없습니다. 관리자 계정과 Storage의 media 업로드 정책을 확인해주세요."
+  },
+  "errors": [],
+  "limitations": "Local isolated demo and mocked Storage API; production authorization checked separately with rolled-back SQL probes. No end-to-end upload using a real administrator browser session."
+}
