@@ -49,6 +49,9 @@ window.BYX_CONFIG = {
   --mute:#8e8e8e;
   --faint:#d8d8d8;
   --hair:1px;
+  --work-title:clamp(22px,1.18vw,30px);
+  --work-meta:clamp(12px,.65vw,16px);
+  --work-label:clamp(11px,.55vw,14px);
   --pad:clamp(16px,3.2vw,44px);
   --head-h:clamp(74px,10.4vw,108px);
   --ease:cubic-bezier(.22,.61,.36,1);
@@ -68,6 +71,9 @@ body{
   letter-spacing:.01em;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;flex-direction:column;
   transition:background .25s linear,color .25s linear;
 }
 img{display:block;max-width:100%}
@@ -93,18 +99,25 @@ input[type=color],input[type=file],input[type=date],input[type=month],input[type
 ::selection{background:var(--fg);color:var(--bg)}
 
 .mono{font-family:var(--font-mono);font-size:.82em;letter-spacing:.02em}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 .mute{color:var(--mute)}
 
 /* ---------- HEADER ---------- */
 #top{
+  --glass-bg:var(--bg);--glass-fg:var(--fg);
   position:fixed;inset:0 0 auto 0;z-index:80;
   height:var(--head-h);
   display:flex;align-items:center;justify-content:space-between;
   gap:16px;padding-inline:var(--pad);
-  background:var(--bg);
-  border-bottom:var(--hair) solid var(--fg);
-  transition:background .25s linear,color .25s linear;
+  background:var(--glass-bg);color:var(--glass-fg);
+  border-bottom:var(--hair) solid color-mix(in srgb,var(--glass-fg) 20%,transparent);
+  transition:background .25s linear,color .25s linear,border-color .25s linear;
 }
+#top[data-tone="dark"]{--glass-bg:var(--fg);--glass-fg:var(--bg)}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  #top{background:color-mix(in srgb,var(--glass-bg) 60%,transparent);-webkit-backdrop-filter:blur(22px) saturate(120%);backdrop-filter:blur(22px) saturate(120%);box-shadow:inset 0 1px 0 color-mix(in srgb,var(--glass-fg) 9%,transparent),0 4px 18px color-mix(in srgb,var(--fg) 5%,transparent)}
+}
+@media(prefers-reduced-transparency:reduce){#top{background:var(--glass-bg);-webkit-backdrop-filter:none;backdrop-filter:none}}
 #brand{
   display:flex;align-items:center;gap:0;
   font-family:var(--font-display);
@@ -160,12 +173,12 @@ input[type=color],input[type=file],input[type=date],input[type=month],input[type
   position:relative;padding-block:4px;
 }
 #nav a::after{
-  content:"";position:absolute;left:0;right:100%;bottom:1px;height:2px;background:var(--fg);
+  content:"";position:absolute;left:0;right:100%;bottom:1px;height:2px;background:currentColor;
   transition:right .3s var(--ease);
 }
 #nav a:hover::after,#nav a.on::after{right:0}
 #burger{display:none;width:26px;height:16px;position:relative;margin-left:auto}
-#burger i{position:absolute;left:0;right:0;height:2px;background:var(--fg);transition:transform .3s var(--ease),opacity .2s}
+#burger i{position:absolute;left:0;right:0;height:2px;background:currentColor;transition:transform .3s var(--ease),opacity .2s}
 #burger i:nth-child(1){top:0}
 #burger i:nth-child(2){top:7px}
 #burger i:nth-child(3){top:14px}
@@ -193,7 +206,7 @@ body.menu #mobnav{transform:translateY(0);visibility:visible}
 #mobnav .foot{font-family:var(--font-mono);font-size:11px;line-height:1.8;color:var(--mute)}
 
 /* ---------- PAGE SHELL ---------- */
-#app{padding-top:var(--head-h);min-height:60vh}
+#app{padding-top:var(--head-h);min-height:60vh;flex:1 0 auto}
 .page{animation:fade .45s var(--ease) both}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
@@ -252,10 +265,10 @@ button.tag:hover,a.tag:hover{background:var(--fg);color:var(--bg)}
 .toggle svg *{fill:currentColor}
 
 .grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(300px,31vw,520px),1fr));
-  gap:var(--hair);background:var(--fg);border-bottom:var(--hair) solid var(--fg);
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,clamp(300px,22vw,360px)),1fr));
+  gap:0;background:var(--bg);border-bottom:var(--hair) solid var(--fg);
 }
-.card{background:var(--bg);display:block;position:relative;overflow:hidden;animation:cardin .5s var(--ease) both}
+.card{background:var(--bg);display:block;position:relative;overflow:hidden;border-right:var(--hair) solid var(--fg);border-bottom:var(--hair) solid var(--fg);animation:cardin .5s var(--ease) both}
 @keyframes cardin{from{opacity:0}to{opacity:1}}
 .card .im{display:block;aspect-ratio:4/3;overflow:hidden;position:relative}
 /* thumbnails read as B/W until you point at them */
@@ -267,9 +280,9 @@ button.tag:hover,a.tag:hover{background:var(--fg);color:var(--bg)}
 .card:hover .im img{transform:scale(1.035);filter:grayscale(0) contrast(1)}
 .card .cap{padding:14px 16px 18px;display:flex;flex-direction:column;gap:5px}
 .card .cap .l1{display:flex;justify-content:space-between;gap:14px;align-items:baseline}
-.card .cap .nm{font-family:var(--font-display);font-size:clamp(20px,2.15vw,30px);text-transform:uppercase;letter-spacing:.02em;line-height:1.03}
-.card .cap .cd{font-family:var(--font-mono);font-size:11.5px;color:var(--mute);white-space:nowrap}
-.card .cap .l2{font-family:var(--font-mono);font-size:11.5px;text-transform:uppercase;color:var(--mute);display:flex;gap:14px;flex-wrap:wrap}
+.card .cap .nm{font-family:var(--font-display);font-size:var(--work-title);text-transform:uppercase;letter-spacing:.02em;line-height:1.08;overflow-wrap:anywhere}
+.card .cap .cd{font-family:var(--font-mono);font-size:var(--work-meta);color:var(--mute);white-space:nowrap}
+.card .cap .l2{font-family:var(--font-mono);font-size:var(--work-meta);text-transform:uppercase;color:var(--mute);display:flex;gap:12px;flex-wrap:wrap}
 /* the type used to sit on the thumbnail as a black tag. It is in the INDEX
    view and on the project page already, and on the image it read as a label
    stuck onto the work. Removed on request. */
@@ -283,27 +296,33 @@ button.tag:hover,a.tag:hover{background:var(--fg);color:var(--bg)}
 @keyframes blink{50%{opacity:0}}
 
 .tablewrap{border-bottom:var(--hair) solid var(--fg)}
-table.idx{width:100%;border-collapse:collapse;min-width:760px}
+table.idx{width:100%;border-collapse:collapse;min-width:760px;table-layout:fixed}
+table.idx th:nth-child(2){width:7%}table.idx th:nth-child(3){width:22%}table.idx th:nth-child(4){width:16%}table.idx th:nth-child(5){width:10%}table.idx th:nth-child(6){width:14%}table.idx th:nth-child(7){width:12%}table.idx th:nth-child(8){width:13%}
 table.idx th{
-  text-align:left;font-family:var(--font-mono);font-weight:400;font-size:10px;
+  text-align:left;font-family:var(--font-mono);font-weight:400;font-size:var(--work-label);
   letter-spacing:.09em;text-transform:uppercase;color:var(--mute);
-  padding:9px 12px;border-bottom:var(--hair) solid var(--fg);
+  padding:12px 14px;border-bottom:var(--hair) solid var(--fg);
   position:sticky;top:calc(var(--head-h) + var(--pbar-h,42px));background:var(--bg);z-index:30;cursor:var(--cur-hand);white-space:nowrap;
 }
 table.idx th:hover{color:var(--fg)}
 table.idx th .ar{opacity:0}
 table.idx th.sorted .ar{opacity:1}
-table.idx td{padding:9px 12px;border-bottom:var(--hair) solid var(--faint);vertical-align:middle;font-size:12.5px;white-space:nowrap}
+table.idx td{padding:12px 14px;border-bottom:var(--hair) solid var(--faint);vertical-align:middle;font-size:var(--work-meta);white-space:normal;overflow-wrap:anywhere}
 table.idx tr{cursor:var(--cur-hand);transition:background .12s}
 table.idx tbody tr:hover{background:var(--fg);color:var(--bg)}
 table.idx tbody tr:hover td{border-bottom-color:var(--fg)}
-table.idx .c-code{font-family:var(--font-mono);font-size:11px}
-table.idx .c-name{font-family:var(--font-display);font-size:16px;text-transform:uppercase;letter-spacing:.02em}
+table.idx .c-code{font-family:var(--font-mono);font-size:var(--work-meta)}
+table.idx .c-name{font-family:var(--font-display);font-size:var(--work-title);text-transform:uppercase;letter-spacing:.02em;line-height:1.08}
 table.idx .c-dim{color:var(--mute)}
 table.idx tbody tr:hover .c-dim{color:var(--bg)}
-table.idx .thumbcol{width:54px;min-width:54px}
-table.idx .thumb{width:46px;min-width:46px;max-width:none;height:34px;object-fit:cover}
-.st{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.07em;border:var(--hair) solid currentColor;padding:2px 6px;line-height:1;white-space:nowrap}
+table.idx .thumbcol{width:clamp(64px,4.2vw,108px);min-width:64px}
+table.idx .thumb{width:clamp(48px,3.3vw,84px);min-width:48px;max-width:none;height:auto;aspect-ratio:4/3;object-fit:cover}
+.st{font-family:var(--font-mono);font-size:var(--work-label);letter-spacing:.07em;border:var(--hair) solid currentColor;padding:3px 6px;line-height:1.2;white-space:nowrap}
+table.idx .st{display:inline-block;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.works-top{position:fixed;right:var(--pad);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:60;width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--fg);border:var(--hair) solid var(--fg)}
+.works-top svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5}
+.works-top:hover,.works-top:focus-visible{background:var(--fg);color:var(--bg)}
+.works-top[hidden],body.menu .works-top{display:none}
 
 .pd-head{padding:clamp(22px,4vw,54px) var(--pad) clamp(16px,2.4vw,30px);border-bottom:var(--hair) solid var(--fg)}
 .pd-head .code{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--mute)}
@@ -333,6 +352,31 @@ table.idx .thumb{width:46px;min-width:46px;max-width:none;height:34px;object-fit
 .yeardiv i{flex:1 1 auto;height:var(--hair);background:var(--fg);display:block}
 
 /* blog feature */
+.feed-feature{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);border-bottom:var(--hair) solid var(--fg)}
+.feed-image{display:block;overflow:hidden;aspect-ratio:16/10;background:var(--bg)}
+.feed-image img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .3s var(--ease)}
+a:hover>.feed-image img,a:focus-visible>.feed-image img{filter:none}
+.feed-feature>.feed-image{aspect-ratio:auto;height:clamp(300px,34vw,600px);border-right:var(--hair) solid var(--fg)}
+.feed-copy{padding:clamp(18px,2.5vw,48px) var(--pad);min-width:0}
+.feed-feature>.feed-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:18px}
+.feed-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--font-mono);font-size:var(--work-label);letter-spacing:.04em;color:var(--mute)}
+.feed-title{font-family:var(--font-display);font-variation-settings:'wght' 680;font-weight:400;font-size:clamp(18px,1.6vw,26px);line-height:1.15;overflow-wrap:anywhere;margin:10px 0}
+.feed-feature .feed-title{font-size:clamp(28px,3.7vw,64px);line-height:1.06;margin:0}
+.feed-summary{margin:0;font-size:clamp(12px,1vw,15px);color:var(--mute);max-width:48ch;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.feed-archive{padding:clamp(24px,3vw,56px) var(--pad)}
+.feed-archive>h2{margin:0 0 22px;font-family:var(--font-mono);font-size:var(--work-label);font-weight:400;letter-spacing:.08em;color:var(--mute)}
+.feed-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:clamp(20px,2.5vw,40px)}
+.feed-card{display:block;min-width:0;border-bottom:var(--hair) solid var(--faint)}
+.feed-card>.feed-copy{padding:14px 0 22px}
+.feed-card .feed-meta{font-size:clamp(10px,.75vw,12px)}
+.feed-link{font-family:var(--font-mono);font-size:var(--work-label);letter-spacing:.05em}
+.feed-card .feed-link{display:inline-block;margin-top:12px;font-size:clamp(10px,.75vw,12px)}
+.feed-card.hid,.feed-feature.hid{background:repeating-linear-gradient(135deg,transparent 0 7px,color-mix(in srgb,var(--mute) 9%,transparent) 7px 14px)}
+@media(max-width:760px){
+  .feed-feature{grid-template-columns:1fr}
+  .feed-feature>.feed-image{aspect-ratio:16/10;height:auto;border-right:0;border-bottom:var(--hair) solid var(--fg)}
+  .feed-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+}
 .feature{
   display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
   border-bottom:var(--hair) solid var(--fg);
@@ -475,7 +519,8 @@ table.idx .thumb{width:46px;min-width:46px;max-width:none;height:34px;object-fit
 .deflist .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding-right:20px;white-space:nowrap}
 /* auto-fit, not auto-fill: empty tracks would show the black backing through
    as a slab beside the last member */
-.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--hair);background:var(--fg);border-bottom:var(--hair) solid var(--fg)}
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),220px));justify-content:start;gap:0;background:var(--bg);border-bottom:var(--hair) solid var(--fg)}
+.person{border-right:var(--hair) solid var(--fg);border-bottom:var(--hair) solid var(--fg)}
 .person{background:var(--bg);padding:14px}
 .person .im{aspect-ratio:3/4;margin-bottom:9px;overflow:hidden}
 .person .im img{width:100%;height:100%;object-fit:cover}
@@ -483,6 +528,15 @@ table.idx .thumb{width:46px;min-width:46px;max-width:none;height:34px;object-fit
 .person .r{font-family:var(--font-mono);font-size:10px;color:var(--mute);text-transform:uppercase;margin-top:4px}
 /* career notes — one line per entry, written as "a / b / c" */
 .person .bio{font-size:11.5px;line-height:1.62;color:var(--mute);margin-top:8px;padding-top:8px;border-top:var(--hair) solid var(--faint)}
+.x-cloud-section{border-bottom:var(--hair) solid var(--fg);background:var(--fg);color:var(--bg)}
+.x-universe{position:relative;width:100%;isolation:isolate}
+.x-field{min-width:0;position:relative;background:var(--fg);color:var(--bg);height:clamp(420px,52vw,880px);overflow:hidden}
+.x-cloud{width:100%;height:100%;display:block;touch-action:pan-y pinch-zoom;outline-offset:-4px;cursor:var(--cur-arrow)}
+.x-cloud:focus-visible{outline:1px solid var(--bg)}
+.x-label{position:absolute;z-index:1;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-variation-settings:'wght' 680;font-weight:400;line-height:1.1;font-size:clamp(22px,2.5vw,56px);margin:0;white-space:nowrap;color:var(--bg);pointer-events:none}
+.x-label-left{left:var(--pad)}.x-label-right{right:var(--pad)}
+@media(max-width:760px){.x-label{top:28px;transform:none}}
+@media(max-width:520px){.people{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .map{aspect-ratio:16/9;border:var(--hair) solid var(--fg);overflow:hidden}
 .map img{width:100%;height:100%;object-fit:cover}
 /* The keyless Maps embed takes no style parameter, so the dark grey treatment
@@ -652,7 +706,16 @@ input:focus,textarea:focus,select:focus{border-bottom-width:2px;padding-bottom:8
 #toast.on{transform:translate(-50%,0);opacity:1}
 
 /* ---------- FOOTER ---------- */
-footer{padding:18px var(--pad);border-top:var(--hair) solid var(--fg)}
+.location-dialog{width:min(760px,calc(100% - 24px));max-height:calc(100svh - 24px);overflow:auto;border:var(--hair) solid var(--fg);padding:20px;background:var(--bg);color:var(--fg)}
+.location-dialog::backdrop{background:rgba(0,0,0,.45)}
+.location-head,.location-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.location-head h2{font-size:clamp(18px,2vw,24px);margin:0;font-family:var(--font-display);font-weight:400}
+.location-map{height:clamp(240px,42vh,360px);position:relative;overflow:hidden;border:var(--hair) solid var(--fg);touch-action:none;cursor:var(--cur-hand);background:var(--bg)}
+.location-tiles{position:absolute;inset:0;pointer-events:none}.location-tiles img{position:absolute;width:256px;height:256px;max-width:none;user-select:none;filter:grayscale(1)}
+.location-pin{position:absolute;z-index:2;transform:translate(-50%,-50%);font-size:26px;line-height:1;color:var(--fg);text-shadow:0 0 3px var(--bg);pointer-events:none}
+.location-credit{font-size:10px;text-align:right;margin:6px 0}.location-dialog .help{font-size:11px;color:var(--mute)}
+.location-coordinates{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px}
+footer{padding:18px var(--pad);border-top:var(--hair) solid var(--fg);flex-shrink:0}
 .fbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .fbar .lft{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;
   font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
@@ -678,7 +741,23 @@ footer{padding:18px var(--pad);border-top:var(--hair) solid var(--fg)}
   .row-i .th{width:100%;aspect-ratio:16/9;margin:6px 0}
   .sechead,.pbar,.adm-bar{position:static}
   table.idx th{top:0;position:static}
-  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  /* One viewport scroll surface for both WORKS views; keep every field. */
+  .tablewrap{overflow:visible}
+  table.idx,table.idx thead,table.idx tbody{display:block;min-width:0;width:100%}
+  table.idx thead tr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:8px var(--pad);gap:2px 8px;border-bottom:var(--hair) solid var(--fg)}
+  table.idx th,table.idx th:nth-child(n){width:auto;min-width:0;white-space:normal;padding:8px 0;border:0;font-size:var(--work-label)}
+  table.idx th.thumbcol{display:none}
+  table.idx tbody tr{display:grid;grid-template-columns:48px minmax(0,1fr) minmax(70px,.65fr);gap:6px 12px;padding:16px var(--pad);border-bottom:var(--hair) solid var(--faint);align-items:start}
+  table.idx td{padding:0;border:0;min-width:0;line-height:1.45;font-size:var(--work-meta)}
+  table.idx .thumbcol{width:48px;min-width:0;grid-column:1;grid-row:1/5}
+  table.idx .thumb{width:48px;min-width:0;height:36px}
+  table.idx td:nth-child(2){grid-column:2;grid-row:1}
+  table.idx td:nth-child(3){grid-column:2/4;grid-row:2;font-size:var(--work-title)}
+  table.idx td:nth-child(4){grid-column:2;grid-row:3}
+  table.idx td:nth-child(5){grid-column:3;grid-row:3;text-align:right}
+  table.idx td:nth-child(6){grid-column:2;grid-row:4}
+  table.idx td:nth-child(7){grid-column:3;grid-row:1;text-align:right}
+  table.idx td:nth-child(8){grid-column:3;grid-row:4;text-align:right}
   .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr))}
   .pbar{flex-wrap:nowrap}
   .filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-right:6px}
@@ -871,8 +950,7 @@ body.guidelines .page{animation:none}
 
   <nav id="nav">
     <a href="#/" data-p="project">Works</a>
-    <a href="#/news" data-p="news">News</a>
-    <a href="#/blog" data-p="blog">Blog</a>
+    <a href="#/feed" data-p="feed">Feed</a>
     <a href="#/about" data-p="about">About</a>
     <a href="#/contact" data-p="contact">Contact</a>
   </nav>
@@ -884,10 +962,9 @@ body.guidelines .page{animation:none}
 <div id="mobnav">
   <div class="links">
     <a href="#/">Works<span>01</span></a>
-    <a href="#/news">News<span>02</span></a>
-    <a href="#/blog">Blog<span>03</span></a>
-    <a href="#/about">About<span>04</span></a>
-    <a href="#/contact">Contact<span>05</span></a>
+    <a href="#/feed">Feed<span>02</span></a>
+    <a href="#/about">About<span>03</span></a>
+    <a href="#/contact">Contact<span>04</span></a>
   </div>
   <div class="foot">
     BYX ARCHITECTS &amp; PARTNERS<br>
@@ -897,13 +974,14 @@ body.guidelines .page{animation:none}
 </div>
 
 <div id="app" role="main"></div>
+<button class="works-top" id="works-top" aria-label="WORKS 맨 위로 이동" title="맨 위로" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg></button>
 
 <footer>
   <div class="fbar">
     <div class="lft">
       <span>&copy; 2026 BYX ARCHITECTS. ALL RIGHTS RESERVED.</span>
     </div>
-    <a class="ig" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+    <a class="ig" href="https://www.instagram.com/abyx.official/" target="_blank" rel="noopener" aria-label="BYX Instagram">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4"/>
         <circle cx="12" cy="12" r="4.9"/>
@@ -914,6 +992,7 @@ body.guidelines .page{animation:none}
 </footer>
 
 <div id="toast"></div>
+<dialog class="location-dialog" id="location-picker" aria-labelledby="location-title"><div id="location-content"></div></dialog>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3/dist/umd/supabase.js"></script>
 <script>
@@ -931,8 +1010,44 @@ const uid = () => 'id' + Math.random().toString(36).slice(2, 10) + Date.now().to
    '2026.07.28' -> 20260728,  {year:2026, month:7} -> 202607                  */
 const dnum  = s => { const n = String(s == null ? '' : s).replace(/\D/g, ''); return n ? +n.padEnd(8, '0').slice(0, 8) : 0; };
 const ymNum = p => (+p.year || 0) * 100 + (+p.month || 0);
-const ymText = p => !p.year ? '—' : (p.month ? p.year + '.' + String(p.month).padStart(2, '0') : String(p.year));
+const ymText = p => {
+  const start = p.date_start || (!p.year ? '' : (p.month ? p.year + '.' + String(p.month).padStart(2,'0') : String(p.year)));
+  return start ? start + (p.date_end ? ' — ' + p.date_end : '') : '—';
+};
 const ymInput = p => !p.year ? '' : p.year + '-' + String(p.month || 1).padStart(2, '0');
+
+/* Date precision is preserved; six digits prefer a valid YYMMDD date. */
+function parseProjectDate(value){
+  const raw = String(value || '').trim();
+  if (!raw) return null;
+  let y, m = 0, d = 0;
+  const expand = n => n < 50 ? 2000 + n : 1900 + n;
+  if (/^\d{4}$/.test(raw)) y = +raw;
+  else if (/^\d{8}$/.test(raw)){ y = +raw.slice(0,4); m = +raw.slice(4,6); d = +raw.slice(6); }
+  else if (/^\d{6}$/.test(raw)){
+    const full = +raw.slice(0,4), tail = +raw.slice(4);
+    const shortMonth = +raw.slice(2,4);
+    if (shortMonth >= 1 && shortMonth <= 12 && tail >= 1 && tail <= 31){ y = expand(+raw.slice(0,2)); m = shortMonth; d = tail; }
+    else if (full >= 1000 && full <= 2999 && tail >= 1 && tail <= 12){ y = full; m = tail; }
+    else throw Error('날짜의 월·일을 확인하세요.');
+  } else {
+    const a = raw.match(/^(\d{2}|\d{4})[.\-/](\d{1,2})(?:[.\-/](\d{1,2}))?$/);
+    if (!a) throw Error('날짜는 1992, 199201, 920128, 19920128 또는 1992.01.28 형식으로 입력하세요.');
+    y = a[1].length === 2 ? expand(+a[1]) : +a[1]; m = +a[2]; d = a[3] ? +a[3] : 0;
+    if (!m || (a[3] && !d)) throw Error('월과 일은 1부터 입력하세요.');
+  }
+  if (y < 1000 || y > 2999 || m < 0 || m > 12 || d < 0 || (d && !m)) throw Error('날짜의 연도·월·일을 확인하세요.');
+  if ((raw.length === 8 || (raw.length === 6 && y !== +raw.slice(0,4))) && (!m || !d)) throw Error('월과 일은 1부터 입력하세요.');
+  if (d > new Date(Date.UTC(y,m,0)).getUTCDate()) throw Error('해당 월에 없는 날짜입니다.');
+  const text = String(y) + (m ? '.' + String(m).padStart(2,'0') : '') + (d ? '.' + String(d).padStart(2,'0') : '');
+  return {year:y,month:m||null,day:d||null,text,order:y*10000+(m||1)*100+(d||1)};
+}
+function projectDateFields(d){
+  const start = d.date_start_input ?? d.date_start ?? (d.year ? String(d.year)+(d.month ? '.'+String(d.month).padStart(2,'0') : '') : '');
+  const end = d.date_end_input ?? d.date_end ?? '';
+  const field = (label,key,value) => `<div class="fld"><label>${label}</label><div class="dfield"><input data-k="${key}" value="${esc(value)}" placeholder="19920128 / 920128 / 2026.01" autocomplete="off"><input type="date" data-project-calendar="${key}" aria-label="${label} 달력"></div></div>`;
+  return field('Date / 시작 날짜','date_start_input',start)+field('End / 종료 날짜 (기간일 때만)','date_end_input',end);
+}
 
 /* Dates are stored as they are shown on the site — "2026.06.02". The editor
    works in bare digits (20260602) with a calendar beside it, so there is no
@@ -1258,6 +1373,9 @@ let session = null;      // logged-in admin
    images. GIF and SVG are passed through: resampling would break them. */
 const IMG_MAX = 2560;
 const IMG_Q   = 0.82;
+const IMAGE_TYPES = {jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp',avif:'image/avif',gif:'image/gif',svg:'image/svg+xml',bmp:'image/bmp',ico:'image/x-icon',heic:'image/heic',heif:'image/heif',tif:'image/tiff',tiff:'image/tiff'};
+const imageType = file => file.type || IMAGE_TYPES[file.name?.split('.').pop().toLowerCase()] || '';
+const isImageFile = file => imageType(file).startsWith('image/');
 
 const kb = n => n >= 1048576 ? (n / 1048576).toFixed(1) + 'MB' : Math.round(n / 1024) + 'KB';
 
@@ -1272,19 +1390,31 @@ function canWebp(){
 
 async function shrink(file){
   if (!file || file.shrunk) return file;              // idempotent: upload() calls this too
-  if (!file.type || !file.type.startsWith('image/')) return file;
-  if (/gif|svg/.test(file.type)) return file;
+  const inputType = imageType(file);
+  if (!inputType.startsWith('image/')) throw Error('이미지 파일을 선택해주세요.');
+  if (/gif|svg/.test(inputType)) return file;
 
   let bmp = null;
-  try{ bmp = await createImageBitmap(file); }catch(e){ return file; }
+  let objectURL;
+  try{
+    try{ bmp = await createImageBitmap(file); }
+    catch(e){
+      objectURL = URL.createObjectURL(file);
+      const image = new Image(); image.src = objectURL;
+      await image.decode(); bmp = image;
+    }
+  }catch(e){ return file; }
+  finally{ if (objectURL) URL.revokeObjectURL(objectURL); }
 
-  const scale = Math.min(1, IMG_MAX / Math.max(bmp.width, bmp.height));
-  const w = Math.max(1, Math.round(bmp.width * scale));
-  const h = Math.max(1, Math.round(bmp.height * scale));
+  const width = bmp.naturalWidth || bmp.width, height = bmp.naturalHeight || bmp.height;
+  const scale = Math.min(1, IMG_MAX / Math.max(width, height));
+  const w = Math.max(1, Math.round(width * scale));
+  const h = Math.max(1, Math.round(height * scale));
 
   const cv = document.createElement('canvas');
   cv.width = w; cv.height = h;
   const cx = cv.getContext('2d');
+  if (!cx){ if (bmp.close) bmp.close(); return file; }
   cx.imageSmoothingEnabled = true;
   cx.imageSmoothingQuality = 'high';
 
@@ -1293,11 +1423,22 @@ async function shrink(file){
   cx.drawImage(bmp, 0, 0, w, h);
   if (bmp.close) bmp.close();
 
-  const blob = await new Promise(r => cv.toBlob(r, type, IMG_Q));
+  let blob;
+  try{
+    blob = await new Promise(r => cv.toBlob(r, type, IMG_Q));
+    // Bound quality reduction to keep architectural detail readable on monitors.
+    for (const quality of [0.76,0.70]){
+      if (!blob || blob.size <= 900 * 1024) break;
+      const candidate = await new Promise(r => cv.toBlob(r, type, quality));
+      if (candidate && candidate.size < blob.size) blob = candidate;
+    }
+  }catch(e){ return file; }
   if (!blob || blob.size >= file.size){ try{ file.shrunk = true; }catch(e){} return file; }
 
   const base = file.name.replace(/\.[^.]+$/, '') || 'image';
-  const out = new File([blob], base + (type === 'image/webp' ? '.webp' : '.jpg'), {type});
+  const extension = {'image/webp':'.webp','image/jpeg':'.jpg','image/png':'.png'}[blob.type];
+  if (!extension) return file;
+  const out = new File([blob], base + extension, {type:blob.type});
   out.shrunk = true;
   return out;
 }
@@ -1311,7 +1452,7 @@ const DB = {
   /* columns added after the first deploy. A site running on the older schema
      must keep saving everything else, so the field is dropped from the
      payload instead of letting the whole save fail. */
-  cols: { projectPeople: true, newsImg: true, newsUrl: true, postPub: true },
+  cols: { projectPeople: true, projectDates:true, projectPoint:true, newsImg: true, newsUrl: true, postPub: true },
 
   get demo(){ return !sb; },
 
@@ -1350,7 +1491,11 @@ const DB = {
     if (p.error || n.error || b.error) throw (p.error || n.error || b.error);
     /* select('*') returns every column, null included — so the first row tells
        us which of the later columns this database actually has */
-    if ((p.data || []).length) DB.cols.projectPeople = 'people' in p.data[0];
+    if ((p.data || []).length){
+      DB.cols.projectPeople = 'people' in p.data[0];
+      DB.cols.projectDates = 'date_start' in p.data[0] && 'date_end' in p.data[0];
+      DB.cols.projectPoint = 'location_point' in p.data[0];
+    }
     if ((n.data || []).length){
       DB.cols.newsImg = 'img' in n.data[0];
       DB.cols.newsUrl = 'url' in n.data[0];
@@ -1396,6 +1541,10 @@ const DB = {
     const payload = {...row};
     if (!payload.id) delete payload.id;
     if (table === 'projects' && !DB.cols.projectPeople) delete payload.people;
+    if (table === 'projects'){
+      if (!DB.cols.projectDates){ delete payload.date_start; delete payload.date_end; }
+      if (!DB.cols.projectPoint) delete payload.location_point;
+    }
     if (table === 'news'){
       if (!DB.cols.newsImg) delete payload.img;
       if (!DB.cols.newsUrl) delete payload.url;
@@ -1425,10 +1574,16 @@ const DB = {
         fr.readAsDataURL(file);
       });
     }
+    const { data:auth, error:authError } = await sb.auth.getSession();
+    if (authError || !auth?.session?.user) throw Error('로그인이 만료되었습니다. 다시 로그인한 뒤 이미지를 추가해주세요.');
     const ext  = (file.name.split('.').pop() || 'jpg').toLowerCase();
     const path = `${new Date().getFullYear()}/${uid()}.${ext}`;
-    const { error } = await sb.storage.from(CFG.bucket).upload(path, file, {cacheControl:'31536000', upsert:false});
-    if (error) throw error;
+    const { error } = await sb.storage.from(CFG.bucket).upload(path, file, {cacheControl:'31536000', upsert:false,contentType:imageType(file)||'application/octet-stream'});
+    if (error){
+      if (/row.level|permission|unauthorized/i.test(error.message || ''))
+        throw Error('이미지 저장소의 업로드 권한이 없습니다. 관리자 계정과 Storage의 media 업로드 정책을 확인해주세요.');
+      throw error;
+    }
     return sb.storage.from(CFG.bucket).getPublicUrl(path).data.publicUrl;
   },
 
@@ -1576,6 +1731,7 @@ const app = $('#app');
 /* the route the reel last landed on. null until the first render, so the
    opening spin stays where boot schedules it (after the fonts settle). */
 let lastRoute = null;
+let pageCleanup = () => {};
 
 function parseHash(){
   const h = (location.hash || '#/').replace(/^#\/?/, '');
@@ -1586,6 +1742,8 @@ function parseHash(){
 }
 
 function render(){
+  pageCleanup(); pageCleanup = () => {};
+  const picker = $('#location-picker'); if (picker && picker.open) picker.close();
   const { page, arg } = parseHash();
   const isGuidelines = page === 'guidelines';
   if (isGuidelines) app.removeAttribute('role'); else app.setAttribute('role', 'main');
@@ -1599,6 +1757,7 @@ function render(){
   }
   let html;
   if (page === 'project')      html = arg ? viewProjectDetail(arg) : viewProjects();
+  else if (page === 'feed')    html = viewFeed();
   else if (page === 'news')    html = viewNews();
   else if (page === 'blog')    html = arg ? viewPost(arg) : viewBlog();
   else if (page === 'about')   html = viewAbout();
@@ -1608,7 +1767,7 @@ function render(){
   else                         html = viewProjects();
 
   app.innerHTML = '<div class="page">' + (page === 'admin' || isGuidelines ? '' : editBar(page, arg)) + html + '</div>';
-  $$('#nav a').forEach(a => a.classList.toggle('on', a.dataset.p === page));
+  $$('#nav a').forEach(a => a.classList.toggle('on', a.dataset.p === (['news','blog'].includes(page) ? 'feed' : page)));
   document.body.classList.remove('menu');
   window.scrollTo({top:0, behavior:'instant'});
   /* tab title: "BYX" at home, "BYX│NEWS" elsewhere — the studio first, then
@@ -1616,6 +1775,7 @@ function render(){
      between them). The route is still `project`; only the label reads WORKS. */
   document.title = (page === 'project' && !arg) ? 'BYX' : 'BYX│' + (page === 'project' ? 'WORKS' : page.toUpperCase());
   bindPage(page, arg);
+  scheduleHeaderTone();
 
   /* a new word for every move. render() also runs for same-page changes
      (grid/index toggle, column sort) — those keep the word they landed on. */
@@ -1637,6 +1797,8 @@ function editBar(page, arg){
     if (p) btns.push(['one:projects:' + p.id, '이 프로젝트 편집']);
     btns.push(['new:projects','+ 새 프로젝트']);
   }
+  else if (page === 'feed')
+    btns = [['new:news','+ 새 소식'], ['new:posts','+ 새 글'], ['list:posts','피드 글 관리']];
   else if (page === 'news')
     btns = [['new:news','+ 새 소식'], ['list:news','소식 관리']];
   else if (page === 'blog' && !arg)
@@ -1691,7 +1853,11 @@ function filtered(){
     if (x > y) return PV.dir;
     /* same key — fall back to the date so the order never depends on the
        order rows came back from the database */
-    return ymNum(b) - ymNum(a);
+    if (k === 'year'){
+      const dayKey = p => dnum(p.date_start || (p.year ? String(p.year)+String(p.month||0).padStart(2,'0') : ''));
+      return (dayKey(a)-dayKey(b))*PV.dir;
+    }
+    return ymNum(b) - ymNum(a) || dnum(b.date_start) - dnum(a.date_start);
   });
 }
 
@@ -1709,13 +1875,13 @@ function cardHTML(p){
 function viewProjects(){
   const list = filtered();
   const cols = [['code','Code'],['name','Project'],['client','Client'],['type','Type'],['loc','Location'],['year','Date'],['status','Status']];
-  const head = '<th class="thumbcol"></th>' + cols.map(([k,l]) =>
-    `<th data-sort="${k}" class="${PV.sort===k?'sorted':''}">${l} <span class="ar">${PV.dir>0?'↑':'↓'}</span></th>`).join('');
+  const head = '<th class="thumbcol" role="columnheader" scope="col"><span class="sr-only">Image</span></th>' + cols.map(([k,l]) =>
+    `<th role="columnheader" scope="col" tabindex="0" data-sort="${k}" aria-sort="${PV.sort===k?(PV.dir>0?'ascending':'descending'):'none'}" class="${PV.sort===k?'sorted':''}">${l} <span class="ar" aria-hidden="true">${PV.dir>0?'↑':'↓'}</span></th>`).join('');
   const body = list.map(p => `
-    <tr data-code="${esc(p.code)}">
+    <tr role="row" data-code="${esc(p.code)}">
       <td class="thumbcol"><img class="thumb" src="${artOf(p)}" alt="" loading="lazy"></td>
       <td class="c-code">${esc(p.code)}</td>
-      <td class="c-name">${esc(p.name)}</td>
+      <td class="c-name"><a href="#/project/${encodeURIComponent(p.code)}">${esc(p.name)}</a></td>
       <td>${esc(p.client)}</td>
       <td class="c-dim">${esc(p.type)}</td>
       <td class="c-dim">${esc(p.loc)}</td>
@@ -1739,7 +1905,8 @@ function viewProjects(){
     : PV.view === 'grid'
       ? `<div class="grid" id="grid">${list.slice(0, PV.shown).map(cardHTML).join('')}</div>
          ${list.length > PV.shown ? '<div id="more"><i></i>Loading more<i></i></div>' : ''}`
-      : `<div class="tablewrap"><table class="idx"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`}`;
+      : `<div class="tablewrap"><table class="idx" role="table" aria-label="Works index"><thead role="rowgroup"><tr role="row">${head}</tr></thead><tbody role="rowgroup">${body.replaceAll('<td','<td role="cell"')}</tbody></table></div>`}
+  `;
 }
 
 /* load the next batch of cards when the sentinel scrolls into view */
@@ -1747,15 +1914,25 @@ function setupInfinite(list){
   if (IO){ IO.disconnect(); IO = null; }
   const sentinel = $('#more', app);
   if (!sentinel) return;
-  IO = new IntersectionObserver(entries => {
+  let loading = false;
+  const observer = new IntersectionObserver(entries => {
     if (!entries[0].isIntersecting) return;
+    if (loading) return;
     const grid = $('#grid', app);
     if (!grid) return;
+    loading = true;
+    observer.unobserve(sentinel);
     const next = list.slice(PV.shown, PV.shown + BATCH);
     PV.shown += next.length;
     grid.insertAdjacentHTML('beforeend', next.map(cardHTML).join(''));
-    if (PV.shown >= list.length){ IO.disconnect(); IO = null; sentinel.remove(); }
-  }, { rootMargin: '400px 0px' });
+    if (PV.shown >= list.length){ observer.disconnect(); if (IO === observer) IO = null; sentinel.remove(); return; }
+    // Re-observe after layout, even if the sentinel stayed inside the viewport.
+    requestAnimationFrame(() => {
+      loading = false;
+      if (IO === observer && sentinel.isConnected) observer.observe(sentinel);
+    });
+  }, { rootMargin: '120px 0px' });
+  IO = observer;
   IO.observe(sentinel);
 }
 
@@ -1835,6 +2012,27 @@ const isHidden  = p => p && p.pub === false;
 const livePosts = () => DB.posts.filter(p => session || !isHidden(p));
 const lockTag   = p => isHidden(p) ? '<span class="lock">비밀글</span>' : '';
 
+/* One public stream; retain both source tables and every existing URL. */
+function viewFeed(){
+  const items = DB.news.map(p=>({kind:'news',p})).concat(livePosts().map(p=>({kind:'post',p})));
+  items.sort((a,b)=>dnum(b.p.d)-dnum(a.p.d) || String(a.p.id).localeCompare(String(b.p.id)));
+  if(!items.length)return '<div class="rows"><div class="pane"><p class="mono mute">등록된 피드가 없습니다.</p></div></div>';
+  const card=({kind,p},featured)=>{
+    const href = kind === 'post' ? '#/blog/'+encodeURIComponent(p.slug) : (p.url ? SAFE_HREF(p.url) : '');
+    const linked = href && href !== '#', tag = linked ? 'a' : 'article';
+    const external = kind === 'news' && /^https?:/i.test(href);
+    const attr = linked ? ' href="'+esc(href)+'"'+(external?' target="_blank" rel="noopener"':'') : '';
+    const image = (kind === 'news' ? p.img : ((p.body||[]).find(b=>b.t==='img')||{}).v) || svgArt('feed:'+kind+':'+(p.id||p.slug||p.t),1200,750);
+    const privateTag=kind==='post'?lockTag(p):'';
+    return `<${tag} class="${featured?'feed-feature':'feed-card'}${kind==='post'&&isHidden(p)?' hid':''}"${attr}>
+      <span class="feed-image"><img src="${esc(image)}" alt="" ${featured?'loading="eager" fetchpriority="high"':'loading="lazy"'}></span>
+      <div class="feed-copy"><div class="feed-meta">${featured?'<span>LATEST</span>':''}<span>${esc(p.d)}</span><span>${esc(p.k || (kind==='news'?'NEWS':'JOURNAL'))}</span></div>
+      <${featured?'h2':'h3'} class="feed-title">${esc(p.t)}${privateTag}</${featured?'h2':'h3'}>${p.x?`<p class="feed-summary">${esc(p.x)}</p>`:''}${linked?`<span class="feed-link">${external?esc(hostOf(href))+' ↗':'READ →'}</span>`:''}</div></${tag}>`;
+  };
+  const [latest,...archive]=items;
+  return '<div class="feed rows">'+card(latest,true)+(archive.length?'<section class="feed-archive" aria-labelledby="feed-archive-title"><h2 id="feed-archive-title">ARCHIVE</h2><div class="feed-grid">'+archive.map(item=>card(item,false)).join('')+'</div></section>':'')+'</div>';
+}
+
 function viewBlog(){
   const list = livePosts();
   const [feat, ...rest] = list;
@@ -1902,7 +2100,7 @@ function viewPost(slug){
   const p = DB.posts.find(x => x.slug === slug);
   /* a draft is not merely unlisted — the address itself gives nothing away */
   if (!p || (isHidden(p) && !session))
-    return `<section class="art"><h1>Not Found</h1><p><a class="tag" href="#/blog">← ALL POSTS</a></p></section>`;
+    return `<section class="art"><h1>Not Found</h1><p><a class="tag" href="#/feed">← FEED</a></p></section>`;
   return `
   <header class="post-cover">
     <div class="in">
@@ -1916,9 +2114,40 @@ function viewPost(slug){
     <article class="art">
       ${isHidden(p) ? '<div class="note warn" style="margin:0 0 2em"><b>비밀글입니다</b><br>지금은 로그인한 나에게만 보입니다. 방문자에게 보이게 하려면 편집 화면에서 <b>공개</b>로 바꾸고 저장하세요.</div>' : ''}
       ${postBodyHTML(p.body)}
-      <p style="margin-top:3em"><a class="tag" href="#/blog">← ALL POSTS</a></p>
+      <p style="margin-top:3em"><a class="tag" href="#/feed">← FEED</a></p>
     </article>
   </div>`;
+}
+
+function aboutMotionHTML(){
+  return `<section class="x-cloud-section" aria-label="Variable X와 eXperience X">
+    <div class="x-universe">
+      <h2 class="x-label x-label-left">Variable X</h2>
+      <div class="x-field" data-motion="static"><canvas class="x-cloud" id="x-cloud" tabindex="0" role="img" aria-label="크기가 다른 흰 X 점군이 회전하며 구, 정사면체, 정육면체, 정팔면체로 변합니다. 마우스와 터치로 흩어지고 다시 모입니다. 클릭하면 더 넓게 퍼집니다. 방향키로도 반응 위치를 이동할 수 있습니다." aria-describedby="x-cloud-hint">회전하며 형태를 바꾸는 X 점군</canvas></div>
+      <h2 class="x-label x-label-right">eXperience X</h2>
+      <p class="sr-only" id="x-cloud-hint">마우스나 터치로 X들을 흩어보세요. 클릭하면 더 넓게 퍼집니다.</p>
+    </div>
+  </section>`;
+}
+
+/* Shared rays give each X a stable identity throughout every solid morph. */
+function makeXCloudPoints(count){
+  const random=rng('BYX / X CLOUD / 2026'),golden=Math.PI*(3-Math.sqrt(5));
+  const unit=1/Math.sqrt(3),normals=[[unit,unit,unit],[unit,-unit,-unit],[-unit,unit,-unit],[-unit,-unit,unit]];
+  return Array.from({length:count},(_,i)=>{
+    const y=1-2*(i+.5)/count,r=Math.sqrt(Math.max(0,1-y*y)),a=i*golden,x=Math.cos(a)*r,z=Math.sin(a)*r;
+    const layer=random()<.14?.48+random()*.48:1;
+    let tetra=Infinity;
+    for(const n of normals){const dot=-(n[0]*x+n[1]*y+n[2]*z);if(dot>1e-7)tetra=Math.min(tetra,.45/dot);}
+    const radii=[1.08,tetra,.76/Math.max(Math.abs(x),Math.abs(y),Math.abs(z)),1.35/(Math.abs(x)+Math.abs(y)+Math.abs(z))];
+    return {forms:radii.map(q=>({x:x*q*layer,y:y*q*layer,z:z*q*layer})),size:.65+Math.pow(random(),2.5)*2.4,aspect:.65+random()*.65,angle:(random()-.5)*.5,weight:.6+random()*.65,ox:0,oy:0,vx:0,vy:0,depth:0,sx:0,sy:0,perspective:1};
+  });
+}
+
+function xCloudPhase(milliseconds){
+  const cycle=milliseconds/4800,from=Math.floor(cycle)%4,to=(from+1)%4;
+  const t=Math.max(0,Math.min(1,((cycle%1)-.4)/.6)),mix=t*t*t*(t*(t*6-15)+10);
+  return {from,to,mix};
 }
 
 function viewAbout(){
@@ -1933,6 +2162,8 @@ function viewAbout(){
     <h1 class="display h-xl brandline"><span class="blank" style="width:2.1em"></span><span class="optical">&nbsp;BY&nbsp;X</span></h1>
     <p class="lede">${esc(s.lede)}</p>
   </section>
+
+  ${aboutMotionHTML()}
 
   <div class="about-grid">
     <div>
@@ -2119,12 +2350,13 @@ function edProject(){
       ${F('Name / 프로젝트명','name',d.name)}
       ${F('Client / 클라이언트','client',d.client)}
       ${SUG('Type / 유형','type',d.type,typeOptions(),'dl-type')}
-      ${F('Location / 위치','loc',d.loc)}
-      ${F('Date / 연월','ym',ymInput(d),'month')}
-      ${F('Status / 상태','status',d.status)}
+      <div>${F('Location / 위치','loc',d.loc)}<button type="button" class="abtn sm" data-pick-location style="margin-top:8px">지도에서 선택</button>${d.location_point ? '<button type="button" class="abtn sm" data-clear-location style="margin:8px 0 0 6px">지도 좌표 해제</button>' : ''}</div>
+      ${projectDateFields(d)}
+      ${SUG('Status / 상태 — 선택하거나 직접 입력','status',d.status,Array.from(new Set(['PLANNING','DESIGN','IN PROGRESS','BUILT','COMPLETED','ON HOLD','PRODUCTION','DELIVERED',...DB.projects.map(p=>p.status).filter(Boolean)])).sort(),'dl-status')}
       ${F('Area / 규모','area',d.area)}
       ${F('Role / 업무범위','role',d.role)}
     </div>
+    ${DB.cols.projectDates && DB.cols.projectPoint ? '' : '<p class="note">기존 연월·위치명은 계속 저장됩니다. 일 단위 날짜·기간·지도 좌표를 저장하려면 docs/PROJECT_FIELDS.sql의 추가 열이 필요합니다.</p>'}
     ${TA('Description / 본문  (빈 줄로 문단 구분)','descr',d.descr,180)}
     ${TA('People / 참여자 — 한 줄에 하나씩. 세로줄 | 왼쪽이 역할, 오른쪽이 이름입니다 (예: Design | 박, 김)','people',d.people,110)}
     ${DB.cols.projectPeople ? '' : miss('참여자')}
@@ -2398,6 +2630,8 @@ const actionsBar = () => `
 
 function hintFor(msg){
   const m = String(msg).toLowerCase();
+  if (m.includes('column') && /(date_start|date_end|location_point)/.test(m))
+    return '→ 날짜·기간·지도 좌표를 위한 추가 칸이 필요합니다. docs/PROJECT_FIELDS.sql을 확인하세요.';
   if (m.includes('column') && /'?(people|img|url)'?/.test(m))
     return '→ 표에 아직 없는 칸이 있습니다. 배포 가이드 3-2 의 "예전에 이미 이 단계를 한 적이 있다면" SQL 을 실행하세요.';
   if (m.includes('does not exist') || m.includes('relation') || m.includes('schema cache'))
@@ -2574,8 +2808,65 @@ const blank = t => t === 'projects'
   /* a new post starts hidden — you write it, then decide to show it */
   : {slug:'', d:d8Dot(today8()), d8:today8(), k:'ESSAY', t:'', x:'', body:[], bodyText:'', pub:false};
 
+function openLocationPicker(){
+  const dialog=$('#location-picker'),draft=AD.draft;
+  if(!draft)return;
+  const validPoint=p=>p&&Number.isFinite(p.lat)&&Number.isFinite(p.lng)&&Math.abs(p.lat)<=85&&Math.abs(p.lng)<=180;
+  let selected=validPoint(draft.location_point)?{...draft.location_point}:null;
+  let center=selected||{lat:37.5665,lng:126.9780},zoom=13;
+  const content=$('#location-content');
+  content.innerHTML=`<div class="location-head"><h2 id="location-title">Location / 지도에서 선택</h2><button class="abtn sm" data-map-close>닫기</button></div><p class="help">드래그로 이동하고 지도를 클릭해 선택하세요. 키보드 방향키로 이동한 뒤 중앙 지점을 선택할 수도 있습니다.</p><div class="location-tools"><div><button class="abtn sm" data-map-zoom="1" aria-label="지도 확대">＋</button> <button class="abtn sm" data-map-zoom="-1" aria-label="지도 축소">−</button> <button class="abtn sm" data-map-center>중앙 지점 선택</button></div><a class="abtn sm" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(draft.loc||'Seoul')}" target="_blank" rel="noopener">위치명으로 지도 찾아보기 ↗</a></div><div class="location-map" tabindex="0" role="region" aria-label="위치 선택 지도 · 방향키로 이동"><div class="location-tiles"></div><span class="location-pin" hidden aria-hidden="true">●</span></div><div class="location-credit">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors</div><p class="help" data-map-status role="status"></p><div class="location-coordinates"><div><label for="map-lat">위도</label><input id="map-lat" type="number" step="any" min="-85" max="85"></div><div><label for="map-lng">경도</label><input id="map-lng" type="number" step="any" min="-180" max="180"></div></div><button class="abtn sm" data-map-coordinates>좌표로 이동·선택</button><label for="map-label">표시할 위치명</label><input id="map-label" value="${esc(draft.loc)}" placeholder="서울 성동구 성수동"><div class="acts-bar"><button class="abtn solid" data-map-apply>이 위치 사용</button></div>`;
+  dialog.showModal();
+  const map=$('.location-map',content),tiles=$('.location-tiles',content),pin=$('.location-pin',content),status=$('[data-map-status]',content);
+  const project=(point,z)=>{const n=256*2**z,lat=Math.max(-85,Math.min(85,point.lat))*Math.PI/180;return{x:(point.lng+180)/360*n,y:(1-Math.asinh(Math.tan(lat))/Math.PI)/2*n};};
+  const unproject=(x,y,z)=>{const n=256*2**z;return{lat:Math.max(-85,Math.min(85,Math.atan(Math.sinh(Math.PI*(1-2*y/n)))*180/Math.PI)),lng:((x/n*360)%360+360)%360-180};};
+  function mark(){
+    pin.hidden=!selected;
+    if(selected){const c=project(center,zoom),p=project(selected,zoom);pin.style.left=(map.clientWidth/2+p.x-c.x)+'px';pin.style.top=(map.clientHeight/2+p.y-c.y)+'px';$('#map-lat').value=selected.lat.toFixed(6);$('#map-lng').value=selected.lng.toFixed(6);}
+  }
+  function draw(){
+    tiles.replaceChildren();tiles.style.transform='';
+    if(location.protocol==='file:'){status.textContent='지도 이미지는 http://localhost 또는 사이트 주소에서 열어주세요. 좌표는 직접 입력할 수 있습니다.';mark();return;}
+    const c=project(center,zoom),left=c.x-map.clientWidth/2,top=c.y-map.clientHeight/2,n=2**zoom;
+    for(let x=Math.floor(left/256);x<=Math.floor((left+map.clientWidth-1)/256);x++)for(let y=Math.max(0,Math.floor(top/256));y<=Math.min(n-1,Math.floor((top+map.clientHeight-1)/256));y++){
+      const img=new Image();img.alt='';img.draggable=false;img.referrerPolicy='strict-origin-when-cross-origin';
+      img.src='https://tile.openstreetmap.org/'+zoom+'/'+((x%n+n)%n)+'/'+y+'.png';img.style.left=(x*256-left)+'px';img.style.top=(y*256-top)+'px';
+      img.onerror=()=>{if(dialog.open)status.textContent='지도를 불러오지 못했습니다. 연결을 확인하거나 좌표를 직접 입력하세요.';};tiles.append(img);
+    }mark();
+  }
+  const select=p=>{selected=p;status.textContent='선택: '+p.lat.toFixed(6)+', '+p.lng.toFixed(6);mark();};
+  let drag=null;
+  map.onpointerdown=e=>{if(e.button!==0)return;drag={x:e.clientX,y:e.clientY,c:project(center,zoom)};map.setPointerCapture(e.pointerId);};
+  map.onpointermove=e=>{if(!drag)return;tiles.style.transform='translate('+(e.clientX-drag.x)+'px,'+(e.clientY-drag.y)+'px)';pin.hidden=true;};
+  map.onpointerup=e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y,c=drag.c;drag=null;
+    if(Math.hypot(dx,dy)>5){center=unproject(c.x-dx,c.y-dy,zoom);draw();}
+    else{tiles.style.transform='';const box=map.getBoundingClientRect();select(unproject(c.x+e.clientX-box.left-map.clientWidth/2,c.y+e.clientY-box.top-map.clientHeight/2,zoom));}
+  };
+  map.onpointercancel=()=>{drag=null;draw();};
+  map.onkeydown=e=>{const offsets={ArrowLeft:[-80,0],ArrowRight:[80,0],ArrowUp:[0,-80],ArrowDown:[0,80]};if(offsets[e.key]){e.preventDefault();const c=project(center,zoom),o=offsets[e.key];center=unproject(c.x+o[0],c.y+o[1],zoom);draw();}};
+  $$('[data-map-zoom]',content).forEach(b=>b.onclick=()=>{zoom=Math.max(2,Math.min(18,zoom+ +b.dataset.mapZoom));draw();});
+  $('[data-map-center]',content).onclick=()=>select({...center});
+  $('[data-map-coordinates]',content).onclick=()=>{const lat=$('#map-lat').value.trim(),lng=$('#map-lng').value.trim(),p={lat:+lat,lng:+lng};if(!lat||!lng||!validPoint(p)){status.textContent='위도(-85~85)와 경도(-180~180)를 확인하세요.';return;}center=p;select(p);draw();};
+  $('[data-map-close]',content).onclick=()=>dialog.close();
+  $('[data-map-apply]',content).onclick=()=>{
+    if(!selected){status.textContent='지도에서 위치를 선택하세요.';return;}
+    if(AD.draft!==draft){dialog.close();return;}
+    draft.location_point={lat:+selected.lat.toFixed(6),lng:+selected.lng.toFixed(6)};
+    draft.loc=$('#map-label').value.trim()||selected.lat.toFixed(6)+', '+selected.lng.toFixed(6);dialog.close();refreshAdmin();
+  };
+  dialog.onclose=()=>{content.replaceChildren();};draw();
+}
+
 function bindAdmin(){
   const root = app;
+  $$('[data-pick-location]',root).forEach(b=>b.onclick=()=>openLocationPicker());
+  $$('[data-clear-location]',root).forEach(b=>b.onclick=()=>{AD.draft.location_point=null;refreshAdmin();});
+  $$('[data-project-calendar]',root).forEach(calendar=>{
+    const input=$('[data-k="'+calendar.dataset.projectCalendar+'"]',root);
+    const sync=()=>{try{const p=parseProjectDate(input.value);calendar.value=p&&p.day?p.text.replaceAll('.','-'):'';}catch(e){calendar.value='';}};
+    sync(); input.addEventListener('input',sync);
+    calendar.onchange=()=>{input.value=calendar.value.replaceAll('-','.');AD.draft[calendar.dataset.projectCalendar]=input.value;};
+  });
 
   const lf = $('#lform', root);
   if (lf) lf.onsubmit = async e => {
@@ -2674,7 +2965,7 @@ function bindAdmin(){
     wb.ondragover = e => { e.preventDefault(); wb.classList.add('on'); };
     wb.ondragleave = () => wb.classList.remove('on');
     wb.ondrop = e => {
-      const files = Array.from(e.dataTransfer.files || []).filter(f => f.type.startsWith('image/'));
+      const files = Array.from(e.dataTransfer.files || []).filter(isImageFile);
       if (!files.length) return;
       e.preventDefault(); wb.classList.remove('on');
       insertImagesAt(wb, files);
@@ -2690,7 +2981,7 @@ function bindAdmin(){
     z.ondragleave = () => z.classList.remove('on');
     z.ondrop = e => {
       e.preventDefault(); z.classList.remove('on');
-      handleFiles(key, Array.from(e.dataTransfer.files || []).filter(f => f.type.startsWith('image/')));
+      handleFiles(key, Array.from(e.dataTransfer.files || []).filter(isImageFile));
     };
   });
   /* member photos — one file, straight onto that member's line */
@@ -2751,8 +3042,16 @@ function bindAdmin(){
       const d = {...AD.draft};
       if (AD.tab === 'projects'){
         if (!d.code || !d.name){ toast('코드와 프로젝트명은 필수입니다'); return; }
-        d.year = +d.year || null;
-        d.month = +d.month || null;
+        try{
+          const start=parseProjectDate(d.date_start_input ?? d.date_start ?? (d.year ? String(d.year)+(d.month?'.'+String(d.month).padStart(2,'0'):'') : ''));
+          const end=parseProjectDate(d.date_end_input ?? d.date_end ?? '');
+          if (end && !start) throw Error('기간의 시작 날짜를 입력하세요.');
+          if (start && end && (end.year*10000+(end.month||12)*100+(end.day||31))<start.order) throw Error('종료 날짜가 시작 날짜보다 빠릅니다.');
+          if (sb && !DB.cols.projectDates && (start?.day || end)) throw Error('일 단위 날짜·기간 저장에 필요한 추가 열이 없습니다. docs/PROJECT_FIELDS.sql을 확인하세요.');
+          if (sb && !DB.cols.projectPoint && d.location_point) throw Error('지도 좌표 저장에 필요한 추가 열이 없습니다. docs/PROJECT_FIELDS.sql을 확인하세요.');
+          d.year=start?.year||null;d.month=start?.month||null;d.date_start=start?.text||null;d.date_end=end?.text||null;
+          delete d.date_start_input;delete d.date_end_input;
+        }catch(e){toast(e.message);return;}
       }
       if (AD.tab === 'posts'){
         if (!d.slug){ d.slug = (d.t || 'post').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || uid(); }
@@ -2776,7 +3075,111 @@ function bindAdmin(){
 /* ============================================================
    8. PAGE BINDINGS
    ============================================================ */
+function bindWorksTop(){
+  const button=$('#works-top');
+  if(!button)return()=>{};
+  // A body-level fixed control is unaffected by the animated page wrapper.
+  button.hidden=false;
+  button.onclick=()=>window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});
+  return()=>{button.hidden=true;button.onclick=null;};
+}
+
+function bindAboutMotion(){
+  const field=$('.x-field',app),canvas=$('#x-cloud',app);
+  if(!field||!canvas)return()=>{};
+  const ctx=canvas.getContext('2d');
+  if(!ctx)return()=>{};
+  const reduced=matchMedia('(prefers-reduced-motion:reduce)');
+  let points=[],order=[],width=0,height=0,dpr=0,raf=0,last=0,clock=0,visible=false,disposed=false,frames=0;
+  const pointer={active:false,x:0,y:0,vx:0,vy:0,burst:0};
+  function draw(delta=0){
+    if(!width||!height||disposed)return;
+    const phase=xCloudPhase(clock),seconds=clock/1000,step=Math.min(delta,64)/16.667;
+    const yaw=seconds*.18,pitch=.24+Math.sin(seconds*.13)*.2,roll=Math.sin(seconds*.09)*.11;
+    const cy=Math.cos(yaw),sy=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch),cr=Math.cos(roll),sr=Math.sin(roll);
+    const radius=Math.min(width,height)*.35,reach=Math.min(280,Math.min(width,height)*.43)*(1+pointer.burst*.5),sizeScale=Math.max(.85,Math.min(1.3,width/1000));
+    let dispersal=0;
+    for(let i=0;i<points.length;i++){
+      const p=points[i],a=p.forms[phase.from],b=p.forms[phase.to];
+      const x=a.x+(b.x-a.x)*phase.mix,y=a.y+(b.y-a.y)*phase.mix,z=a.z+(b.z-a.z)*phase.mix;
+      const rx=x*cy+z*sy,rz=-x*sy+z*cy,ry=y*cp-rz*sp,depth=y*sp+rz*cp;
+      const perspective=4.5/(4.5-depth),px=width/2+(rx*cr-ry*sr)*radius*perspective,py=height/2+(rx*sr+ry*cr)*radius*perspective;
+      let dx=px+p.ox-pointer.x,dy=py+p.oy-pointer.y,dist=Math.hypot(dx,dy);
+      if(dist<.1){dx=Math.cos(i*goldenAngle());dy=Math.sin(i*goldenAngle());dist=1;}
+      const influence=pointer.active?Math.pow(Math.max(0,1-dist/reach),1.6):0;
+      if(reduced.matches){p.ox=dx/dist*influence*reach*1.1;p.oy=dy/dist*influence*reach*1.1;p.vx=p.vy=0;}
+      else if(step){
+        const force=8*(1+pointer.burst*2);
+        p.vx+=(-p.ox*.011+dx/dist*influence*force+pointer.vx*influence*.1)*step;
+        p.vy+=(-p.oy*.011+dy/dist*influence*force+pointer.vy*influence*.1)*step;
+        const damping=Math.pow(.86,step);p.vx*=damping;p.vy*=damping;
+        p.ox=Math.max(-width*.45,Math.min(width*.45,p.ox+p.vx*step));p.oy=Math.max(-height*.45,Math.min(height*.45,p.oy+p.vy*step));
+      }
+      dispersal=Math.max(dispersal,Math.hypot(p.ox,p.oy));
+      p.sx=px+p.ox;p.sy=py+p.oy;p.depth=depth;p.perspective=perspective;
+    }
+    pointer.vx*=.85;pointer.vy*=.85;pointer.burst*=Math.pow(.95,step);
+    order.sort((a,b)=>a.depth-b.depth);
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.globalAlpha=1;ctx.fillStyle='#000';ctx.fillRect(0,0,width,height);ctx.strokeStyle='#fff';ctx.lineCap='square';
+    for(const p of order){
+      const size=p.size*p.perspective*sizeScale,hx=size*p.aspect,hy=size,angle=p.angle+seconds*.018,c=Math.cos(angle),s=Math.sin(angle);
+      const ax=-hx*c+hy*s,ay=-hx*s-hy*c,bx=-hx*c-hy*s,by=-hx*s+hy*c;
+      ctx.globalAlpha=.16+.84*Math.pow(Math.max(0,Math.min(1,(p.depth+1.5)/3)),1.15);ctx.lineWidth=p.weight*p.perspective;
+      ctx.beginPath();ctx.moveTo(p.sx+ax,p.sy+ay);ctx.lineTo(p.sx-ax,p.sy-ay);ctx.moveTo(p.sx+bx,p.sy+by);ctx.lineTo(p.sx-bx,p.sy-by);ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+    canvas.dataset.shape=String(phase.from);canvas.dataset.points=String(points.length);canvas.dataset.frame=String(++frames);canvas.dataset.dispersal=dispersal.toFixed(2);
+  }
+  function goldenAngle(){return Math.PI*(3-Math.sqrt(5));}
+  function tick(now){
+    raf=0;if(disposed||!visible||document.hidden||reduced.matches)return;
+    if(!last)last=now;
+    if(now-last>=1000/30){const delta=Math.min(64,now-last);clock+=delta;last=now;draw(delta);}
+    raf=requestAnimationFrame(tick);
+  }
+  function sync(){
+    if(disposed)return;
+    cancelAnimationFrame(raf);raf=0;last=0;
+    const running=visible&&!document.hidden&&!reduced.matches;
+    field.dataset.motion=running?'running':reduced.matches?'static':'idle';draw();
+    if(running)raf=requestAnimationFrame(tick);
+  }
+  function resize(){
+    const box=canvas.getBoundingClientRect(),nextDpr=Math.min(devicePixelRatio||1,1.75);
+    if(!box.width||!box.height||(box.width===width&&box.height===height&&nextDpr===dpr))return;
+    const oldWidth=width||box.width;width=box.width;height=box.height;dpr=nextDpr;
+    canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);
+    const count=width<600?800:1400;
+    if(points.length!==count){points=makeXCloudPoints(count);order=points.slice();}
+    else for(const p of points){p.ox*=width/oldWidth;p.oy*=width/oldWidth;}
+    sync();
+  }
+  function move(event){
+    const box=canvas.getBoundingClientRect(),x=event.clientX-box.left,y=event.clientY-box.top;
+    pointer.vx=pointer.active?x-pointer.x:0;pointer.vy=pointer.active?y-pointer.y:0;pointer.x=x;pointer.y=y;pointer.active=true;
+    if(reduced.matches)draw();
+  }
+  function release(){pointer.active=false;pointer.vx=pointer.vy=pointer.burst=0;if(reduced.matches)draw();}
+  function burst(event){move(event);pointer.burst=1.6;if(reduced.matches)draw();}
+  canvas.onpointermove=move;canvas.onpointerdown=burst;canvas.onpointerleave=release;canvas.onpointercancel=release;
+  canvas.onpointerup=e=>{if(e.pointerType==='touch')release();};
+  canvas.onfocus=()=>{if(!pointer.active){pointer.active=true;pointer.x=width/2;pointer.y=height/2;}if(reduced.matches)draw();};canvas.onblur=release;
+  canvas.onkeydown=e=>{
+    const directions={ArrowLeft:[-24,0],ArrowRight:[24,0],ArrowUp:[0,-24],ArrowDown:[0,24]};
+    if(e.key==='Escape'){release();return;}
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();pointer.active=true;pointer.burst=1.6;if(reduced.matches)draw();return;}
+    if(directions[e.key]){e.preventDefault();const [x,y]=directions[e.key];pointer.active=true;pointer.x=Math.max(0,Math.min(width,pointer.x+x));pointer.y=Math.max(0,Math.min(height,pointer.y+y));if(reduced.matches)draw();}
+  };
+  const preference=()=>{if(reduced.matches){clock=0;for(const p of points)p.ox=p.oy=p.vx=p.vy=0;}sync();};
+  const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:0});observer.observe(field);
+  const sizing=new ResizeObserver(resize);sizing.observe(field);window.addEventListener('resize',resize);
+  document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',preference);resize();
+  return()=>{disposed=true;cancelAnimationFrame(raf);observer.disconnect();sizing.disconnect();window.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',sync);reduced.removeEventListener('change',preference);};
+}
+
 function bindPage(page, arg){
+  if(page==='about')pageCleanup=bindAboutMotion();
+  if(page==='project'&&!arg)pageCleanup=bindWorksTop();
   if (page === 'guidelines') { if(IO){IO.disconnect();IO=null;} bindGuidelines(arg); return; }
   const bar = $('.pbar', app);
   if (bar) document.documentElement.style.setProperty('--pbar-h', bar.offsetHeight + 'px');
@@ -2821,6 +3224,7 @@ function bindPage(page, arg){
       if (PV.sort === k) PV.dir *= -1; else { PV.sort = k; PV.dir = 1; }
       render();
     });
+    $$('table.idx th[data-sort]',app).forEach(th=>th.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();th.click();}});
     $$('table.idx tbody tr', app).forEach(tr => tr.onclick = () => { location.hash = '#/project/' + encodeURIComponent(tr.dataset.code); });
   }
   if (page === 'blog' && arg) bindGalleries(app);
@@ -3014,6 +3418,89 @@ function bindGuidelines(arg){
 /* ============================================================
    9. CHROME + BOOT
    ============================================================ */
+/* Sample the actual content under the fixed header, excluding its own glass.
+   Image samples are cached; blocked cross-origin reads fall back to the surface. */
+const headerImages = new WeakMap();
+let headerFrame = 0;
+function scheduleHeaderTone(){
+  if (!headerFrame) headerFrame = requestAnimationFrame(updateHeaderTone);
+}
+function headerImagePixels(image){
+  const src = image.currentSrc || image.src;
+  const cached = headerImages.get(image);
+  if (cached?.src === src) return cached.pixels;
+  const record = {src,pixels:null}; headerImages.set(image,record);
+  const read = source => {
+    try{
+      const canvas = document.createElement('canvas'); canvas.width = canvas.height = 32;
+      const context = canvas.getContext('2d',{willReadFrequently:true});
+      context.drawImage(source,0,0,32,32);
+      record.pixels = context.getImageData(0,0,32,32).data;
+      scheduleHeaderTone(); return true;
+    }catch(e){ return false; }
+  };
+  if (!image.complete || !image.naturalWidth){
+    image.addEventListener('load',()=>{headerImages.delete(image);scheduleHeaderTone();},{once:true});
+  }else if (!read(image) && /^https?:/.test(src)){
+    const copy = new Image(); copy.crossOrigin = 'anonymous';
+    copy.onload = () => read(copy); copy.src = src;
+  }
+  return record.pixels;
+}
+function headerSurface(element,x,y){
+  if (!element || element === document.documentElement) return 1;
+  const style = getComputedStyle(element);
+  const values = style.backgroundColor.match(/[\d.]+/g)?.map(Number);
+  let surface = null;
+  if (values && /^rgba?\(/.test(style.backgroundColor)){
+    const alpha = values[3] ?? 1;
+    if (alpha > 0){
+      const light = (values[0]*0.2126+values[1]*0.7152+values[2]*0.0722)/255;
+      surface = alpha >= 1 ? light : light*alpha+headerSurface(element.parentElement,x,y)*(1-alpha);
+    }
+  }
+  if (element instanceof HTMLImageElement){
+    const pixels = headerImagePixels(element), rect = element.getBoundingClientRect();
+    if (pixels && rect.width && rect.height){
+      const nw = element.naturalWidth, nh = element.naturalHeight;
+      const scale = style.objectFit === 'cover' ? Math.max(rect.width/nw,rect.height/nh) : Math.min(rect.width/nw,rect.height/nh);
+      const width = style.objectFit === 'fill' ? rect.width : nw*scale;
+      const height = style.objectFit === 'fill' ? rect.height : nh*scale;
+      const [px,py] = style.objectPosition.split(' ').map(v=>parseFloat(v)/100);
+      const u = (x-rect.left-(rect.width-width)*(Number.isFinite(px)?px:0.5))/width;
+      const v = (y-rect.top-(rect.height-height)*(Number.isFinite(py)?py:0.5))/height;
+      if (u>=0 && u<=1 && v>=0 && v<=1){
+        const i = (Math.min(31,Math.floor(v*32))*32+Math.min(31,Math.floor(u*32)))*4;
+        const alpha = pixels[i+3]/255;
+        const light = (pixels[i]*0.2126+pixels[i+1]*0.7152+pixels[i+2]*0.0722)/255;
+        return light*alpha+(surface ?? headerSurface(element.parentElement,x,y))*(1-alpha);
+      }
+    }
+  }
+  return surface ?? headerSurface(element.parentElement,x,y);
+}
+function updateHeaderTone(){
+  headerFrame = 0;
+  const top = $('#top');
+  if (!top || document.hidden || document.body.classList.contains('guidelines')) return;
+  if (document.body.classList.contains('menu')){top.dataset.tone='light';return;}
+  const height = top.getBoundingClientRect().height;
+  let total = 0, count = 0;
+  for (const row of [0.25,0.75]) for (let column=0;column<7;column++){
+    const x = innerWidth*(column+0.5)/7, y = height*row;
+    const element = document.elementsFromPoint(x,y).find(el=>!top.contains(el) && !el.closest('#mobnav,#works-top'));
+    total += headerSurface(element,x,y); count++;
+  }
+  // Hysteresis keeps section boundaries and mixed images from flickering.
+  const dark = top.dataset.tone === 'dark';
+  top.dataset.tone = total/count < (dark ? 0.57 : 0.43) ? 'dark' : 'light';
+}
+window.addEventListener('scroll',scheduleHeaderTone,{passive:true});
+window.addEventListener('resize',scheduleHeaderTone,{passive:true});
+document.addEventListener('visibilitychange',scheduleHeaderTone);
+new MutationObserver(scheduleHeaderTone).observe(document.body,{attributes:true,attributeFilter:['class']});
+document.fonts?.ready.then(scheduleHeaderTone);
+
 $('#brand').addEventListener('click', () => {
   /* away from home the route change is what spins, so do not also spin here —
      that would count as two presses for one click */
