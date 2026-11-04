@@ -1,0 +1,61 @@
+{
+  "testedAt": "2026-11-04T09:17:55.604Z",
+  "results": [
+    {
+      "width": 1440,
+      "blackHero": true,
+      "nativeScroll": true,
+      "pinnedAssembly": true,
+      "scrollNarrative": true,
+      "functionAnimation": true,
+      "peopleLoop": true,
+      "profileModal": true,
+      "modalCleanup": true,
+      "contactForm": true,
+      "privateInboxDemo": true,
+      "profileCms": true,
+      "reducedMotion": true,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "blackHero": true,
+      "nativeScroll": true,
+      "pinnedAssembly": true,
+      "scrollNarrative": true,
+      "functionAnimation": true,
+      "peopleLoop": true,
+      "profileModal": true,
+      "modalCleanup": true,
+      "contactForm": true,
+      "privateInboxDemo": true,
+      "profileCms": false,
+      "reducedMotion": true,
+      "noOverflow": true
+    },
+    {
+      "width": 320,
+      "blackHero": true,
+      "nativeScroll": true,
+      "pinnedAssembly": true,
+      "scrollNarrative": true,
+      "functionAnimation": true,
+      "peopleLoop": true,
+      "profileModal": true,
+      "modalCleanup": true,
+      "contactForm": true,
+      "privateInboxDemo": true,
+      "profileCms": false,
+      "reducedMotion": true,
+      "noOverflow": true
+    }
+  ],
+  "titleScramble": true,
+  "feedHover": {
+    "transform": "matrix(1.035, 0, 0, 1.035, 0, 0)",
+    "filter": "grayscale(0) contrast(1)",
+    "transition": "transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), filter 0.5s"
+  },
+  "errors": [],
+  "limitations": "Isolated demo; no production content writes; no real-device Safari/Firefox test."
+}

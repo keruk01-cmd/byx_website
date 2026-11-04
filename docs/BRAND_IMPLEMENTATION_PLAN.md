@@ -14,6 +14,8 @@
 
 ## 2. 소스 분석 기준선
 
+- 2026-11-04 스크롤 소개 후속: ABOUT의 Studio/Records 공개 UI와 선택형 설명 버튼을 제거하고, 고정 장면/순환 People/모달/문의를 추가했습니다. 문의는 별도 `contact_requests`와 서버 전용 RPC/Edge Function으로 접수하며 기존 projects/news/posts/settings·Auth·Storage를 바꾸지 않습니다. 프런트 단일 HTML과 브랜드 가이드/Vercel rewrite를 유지합니다. [최신 기준](ABOUT_CINEMATIC_2026-11-04.md).
+
 - 2026-11-04 화면 정리 후속: 헤더 75% 축소·알약 메뉴, ABOUT 고정 챕터 탐색/영문 보조 문구 제거, `eXperience` 표기와 점군 여운을 반영했습니다. 실행 코드는 계속 단일 HTML이며 기존 설정·운영 가이드·사업자 푸터를 보존합니다. [후속 검증](ABOUT_STORY_2026-11-04.md#후속-화면-정리).
 
 - 2026-11-04 ABOUT 후속: `viewAbout()`의 3개 챕터와 `bindAboutStory()`가 기존 X 점군 수명주기를 합성합니다. ABOUT 문구는 `settings.v`의 선택 필드로 추가하며 테이블·운영 값·서체·설정 객체·Vercel 설정은 바꾸지 않습니다. 사용자 제공 사업자 정보만 공통 푸터에 추가했습니다. [ABOUT 검증 기록](ABOUT_STORY_2026-11-04.md).
