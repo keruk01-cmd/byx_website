@@ -12,15 +12,22 @@ async function main(){
    await page.goto(origin+'/#/about');await page.waitForSelector('.people');await page.evaluate(()=>document.fonts.ready);
    await page.waitForFunction(()=>document.querySelector('#top').dataset.tone==='dark');
    assert.equal(await page.locator('.story-studio,.about-grid,[data-about-condition],[data-about-journey],[data-about-data]').count(),0);
-   assert.equal(await page.locator('.story-chapter').count(),3);assert.equal(await page.locator('[data-journey-step]').count(),4);assert.equal(await page.locator('[data-source-step]').count(),4);
+   assert.equal(await page.locator('.story-chapter').count(),3);assert.equal(await page.locator('[data-journey-step]').count(),2);assert.equal(await page.locator('[data-source-step]').count(),2);
    assert.equal(await page.locator('#about-title').getAttribute('aria-label'),'POSSIBILITIES. BY X.');
    assert.equal(await page.locator('#about-title').getAttribute('data-motion'),'settled');
    assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).scrollbarWidth),'none');
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
    await page.screenshot({path:path.join(out,'cinematic-hero-'+width+'.png')});
-   await page.locator('[data-journey-step="3"]').scrollIntoViewIfNeeded();
-   await page.waitForFunction(()=>document.querySelector('[data-journey-step="3"]').classList.contains('is-current'));
-   assert.match(await page.locator('#journey-drawing-label').innerText(),/완성과 일상/);
+   await page.locator('[data-journey-step="1"]').scrollIntoViewIfNeeded();
+   await page.waitForFunction(()=>document.querySelector('[data-journey-step="1"]').classList.contains('is-current'));
+   assert.equal(await page.locator('.system-equation,.people-pause').count(),0);
+   if(width<=390){
+    assert.equal(await page.locator('.journey-visual').evaluate(el=>getComputedStyle(el).position),'relative');assert.equal(await page.locator('.function-visual').evaluate(el=>getComputedStyle(el).position),'relative');
+    const label=await page.locator('.x-label-left').evaluate(el=>{const a=el.getBoundingClientRect(),b=el.parentElement.getBoundingClientRect();return Math.abs(a.y+a.height/2-b.y-b.height/2);});assert(label<2,'Mobile X label must be vertically centered');
+   }
+   const copy=await page.locator('.story-chapter').allInnerTexts();assert(!/건축|대지|법령|도면|인테리어/.test(copy.join('')),'About copy must span services');
+   assert.equal(await page.locator('.people-section').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(0, 0, 0)');assert.equal(await page.locator('footer').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(0, 0, 0)');
+   await page.locator('#byx-journey').scrollIntoViewIfNeeded();await page.locator('.experience-drawing').screenshot({path:path.join(out,'byx-journey-'+width+'.png')});
    await page.locator('#byx-function').scrollIntoViewIfNeeded();assert.equal(await page.locator('.function-stage').getAttribute('data-motion'),'static');
    await page.locator('.function-stage').screenshot({path:path.join(out,'byx-function-'+width+'.png')});
    await page.locator('.people').scrollIntoViewIfNeeded();assert.equal(await page.locator('.people').getAttribute('data-motion'),'static');
@@ -32,10 +39,14 @@ async function main(){
    await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#people-dialog').open&&document.body.style.overflow==='');assert.equal(await page.evaluate(()=>document.body.style.overflow),'');
    await page.emulateMedia({reducedMotion:'no-preference'});await page.locator('.people').scrollIntoViewIfNeeded();await page.evaluate(()=>document.activeElement.blur());await page.mouse.move(0,0);
    await page.waitForFunction(()=>document.querySelector('.people').dataset.motion==='running');const before=+(await page.locator('.people').getAttribute('data-offset'));
-   await page.waitForTimeout(450);const after=+(await page.locator('.people').getAttribute('data-offset'));assert(after>before,'People must move left to right');
-   const first=page.locator('.people-group:not([data-copy]) > [data-person="0"]:not([data-fill])');const firstBox=await first.boundingBox();await page.mouse.move(firstBox.x+firstBox.width/2,firstBox.y+firstBox.height/2);
-   const paused=await page.locator('.people').getAttribute('data-offset');await page.waitForTimeout(200);assert.equal(await page.locator('.people').getAttribute('data-offset'),paused);
-   await first.click();await page.waitForSelector('#people-dialog[open]');
+   await page.waitForTimeout(450);const after=+(await page.locator('.people').getAttribute('data-offset'));assert(after<before,'People must move right to left');
+   const first=page.locator('.people-group:not([data-copy]) > [data-person="1"]:not([data-fill])');
+   const clickMoving=async()=>{const box=await first.boundingBox();await page.mouse.click(Math.min(width-12,Math.max(12,box.x+box.width/2)),box.y+box.height/2);};
+   await clickMoving();await page.waitForSelector('#people-dialog[open]');
+   assert.match(await page.locator('#people-dialog').evaluate(el=>getComputedStyle(el).animationName),/profile-in/);
+   await page.locator('#people-dialog .profile-close').click();await page.waitForFunction(()=>document.querySelector('.people').dataset.motion==='running');
+   const resumed=+(await page.locator('.people').getAttribute('data-offset'));await page.waitForTimeout(250);assert(+(await page.locator('.people').getAttribute('data-offset'))<resumed,'Closing profile must resume without clicking elsewhere');
+   await clickMoving();await page.waitForSelector('#people-dialog[open]');
    await page.evaluate(()=>location.hash='#/');await page.waitForSelector('.grid');assert.equal(await page.evaluate(()=>document.body.style.overflow),'');
    await page.evaluate(()=>location.hash='#/about');await page.waitForSelector('.people');
    const formation=await page.evaluate(()=>{const el=document.querySelector('.cloud-scroll-runway'),r=el.getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;return{top:r.top+scrollY,travel:r.height-(innerHeight-head),head};});
@@ -71,13 +82,15 @@ async function main(){
     await page.locator('.people-group:not([data-copy]) > [data-person="0"]').first().click();assert.equal(await page.locator('.profile-intro').innerText(),'첫 번째 소개\n두 번째 <script>문장');assert.equal(await page.locator('.profile-intro script').count(),0);await page.keyboard.press('Escape');
    }
    await page.evaluate(()=>{DB.settings.about.people='ONE | Architect | Career | | A personal introduction';render();});
-   await page.locator('.people').scrollIntoViewIfNeeded();assert.equal(await page.locator('.people-group').count(),1);assert(!(await page.locator('.people-pause').isVisible()));
+   await page.locator('.people').scrollIntoViewIfNeeded();assert.equal(await page.locator('.people-group').count(),1);assert.equal(await page.locator('.people-pause').count(),0);
    await page.locator('[data-person="0"]').click();assert.equal(await page.locator('.profile-intro').innerText(),'A personal introduction');await page.keyboard.press('Escape');
    await page.evaluate(()=>{DB.settings.about.people='';render();});assert.equal(await page.locator('.people-section').count(),0);
    results.push({width,blackHero:true,nativeScroll:true,pinnedAssembly:true,scrollNarrative:true,functionAnimation:true,peopleLoop:true,profileModal:true,modalCleanup:true,contactForm:true,privateInboxDemo:true,profileCms:width===1440,reducedMotion:true,noOverflow:true});await page.close();
   }
   const titlePage=await browser.newPage({viewport:{width:1440,height:900}});titlePage.on('pageerror',e=>errors.push(e.message));await titlePage.goto(origin+'/#/about');
   await titlePage.waitForFunction(()=>document.querySelector('#about-title')?.dataset.motion==='scrambling');const scrambled=await titlePage.locator('#about-title').innerText();
+  for(let sample=0;sample<6;sample++){assert(await titlePage.locator('.scramble-letter').evaluateAll(els=>els.every(el=>{const a=el.getBoundingClientRect(),b=el.firstElementChild.getBoundingClientRect();return b.left>=a.left-1&&b.right<=a.right+1;})),'Scrambled glyph must stay in its own cell');await titlePage.waitForTimeout(70);}
+  await titlePage.screenshot({path:path.join(out,'title-scrambling.png')});
   await titlePage.waitForFunction(()=>document.querySelector('#about-title').dataset.motion==='settled');assert.notEqual(scrambled,await titlePage.locator('#about-title').innerText());
   await titlePage.evaluate(()=>location.hash='#/feed');await titlePage.waitForSelector('a.feed-card');const card=titlePage.locator('a.feed-card').first();await card.hover();await titlePage.waitForTimeout(800);
   const hover=await card.locator('img').evaluate(el=>({transform:getComputedStyle(el).transform,filter:getComputedStyle(el).filter,transition:getComputedStyle(el).transition}));assert.match(hover.transform,/1\.035/);assert.match(hover.filter,/grayscale\(0\)/);assert.match(hover.transition,/0\.7s/);

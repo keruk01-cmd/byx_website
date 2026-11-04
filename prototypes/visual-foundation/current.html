@@ -251,7 +251,7 @@ button.tag:hover,a.tag:hover{background:var(--fg);color:var(--bg)}
 
 /* ---------- PROJECT ---------- */
 .pbar{
-  display:flex;align-items:center;justify-content:flex-end;gap:14px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
   padding:11px var(--pad);border-bottom:var(--hair) solid var(--fg);
   position:sticky;top:var(--head-h);background:var(--bg);z-index:45;
 }
@@ -271,6 +271,17 @@ button.tag:hover,a.tag:hover{background:var(--fg);color:var(--bg)}
 .toggle button.on{background:var(--fg);color:var(--bg)}
 .toggle svg{width:10px;height:10px;display:block}
 .toggle svg *{fill:currentColor}
+.works-filter{display:flex;align-items:center;justify-content:center;gap:8px;min-width:40px;min-height:34px;border:var(--hair) solid var(--fg);border-radius:999px;padding:7px 12px}
+.works-filter svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.3}
+.works-filter[data-active="true"]{background:var(--fg);color:var(--bg)}
+.works-filter-count{font-size:11px}
+.filter-dialog{width:min(560px,calc(100% - 28px));max-height:calc(100svh - 28px);overflow:auto;scrollbar-width:none;padding:0;margin:auto;border:var(--hair) solid var(--fg);background:var(--bg);color:var(--fg)}
+.filter-dialog::backdrop{background:rgba(0,0,0,.4);backdrop-filter:blur(10px)}
+.filter-form{padding:clamp(22px,4vw,40px)}
+.filter-form h2{font-size:28px;font-weight:500;margin:0 0 28px}
+.filter-form label{display:block;margin-bottom:22px;font-size:13px}
+.filter-form select{display:block;width:100%;margin-top:10px;padding:12px;background:var(--bg);color:var(--fg);border:var(--hair) solid var(--fg);font:inherit}
+.filter-actions{display:flex;justify-content:space-between;gap:16px;margin-top:32px}
 
 .grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,clamp(300px,22vw,360px)),1fr));
@@ -548,14 +559,14 @@ a:hover>.feed-image img,a:focus-visible>.feed-image img{transform:scale(1.035);f
 .x-cloud:focus-visible{outline:1px solid var(--bg)}
 .x-label{position:absolute;z-index:1;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-variation-settings:'wght' 680;font-weight:400;line-height:1.1;font-size:clamp(22px,2.5vw,56px);margin:0;white-space:nowrap;color:var(--bg);pointer-events:none}
 .x-label-left{left:var(--pad)}.x-label-right{right:var(--pad)}
-@media(max-width:760px){.x-label{top:28px;transform:none}}
 /* ABOUT: three chapters, one continuous introduction to the studio. */
 .about-story{--story-space:clamp(64px,9vw,152px)}
 .story-eyebrow{font-family:var(--font-mono);font-size:clamp(10px,.85vw,12px);letter-spacing:.12em;text-transform:uppercase;line-height:1.5}
 .story-hero{min-height:calc(100svh - var(--head-h));padding:clamp(44px,6vw,100px) var(--pad) 30px;display:flex;flex-direction:column;justify-content:space-between;gap:44px}
 .about-story{background:var(--bg)}
 body.about-story-page{background:var(--fg);transition:none}
-body.about-story-page>footer{background:var(--bg)}
+body.about-story-page>footer{background:var(--fg);color:var(--bg);border-color:var(--mute)}
+body.about-story-page>footer a{color:inherit}
 .hero-scroll-runway{height:155svh;background:var(--fg);color:var(--bg)}
 .hero-scroll-runway .story-hero{position:sticky;top:var(--head-h);background:var(--fg);color:var(--bg)}
 .hero-scroll-runway .story-hero-copy{border-color:var(--mute)}
@@ -566,7 +577,8 @@ body.about-story-page>footer{background:var(--bg)}
 .story-hero-top{display:flex;justify-content:space-between;gap:20px}
 .story-title{font-family:var(--font-display);font-weight:400;font-size:clamp(44px,17.4vw,240px);line-height:.94;letter-spacing:-.025em;margin:0}
 .story-title>span{display:block}
-.story-title .scramble-letter{display:inline-block;text-align:center}
+.story-title .scramble-letter{display:inline-flex;justify-content:center;vertical-align:top;overflow:clip}
+.scramble-glyph{display:inline-block;flex:none;transform-origin:center}
 .story-hero-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;padding-top:22px;border-top:var(--hair) solid var(--fg)}
 .story-hero-copy h2{font-size:clamp(25px,3.4vw,52px);font-weight:550;font-variation-settings:'wght' 550;letter-spacing:-.055em;line-height:1.35;margin:0;word-break:keep-all}
 .story-hero-copy p{max-width:46ch;margin:0 0 4px auto;font-size:clamp(14px,1.25vw,18px);line-height:1.9;word-break:keep-all}
@@ -578,7 +590,6 @@ body.about-story-page>footer{background:var(--bg)}
 .story-system .story-eyebrow{color:var(--mute)}
 .story-system .x-cloud-section{border:0}
 .story-system .x-field{height:clamp(420px,43vw,740px)}
-.system-equation{display:flex;justify-content:space-between;gap:16px;margin-top:30px;padding-top:18px;border-top:var(--hair) solid var(--mute);font-family:var(--font-mono);font-size:clamp(10px,.85vw,12px);letter-spacing:.04em}
 .story-experience{padding-bottom:var(--story-space)}
 .experience-drawing{position:relative;min-height:440px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-right:var(--hair) solid var(--fg);background:var(--bg)}
 .experience-drawing>svg{width:85%;height:auto;max-height:400px;color:var(--fg);overflow:visible}
@@ -590,30 +601,31 @@ body.about-story-page>footer{background:var(--bg)}
 .experience-drawing .experience-label{fill:var(--fg);font-family:var(--font-display);font-size:45px;letter-spacing:0}
 .experience-marker{position:absolute;bottom:22px;left:24px;right:24px;display:flex;justify-content:space-between;gap:12px;color:var(--mute)}
 .story-tech{border-top:var(--hair) solid var(--fg);padding-bottom:var(--story-space)}
-.system-reading{padding:0 var(--pad) var(--story-space)}
-.system-reading .system-equation{margin-top:0;margin-bottom:48px}
-.system-narrative{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:32px;border-top:var(--hair) solid var(--mute);padding:38px 0;align-items:start}
-.system-narrative>span{font-size:13px;color:var(--mute)}
-.system-narrative h3{font-size:clamp(24px,2.8vw,42px);font-weight:500;font-variation-settings:'wght' 500;line-height:1.4;letter-spacing:-.04em;margin:0 0 16px;word-break:keep-all}
-.system-narrative p{max-width:46ch;line-height:1.9;font-size:clamp(14px,1.15vw,17px);margin:0;opacity:.76;word-break:keep-all}
 .journey-scroll,.function-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);margin:12px var(--pad) 0;align-items:start}
 .journey-visual,.function-visual{position:sticky;top:calc(var(--head-h) + 24px);align-self:start;background:var(--bg)}
-.journey-visual .experience-drawing{height:clamp(320px,55vh,560px);min-height:0;border:var(--hair) solid var(--fg)}
-.reading-step{padding:clamp(38px,5vw,72px) 0;min-height:clamp(320px,48vh,520px);border-top:var(--hair) solid var(--fg);display:flex;flex-direction:column;justify-content:center;scroll-margin-top:calc(var(--head-h) + 30px)}
+.journey-visual .experience-drawing{height:clamp(320px,55vh,560px);min-height:0;border:0}
+.reading-step{padding:clamp(32px,4vw,60px) 0;min-height:clamp(260px,36vh,380px);border-top:var(--hair) solid var(--faint);display:flex;flex-direction:column;justify-content:center;scroll-margin-top:calc(var(--head-h) + 30px)}
 .reading-step>span{font-size:12px;color:var(--mute);margin-bottom:22px}
 .reading-step h3{font-size:clamp(25px,2.9vw,43px);font-weight:500;font-variation-settings:'wght' 500;letter-spacing:-.04em;line-height:1.4;margin:0 0 20px;word-break:keep-all}
 .reading-step p{font-size:clamp(14px,1.15vw,17px);line-height:1.9;word-break:keep-all;color:var(--mute);margin:0;max-width:45ch}
-.reading-step.is-current{border-top-width:2px}
-.function-stage{height:clamp(320px,55vh,560px);border:var(--hair) solid var(--fg);position:relative;overflow:hidden}
+.reading-step.is-current{border-color:var(--fg)}
+.function-stage{height:clamp(320px,55vh,560px);position:relative;overflow:hidden}
 .function-canvas{width:100%;height:100%;display:block}
 .function-caption{font-size:12px;line-height:1.8;color:var(--mute);margin:18px 0 0;word-break:keep-all}
-.people-section{border-top:var(--hair) solid var(--fg);padding-top:var(--story-space);padding-bottom:32px}
+.people-section{border-top:var(--hair) solid var(--fg);padding-top:var(--story-space);padding-bottom:32px;background:var(--fg);color:var(--bg)}
+.people-section .people,.people-section .person{background:var(--fg);color:var(--bg)}
+.people-section .person{border-color:var(--mute)}
+.people-section .people-dialog{background:var(--bg);color:var(--fg)}
 .people-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;padding:0 var(--pad) 44px;align-items:end}
 .people-intro h2{font-size:clamp(32px,4.7vw,76px);font-weight:550;font-variation-settings:'wght' 550;line-height:1.3;letter-spacing:-.05em;word-break:keep-all;margin:0}
 .people-intro p{font-size:clamp(14px,1.2vw,18px);line-height:1.9;word-break:keep-all;max-width:43ch;margin:0 0 24px}
-.people-pause{font-size:12px;border:var(--hair) solid var(--fg);border-radius:999px;padding:10px 16px;min-height:40px}
 .people-dialog{width:min(980px,calc(100% - 28px));max-height:calc(100svh - 28px);padding:0;margin:auto;overflow:auto;border:var(--hair) solid var(--fg);background:var(--bg);color:var(--fg)}
 .people-dialog::backdrop{background:rgba(0,0,0,.52);backdrop-filter:blur(8px)}
+#people-dialog[open]{animation:profile-in .4s cubic-bezier(.2,.7,.2,1) both}
+#people-dialog[open]::backdrop{animation:profile-backdrop .4s ease both}
+@keyframes profile-in{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes profile-backdrop{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){#people-dialog[open],#people-dialog[open]::backdrop{animation:none}}
 .profile-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 24px;border-bottom:var(--hair) solid var(--fg);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em}
 .profile-close{width:44px;height:44px;border:var(--hair) solid var(--fg);border-radius:50%;font-size:25px;line-height:1}
 .profile-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}
@@ -648,10 +660,10 @@ body.about-story-page>footer{background:var(--bg)}
 .inquiry-meta{font-size:12px;color:var(--mute);line-height:1.9;margin-bottom:20px;overflow-wrap:anywhere}
 .inquiry-body{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.9;margin:20px 0 32px}
 @media(max-width:760px){
-  .system-narrative,.journey-scroll,.function-layout,.people-intro{grid-template-columns:1fr;gap:24px}
-  .journey-visual,.function-visual{top:var(--head-h);z-index:2;padding-block:12px}
-  .journey-visual .experience-drawing,.function-stage{height:230px}
-  .reading-step{min-height:400px;padding-block:48px}
+  .journey-scroll,.function-layout,.people-intro{grid-template-columns:1fr;gap:24px}
+  .journey-visual,.function-visual{position:relative;top:auto;z-index:auto;padding:0}
+  .journey-visual .experience-drawing,.function-stage{height:clamp(250px,76vw,420px);min-height:0;border:0}
+  .reading-step{min-height:0;padding-block:30px}
   .function-caption{display:none}
   .profile-layout{grid-template-columns:1fr}
   .profile-photo{aspect-ratio:4/3;max-height:340px}
@@ -852,17 +864,19 @@ input:focus,textarea:focus,select:focus{border-bottom-width:2px;padding-bottom:8
 .location-pin{position:absolute;z-index:2;transform:translate(-50%,-50%);font-size:26px;line-height:1;color:var(--fg);text-shadow:0 0 3px var(--bg);pointer-events:none}
 .location-credit{font-size:10px;text-align:right;margin:6px 0}.location-dialog .help{font-size:11px;color:var(--mute)}
 .location-coordinates{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px}
-footer{padding:18px var(--pad);border-top:var(--hair) solid var(--fg);flex-shrink:0}
-.fbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+footer{display:flex;align-items:center;gap:18px;padding:12px var(--pad);border-top:var(--hair) solid var(--fg);flex-shrink:0}
+.fbar{display:contents}
 .fbar .lft{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;
   font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
-.fbar .ig{flex:0 0 auto;display:block;line-height:0;padding:2px}
+.fbar .lft{order:1}
+.fbar .ig{order:3;flex:0 0 auto;display:block;line-height:0;padding:2px}
 .fbar .ig svg{width:21px;height:21px;display:block;fill:none;stroke:var(--mute);stroke-width:1.7}
 .fbar .ig svg .dot{fill:var(--mute);stroke:none}
-.fbar .ig:hover svg{stroke:var(--fg)}
-.fbar .ig:hover svg .dot{fill:var(--fg)}
-.business-info{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:14px;padding-top:14px;border-top:var(--hair) solid var(--faint);font-family:var(--font-text);font-size:clamp(10.5px,.85vw,12px);line-height:1.7;color:var(--mute)}
+.fbar .ig:hover svg{stroke:currentColor}
+.fbar .ig:hover svg .dot{fill:currentColor}
+.business-info{order:2;flex:1;display:flex;justify-content:center;flex-wrap:wrap;gap:2px 14px;font-family:var(--font-text);font-size:clamp(10px,.8vw,11px);line-height:1.6;color:var(--mute)}
 .business-info span{white-space:nowrap}
+@media(max-width:1000px){footer{flex-wrap:wrap;gap:6px 14px}.fbar .ig{order:2;margin-left:auto}.business-info{order:3;flex-basis:100%;justify-content:flex-start}}
 @media (max-width:520px){
   .fbar .lft{font-size:9px;gap:8px}
 }
@@ -1105,11 +1119,6 @@ body.guidelines .page{animation:none}
     <a href="#/about">About<span>03</span></a>
     <a href="#/contact">Contact<span>04</span></a>
   </div>
-  <div class="foot">
-    BYX ARCHITECTS &amp; PARTNERS<br>
-    2F, 14 Seongsui-ro, Seongdong-gu, Seoul<br>
-    HELLO@BYX.KR / +82 2 000 0000
-  </div>
 </div>
 
 <div id="app" role="main"></div>
@@ -1118,7 +1127,7 @@ body.guidelines .page{animation:none}
 <footer>
   <div class="fbar">
     <div class="lft">
-      <span>&copy; 2026 BYX ARCHITECTS. ALL RIGHTS RESERVED.</span>
+      <span>&copy; 2026 ARCHITECTS BYX. ALL RIGHTS RESERVED.</span>
     </div>
     <a class="ig" href="https://www.instagram.com/abyx.official/" target="_blank" rel="noopener" aria-label="BYX Instagram">
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1457,33 +1466,24 @@ const SEED_POSTS = [
    per line — the plainest thing a non-developer can type. */
 const ABOUT_STORY = {
   story_headline:'미지수는 가능성으로.\n과정은 경험으로.',
-  story_intro:'프로젝트마다 다른 조건과 사람, 아직 정해지지 않은 수많은 가능성. BYX는 Variable X와 eXperience를 연결하는 시스템을 디자인합니다. 당신의 질문에 가장 잘 맞는 해답을 함께 찾아갑니다.',
+  story_intro:'Variable X와 eXperience를 연결해, 당신에게 맞는 해답을 만듭니다.',
   story_system_title:'서로 다른 변수에서,\n당신에게 맞는 해답으로.',
-  story_system_body:'장소와 사람, 예산과 시간. 모든 프로젝트는 서로 다른 미지수에서 시작합니다. 우리는 변화하는 조건인 Variable X와 그 안에서 만들어질 eXperience를 함께 설계합니다. 조건을 이해하고 경험을 연결해, 프로젝트마다 가장 좋은 가능성을 제안합니다.',
-  story_experience_title:'완성된 공간만큼,\n함께하는 시간도 좋도록.',
-  story_experience_body:'우리의 일은 고객의 경험에서 시작됩니다. 공간에서 살아갈 경험을 설계하고, 그 공간을 함께 만들어가는 경험도 설계합니다. 처음 나누는 대화부터 마지막 결정을 내리는 순간까지, 이해하고 선택하는 과정이 즐거울 수 있도록.',
-  story_technology_title:'건축을 이해하고,\n필요한 기술을 만듭니다.',
-  story_technology_body:'우리는 건축가이자 소프트웨어 개발자입니다. AI와 기술을 실제 프로젝트에 맞게 연결하고, 필요한 도구와 일하는 방식까지 직접 설계합니다. 흩어진 정보를 하나의 흐름으로 엮어 더 명확한 판단과 더 나은 서비스를 만듭니다.',
+  story_system_body:'서로 다른 조건과 가능성을 연결하는 시스템을 디자인합니다.',
+  story_experience_title:'결과를 넘어,\n함께하는 경험까지.',
+  story_experience_body:'당신의 경험에서 출발해, 함께하는 과정 전체를 설계합니다.',
+  story_technology_title:'생각과 기술을 잇고,\n가능성을 넓힙니다.',
+  story_technology_body:'데이터와 AI, 직접 만드는 도구로 더 나은 서비스를 제안합니다.',
   story_promise:'프로젝트의 경계를 열어두고,\n당신의 가능성을 함께 넓힙니다.',
   story_people_title:'최고의 전문가들이\n함께합니다.',
-  story_people_body:'서로 다른 전문성과 경험을 가진 사람들이 하나의 팀으로 일합니다. 각자의 관점을 연결해 프로젝트에 필요한 해답을 함께 만듭니다.'
+  story_people_body:'다양한 관점과 전문성이 하나의 팀으로 만납니다.'
 };
-const ABOUT_CONDITIONS = [
-  {label:'공간의 조건',title:'작은 가능성도, 넓게 바라봅니다.',body:'대지와 주변 환경, 규모와 예산을 함께 읽습니다. 주어진 조건 안에 숨어 있는 가능성을 찾아, 그 장소에 어울리는 해답을 만듭니다.'},
-  {label:'사람의 경험',title:'그곳에서 살아갈 사람부터.',body:'누가, 어떻게 머무르고 움직일까요. 사람의 습관과 관계에서 출발해 일상의 장면을 설계하고, 공간의 조건과 연결합니다.'},
-  {label:'프로젝트의 경계',title:'공간과 서비스가 하나의 경험이 되도록.',body:'건축과 인테리어, 브랜드와 디지털 서비스. 필요한 영역을 연결해 프로젝트를 바라보고, 경계에 갇히지 않는 가능성을 함께 찾습니다.'}
-];
 const ABOUT_JOURNEY = [
-  {label:'대화와 발견',en:'DISCOVER',title:'먼저, 당신의 이야기를 듣습니다.',body:'무엇을 만들지와 함께 왜 필요한지를 묻습니다. 기대하는 장면, 일상의 불편, 아직 말로 정리되지 않은 생각까지. 프로젝트의 출발점을 함께 발견합니다.',note:'고객의 경험 → 프로젝트의 질문'},
-  {label:'이해와 방향',en:'DEFINE',title:'복잡한 조건을, 함께 이해할 수 있게.',body:'대지와 법령, 예산과 일정, 필요한 기능을 살핍니다. 선택의 이유와 가능한 방향을 나누며, 고객이 이해하고 판단할 수 있는 프로젝트의 기준을 세웁니다.',note:'프로젝트의 질문 → 함께 세운 기준'},
-  {label:'설계와 대화',en:'DESIGN',title:'좋은 선택이 쌓여, 공간이 됩니다.',body:'생각을 도면과 이미지, 모형과 도구로 구체화합니다. 대안을 함께 살피고 피드백을 설계에 연결하며, 결과와 과정 모두를 조금씩 더 나은 방향으로 다듬습니다.',note:'함께 세운 기준 → 구체적인 공간'},
-  {label:'완성과 일상',en:'EXPERIENCE',title:'도면 너머, 실제의 경험까지.',body:'설계의 의도가 실제 공간으로 이어지도록 관계자와 소통합니다. 완성 뒤 펼쳐질 일상의 장면을 생각하며, 공간과 사람이 만나는 순간까지 시선을 둡니다.',note:'구체적인 공간 → 새로운 일상의 경험'}
+  {label:'함께 발견하고',title:'당신의 이야기에서 시작합니다.',body:'서로의 관점을 나누며, 필요한 가치를 찾습니다.'},
+  {label:'경험으로 연결합니다',title:'만드는 과정도 즐겁도록.',body:'첫 대화부터 결과를 만나는 순간까지, 더 나은 경험을 함께 만듭니다.'}
 ];
 const ABOUT_DATA = [
-  {label:'법령 데이터',en:'REGULATIONS',title:'복잡한 기준을, 설계의 출발점으로.',body:'자체 구축한 법령 데이터베이스를 바탕으로 프로젝트에 필요한 기준을 살핍니다. 흩어진 규정과 조건을 연결해 더 명확한 검토를 돕습니다.',input:'LAW / CONTEXT'},
-  {label:'CoreArc',en:'COMPUTATION',title:'반복되는 검토를, 더 깊은 판단으로.',body:'CoreArc 연산 시스템과 건축의 전문성을 연결합니다. 프로젝트의 조건을 정리하고 여러 가능성을 검토하는 도구를 직접 설계합니다.',input:'DATA / LOGIC'},
-  {label:'민원 정보',en:'CONTEXT',title:'문서 밖의 맥락도 함께 읽습니다.',body:'민원과 행정 정보를 취합하고 프로젝트의 맥락에 맞게 관리합니다. 설계와 실행 사이에서 필요한 정보를 연결합니다.',input:'PEOPLE / PLACE'},
-  {label:'협력사 정보',en:'COLLABORATION',title:'서로의 전문성이 잘 만날 수 있도록.',body:'협력사 정보와 프로젝트의 요구를 연결합니다. 각자의 전문성을 이해하고 필요한 순간에 함께 일할 수 있는 협업의 기반을 쌓습니다.',input:'PEOPLE / KNOWLEDGE'}
+  {label:'흩어진 정보를 연결하고',title:'정보를 더 깊은 이해로.',body:'다양한 데이터와 맥락을 연결해, 더 명확하게 판단합니다.'},
+  {label:'가능성을 실행으로',title:'필요한 방식까지 만듭니다.',body:'기술을 다루는 데서 나아가, 우리에게 맞는 도구와 서비스를 만듭니다.'}
 ];
 const DEFAULT_ABOUT = {
   lede: '이름의 앞자리를 비워둔 것은 무엇을 다룰지 미리 정하지 않기 위해서입니다. 대지, 건물, 방, 가구, 사물, 인쇄물, 화면 — 스케일이 달라져도 우리는 같은 질문을 반복합니다. 이 선은 꼭 필요한가. 필요하다면 얼마나 두꺼워야 하는가.',
@@ -2019,11 +2019,11 @@ const BATCH = 6;                 // cards loaded per scroll step
 /* default order is time, newest first. It used to be `code` descending, which
    only looked right because the demo codes happen to start with the year —
    real codes carry no date. */
-let PV = { view:'grid', sort:'year', dir:-1, shown: BATCH };
+let PV = { view:'grid', sort:'year', dir:-1, shown: BATCH, type:'', status:'', year:'' };
 let IO = null;                   // scroll observer
 
 function filtered(){
-  const list = DB.projects.slice();
+  const list = DB.projects.filter(p=>(!PV.type||p.type===PV.type)&&(!PV.status||p.status===PV.status)&&(!PV.year||String(p.year)===PV.year));
   const k = PV.sort;
   return list.sort((a, b) => {
     let x, y;
@@ -2055,6 +2055,8 @@ function cardHTML(p){
 
 function viewProjects(){
   const list = filtered();
+  const active=['type','status','year'].filter(key=>PV[key]).length;
+  const options=(key)=>Array.from(new Set(DB.projects.map(p=>String(p[key]||'')).filter(Boolean))).sort((a,b)=>key==='year'?Number(b)-Number(a):a.localeCompare(b,'ko'));
   const cols = [['code','Code'],['name','Project'],['client','Client'],['type','Type'],['loc','Location'],['year','Date'],['status','Status']];
   const head = '<th class="thumbcol" role="columnheader" scope="col"><span class="sr-only">Image</span></th>' + cols.map(([k,l]) =>
     `<th role="columnheader" scope="col" tabindex="0" data-sort="${k}" aria-sort="${PV.sort===k?(PV.dir>0?'ascending':'descending'):'none'}" class="${PV.sort===k?'sorted':''}">${l} <span class="ar" aria-hidden="true">${PV.dir>0?'↑':'↓'}</span></th>`).join('');
@@ -2080,9 +2082,11 @@ function viewProjects(){
         <svg viewBox="0 0 12 12"><rect x="0" y="1" width="12" height="1.6"/><rect x="0" y="5.2" width="12" height="1.6"/><rect x="0" y="9.4" width="12" height="1.6"/></svg>
       </button>
     </div>
+    <button type="button" class="works-filter" data-open-filter data-active="${active>0}" aria-label="프로젝트 필터${active?' · '+active+'개 적용':''}" aria-haspopup="dialog"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5H18M2 10H18M2 15H18"/><circle cx="7" cy="5" r="2" fill="var(--bg)"/><circle cx="13" cy="10" r="2" fill="var(--bg)"/><circle cx="7" cy="15" r="2" fill="var(--bg)"/></svg>${active?`<span class="works-filter-count">${active}</span>`:''}</button>
   </div>
+  <dialog class="filter-dialog" id="works-filter-dialog" aria-labelledby="works-filter-title"><div class="profile-head"><span>WORKS / FILTER</span><button type="button" class="profile-close" data-close-filter aria-label="필터 닫기">×</button></div><form class="filter-form"><h2 id="works-filter-title">프로젝트 필터</h2>${[['type','유형'],['status','진행 상태'],['year','연도']].map(([key,label])=>`<label>${label}<select name="${key}"><option value="">전체</option>${options(key).map(value=>`<option value="${esc(value)}"${PV[key]===value?' selected':''}>${esc(value)}</option>`).join('')}</select></label>`).join('')}<div class="filter-actions"><button type="button" class="abtn" data-reset-filter>초기화</button><button type="submit" class="abtn solid">적용하기</button></div></form></dialog>
   ${list.length === 0
-    ? `<div class="pane"><p class="mono mute">등록된 프로젝트가 없습니다. ADMIN 에서 추가하세요.</p></div>`
+    ? `<div class="pane"><p class="mono mute">${active?'조건에 맞는 프로젝트가 없습니다. 필터를 변경해보세요.':'등록된 프로젝트가 없습니다. ADMIN 에서 추가하세요.'}</p></div>`
     : PV.view === 'grid'
       ? `<div class="grid" id="grid">${list.slice(0, PV.shown).map(cardHTML).join('')}</div>
          ${list.length > PV.shown ? '<div id="more"><i></i>Loading more<i></i></div>' : ''}`
@@ -2335,7 +2339,7 @@ function viewAbout(){
   const s = DB.settings.about;
   const people  = cells(s.people);     // 이름 | 직책 | 이력 | 사진주소
   const copy = key => esc(s[key] || ABOUT_STORY[key]).replace(/\n/g,'<br>');
-  const titleLine=text=>`<span aria-hidden="true">${Array.from(text).map(c=>/[A-Z]/.test(c)?`<span class="scramble-letter" data-final="${c}">${c}</span>`:esc(c)).join('')}</span>`;
+  const titleLine=text=>`<span aria-hidden="true">${Array.from(text).map(c=>/[A-Z]/.test(c)?`<span class="scramble-letter" data-final="${c}"><span class="scramble-glyph">${c}</span></span>`:esc(c)).join('')}</span>`;
 
   return `
   <div class="about-story">
@@ -2348,22 +2352,12 @@ function viewAbout(){
     <section class="story-chapter story-system" id="about-system" aria-labelledby="system-title">
       <div class="story-chapter-head story-reveal"><h2 id="system-title">${copy('story_system_title')}</h2><p>${copy('story_system_body')}</p></div>
       <div class="cloud-scroll-runway">${aboutMotionHTML()}</div>
-      <div class="system-reading">
-        <div class="system-equation"><span>Variable X</span><span>×</span><span>eXperience</span><span>→</span><span>해답</span></div>
-        ${ABOUT_CONDITIONS.map(c=>`<article class="system-narrative story-reveal"><span>${esc(c.label)}</span><div><h3>${esc(c.title)}</h3><p>${esc(c.body)}</p></div></article>`).join('')}
-      </div>
     </section>
 
     <section class="story-chapter story-experience" id="about-experience" aria-labelledby="experience-title">
       <div class="story-chapter-head story-reveal"><h2 id="experience-title">${copy('story_experience_title')}</h2><p>${copy('story_experience_body')}</p></div>
       <div class="journey-scroll">
-        <div class="journey-visual"><div class="experience-drawing" aria-hidden="true">
-          <svg viewBox="0 0 500 380" fill="none"><path d="M65 100H250V280H435" class="experience-route"/><path d="M65 100H250V280H435" pathLength="100" class="experience-progress"/>
-            ${[[65,100],[250,100],[250,280],[435,280]].map(([x,y],i)=>`<circle class="experience-node" data-journey-node="${i}" data-active="${i===0}" cx="${x}" cy="${y}" r="7"/>`).join('')}
-            <text class="experience-label" x="65" y="213">eXperience.</text>
-          </svg>
-          <div class="experience-marker story-eyebrow"><span id="journey-drawing-label">${esc(ABOUT_JOURNEY[0].label)}</span></div>
-        </div></div>
+        <div class="journey-visual"><div class="experience-drawing" data-motion="static"><canvas class="function-canvas" id="byx-journey" role="img" aria-label="서로 다른 흐름이 만나 하나의 연결을 만드는 그래픽">서로의 관점이 만나 새로운 경험으로 이어집니다.</canvas></div></div>
         <div>${ABOUT_JOURNEY.map((j,i)=>`<article class="reading-step" data-journey-step="${i}"><span>${esc(j.label)}</span><h3>${esc(j.title)}</h3><p>${esc(j.body)}</p></article>`).join('')}</div>
       </div>
     </section>
@@ -2371,14 +2365,13 @@ function viewAbout(){
     <section class="story-chapter story-tech" id="about-technology" aria-labelledby="technology-title">
       <div class="story-chapter-head story-reveal"><h2 id="technology-title">${copy('story_technology_title')}</h2><p>${copy('story_technology_body')}</p></div>
       <div class="function-layout">
-        <div class="function-visual"><div class="function-stage" data-motion="static"><canvas class="function-canvas" id="byx-function" role="img" aria-label="기하학적 데이터 심볼이 BYX 함수 상자로 들어가 공간과 설계 심볼로 나오는 애니메이션">데이터가 BYX의 설계 과정을 거쳐 공간과 설계로 연결됩니다.</canvas></div><p class="function-caption">법령·연산·맥락·협업 정보를 연결해 판단과 설계로 이어갑니다.</p></div>
+        <div class="function-visual"><div class="function-stage" data-motion="static"><canvas class="function-canvas" id="byx-function" role="img" aria-label="다양한 데이터가 BYX를 거쳐 새로운 가능성으로 변하는 그래픽">정보와 기술이 만나 새로운 가능성을 만듭니다.</canvas></div></div>
         <div>${ABOUT_DATA.map((d,i)=>`<article class="reading-step" data-source-step="${i}"><span>${esc(d.label)}</span><h3>${esc(d.title)}</h3><p>${esc(d.body)}</p></article>`).join('')}</div>
       </div>
-      <p class="story-promise story-reveal">${copy('story_promise')}</p>
     </section>
 
     ${people.length?`<section class="people-section" aria-labelledby="people-title">
-      <div class="people-intro"><h2 id="people-title">${copy('story_people_title')}</h2><div><p>${copy('story_people_body')}</p><button type="button" class="people-pause" aria-pressed="false">움직임 멈추기</button></div></div>
+      <div class="people-intro"><h2 id="people-title">${copy('story_people_title')}</h2><p>${copy('story_people_body')}</p></div>
       <div class="people" aria-label="구성원 소개"><div class="people-track"><div class="people-group">${people.map(([n,r,bio,im],i)=>`<button type="button" class="person" data-person="${i}" aria-label="${esc(n)} 소개 보기" aria-haspopup="dialog"><span class="im"><img src="${esc(im || svgArt('person-'+n+i,600,800))}" alt="" loading="lazy"></span><span class="n">${esc(n)}</span><span class="r">${esc(r)}</span></button>`).join('')}</div></div></div>
       <dialog class="people-dialog" id="people-dialog" aria-labelledby="profile-name"><div id="profile-content"></div></dialog>
     </section>`:''}
@@ -2817,9 +2810,9 @@ function edSettings(which){
     ${TA('01 시스템 / 소개','story_system_body',d.story_system_body ?? ABOUT_STORY.story_system_body,130)}
     ${TA('02 경험 / 제목','story_experience_title',d.story_experience_title ?? ABOUT_STORY.story_experience_title,90)}
     ${TA('02 경험 / 소개','story_experience_body',d.story_experience_body ?? ABOUT_STORY.story_experience_body,130)}
-    ${TA('03 건축과 기술 / 제목','story_technology_title',d.story_technology_title ?? ABOUT_STORY.story_technology_title,90)}
-    ${TA('03 건축과 기술 / 소개','story_technology_body',d.story_technology_body ?? ABOUT_STORY.story_technology_body,130)}
-    ${TA('마무리 / 약속','story_promise',d.story_promise ?? ABOUT_STORY.story_promise,90)}
+    ${TA('03 기술 / 제목','story_technology_title',d.story_technology_title ?? ABOUT_STORY.story_technology_title,90)}
+    ${TA('03 기술 / 소개','story_technology_body',d.story_technology_body ?? ABOUT_STORY.story_technology_body,130)}
+    ${TA('기존 약속 문구 / 보관용','story_promise',d.story_promise ?? ABOUT_STORY.story_promise,90)}
     ${TA('People / 제목','story_people_title',d.story_people_title ?? ABOUT_STORY.story_people_title,90)}
     ${TA('People / 소개','story_people_body',d.story_people_body ?? ABOUT_STORY.story_people_body,110)}
     ${TA('Studio notes / 기존 소개 문단','lede',d.lede,110)}
@@ -3441,23 +3434,30 @@ function bindAboutMotion(){
 
 function bindAboutTitle(root){
   const title=$('#about-title',root),letters=$$('[data-final]',title),reduced=matchMedia('(prefers-reduced-motion:reduce)');
-  let raf=0,disposed=false,started=false,start=0;
-  const finish=()=>{cancelAnimationFrame(raf);raf=0;letters.forEach(letter=>{letter.textContent=letter.dataset.final;letter.style.width='';});title.dataset.motion='settled';};
+  let raf=0,disposed=false,started=false,start=0,frame=-1,pools=[];
+  const finish=()=>{cancelAnimationFrame(raf);raf=0;letters.forEach(letter=>{const glyph=letter.firstElementChild;glyph.textContent=letter.dataset.final;glyph.style.transform='';letter.style.width='';});title.dataset.motion='settled';};
   function tick(now){
     if(disposed)return;
     if(!start)start=now;
     const time=now-start;
-    letters.forEach((letter,index)=>{
-      const settled=time>550+index*48;
-      letter.textContent=settled?letter.dataset.final:String.fromCharCode(65+(index*11+Math.floor(time/55)*7)%26);
-    });
-    if(time>550+letters.length*48)finish();else raf=requestAnimationFrame(tick);
+    if(frame!==Math.floor(time/80)){
+      frame=Math.floor(time/80);
+      letters.forEach((letter,index)=>{
+        const glyph=letter.firstElementChild,settled=time>400+index*45;
+        const pool=pools[index];glyph.textContent=settled?letter.dataset.final:pool[(index*11+frame*7)%pool.length];
+        glyph.style.transform=`scaleX(${Math.min(1,letter.clientWidth/Math.max(1,glyph.offsetWidth))})`;
+      });
+    }
+    if(time>400+letters.length*45)finish();else raf=requestAnimationFrame(tick);
   }
   async function begin(){
     if(started||disposed)return;started=true;
     await document.fonts?.ready;if(disposed)return;
     if(reduced.matches||document.hidden){finish();return;}
-    letters.forEach(letter=>{letter.style.width=letter.getBoundingClientRect().width+'px';});
+    const widths=letters.map(letter=>letter.getBoundingClientRect().width),sample=letters[0].firstElementChild.cloneNode();sample.style.cssText='position:absolute;visibility:hidden';title.append(sample);
+    const alphabet=Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ').map(char=>{sample.textContent=char;return{char,width:sample.offsetWidth};});sample.remove();
+    pools=widths.map((width,index)=>{const pool=alphabet.filter(item=>item.width>=width*.8&&item.width<=width*1.15).map(item=>item.char);return pool.length?pool:[letters[index].dataset.final];});
+    letters.forEach((letter,index)=>{letter.style.width=widths[index]+'px';});
     title.dataset.motion='scrambling';raf=requestAnimationFrame(tick);
   }
   const observer=new IntersectionObserver(entries=>{if(entries[0].isIntersecting)begin();else if(started)finish();});observer.observe(title);
@@ -3466,53 +3466,57 @@ function bindAboutTitle(root){
   return()=>{disposed=true;finish();observer.disconnect();document.removeEventListener('visibilitychange',preference);reduced.removeEventListener('change',preference);window.removeEventListener('resize',finish);};
 }
 
-function drawFunctionSymbol(ctx,kind,x,y,size,output=false){
-  ctx.save();ctx.translate(x,y);ctx.lineWidth=1.4;ctx.beginPath();
-  if(output&&kind%3===0){
-    ctx.moveTo(0,-size);ctx.lineTo(size,-size*.45);ctx.lineTo(size,size*.5);ctx.lineTo(0,size);ctx.lineTo(-size,size*.5);ctx.lineTo(-size,-size*.45);ctx.closePath();
-    ctx.moveTo(-size,-size*.45);ctx.lineTo(0,0);ctx.lineTo(size,-size*.45);ctx.moveTo(0,0);ctx.lineTo(0,size);
-  }else if(output&&kind%3===1){
-    ctx.rect(-size,-size,size*2,size*2);ctx.moveTo(-size,0);ctx.lineTo(size*.4,0);ctx.moveTo(0,-size);ctx.lineTo(0,size);ctx.moveTo(0,size*.5);ctx.lineTo(size,size*.5);
-  }else if(output){
-    ctx.moveTo(-size,size);ctx.lineTo(-size,-size*.2);ctx.lineTo(0,-size);ctx.lineTo(size,-size*.2);ctx.lineTo(size,size);ctx.closePath();ctx.moveTo(-size,-size*.2);ctx.lineTo(size,-size*.2);ctx.moveTo(0,-size);ctx.lineTo(0,size);
-  }else if(kind%4===0){ctx.rect(-size*.7,-size,size*1.4,size*2);ctx.moveTo(-size*.35,-size*.4);ctx.lineTo(size*.35,-size*.4);ctx.moveTo(-size*.35,size*.2);ctx.lineTo(size*.35,size*.2);}
-  else if(kind%4===1){ctx.rect(-size,-size,size*2,size*2);ctx.moveTo(-size*.6,0);ctx.lineTo(size*.6,0);ctx.moveTo(0,-size*.6);ctx.lineTo(0,size*.6);}
-  else if(kind%4===2){ctx.moveTo(0,-size);ctx.lineTo(size,size);ctx.lineTo(-size,size);ctx.closePath();ctx.moveTo(0,-size);ctx.lineTo(0,size);}
-  else{ctx.arc(0,0,size,0,Math.PI*2);ctx.moveTo(-size,0);ctx.lineTo(size,0);ctx.moveTo(0,-size);ctx.lineTo(0,size);}
-  ctx.stroke();ctx.restore();
+/* Quiet line studies: shared lifecycle, independent drawings for experience and technology. */
+function paintJourney(ctx,time){
+  const t=time/7000;
+  ctx.save();ctx.translate(300,230);
+  for(let family=0;family<2;family++){
+    ctx.save();ctx.rotate((family?-.72:.72)+Math.sin(t)*.08);
+    for(let i=0;i<26;i++){
+      const u=i/25,spread=(u-.5)*180,breath=Math.sin(t*1.3+u*2)*14;
+      ctx.strokeStyle=`rgba(0,0,0,${.15+.65*Math.sin(u*Math.PI)})`;ctx.lineWidth=.75;
+      ctx.beginPath();ctx.moveTo(-215,spread*.55);
+      ctx.bezierCurveTo(-95,spread*1.9+breath,95,-spread*1.9-breath,215,-spread*.55);ctx.stroke();
+    }
+    const phase=(t*.3+family*.5)%1,x=-215+430*phase;
+    ctx.fillStyle='#000';ctx.beginPath();ctx.arc(x,Math.sin(phase*Math.PI*2)*40,3,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+  }
+  ctx.restore();
 }
-
-function bindAboutFunction(root){
-  const canvas=$('#byx-function',root),stage=canvas?.parentElement,ctx=canvas?.getContext('2d');
+function paintFunction(ctx,time){
+  const t=time/1000,cx=300,cy=230;
+  // Fine input rails converge on a solid function; the output is a continuous form.
+  ctx.strokeStyle='rgba(0,0,0,.14)';ctx.lineWidth=.8;
+  for(let i=0;i<3;i++){
+    const y=140+i*90;ctx.beginPath();ctx.moveTo(35,y);ctx.bezierCurveTo(160,y,175,cy,245,cy);ctx.stroke();
+    for(let j=0;j<3;j++){
+      const u=(t*.12+j/3+i*.13)%1,x=35+210*u,smooth=u*u*(3-2*u),yy=y+(cy-y)*smooth,size=4+(1-u)*3;
+      ctx.save();ctx.translate(x,yy);ctx.rotate(Math.PI/4+t*.2);ctx.strokeStyle=`rgba(0,0,0,${Math.min(1,(1-u)*3)})`;ctx.strokeRect(-size,-size,size*2,size*2);ctx.restore();
+    }
+  }
+  ctx.strokeStyle='rgba(0,0,0,.2)';ctx.beginPath();ctx.moveTo(355,cy);ctx.lineTo(415,cy);ctx.stroke();
+  ctx.save();ctx.translate(480,cy);
+  for(let i=0;i<24;i++){
+    const a=i/24*Math.PI*2,r=66+Math.sin(t*.5+a*3)*9;
+    ctx.strokeStyle=`rgba(0,0,0,${.18+.65*(.5+.5*Math.sin(a+t*.3))})`;ctx.lineWidth=.8;
+    ctx.beginPath();ctx.ellipse(0,0,r*.43,r,a+t*.12,0,Math.PI*2);ctx.stroke();
+  }
+  ctx.restore();
+  ctx.fillStyle='#000';ctx.beginPath();ctx.moveTo(cx-53,cy-54);ctx.lineTo(cx+34,cy-54);ctx.lineTo(cx+57,cy-32);ctx.lineTo(cx+57,cy+54);ctx.lineTo(cx-30,cy+54);ctx.lineTo(cx-53,cy+32);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,.4)';ctx.lineWidth=.8;ctx.beginPath();ctx.moveTo(cx-53,cy-54);ctx.lineTo(cx-30,cy-32);ctx.lineTo(cx+57,cy-32);ctx.moveTo(cx-30,cy-32);ctx.lineTo(cx-30,cy+54);ctx.stroke();
+  ctx.fillStyle='#fff';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='31px Anton, sans-serif';ctx.fillText('BYX',cx+10,cy+9);
+}
+function bindAboutGraphic(root,selector,paint){
+  const canvas=$(selector,root),stage=canvas?.parentElement,ctx=canvas?.getContext('2d');
   if(!ctx)return()=>{};
   const reduced=matchMedia('(prefers-reduced-motion:reduce)');
   let width=0,height=0,dpr=1,clock=0,raf=0,last=0,visible=false,disposed=false,frames=0;
   function draw(){
     if(!width||!height||disposed)return;
-    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#fff';ctx.fillRect(0,0,width,height);ctx.strokeStyle='#000';ctx.fillStyle='#000';
-    const boxWidth=Math.max(84,Math.min(190,width*.26)),boxHeight=Math.min(220,height*.44),left=(width-boxWidth)/2,right=left+boxWidth,center=height/2;
-    const inset=Math.max(24,width*.07),symbol=Math.max(8,Math.min(19,width*.026));
-    ctx.lineWidth=1;ctx.globalAlpha=.18;
-    for(let i=0;i<4;i++){
-      const y=height*(.21+i*.19),outY=height*(.24+(i%3)*.26);
-      ctx.beginPath();ctx.moveTo(inset,y);ctx.bezierCurveTo(width*.28,y,left-20,center,left,center);ctx.stroke();
-      ctx.beginPath();ctx.moveTo(right,center);ctx.bezierCurveTo(right+20,center,width*.76,outY,width-inset,outY);ctx.stroke();
-    }
-    ctx.globalAlpha=1;
-    for(let i=0;i<4;i++){
-      const phase=reduced.matches?.12:(clock/5600+i*.25)%1,input=phase<.5,u=input?phase*2:(phase-.5)*2;
-      const smooth=u*u*(3-2*u),startY=height*(.21+i*.19),endY=height*(.24+(i%3)*.26);
-      const x=input?inset+(left-inset)*u:right+(width-inset-right)*u;
-      const y=input?startY+(center-startY)*smooth:center+(endY-center)*smooth;
-      ctx.globalAlpha=reduced.matches?1:Math.min(1,Math.min(u,1-u)*7+.15);
-      drawFunctionSymbol(ctx,i,x,y,symbol,!input);
-      if(reduced.matches)drawFunctionSymbol(ctx,i,width-inset,endY,symbol,true);
-    }
-    ctx.globalAlpha=1;ctx.fillStyle='#fff';ctx.fillRect(left,center-boxHeight/2,boxWidth,boxHeight);ctx.lineWidth=1.5;ctx.strokeRect(left,center-boxHeight/2,boxWidth,boxHeight);
-    ctx.fillStyle='#000';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font=`${Math.max(30,Math.min(64,boxWidth*.38))}px Anton, sans-serif`;ctx.fillText('BYX',width/2,center);
-    ctx.font='12px SUIT, sans-serif';ctx.fillText('데이터',inset,26);ctx.fillText('설계',width-inset,26);
-    ctx.font='12px monospace';ctx.fillText('f(x)',width/2,center+boxHeight*.33);
-    canvas.dataset.frame=String(++frames);canvas.dataset.phase=((clock%5600)/5600).toFixed(3);
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,width,height);
+    const scale=Math.min(width/600,height/460);ctx.save();ctx.translate((width-600*scale)/2,(height-460*scale)/2);ctx.scale(scale,scale);
+    paint(ctx,reduced.matches?1500:clock);ctx.restore();canvas.dataset.frame=String(++frames);
   }
   function tick(now){raf=0;if(disposed||!visible||document.hidden||reduced.matches)return;if(!last)last=now;if(now-last>=1000/30){clock+=Math.min(64,now-last);last=now;draw();}raf=requestAnimationFrame(tick);}
   function sync(){cancelAnimationFrame(raf);raf=0;last=0;const running=visible&&!document.hidden&&!reduced.matches&&!$('#people-dialog[open],#contact-dialog[open]',root);stage.dataset.motion=running?'running':reduced.matches?'static':'idle';draw();if(running)raf=requestAnimationFrame(tick);}
@@ -3522,21 +3526,22 @@ function bindAboutFunction(root){
   document.addEventListener('visibilitychange',sync);document.addEventListener('byx:modal',sync);reduced.addEventListener('change',sync);document.fonts?.ready.then(()=>{if(!disposed)draw();});
   return()=>{disposed=true;cancelAnimationFrame(raf);observer.disconnect();sizing.disconnect();document.removeEventListener('visibilitychange',sync);document.removeEventListener('byx:modal',sync);reduced.removeEventListener('change',sync);};
 }
+function bindAboutFunction(root){return bindAboutGraphic(root,'#byx-function',paintFunction);}
+function bindAboutJourney(root){return bindAboutGraphic(root,'#byx-journey',paintJourney);}
 
 function bindAboutPeople(root){
-  const viewport=$('.people',root),track=$('.people-track',root),group=$('.people-group',root),dialog=$('#people-dialog',root),content=$('#profile-content',root),pause=$('.people-pause',root);
+  const viewport=$('.people',root),track=$('.people-track',root),group=$('.people-group',root),dialog=$('#people-dialog',root),content=$('#profile-content',root);
   if(!viewport||!dialog)return()=>{};
   const reduced=matchMedia('(prefers-reduced-motion:reduce)'),members=cells(DB.settings.about.people);
   const base=$$('[data-person]',group),moving=base.length>1;
-  let width=0,phase=0,raf=0,last=0,visible=false,hovered=false,focused=false,userPaused=false,disposed=false,focusOffset=null,trigger=null,previousOverflow='',modalLocked=false;
+  let width=0,phase=0,raf=0,last=0,visible=false,focused=false,disposed=false,focusOffset=null,trigger=null,previousOverflow='',modalLocked=false,keyboardOpen=false;
   const isOpen=()=>dialog.open||!!$('#contact-dialog[open]',root);
-  function draw(){track.style.transform=reduced.matches||!moving?'none':`translateX(${focusOffset ?? phase-width}px)`;viewport.dataset.offset=phase.toFixed(2);}
+  function draw(){track.style.transform=reduced.matches||!moving?'none':`translateX(${focusOffset ?? -phase-width}px)`;viewport.dataset.offset=(-phase).toFixed(2);}
   function tick(now){raf=0;if(disposed)return;if(last)phase=(phase+Math.min(64,now-last)*.018)%width;last=now;draw();raf=requestAnimationFrame(tick);}
   function sync(){
     cancelAnimationFrame(raf);raf=0;last=0;
-    const running=moving&&width>0&&visible&&!document.hidden&&!reduced.matches&&!hovered&&!focused&&!userPaused&&!isOpen();
+    const running=moving&&width>0&&visible&&!document.hidden&&!reduced.matches&&!focused&&!isOpen();
     viewport.dataset.motion=running?'running':reduced.matches||!moving?'static':'paused';
-    pause.hidden=reduced.matches||!moving;pause.textContent=userPaused?'움직임 재개':'움직임 멈추기';pause.setAttribute('aria-pressed',String(userPaused));
     draw();if(running)raf=requestAnimationFrame(tick);
   }
   function concealCopy(node){node.setAttribute('aria-hidden','true');$$('button',node).forEach(button=>button.tabIndex=-1);}
@@ -3554,29 +3559,28 @@ function bindAboutPeople(root){
     document.body.style.overflow=previousOverflow;content.replaceChildren();
     document.dispatchEvent(new Event('byx:modal'));
     if(!disposed&&trigger?.isConnected)trigger.focus({preventScroll:true});
+    focused=keyboardOpen;if(!focused)focusOffset=null;
     sync();
   }
   function openProfile(index){
     const member=members[index];if(!member)return;
     const [name,role,bio,photo,intro]=member;
-    trigger=base.find(button=>+button.dataset.person===index)||pause;
+    trigger=base.find(button=>+button.dataset.person===index);
     content.innerHTML=`<div class="profile-head"><span>PEOPLE / BYX</span><button type="button" class="profile-close" aria-label="직원 소개 닫기" autofocus>×</button></div><div class="profile-layout"><div class="profile-photo"><img src="${esc(photo||svgArt('person-'+name+index,600,800))}" alt="${esc(name)}"></div><div class="profile-copy"><h2 id="profile-name">${esc(name)}</h2><p class="profile-role">${esc(role)}</p>${intro?`<p class="profile-intro">${esc(intro.replace(/\\n/g,'\n'))}</p>`:''}${bio?`<ul class="profile-career">${bio.split(/\s*\/\s*/).filter(Boolean).map(line=>`<li>${esc(line)}</li>`).join('')}</ul>`:''}</div></div>`;
     previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden';modalLocked=true;
     dialog.showModal();dialog.scrollTop=0;$('.profile-close',content).onclick=()=>dialog.close();$('.profile-close',content).focus();
     document.dispatchEvent(new Event('byx:modal'));sync();
   }
-  const click=event=>{const button=event.target.closest('[data-person]');if(button)openProfile(+button.dataset.person);};
+  const click=event=>{const button=event.target.closest('[data-person]');if(button){keyboardOpen=event.detail===0;openProfile(+button.dataset.person);}};
   const pointerDown=event=>{if(event.target.closest('[data-copy],[data-fill]'))event.preventDefault();};
-  const enter=event=>{if(event.pointerType!=='touch'){hovered=true;sync();}},leave=()=>{hovered=false;sync();};
   const focusIn=event=>{
-    focused=true;
     const button=event.target.closest('[data-person]');
-    if(button&&!reduced.matches&&moving){const ownX=button.getBoundingClientRect().left-group.getBoundingClientRect().left;focusOffset=-width-ownX+12;}
+    focused=!!button?.matches(':focus-visible');
+    if(focused&&!reduced.matches&&moving){const ownX=button.getBoundingClientRect().left-group.getBoundingClientRect().left;focusOffset=-width-ownX+12;}
     sync();
   };
   const focusOut=event=>{if(!viewport.contains(event.relatedTarget)){focused=false;focusOffset=null;sync();}};
-  viewport.addEventListener('click',click);viewport.addEventListener('mousedown',pointerDown);viewport.addEventListener('pointerenter',enter);viewport.addEventListener('pointerleave',leave);viewport.addEventListener('focusin',focusIn);viewport.addEventListener('focusout',focusOut);
-  pause.onclick=()=>{userPaused=!userPaused;sync();};
+  viewport.addEventListener('click',click);viewport.addEventListener('mousedown',pointerDown);viewport.addEventListener('focusin',focusIn);viewport.addEventListener('focusout',focusOut);
   dialog.addEventListener('close',closeProfile);
   dialog.onkeydown=event=>{if(event.key!=='Tab')return;const buttons=$$('button,a[href],input,textarea,select,[tabindex="0"]',dialog),first=buttons[0],last=buttons.at(-1);if(!first)return;if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}};
   dialog.onclick=event=>{const r=dialog.getBoundingClientRect();if(event.target===dialog&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))dialog.close();};
@@ -3621,7 +3625,7 @@ function bindAboutContact(root){
 function bindAboutStory(){
   const root=$('.about-story',app);
   if(!root)return()=>{};
-  const cleaners=[bindAboutTitle(root),bindAboutMotion(),bindAboutFunction(root),bindAboutPeople(root),bindAboutContact(root)];
+  const cleaners=[bindAboutTitle(root),bindAboutMotion(),bindAboutJourney(root),bindAboutFunction(root),bindAboutPeople(root),bindAboutContact(root)];
   root.classList.add('is-enhanced');
   const steps=new IntersectionObserver(entries=>{
     for(const entry of entries){
@@ -3630,9 +3634,7 @@ function bindAboutStory(){
       if(target.hasAttribute('data-journey-step')){
         const index=+target.dataset.journeyStep;
         $$('[data-journey-step]',root).forEach(item=>item.classList.toggle('is-current',item===target));
-        $('#journey-drawing-label',root).textContent=ABOUT_JOURNEY[index].label;
-        $('.experience-progress',root).style.setProperty('--journey-offset',String(100-[0,34,67,100][index]));
-        $$('[data-journey-node]',root).forEach((node,i)=>node.dataset.active=String(i<=index));
+        $('#byx-journey',root).dataset.source=String(index);
       }else{
         $$('[data-source-step]',root).forEach(item=>item.classList.toggle('is-current',item===target));
         $('#byx-function',root).dataset.source=target.dataset.sourceStep;
@@ -3645,9 +3647,23 @@ function bindAboutStory(){
   return()=>{cleaners.forEach(clean=>clean());steps.disconnect();reveal.disconnect();};
 }
 
+function bindWorksFilter(){
+  const dialog=$('#works-filter-dialog',app),launch=$('[data-open-filter]',app),close=$('[data-close-filter]',dialog),form=$('form',dialog);
+  if(!dialog)return()=>{};
+  let previousOverflow='',locked=false,disposed=false;
+  const restore=()=>{if(!locked)return;locked=false;document.body.style.overflow=previousOverflow;if(!disposed)launch.focus({preventScroll:true});};
+  launch.onclick=()=>{for(const key of ['type','status','year'])form.elements[key].value=PV[key]||'';previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden';locked=true;dialog.showModal();close.focus();};
+  close.onclick=()=>dialog.close();dialog.addEventListener('close',restore);
+  dialog.onclick=event=>{const r=dialog.getBoundingClientRect();if(event.target===dialog&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))dialog.close();};
+  dialog.onkeydown=event=>{if(event.key!=='Tab')return;const controls=$$('button,select',dialog),first=controls[0],last=controls.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}};
+  $('[data-reset-filter]',dialog).onclick=()=>{$$('select',form).forEach(select=>select.value='');};
+  form.onsubmit=event=>{event.preventDefault();const values=new FormData(form);for(const key of ['type','status','year'])PV[key]=String(values.get(key)||'');PV.shown=BATCH;dialog.close();restore();render();};
+  return()=>{disposed=true;if(dialog.open)dialog.close();restore();dialog.removeEventListener('close',restore);};
+}
+
 function bindPage(page, arg){
   if(page==='about')pageCleanup=bindAboutStory();
-  if(page==='project'&&!arg)pageCleanup=bindWorksTop();
+  if(page==='project'&&!arg){const cleanTop=bindWorksTop(),cleanFilter=bindWorksFilter();pageCleanup=()=>{cleanTop();cleanFilter();};}
   if (page === 'guidelines') { if(IO){IO.disconnect();IO=null;} bindGuidelines(arg); return; }
   const bar = $('.pbar', app);
   if (bar) document.documentElement.style.setProperty('--pbar-h', bar.offsetHeight + 'px');

@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-04T09:16:48.621Z",
+  "testedAt": "2026-11-04T10:08:38.012Z",
   "headers": [
     {
       "width": 1440,
@@ -110,7 +110,7 @@
   },
   "upload": {
     "uploaded": {
-      "path": "2026/iddne3s2y0mw1wkcwz.png",
+      "path": "2026/idllbhxen0mw1yf04x.png",
       "type": "image/png",
       "options": {
         "cacheControl": "31536000",
@@ -118,7 +118,7 @@
         "contentType": "image/png"
       }
     },
-    "url": "https://example.test/2026/iddne3s2y0mw1wkcwz.png",
+    "url": "https://example.test/2026/idllbhxen0mw1yf04x.png",
     "authCalls": 1,
     "storageCalls": 1,
     "expired": "로그인이 만료되었습니다. 다시 로그인한 뒤 이미지를 추가해주세요.",

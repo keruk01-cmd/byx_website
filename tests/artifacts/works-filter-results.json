@@ -1,0 +1,33 @@
+{
+  "testedAt": "2026-11-04T10:08:06.328Z",
+  "results": [
+    {
+      "width": 1440,
+      "filterAndSort": true,
+      "reset": true,
+      "emptyState": true,
+      "escapedOptions": true,
+      "modalCleanup": true,
+      "compactFooter": true
+    },
+    {
+      "width": 390,
+      "filterAndSort": true,
+      "reset": true,
+      "emptyState": true,
+      "escapedOptions": true,
+      "modalCleanup": true,
+      "compactFooter": true
+    },
+    {
+      "width": 320,
+      "filterAndSort": true,
+      "reset": true,
+      "emptyState": true,
+      "escapedOptions": true,
+      "modalCleanup": true,
+      "compactFooter": true
+    }
+  ],
+  "errors": []
+}

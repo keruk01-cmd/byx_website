@@ -14,6 +14,8 @@
 
 ## 2. 소스 분석 기준선
 
+- 2026-11-04 표현 정리: ABOUT 문장 압축/서비스 범위 확장, 제목 폭 제한 전환, 모바일 그래픽 비고정·X 문구 중앙, People 우→좌 순환·모달 재개와 검은 하단, 얇은 푸터/메뉴, WORKS 필터 모달을 추가했습니다. 기존 폰트·설정·운영 데이터·가이드·라우트는 유지합니다. [최신 기준](ABOUT_REFINEMENTS_2026-11-04.md).
+
 - 2026-11-04 스크롤 소개 후속: ABOUT의 Studio/Records 공개 UI와 선택형 설명 버튼을 제거하고, 고정 장면/순환 People/모달/문의를 추가했습니다. 문의는 별도 `contact_requests`와 서버 전용 RPC/Edge Function으로 접수하며 기존 projects/news/posts/settings·Auth·Storage를 바꾸지 않습니다. 프런트 단일 HTML과 브랜드 가이드/Vercel rewrite를 유지합니다. [최신 기준](ABOUT_CINEMATIC_2026-11-04.md).
 
 - 2026-11-04 화면 정리 후속: 헤더 75% 축소·알약 메뉴, ABOUT 고정 챕터 탐색/영문 보조 문구 제거, `eXperience` 표기와 점군 여운을 반영했습니다. 실행 코드는 계속 단일 HTML이며 기존 설정·운영 가이드·사업자 푸터를 보존합니다. [후속 검증](ABOUT_STORY_2026-11-04.md#후속-화면-정리).
