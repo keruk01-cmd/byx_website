@@ -1,0 +1,43 @@
+{
+  "testedAt": "2026-11-04T05:18:06.434Z",
+  "base": "https://byx-website.vercel.app",
+  "sha256": "819d5bacd687509bb72744112667db403caf14cd01a283b482b020c2a1008cb8",
+  "results": [
+    {
+      "route": "/",
+      "status": 200,
+      "htmlMatches": true
+    },
+    {
+      "route": "/index.html",
+      "status": 200,
+      "htmlMatches": true
+    },
+    {
+      "route": "/admin",
+      "status": 200,
+      "htmlMatches": true
+    },
+    {
+      "route": "/admin/",
+      "status": 200,
+      "htmlMatches": true
+    },
+    {
+      "route": "/guidelines",
+      "status": 200,
+      "htmlMatches": true
+    },
+    {
+      "route": "/guidelines/buttons",
+      "status": 200,
+      "htmlMatches": true
+    }
+  ],
+  "api": {
+    "status": 200,
+    "articles": 26,
+    "access": "url"
+  },
+  "limitations": "Read-only HTTP artifact/routing verification; no administrator login or production file upload."
+}
