@@ -49,7 +49,7 @@ window.BYX_CONFIG={url:'',key:'',bucket:'media'};
   --work-meta:clamp(12px,.65vw,16px);
   --work-label:clamp(11px,.55vw,14px);
   --pad:clamp(16px,3.2vw,44px);
-  --head-h:clamp(74px,10.4vw,108px);
+  --head-h:clamp(55.5px,7.8vw,81px);
   --ease:cubic-bezier(.22,.61,.36,1);
   --font-display:'Anton','SUIT Variable','Archivo Narrow','Arial Narrow',Impact,sans-serif;
   --font-text:'SUIT Variable','SUIT','Apple SD Gothic Neo','Malgun Gothic','Helvetica Neue',Arial,sans-serif;
@@ -117,13 +117,13 @@ input[type=color],input[type=file],input[type=date],input[type=month],input[type
 #brand{
   display:flex;align-items:center;gap:0;
   font-family:var(--font-display);
-  font-size:clamp(33px,5.25vw,57px);
+  font-size:clamp(24.75px,3.9375vw,42.75px);
   line-height:1;letter-spacing:.005em;
   cursor:var(--cur-hand);user-select:none;flex:0 0 auto;
 }
 #slotwrap{
   position:relative;display:block;flex:0 0 auto;
-  width:clamp(156px,23vw,315px);
+  width:clamp(117px,17.25vw,236.25px);
   height:1.16em;
 }
 #slot{position:absolute;inset:0;overflow:hidden}
@@ -161,18 +161,28 @@ input[type=color],input[type=file],input[type=date],input[type=month],input[type
 .optical{padding-left:.05em}
 #brand:active{opacity:.6}
 
-#nav{display:flex;align-items:center;gap:clamp(14px,2.1vw,34px);flex:0 0 auto;margin-left:auto}
+#nav{display:flex;align-items:center;gap:clamp(4px,.55vw,9px);flex:0 0 auto;margin-left:auto}
 #nav a{
   font-family:var(--font-display);
   font-size:clamp(12px,1.32vw,17px);
   letter-spacing:.06em;text-transform:uppercase;
-  position:relative;padding-block:4px;
+  position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;
+  padding:9px 16px;border-radius:999px;line-height:1.2;
+  transition:color .22s linear;
 }
-#nav a::after{
-  content:"";position:absolute;left:0;right:100%;bottom:1px;height:2px;background:currentColor;
-  transition:right .3s var(--ease);
+#nav a::before{
+  content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;
+  background:var(--glass-fg);opacity:0;transform:scale(.82);
+  transition:opacity .22s linear,transform .32s var(--ease),background .25s linear;
 }
-#nav a:hover::after,#nav a.on::after{right:0}
+#nav a:hover::before,#nav a:focus-visible::before{opacity:.12;transform:scale(1)}
+#nav a.on{color:var(--glass-bg)}
+#nav a.on::before{opacity:1;transform:scale(1);animation:nav-pill-in .32s var(--ease)}
+#nav a.on:hover::before{opacity:.86}
+#nav a:active::before{transform:scale(.94)}
+#nav a:focus-visible{outline:2px solid var(--glass-fg);outline-offset:3px}
+@keyframes nav-pill-in{from{opacity:.3;transform:scale(.84)}to{opacity:1;transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){#nav a::before,#nav a.on::before{animation:none;transition:none}}
 #burger{display:none;width:26px;height:16px;position:relative;margin-left:auto}
 #burger i{position:absolute;left:0;right:0;height:2px;background:currentColor;transition:transform .3s var(--ease),opacity .2s}
 #burger i:nth-child(1){top:0}
@@ -538,23 +548,14 @@ a:hover>.feed-image img,a:focus-visible>.feed-image img{filter:none}
 .story-eyebrow{font-family:var(--font-mono);font-size:clamp(10px,.85vw,12px);letter-spacing:.12em;text-transform:uppercase;line-height:1.5}
 .story-hero{min-height:calc(100svh - var(--head-h));padding:clamp(44px,6vw,100px) var(--pad) 30px;display:flex;flex-direction:column;justify-content:space-between;gap:44px}
 .story-hero-top{display:flex;justify-content:space-between;gap:20px}
-.story-hero-top span:last-child{text-align:right;color:var(--mute)}
 .story-title{font-family:var(--font-display);font-weight:400;font-size:clamp(44px,17.4vw,240px);line-height:.94;letter-spacing:-.025em;margin:0}
 .story-title>span{display:block}
-.story-title .story-title-last{display:flex;justify-content:space-between;align-items:baseline}
-.story-title-last small{font-family:var(--font-mono);font-size:clamp(10px,.85vw,12px);letter-spacing:.06em;line-height:1.5;font-weight:400;color:var(--mute)}
 .story-hero-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;padding-top:22px;border-top:var(--hair) solid var(--fg)}
 .story-hero-copy h2{font-size:clamp(25px,3.4vw,52px);font-weight:550;font-variation-settings:'wght' 550;letter-spacing:-.055em;line-height:1.35;margin:0;word-break:keep-all}
 .story-hero-copy p{max-width:46ch;margin:0 0 4px auto;font-size:clamp(14px,1.25vw,18px);line-height:1.9;word-break:keep-all}
-.story-nav{position:sticky;top:var(--head-h);z-index:42;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--bg);border-block:var(--hair) solid var(--fg)}
-.story-nav button{display:flex;align-items:center;gap:14px;text-align:left;padding:18px var(--pad);font-size:clamp(11px,1vw,14px);border-right:var(--hair) solid var(--faint);line-height:1.3;min-height:60px}
-.story-nav button:last-child{border-right:0}
-.story-nav .story-number{font-family:var(--font-mono);font-size:10px;color:var(--mute)}
-.story-nav button[aria-current="step"]{box-shadow:inset 0 -3px 0 var(--fg)}
-.story-nav button:hover{background:var(--faint)}
-.story-chapter{scroll-margin-top:calc(var(--head-h) + 76px)}
+.story-chapter{scroll-margin-top:calc(var(--head-h) + 20px)}
 .story-chapter-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;padding:var(--story-space) var(--pad) 48px;align-items:end}
-.story-chapter-head h2{font-size:clamp(30px,4.4vw,72px);font-weight:550;font-variation-settings:'wght' 550;letter-spacing:-.055em;line-height:1.28;word-break:keep-all;margin:22px 0 0}
+.story-chapter-head h2{font-size:clamp(30px,4.4vw,72px);font-weight:550;font-variation-settings:'wght' 550;letter-spacing:-.055em;line-height:1.28;word-break:keep-all;margin:0}
 .story-chapter-head p{font-size:clamp(14px,1.25vw,18px);line-height:1.9;word-break:keep-all;max-width:46ch;margin:0 0 4px auto}
 .story-system{background:var(--fg);color:var(--bg)}
 .story-system .story-eyebrow{color:var(--mute)}
@@ -592,8 +593,6 @@ a:hover>.feed-image img,a:focus-visible>.feed-image img{filter:none}
 .experience-steps button span{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:.06em}
 .experience-steps button[aria-pressed="true"]{box-shadow:inset 0 -2px 0 var(--fg)}
 .story-tech{border-top:var(--hair) solid var(--fg);padding-bottom:var(--story-space)}
-.story-tech-display{font-family:var(--font-display);font-size:clamp(32px,8.3vw,144px);line-height:.98;letter-spacing:-.015em;margin:14px var(--pad) 48px}
-.story-tech-display span{display:block}
 .tech-workbench{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin:0 var(--pad);border-block:var(--hair) solid var(--fg)}
 .tech-sources{padding:24px 40px 32px 0;border-right:var(--hair) solid var(--fg)}
 .tech-sources>p{margin:0 0 20px;color:var(--mute)}
@@ -629,7 +628,6 @@ a:hover>.feed-image img,a:focus-visible>.feed-image img{filter:none}
 @media(max-width:760px){
   .story-hero-copy,.story-chapter-head,.system-console{grid-template-columns:1fr;gap:26px}
   .story-hero-copy p,.story-chapter-head p{margin-left:0;max-width:48ch}
-  .story-nav button{gap:8px;padding:15px 10px}
   .experience-stage,.tech-workbench{grid-template-columns:1fr}
   .experience-drawing{min-height:310px;border-right:0;border-bottom:var(--hair) solid var(--fg)}
   .experience-content{min-height:340px}
@@ -2252,11 +2250,11 @@ function viewPost(slug){
 }
 
 function aboutMotionHTML(){
-  return `<section class="x-cloud-section" aria-label="Variable X와 eXperience X">
+  return `<section class="x-cloud-section" aria-label="Variable X와 eXperience">
     <div class="x-universe">
       <h2 class="x-label x-label-left">Variable X</h2>
       <div class="x-field" data-motion="static"><canvas class="x-cloud" id="x-cloud" tabindex="0" role="img" aria-label="크기가 다른 흰 X 점군이 회전하며 구, 정사면체, 정육면체, 정팔면체로 변합니다. 마우스와 터치로 흩어지고 다시 모입니다. 클릭하면 더 넓게 퍼집니다. 방향키로도 반응 위치를 이동할 수 있습니다." aria-describedby="x-cloud-hint">회전하며 형태를 바꾸는 X 점군</canvas></div>
-      <h2 class="x-label x-label-right">eXperience X</h2>
+      <h2 class="x-label x-label-right">eXperience</h2>
       <p class="sr-only" id="x-cloud-hint">마우스나 터치로 X들을 흩어보세요. 클릭하면 더 넓게 퍼집니다.</p>
     </div>
   </section>`;
@@ -2272,7 +2270,7 @@ function makeXCloudPoints(count){
     let tetra=Infinity;
     for(const n of normals){const dot=-(n[0]*x+n[1]*y+n[2]*z);if(dot>1e-7)tetra=Math.min(tetra,.45/dot);}
     const radii=[1.08,tetra,.76/Math.max(Math.abs(x),Math.abs(y),Math.abs(z)),1.35/(Math.abs(x)+Math.abs(y)+Math.abs(z))];
-    return {forms:radii.map(q=>({x:x*q*layer,y:y*q*layer,z:z*q*layer})),size:.65+Math.pow(random(),2.5)*2.4,aspect:.65+random()*.65,angle:(random()-.5)*.5,weight:.6+random()*.65,ox:0,oy:0,vx:0,vy:0,depth:0,sx:0,sy:0,perspective:1};
+    return {forms:radii.map(q=>({x:x*q*layer,y:y*q*layer,z:z*q*layer})),size:.65+Math.pow(random(),2.5)*2.4,aspect:.65+random()*.65,angle:(random()-.5)*.5,weight:.6+random()*.65,ox:0,oy:0,vx:0,vy:0,memory:0,depth:0,sx:0,sy:0,perspective:1};
   });
 }
 
@@ -2294,52 +2292,46 @@ function viewAbout(){
   return `
   <div class="about-story">
     <section class="story-hero" aria-labelledby="about-title">
-      <div class="story-hero-top story-eyebrow"><span>ARCHITECTS BY X<br>ABOUT THE STUDIO</span><span>VARIABLE X<br>MEETS EXPERIENCE.</span></div>
-      <h1 class="story-title" id="about-title"><span>POSSIBILITIES.</span><span class="story-title-last">BY X.<small>DIFFERENT QUESTIONS.<br>NEW POSSIBILITIES.</small></span></h1>
+      <div class="story-hero-top story-eyebrow">ARCHITECTS BY X</div>
+      <h1 class="story-title" id="about-title"><span>POSSIBILITIES.</span><span>BY X.</span></h1>
       <div class="story-hero-copy"><h2>${copy('story_headline')}</h2><p>${copy('story_intro')}</p></div>
     </section>
-    <nav class="story-nav" aria-label="ABOUT의 세 가지 이야기">
-      <button type="button" data-about-jump="about-system" aria-current="step"><span class="story-number">01</span><span>가능성을 만드는 시스템</span></button>
-      <button type="button" data-about-jump="about-experience"><span class="story-number">02</span><span>과정까지 좋은 경험으로</span></button>
-      <button type="button" data-about-jump="about-technology"><span class="story-number">03</span><span>건축가이자 개발자</span></button>
-    </nav>
 
     <section class="story-chapter story-system" id="about-system" aria-labelledby="system-title">
-      <div class="story-chapter-head story-reveal"><div><div class="story-eyebrow">01 / OUR WAY OF THINKING</div><h2 id="system-title" tabindex="-1">${copy('story_system_title')}</h2></div><p>${copy('story_system_body')}</p></div>
+      <div class="story-chapter-head story-reveal"><h2 id="system-title">${copy('story_system_title')}</h2><p>${copy('story_system_body')}</p></div>
       ${aboutMotionHTML()}
       <div class="system-console">
-        <div><p class="story-eyebrow">어디에서 시작해볼까요?</p><div class="system-options" role="group" aria-label="프로젝트를 바라보는 세 가지 관점">${ABOUT_CONDITIONS.map((c,i)=>`<button type="button" data-about-condition="${i}" aria-pressed="${i===0}" aria-controls="system-result">${esc(c.label)}</button>`).join('')}</div><div class="system-equation"><span>VARIABLE X</span><span>×</span><span>eXPERIENCE</span><span>→</span><span>POSSIBILITIES</span></div></div>
+        <div><p class="story-eyebrow">어디에서 시작해볼까요?</p><div class="system-options" role="group" aria-label="프로젝트를 바라보는 세 가지 관점">${ABOUT_CONDITIONS.map((c,i)=>`<button type="button" data-about-condition="${i}" aria-pressed="${i===0}" aria-controls="system-result">${esc(c.label)}</button>`).join('')}</div><div class="system-equation"><span>Variable X</span><span>×</span><span>eXperience</span><span>→</span><span>해답</span></div></div>
         <div class="system-result" id="system-result" aria-live="polite" aria-atomic="true"><h3>${esc(condition.title)}</h3><p>${esc(condition.body)}</p></div>
       </div>
     </section>
 
     <section class="story-chapter story-experience" id="about-experience" aria-labelledby="experience-title">
-      <div class="story-chapter-head story-reveal"><div><div class="story-eyebrow">02 / DESIGNED AROUND YOU</div><h2 id="experience-title" tabindex="-1">${copy('story_experience_title')}</h2></div><p>${copy('story_experience_body')}</p></div>
+      <div class="story-chapter-head story-reveal"><h2 id="experience-title">${copy('story_experience_title')}</h2><p>${copy('story_experience_body')}</p></div>
       <div class="experience-stage">
         <div class="experience-drawing" aria-hidden="true">
           <svg viewBox="0 0 500 380" fill="none"><path d="M65 100H250V280H435" class="experience-route"/><path d="M65 100H250V280H435" pathLength="100" class="experience-progress"/>
             ${[[65,100],[250,100],[250,280],[435,280]].map(([x,y],i)=>`<circle class="experience-node" data-journey-node="${i}" data-active="${i===0}" cx="${x}" cy="${y}" r="7"/>`).join('')}
-            <text x="65" y="72">01 / YOU</text><text x="435" y="315" text-anchor="end">04 / YOUR EVERYDAY</text><text class="experience-label" x="65" y="213">eXperience.</text>
+            <text class="experience-label" x="65" y="213">eXperience.</text>
           </svg>
-          <div class="experience-marker story-eyebrow"><span>YOU &amp; BY X</span><span id="journey-drawing-label">${journey.en}</span></div>
+          <div class="experience-marker story-eyebrow"><span id="journey-drawing-label">${esc(journey.label)}</span></div>
         </div>
         <div class="experience-content" id="experience-result" aria-live="polite" aria-atomic="true"><div class="experience-counter"><b id="journey-number">01</b><span>/ 04</span></div><div><h3 id="journey-title">${esc(journey.title)}</h3><p id="journey-body">${esc(journey.body)}</p></div><div class="experience-footnote" id="journey-note">${esc(journey.note)}</div></div>
       </div>
-      <div class="experience-steps" role="group" aria-label="함께 만드는 과정">${ABOUT_JOURNEY.map((j,i)=>`<button type="button" data-about-journey="${i}" aria-pressed="${i===0}" aria-controls="experience-result"><span>0${i+1} / ${j.en}</span>${esc(j.label)}</button>`).join('')}</div>
+      <div class="experience-steps" role="group" aria-label="함께 만드는 과정">${ABOUT_JOURNEY.map((j,i)=>`<button type="button" data-about-journey="${i}" aria-pressed="${i===0}" aria-controls="experience-result"><span>0${i+1}</span>${esc(j.label)}</button>`).join('')}</div>
     </section>
 
     <section class="story-chapter story-tech" id="about-technology" aria-labelledby="technology-title">
-      <div class="story-chapter-head story-reveal"><div><div class="story-eyebrow">03 / ARCHITECTURE, CONNECTED.</div><h2 id="technology-title" tabindex="-1">${copy('story_technology_title')}</h2></div><p>${copy('story_technology_body')}</p></div>
-      <div class="story-tech-display story-reveal" aria-hidden="true"><span>ARCHITECTS.</span><span>ALSO DEVELOPERS.</span></div>
+      <div class="story-chapter-head story-reveal"><h2 id="technology-title">${copy('story_technology_title')}</h2><p>${copy('story_technology_body')}</p></div>
       <div class="tech-workbench">
         <div class="tech-sources"><p class="story-eyebrow">흩어진 정보가, 더 나은 판단으로.</p><div role="group" aria-label="연결하는 데이터와 도구">${ABOUT_DATA.map((d,i)=>`<button type="button" data-about-data="${i}" aria-pressed="${i===0}" aria-controls="tech-result"><span>${esc(d.label)}</span><span>${d.en}</span></button>`).join('')}</div></div>
-        <div class="tech-insight" id="tech-result" aria-live="polite" aria-atomic="true"><div class="tech-flow" aria-hidden="true"><span id="tech-input">${data.input}</span><i></i><strong>BY X</strong><i></i><span>BETTER<br>DECISIONS</span></div><div><h3 id="tech-title">${esc(data.title)}</h3><p id="tech-body">${esc(data.body)}</p></div></div>
+        <div class="tech-insight" id="tech-result" aria-live="polite" aria-atomic="true"><div class="tech-flow" aria-hidden="true"><span id="tech-input">${data.input}</span><i></i><strong>BY X</strong><i></i><span>판단과 설계</span></div><div><h3 id="tech-title">${esc(data.title)}</h3><p id="tech-body">${esc(data.body)}</p></div></div>
       </div>
       <p class="story-promise story-reveal">${copy('story_promise')}</p>
     </section>
 
     <section class="story-studio" aria-label="스튜디오와 구성원">
-    <div class="story-studio-head"><h2 class="display brandline"><span class="blank" style="width:2.1em"></span><span class="optical">&nbsp;BY&nbsp;X</span></h2><span class="story-eyebrow">THE PEOPLE BEHIND THE POSSIBILITIES.</span></div>
+    <div class="story-studio-head"><h2 class="display brandline"><span class="blank" style="width:2.1em"></span><span class="optical">&nbsp;BY&nbsp;X</span></h2></div>
     <details><summary>STUDIO NOTES &amp; RECORDS</summary><div class="about-grid">
     <div>
       <h2 class="display h-m">Studio</h2>
@@ -3295,12 +3287,16 @@ function bindAboutMotion(){
       let dx=px+p.ox-pointer.x,dy=py+p.oy-pointer.y,dist=Math.hypot(dx,dy);
       if(dist<.1){dx=Math.cos(i*goldenAngle());dy=Math.sin(i*goldenAngle());dist=1;}
       const influence=pointer.active?Math.pow(Math.max(0,1-dist/reach),1.6):0;
-      if(reduced.matches){p.ox=dx/dist*influence*reach*1.1;p.oy=dy/dist*influence*reach*1.1;p.vx=p.vy=0;}
+      if(reduced.matches){p.ox=dx/dist*influence*reach*1.1;p.oy=dy/dist*influence*reach*1.1;p.vx=p.vy=p.memory=0;}
       else if(step){
+        // Preserve direct input strength; let touched points settle more slowly.
+        p.memory=Math.max(0,p.memory-Math.min(delta,64));
+        if(influence>.01)p.memory=1600;
+        const spring=influence>.01?.011:p.memory>0?.0008:.0032;
         const force=8*(1+pointer.burst*2);
-        p.vx+=(-p.ox*.011+dx/dist*influence*force+pointer.vx*influence*.1)*step;
-        p.vy+=(-p.oy*.011+dy/dist*influence*force+pointer.vy*influence*.1)*step;
-        const damping=Math.pow(.86,step);p.vx*=damping;p.vy*=damping;
+        p.vx+=(-p.ox*spring+dx/dist*influence*force+pointer.vx*influence*.1)*step;
+        p.vy+=(-p.oy*spring+dy/dist*influence*force+pointer.vy*influence*.1)*step;
+        const damping=Math.pow(influence>.01?.86:.93,step);p.vx*=damping;p.vy*=damping;
         p.ox=Math.max(-width*.45,Math.min(width*.45,p.ox+p.vx*step));p.oy=Math.max(-height*.45,Math.min(height*.45,p.oy+p.vy*step));
       }
       dispersal=Math.max(dispersal,Math.hypot(p.ox,p.oy));
@@ -3358,7 +3354,7 @@ function bindAboutMotion(){
     if(e.key==='Enter'||e.key===' '){e.preventDefault();pointer.active=true;pointer.burst=1.6;if(reduced.matches)draw();return;}
     if(directions[e.key]){e.preventDefault();const [x,y]=directions[e.key];pointer.active=true;pointer.x=Math.max(0,Math.min(width,pointer.x+x));pointer.y=Math.max(0,Math.min(height,pointer.y+y));if(reduced.matches)draw();}
   };
-  const preference=()=>{if(reduced.matches){clock=0;for(const p of points)p.ox=p.oy=p.vx=p.vy=0;}sync();};
+  const preference=()=>{if(reduced.matches){clock=0;for(const p of points)p.ox=p.oy=p.vx=p.vy=p.memory=0;}sync();};
   const condition=event=>{clock=(Math.max(0,Math.min(3,Number(event.detail?.index)||0)))*4800;sync();};
   field.addEventListener('byx:condition',condition);
   const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:0});observer.observe(field);
@@ -3387,7 +3383,7 @@ function bindAboutStory(){
     pressed('[data-about-journey]',index);
     $('#journey-number',root).textContent=String(index+1).padStart(2,'0');
     $('#journey-title',root).textContent=journey.title;$('#journey-body',root).textContent=journey.body;
-    $('#journey-note',root).textContent=journey.note;$('#journey-drawing-label',root).textContent=journey.en;
+    $('#journey-note',root).textContent=journey.note;$('#journey-drawing-label',root).textContent=journey.label;
     $('.experience-progress',root).style.setProperty('--journey-offset',String(100-[0,34,67,100][index]));
     $$('[data-journey-node]',root).forEach((node,i)=>node.dataset.active=String(i<=index));
   });
@@ -3409,22 +3405,9 @@ function bindAboutStory(){
       event.preventDefault();buttons[next].focus();buttons[next].click();
     });
   }
-  const nav=$$('.story-nav button',root);
-  nav.forEach(button=>button.onclick=()=>{
-    const section=$('#'+button.dataset.aboutJump,root),title=$('h2',section);
-    nav.forEach(item=>{if(item===button)item.setAttribute('aria-current','step');else item.removeAttribute('aria-current');});
-    section.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth',block:'start'});
-    title.focus({preventScroll:true});
-  });
-  const chapters=new IntersectionObserver(entries=>{
-    const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
-    if(!visible.length)return;
-    nav.forEach(button=>{if(button.dataset.aboutJump===visible[0].target.id)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');});
-  },{rootMargin:'-25% 0px -60% 0px',threshold:0});
-  $$('.story-chapter',root).forEach(section=>chapters.observe(section));
   const reveal=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');reveal.unobserve(entry.target);}}),{threshold:.1});
   $$('.story-reveal',root).forEach(element=>reveal.observe(element));
-  return()=>{cleanMotion();chapters.disconnect();reveal.disconnect();};
+  return()=>{cleanMotion();reveal.disconnect();};
 }
 
 function bindPage(page, arg){
