@@ -4,6 +4,8 @@
 
 ## 2026-11-04 · 배경에 반응하는 유리 헤더·이미지 업로드 복구
 
+- 운영 반영 완료: [PR #3](https://github.com/keruk01-cmd/byx_website/pull/3), main `5dbe45d`, Vercel Production 성공. `https://byx-website.vercel.app`에서 6개 경로 HTTP 200·최신 HTML 해시 일치와 가이드 API 26개 문서 응답 확인(2026-11-04 14:18 KST). [배포 검증](tests/artifacts/deployment-results.json).
+
 - 60% 흑/백 유리층, 22px 블러, 배경 밝기에 따른 텍스트·슬롯 밑줄·메뉴 전환. 사진 밝기 캐시, 혼합 경계의 깜박임 방지, 모바일 메뉴와 투명도/모션 감소 대응.
 - 운영 `media` 버킷에 Storage 정책이 전혀 없던 것이 이미지 추가 RLS 오류의 원인. 기존 단일 관리자 UUID에 한정한 INSERT 정책을 적용. 익명·다른 계정·다른 버킷 거부와 관리자 허용을 롤백 SQL로 확인, 검증 객체 잔존 0개.
 - JPEG/PNG/WebP/AVIF의 WebP 자동 압축, 최대 긴 변 2560px·품질 0.82, 900KiB 초과 시 최대 0.70까지 조정. MIME 누락·네이티브 디코더 폴백·실제 출력 MIME·만료 로그인·권한 오류 안내 보완. 원본 유지 예외 보존.

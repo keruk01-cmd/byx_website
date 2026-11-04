@@ -47,4 +47,9 @@ Supabase 보안 Advisor에서 신규 Storage 정책 경고는 없었습니다. �
 
 ## 배포 확인
 
-Vercel 연결 저장소는 `keruk01-cmd/byx_website`, 운영 브랜치는 `main`입니다. 기존 브랜드 가이드를 먼저 통합한 뒤 디자인 브랜치에 커밋·푸시하고 PR을 통해 main에 반영합니다. 최종 배포 URL·커밋·성공 상태는 GitHub Deployment 상태와 [배포 확인 결과](../tests/artifacts/deployment-results.json)를 기준으로 확인합니다. 정적 HTML 일치와 가이드 API·관리자 rewrite를 `tests/check-deployment.cjs`로 검증합니다.
+운영 반영을 완료했습니다. Vercel 연결 저장소는 `keruk01-cmd/byx_website`, 운영 브랜치는 `main`입니다. 기존 브랜드 가이드를 통합한 구현 커밋 `91e2dd9`를 [PR #3](https://github.com/keruk01-cmd/byx_website/pull/3)으로 병합했습니다. 운영 배포 커밋은 `5dbe45d`, GitHub Production Deployment ID는 `7538583564`이며 Vercel 성공 상태를 확인했습니다.
+
+- 운영 URL: [https://byx-website.vercel.app](https://byx-website.vercel.app)
+- 2026-11-04 14:18 KST에 `tests/check-deployment.cjs`로 `/`, `/index.html`, `/admin`, `/admin/`, `/guidelines`, `/guidelines/buttons`의 HTTP 200과 수정 HTML SHA-256 일치를 확인했습니다.
+- `/api/guidelines`는 HTTP 200, URL 열람 방식, 기존 26개 문서 응답을 확인했습니다.
+- 실제 응답 결과는 [배포 확인 JSON](../tests/artifacts/deployment-results.json)에 있습니다. 이 확인은 읽기 전용이며 실제 관리자 로그인·운영 파일 업로드 검증과 구분합니다.
