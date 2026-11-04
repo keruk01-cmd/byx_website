@@ -1,8 +1,22 @@
 {
-  "testedAt": "2026-11-04T06:36:56.827Z",
+  "testedAt": "2026-11-04T08:20:17.122Z",
   "results": [
     {
       "width": 1440,
+      "headerHeight": 81,
+      "pillMenu": true,
+      "pillAnimation": {
+        "page": "feed",
+        "name": "nav-pill-in",
+        "duration": "0.32s"
+      },
+      "settle": {
+        "peak": 456.55,
+        "after1s": 325.85,
+        "after6s": 0.01
+      },
+      "chapterNavigationRemoved": true,
+      "decorativeCopyRemoved": true,
       "chapters": 3,
       "conditions": true,
       "journey": true,
@@ -17,6 +31,12 @@
     },
     {
       "width": 390,
+      "headerHeight": 55.5,
+      "pillMenu": false,
+      "pillAnimation": null,
+      "settle": null,
+      "chapterNavigationRemoved": true,
+      "decorativeCopyRemoved": true,
       "chapters": 3,
       "conditions": true,
       "journey": true,
@@ -31,6 +51,12 @@
     },
     {
       "width": 320,
+      "headerHeight": 55.5,
+      "pillMenu": false,
+      "pillAnimation": null,
+      "settle": null,
+      "chapterNavigationRemoved": true,
+      "decorativeCopyRemoved": true,
       "chapters": 3,
       "conditions": true,
       "journey": true,

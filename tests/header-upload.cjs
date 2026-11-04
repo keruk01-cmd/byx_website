@@ -34,8 +34,8 @@ async function main(){
       await page.evaluate(()=>scrollTo(0,document.querySelector('.x-cloud-section').getBoundingClientRect().top+scrollY+100));
       await page.waitForFunction(()=>document.querySelector('#top').dataset.tone==='dark');
       await page.waitForFunction(()=>getComputedStyle(document.querySelector('#top')).color==='rgb(255, 255, 255)');
-      const dark=await page.locator('#top').evaluate(el=>({color:getComputedStyle(el).color,background:getComputedStyle(el).backgroundColor,blur:getComputedStyle(el).backdropFilter,rule:getComputedStyle(document.querySelector('#rule')).backgroundColor,underline:getComputedStyle(document.querySelector('#nav a'),'::after').backgroundColor}));
-      assert.equal(dark.color,'rgb(255, 255, 255)','header '+width);assert.equal(dark.rule,dark.color,'slot rule '+width);assert.equal(dark.underline,dark.color,'navigation underline '+width);assert.match(dark.blur,/22px/);
+      const dark=await page.locator('#top').evaluate(el=>({color:getComputedStyle(el).color,background:getComputedStyle(el).backgroundColor,blur:getComputedStyle(el).backdropFilter,rule:getComputedStyle(document.querySelector('#rule')).backgroundColor,pill:getComputedStyle(document.querySelector('#nav a.on'),'::before').backgroundColor,pillText:getComputedStyle(document.querySelector('#nav a.on')).color}));
+      assert.equal(dark.color,'rgb(255, 255, 255)','header '+width);assert.equal(dark.rule,dark.color,'slot rule '+width);assert.equal(dark.pill,dark.color,'navigation pill '+width);assert.equal(dark.pillText,'rgb(0, 0, 0)');assert.match(dark.blur,/22px/);
       await page.screenshot({path:path.join(out,'adaptive-header-dark-'+width+'.png')});
       const cdp=await page.context().newCDPSession(page);
       await cdp.send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-transparency',value:'reduce'}]});

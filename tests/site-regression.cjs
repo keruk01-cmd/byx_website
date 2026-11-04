@@ -110,7 +110,9 @@ async function main(){
       const clicked=+(await canvas.getAttribute('data-dispersal'));assert(clicked>scattered*1.15,'Click should scatter farther than hover');
       if(width===2560)await page.locator('.x-field').screenshot({path:path.join(out,'cloud-pointer.png')});
       if(width===1440)await page.locator('#top').screenshot({path:path.join(out,'glass-header-1440.png')});
-      await page.mouse.move(0,0);await page.waitForTimeout(2200);assert(+(await canvas.getAttribute('data-dispersal'))<clicked*.25,'Cloud did not reassemble');
+      await page.mouse.move(0,0);await page.waitForTimeout(1000);
+      const lingering=+(await canvas.getAttribute('data-dispersal'));assert(lingering>clicked*.2,'Pointer influence settled too quickly');
+      await page.waitForTimeout(5000);const recovered=+(await canvas.getAttribute('data-dispersal'));assert(recovered<clicked*.25,'Cloud did not reassemble after the longer settle');
       if(width===2560)for(const [shape,name] of [[1,'tetrahedron'],[2,'cube'],[3,'octahedron']]){await page.waitForFunction(n=>document.querySelector('#x-cloud').dataset.shape===String(n),shape,{timeout:16000});await page.locator('.x-field').screenshot({path:path.join(out,'cloud-'+name+'.png')});}
       await page.evaluate(()=>window.scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));
       await page.waitForFunction(()=>document.querySelector('.x-field').dataset.motion==='idle');
