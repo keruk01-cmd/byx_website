@@ -89,7 +89,7 @@ async function main(){
   }
   const titlePage=await browser.newPage({viewport:{width:1440,height:900}});titlePage.on('pageerror',e=>errors.push(e.message));await titlePage.goto(origin+'/#/about');
   await titlePage.waitForFunction(()=>document.querySelector('#about-title')?.dataset.motion==='scrambling');const scrambled=await titlePage.locator('#about-title').innerText();
-  for(let sample=0;sample<6;sample++){assert(await titlePage.locator('.scramble-letter').evaluateAll(els=>els.every(el=>{const a=el.getBoundingClientRect(),b=el.firstElementChild.getBoundingClientRect();return b.left>=a.left-1&&b.right<=a.right+1;})),'Scrambled glyph must stay in its own cell');await titlePage.waitForTimeout(70);}
+  for(let sample=0;sample<6;sample++){assert(await titlePage.locator('.scramble-glyph').evaluateAll(els=>els.every(el=>getComputedStyle(el).transform==='none'&&!el.parentElement.style.width)),'Scrambled glyphs must retain natural proportions');assert(await titlePage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Title must fit viewport');await titlePage.waitForTimeout(70);}
   await titlePage.screenshot({path:path.join(out,'title-scrambling.png')});
   await titlePage.waitForFunction(()=>document.querySelector('#about-title').dataset.motion==='settled');assert.notEqual(scrambled,await titlePage.locator('#about-title').innerText());
   await titlePage.evaluate(()=>location.hash='#/feed');await titlePage.waitForSelector('a.feed-card');const card=titlePage.locator('a.feed-card').first();await card.hover();await titlePage.waitForTimeout(800);

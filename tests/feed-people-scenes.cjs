@@ -62,7 +62,7 @@ async function main(){
    assert.equal(await page.locator('#profile-name').innerText(),'새 직원 <script>');assert.match(await page.locator('.profile-career').innerText(),/학력 A/);assert.equal(await page.locator('.profile-intro').innerText(),'소개 첫 줄\n소개 둘째 줄');assert.equal(await page.locator('#people-dialog script').count(),0);await page.keyboard.press('Escape');
    await page.emulateMedia({reducedMotion:'no-preference'});
    for(const [section,canvas] of [['#about-experience','#byx-journey'],['#about-technology','#byx-function']]){
-    const geometry=await page.locator(section).evaluate(el=>{const b=el.getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;return{top:b.top+scrollY,travel:b.height-(innerHeight-head),head};});
+    const geometry=await page.locator(section).evaluate(el=>{const b=el.querySelector('.journey-scroll,.function-layout').getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;return{top:b.top+scrollY,travel:b.height-(innerHeight-head),head};});
     const samples=[];
     for(const p of [.05,.5,.97]){
      await page.evaluate(({g,p})=>scrollTo(0,g.top-g.head+g.travel*p),{g:geometry,p});await page.waitForTimeout(160);
