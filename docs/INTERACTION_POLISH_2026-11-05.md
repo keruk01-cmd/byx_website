@@ -1,5 +1,7 @@
 # 회전 범위·국소 밀도·유리 메뉴·푸터 간섭 수정
 
+후속 사용자 요청의 큰 세로 장면·굴절 유리·작은 필터·문의 CTA는 [최신 기록](LAYOUT_LENS_DREAM_2026-11-05.md)을 우선합니다. 아래 세로 맞춤/낮은 기본 밝기/메뉴 색상 기록은 이전 상태입니다.
+
 2026-11-05 추가 사용자 요청입니다. [이전 모션 기록](MOTION_REFINEMENTS_2026-11-05.md)보다 이 문서의 회전 범위·입력·경험 조명·메뉴 전환 기준을 우선합니다.
 
 ## 변경
@@ -28,4 +30,6 @@
 
 ## 운영 반영
 
-검증 완료 후 병합·배포 결과를 기록합니다.
+- 구현 커밋 `cc67312`를 [PR #15](https://github.com/keruk01-cmd/byx_website/pull/15)로 병합했습니다. 운영 main 배포 커밋은 `de313f9`이며 Vercel `success`를 확인했습니다.
+- 2026-11-05 17:55 KST에 `tests/check-deployment.cjs`를 실행해 6개 경로의 HTTP 200·현재 HTML 일치와 가이드 API 26개 문서 응답을 확인했습니다. 결과는 [deployment-results.json](../tests/artifacts/deployment-results.json)에 저장했습니다.
+- 운영 URL: [BYX ABOUT](https://byx-website.vercel.app/#/about), [WORKS](https://byx-website.vercel.app/#/). 실제 콘텐츠를 쓰지 않는 읽기 전용 배포 검증입니다.

@@ -1,0 +1,79 @@
+{
+  "testedAt": "2026-11-05T09:21:29.245Z",
+  "results": [
+    {
+      "width": 1440,
+      "minimalDividers": true,
+      "segmentedView": true,
+      "compactPopover": {
+        "width": 304,
+        "height": 416.671875,
+        "right": 1396,
+        "anchorRight": 1396,
+        "gap": 10,
+        "modal": false,
+        "overflow": ""
+      },
+      "sharedInquiryDemo": true,
+      "dreamCopy": true,
+      "tallerGalaxy": {
+        "height": 1584,
+        "viewport": 819
+      },
+      "edgeFade": {
+        "faded": 69,
+        "unchanged": 5741
+      }
+    },
+    {
+      "width": 390,
+      "minimalDividers": true,
+      "segmentedView": true,
+      "compactPopover": {
+        "width": 304,
+        "height": 416.671875,
+        "right": 374,
+        "anchorRight": 374,
+        "gap": 10,
+        "modal": false,
+        "overflow": ""
+      },
+      "sharedInquiryDemo": true,
+      "dreamCopy": true,
+      "tallerGalaxy": {
+        "height": 1339.5,
+        "viewport": 844
+      },
+      "edgeFade": {
+        "faded": 69,
+        "unchanged": 5741
+      }
+    },
+    {
+      "width": 320,
+      "minimalDividers": true,
+      "segmentedView": true,
+      "compactPopover": {
+        "width": 296,
+        "height": 416.671875,
+        "right": 308,
+        "anchorRight": 304,
+        "gap": 10,
+        "modal": false,
+        "overflow": ""
+      },
+      "sharedInquiryDemo": true,
+      "dreamCopy": true,
+      "tallerGalaxy": {
+        "height": 1339.5,
+        "viewport": 844
+      },
+      "edgeFade": {
+        "faded": 69,
+        "unchanged": 5741
+      }
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome demo; inquiry submissions stay in memory. No physical-device, Safari/Firefox or production-write verification."
+}
