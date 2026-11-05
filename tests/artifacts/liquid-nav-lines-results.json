@@ -1,0 +1,34 @@
+{
+  "testedAt": "2026-11-05T08:10:00.489Z",
+  "liquidNav": {
+    "sharedPill": true,
+    "travel": true,
+    "thinning": true,
+    "interruption": true,
+    "keyboard": true,
+    "mobileMenu": true,
+    "reducedMotion": true
+  },
+  "results": [
+    {
+      "width": 1440,
+      "lineGroupedOpacity": true,
+      "resizeRegrouping": true,
+      "textPreserved": true
+    },
+    {
+      "width": 390,
+      "lineGroupedOpacity": true,
+      "resizeRegrouping": true,
+      "textPreserved": true
+    },
+    {
+      "width": 320,
+      "lineGroupedOpacity": true,
+      "resizeRegrouping": true,
+      "textPreserved": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome demo; no production content writes or physical-device verification."
+}
