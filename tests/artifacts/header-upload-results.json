@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-04T10:08:38.012Z",
+  "testedAt": "2026-11-05T01:58:49.442Z",
   "headers": [
     {
       "width": 1440,
@@ -64,7 +64,7 @@
       {
         "name": "architecture.jpeg",
         "input": 1496544,
-        "output": 191720,
+        "output": 191242,
         "type": "image/webp",
         "width": 2560,
         "height": 1664,
@@ -73,7 +73,7 @@
       {
         "name": "architecture.png",
         "input": 630218,
-        "output": 187840,
+        "output": 187908,
         "type": "image/webp",
         "width": 2560,
         "height": 1664,
@@ -82,7 +82,7 @@
       {
         "name": "architecture.webp",
         "input": 320850,
-        "output": 191004,
+        "output": 190750,
         "type": "image/webp",
         "width": 2560,
         "height": 1664,
@@ -110,7 +110,7 @@
   },
   "upload": {
     "uploaded": {
-      "path": "2026/idllbhxen0mw1yf04x.png",
+      "path": "2026/idyqqr4uvwmw2wcyfw.png",
       "type": "image/png",
       "options": {
         "cacheControl": "31536000",
@@ -118,7 +118,7 @@
         "contentType": "image/png"
       }
     },
-    "url": "https://example.test/2026/idllbhxen0mw1yf04x.png",
+    "url": "https://example.test/2026/idyqqr4uvwmw2wcyfw.png",
     "authCalls": 1,
     "storageCalls": 1,
     "expired": "로그인이 만료되었습니다. 다시 로그인한 뒤 이미지를 추가해주세요.",
