@@ -28,4 +28,9 @@
 
 ## 운영 반영
 
-상단 AGENTS의 기존 커밋·푸시·main 병합·최신 Vercel 반영 허용 범위를 이어갑니다. 배포 후 HTML 일치와 관리자·가이드 경로를 읽기 전용으로 확인하며, 결과는 이 절에 기록합니다.
+상단 AGENTS의 기존 커밋·푸시·main 병합·최신 Vercel 반영 허용 범위에 따라 운영 반영을 완료했습니다.
+
+- 구현 커밋: `ea2b8f2`. [PR #9](https://github.com/keruk01-cmd/byx_website/pull/9) 병합 커밋: `2633b33`.
+- Vercel의 해당 커밋 배포 상태 `success`를 확인했습니다. 운영 URL: [https://byx-website.vercel.app](https://byx-website.vercel.app).
+- 2026-11-05 14:18 KST, `tests/check-deployment.cjs`로 `/`, `/index.html`, `/admin`, `/admin/`, `/guidelines`, `/guidelines/buttons` HTTP 200과 현재 HTML SHA-256 일치를 확인했습니다. 가이드 API의 26개 문서·URL 접근도 정상입니다.
+- 결과: [deployment-results.json](../tests/artifacts/deployment-results.json). 읽기 전용 배포 확인이며 운영 관리자 로그인·콘텐츠 저장·실제 사진 업로드 검증을 의미하지 않습니다.
