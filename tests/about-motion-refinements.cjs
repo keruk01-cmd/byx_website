@@ -39,7 +39,7 @@ async function main(){
     const tips=[0,1].map(f=>journeyPoint(Math.PI/2,12,f,3000,1));return{origins,tips};
    });assert(paths.origins.every(p=>Math.hypot(p.x-300,p.y-230)<.001));assert(paths.tips.every(p=>Math.abs(Math.abs(p.x-300)-Math.abs(p.y-230))<.001));
    for(const [id,selector] of [['#about-experience','#byx-journey'],['#about-technology','#byx-function']]){
-    const geometry=await page.locator(id+' .'+(id.includes('experience')?'journey-scroll':'function-layout')).evaluate(el=>{const b=el.getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;return{top:b.top+scrollY,head,travel:b.height-(innerHeight-head)};});
+    const geometry=await page.locator(id+' .'+(id.includes('experience')?'journey-scroll':'function-layout')).evaluate(el=>{const b=el.getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;return{top:b.top+scrollY,head,travel:b.height-(innerHeight-head)-(el.querySelector('#byx-function')?Math.max(0,el.querySelector('#byx-function').getBoundingClientRect().height-(innerHeight-head))*.5:0)};});
     for(const progress of [.02,.18,.35,.7,.98]){
      await page.evaluate(({g,p})=>scrollTo(0,g.top-g.head+g.travel*p),{g:geometry,p:progress});await page.waitForTimeout(160);
      const observed=+(await page.locator(selector).getAttribute('data-progress'));assert(Math.abs(observed-progress)<.02);

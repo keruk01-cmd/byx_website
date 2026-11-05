@@ -12,7 +12,7 @@ async function main(){
    const toggle=await page.locator('.toggle').boundingBox(),filter=await page.locator('[data-open-filter]').boundingBox();assert(toggle.x<width*.2&&filter.x>width*.7);
    assert.match(await page.locator('footer').innerText(),/2026 ARCHITECTS BYX/);assert.equal(await page.locator('.business-info').evaluate(el=>getComputedStyle(el).borderTopWidth),'0px');assert((await page.locator('footer').boundingBox()).height<100);
    assert.equal(await page.locator('#mobnav .foot').count(),0);
-   await page.locator('[data-open-filter]').click();await page.waitForSelector('#works-filter-dialog[open]');assert.equal(await page.evaluate(()=>document.body.style.overflow),'hidden');
+   await page.locator('[data-open-filter]').click();await page.waitForSelector('#works-filter-dialog[open]');assert.equal(await page.evaluate(()=>document.body.style.overflow),'');assert.equal(await page.locator('#works-filter-dialog').evaluate(el=>el.matches(':modal')),false);
    await page.locator('#works-filter-dialog [name="type"]').selectOption({index:1});await page.keyboard.press('Escape');await page.waitForFunction(()=>document.body.style.overflow==='');assert.equal(await page.evaluate(()=>PV.type),'');
    await page.locator('[data-open-filter]').click();await page.locator('#works-filter-dialog [name="type"]').selectOption({index:1});const selected=await page.locator('#works-filter-dialog [name="type"]').inputValue();await page.locator('#works-filter-dialog [type="submit"]').click();
    await page.waitForFunction(()=>document.querySelector('[data-open-filter]').dataset.active==='true');assert.equal(await page.evaluate(()=>document.body.style.overflow),'');assert(await page.evaluate(type=>filtered().every(p=>p.type===type),selected));

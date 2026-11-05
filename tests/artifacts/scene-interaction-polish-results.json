@@ -1,16 +1,16 @@
 {
-  "testedAt": "2026-11-05T08:51:56.116Z",
+  "testedAt": "2026-11-05T09:21:36.933Z",
   "results": [
     {
       "width": 1440,
       "height": 900,
       "rotationBounds": {
-        "minX": 51.68814542946299,
-        "maxX": 1411.5130241975835,
-        "minY": 120.25007364454109,
-        "maxY": 790.5130387333703,
+        "minX": 21.365219865306614,
+        "maxX": 1418.6347600931829,
+        "minY": 279.6620349786537,
+        "maxY": 1466.8746798422196,
         "width": 1440,
-        "height": 819
+        "height": 1584
       },
       "localDensityAndTilt": true,
       "removedArrowEscape": true,
@@ -24,12 +24,12 @@
       "width": 390,
       "height": 900,
       "rotationBounds": {
-        "minX": 10.399994341030506,
-        "maxX": 379.5999910958278,
-        "minY": 286.87488946148227,
-        "maxY": 600.5787876931124,
+        "minX": 7.799992619752736,
+        "maxX": 382.19999086878147,
+        "minY": 532.4686925955075,
+        "maxY": 850.5909449054134,
         "width": 390,
-        "height": 844.49951171875
+        "height": 1339.50048828125
       },
       "localDensityAndTilt": true,
       "removedArrowEscape": true,
@@ -43,12 +43,12 @@
       "width": 320,
       "height": 900,
       "rotationBounds": {
-        "minX": 8.533329448124746,
-        "maxX": 311.4666870294614,
-        "minY": 311.17319774741605,
-        "maxY": 568.571290956979,
+        "minX": 6.399994512948595,
+        "maxX": 313.6000203660125,
+        "minY": 557.1087074828818,
+        "maxY": 818.1321171812858,
         "width": 320,
-        "height": 844.5
+        "height": 1339.5
       },
       "localDensityAndTilt": true,
       "removedArrowEscape": true,
@@ -62,12 +62,12 @@
       "width": 844,
       "height": 390,
       "rotationBounds": {
-        "minX": 145.9217149257658,
-        "maxX": 708.5685596156623,
-        "minY": 47.59439904621286,
-        "maxY": 312.8812471909728,
+        "minX": 140.16829845894995,
+        "maxX": 716.3471181503132,
+        "minY": 258.03305131953465,
+        "maxY": 735.7618500123699,
         "width": 844,
-        "height": 324.15625
+        "height": 928.390869140625
       },
       "localDensityAndTilt": true,
       "removedArrowEscape": true,
@@ -80,11 +80,11 @@
   ],
   "emission": {
     "neutral": {
-      "energy": 13500,
+      "energy": 44667,
       "extras": 0
     },
     "active": {
-      "energy": 287296,
+      "energy": 152133,
       "extras": 788
     }
   },
@@ -97,8 +97,8 @@
       "transform",
       "computedOffset"
     ],
-    "blur": "blur(14px) saturate(1.6)",
-    "background": "color(srgb 0 0 0 / 0.12)"
+    "blur": "url(\"#nav-refraction\") blur(1.4px) saturate(1.45)",
+    "background": "color(srgb 0 0 0 / 0.48)"
   },
   "errors": [],
   "limitations": "Isolated Chrome demo; no production writes or physical-device checks."

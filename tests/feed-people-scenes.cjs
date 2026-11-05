@@ -63,7 +63,7 @@ async function main(){
    await page.emulateMedia({reducedMotion:'no-preference'});
    await page.evaluate(()=>location.hash='#/feed');await page.waitForSelector('.feed-card');await page.evaluate(()=>location.hash='#/about');await page.waitForSelector('#byx-journey');
    for(const [section,canvas] of [['#about-experience','#byx-journey'],['#about-technology','#byx-function']]){
-    const geometry=await page.locator(section).evaluate(el=>{const b=el.querySelector('.journey-scroll,.function-layout').getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;return{top:b.top+scrollY,travel:b.height-(innerHeight-head),head};});
+    const geometry=await page.locator(section).evaluate(el=>{const b=el.querySelector('.journey-scroll,.function-layout').getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;return{top:b.top+scrollY,travel:b.height-(innerHeight-head)-(el.querySelector('#byx-function')?Math.max(0,el.querySelector('#byx-function').getBoundingClientRect().height-(innerHeight-head))*.5:0),head};});
     const samples=[];
     for(const p of [.05,.5,.97]){
      await page.evaluate(({g,p})=>scrollTo(0,g.top-g.head+g.travel*p),{g:geometry,p});await page.waitForTimeout(160);
