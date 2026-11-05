@@ -579,7 +579,7 @@ body.about-story-page>footer a{color:inherit}
 .story-title>span{display:block;white-space:nowrap;min-height:var(--title-line-height,.94em)}
 .story-title .scramble-letter{display:inline-flex;vertical-align:top}
 .scramble-glyph{display:inline-block;flex:none}
-.story-hero-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;padding-top:22px;border-top:var(--hair) solid var(--fg)}
+.story-hero-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;padding-top:22px}
 .story-hero-copy h2{font-size:clamp(25px,3.4vw,52px);font-weight:550;font-variation-settings:'wght' 550;letter-spacing:-.055em;line-height:1.35;margin:0;word-break:keep-all}
 .story-hero-copy p{max-width:46ch;margin:0 0 4px auto;font-size:clamp(14px,1.25vw,18px);line-height:1.9;word-break:keep-all}
 .story-chapter{scroll-margin-top:calc(var(--head-h) + 20px)}
@@ -606,8 +606,7 @@ body.about-story-page>footer a{color:inherit}
 .journey-visual .experience-drawing,.function-visual .function-stage{height:100%;min-height:0;border:0;background:var(--fg)}
 .scene-copy{position:relative;z-index:1;margin-top:calc(-100svh + var(--head-h));pointer-events:none}
 .scene-copy .story-chapter-head{min-height:80svh;align-content:start;padding-top:clamp(64px,10vh,130px);text-shadow:0 2px 22px var(--fg)}
-.scene-copy .reading-step{min-height:65svh;width:min(34%,460px);margin-left:var(--pad);border-color:var(--mute);text-shadow:0 2px 14px var(--fg),0 2px 30px var(--fg)}
-.scene-copy .reading-step.is-current{border-color:var(--bg)}
+.scene-copy .reading-step{min-height:65svh;width:min(34%,460px);margin-left:var(--pad);text-shadow:0 2px 14px var(--fg),0 2px 30px var(--fg)}
 .scene-copy .reading-step p{color:var(--bg)}
 .story-system .story-chapter-head{grid-template-columns:1fr;text-align:center;gap:26px}
 .story-system .story-chapter-head p{margin:0 auto;max-width:42ch}
@@ -617,15 +616,14 @@ body.about-story-page>footer a{color:inherit}
 .story-tech [data-source-step="0"]{margin-inline:auto;text-align:center;align-items:center}
 .story-tech [data-source-step="1"]{margin-left:var(--pad);margin-right:auto}
 .scene-arrival{height:75svh;pointer-events:none}
-.reading-step{padding:clamp(32px,4vw,60px) 0;min-height:clamp(260px,36vh,380px);border-top:var(--hair) solid var(--faint);display:flex;flex-direction:column;justify-content:center;scroll-margin-top:calc(var(--head-h) + 30px)}
+.reading-step{padding:clamp(32px,4vw,60px) 0;min-height:clamp(260px,36vh,380px);display:flex;flex-direction:column;justify-content:center;scroll-margin-top:calc(var(--head-h) + 30px)}
 .reading-step>span{font-size:12px;color:var(--mute);margin-bottom:22px}
 .reading-step h3{font-size:clamp(25px,2.9vw,43px);font-weight:500;font-variation-settings:'wght' 500;letter-spacing:-.04em;line-height:1.4;margin:0 0 20px;word-break:keep-all}
 .reading-step p{font-size:clamp(14px,1.15vw,17px);line-height:1.9;word-break:keep-all;color:var(--mute);margin:0;max-width:45ch}
-.reading-step.is-current{border-color:var(--fg)}
 .function-stage{height:clamp(320px,55vh,560px);position:relative;overflow:hidden}
 .function-canvas{width:100%;height:100%;display:block}
 .function-caption{font-size:12px;line-height:1.8;color:var(--mute);margin:18px 0 0;word-break:keep-all}
-.people-section{border-top:var(--hair) solid var(--fg);padding-top:var(--story-space);padding-bottom:32px;background:var(--fg);color:var(--bg)}
+.people-section{padding-top:var(--story-space);padding-bottom:32px;background:var(--fg);color:var(--bg)}
 .people-section .people,.people-section .person{background:var(--fg);color:var(--bg)}
 .people-section .person{border-color:var(--mute)}
 .people-section .people-dialog{background:var(--bg);color:var(--fg)}
@@ -651,7 +649,7 @@ body.about-story-page>footer a{color:inherit}
 .profile-career{padding:0;margin:0;list-style:none;border-top:var(--hair) solid var(--faint)}
 .profile-career li{padding:12px 0;border-bottom:var(--hair) solid var(--faint);font-size:13px;line-height:1.8;word-break:keep-all}
 .people-dialog button:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
-.contact-invitation{background:var(--fg);color:var(--bg);padding:var(--story-space) var(--pad);border-top:var(--hair) solid var(--fg)}
+.contact-invitation{background:var(--fg);color:var(--bg);padding:var(--story-space) var(--pad)}
 .contact-invitation h2{font-family:var(--font-display);font-size:clamp(54px,12vw,190px);font-weight:400;line-height:1;letter-spacing:-.02em;margin:0 0 36px}
 .contact-invitation p{font-size:clamp(18px,2.1vw,30px);line-height:1.6;word-break:keep-all;margin:0 0 32px}
 .contact-launch{border:var(--hair) solid currentColor;border-radius:999px;padding:16px 26px;font-size:clamp(14px,1.2vw,18px);color:inherit;min-height:52px}
@@ -2391,7 +2389,7 @@ function viewAbout(){
 
     <section class="story-chapter story-tech" id="about-technology" aria-labelledby="technology-title">
       <div class="function-layout">
-        <div class="function-visual"><div class="function-stage" data-motion="static"><canvas class="function-canvas" id="byx-function" role="img" aria-label="다양한 데이터가 BYX를 거쳐 새로운 가능성으로 변하는 그래픽">정보와 기술이 만나 새로운 가능성을 만듭니다.</canvas></div></div>
+        <div class="function-visual"><div class="function-stage" data-motion="static"><canvas class="function-canvas" id="byx-function" role="img" aria-label="도시의 건물과 도로 정보가 면의 조각으로 풀려 은하로 재구성되는 그래픽">도시를 이루는 정보가 새로운 형태의 가능성으로 이어집니다.</canvas></div></div>
         <div class="scene-copy"><div class="story-chapter-head story-reveal"><h2 id="technology-title">${copy('story_technology_title')}</h2><p>${copy('story_technology_body')}</p></div>${ABOUT_DATA.map((d,i)=>`<article class="reading-step" data-source-step="${i}"><span>${esc(d.label)}</span><h3>${esc(d.title)}</h3><p>${esc(d.body)}</p></article>`).join('')}</div><div class="scene-arrival" aria-hidden="true"></div>
       </div>
     </section>
@@ -3555,49 +3553,76 @@ function paintJourney(ctx,time,progress,view){
   }
   const halo=ctx.createRadialGradient(300,230,0,300,230,22);halo.addColorStop(0,'rgba(255,255,255,.32)');halo.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=halo;ctx.fillRect(278,208,44,44);
 }
-function paintFunction(ctx,time,progress,view={left:0,right:600,top:0,bottom:460}){
-  const intro=sceneEase((progress-.025)/.12);
+const ABOUT_CITY=Array.from({length:81},(_,i)=>{
+  const x=i%9-4,z=Math.floor(i/9)-4,noise=((Math.sin(i*127.1+9)*43758.54)%1+1)%1;
+  return{x:x*52,z:z*52,height:12+Math.pow(noise,1.6)*76,shade:.36+noise*.4,index:i};
+}).sort((a,b)=>a.x+a.z-b.x-b.z);
+function cityProject(x,y,z,time){
+  const yaw=-.08+Math.sin(time/22000)*.045,xx=x*Math.cos(yaw)-z*Math.sin(yaw),zz=x*Math.sin(yaw)+z*Math.cos(yaw);
+  return{x:300+(xx-zz)*.72,y:252+(xx+zz)*.34-y*.87};
+}
+function galaxyProject(radius,angle,time){
+  const a=angle+time/26000,x=Math.cos(a)*radius,y=Math.sin(a)*radius*.54;
+  return{x:300+x*Math.cos(-.22)-y*Math.sin(-.22),y:230+x*Math.sin(-.22)+y*Math.cos(-.22)};
+}
+function fillSceneFace(ctx,points,alpha){
+  ctx.fillStyle=`rgba(255,255,255,${alpha})`;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fill();
+}
+function paintFunction(ctx,time,progress){
+  const intro=sceneEase((progress-.025)/.13),change=sceneEase((progress-.28)/.57);
   if(!intro)return;
-  ctx.save();ctx.globalAlpha=intro;paintSceneStars(ctx,time,progress,view);
-  const funnel=sceneEase((progress-.1)/.5),formed=sceneEase((progress-.42)/.5),arrival=sceneEase((progress-.74)/.22);
-  const algorithmY=190-arrival*95,cy=320-arrival*90;
-  // Rain spans the actual viewport, including the space outside the design coordinates.
-  for(let i=0;i<190;i++){
-    const phase=((i*.6180339+progress*1.9+time/6200)%1),sourceX=view.left+((i*.7548776)%1)*(view.right-view.left),y=view.top-30+phase*(algorithmY-view.top+50);
-    const bend=sceneEase((y-(algorithmY-110))/100)*funnel;
-    const x=sourceX+(300-sourceX)*bend,alpha=(1-arrival)*(.18+(i%5)*.1);
-    ctx.strokeStyle=`rgba(255,255,255,${alpha})`;ctx.lineWidth=i%5===0?1:.5;
-    ctx.beginPath();ctx.moveTo(x,y-4-i%9);ctx.lineTo(x,y);ctx.stroke();
-    ctx.fillStyle=`rgba(255,255,255,${alpha})`;if(i%4===0){ctx.font='6px monospace';ctx.fillText(i%2?'1':'0',x+3,y);}
+  ctx.save();ctx.globalAlpha=intro;
+  // Information starts as an aerial city of solid roofs, facades and dark streets.
+  const ground=[[-242,-242],[242,-242],[242,242],[-242,242]].map(([x,z])=>cityProject(x,0,z,time));
+  fillSceneFace(ctx,ground,.035*Math.pow(1-change,2));
+  for(let i=0;i<76;i++){
+    const direction=i%2?1:-1,u=((i*.618+direction*time/7800)%1+1)%1;
+    const street=(i%10-4.5)*52+(i%2?3:-3),along=-238+476*u;
+    const p=cityProject(i%3?along:street,1,i%3?street:along,time);
+    const drawX=p.x+(300-p.x)*change,drawY=p.y+(230-p.y)*change;
+    ctx.fillStyle=`rgba(255,255,255,${(.45+i%3*.15)*(1-change)})`;ctx.beginPath();ctx.arc(drawX,drawY,.9,0,Math.PI*2);ctx.fill();
   }
-  for(let i=0;i<18;i++){
-    const u=(i/18+progress*2.5+time/3500)%1,y=algorithmY+30+u*Math.max(0,cy-algorithmY-55),x=300+Math.sin(i*2.4+u*6)*u*22;
-    ctx.fillStyle=`rgba(255,255,255,${funnel*(1-arrival)*(.2+.6*Math.sin(u*Math.PI))})`;ctx.beginPath();ctx.arc(x,y,1,0,Math.PI*2);ctx.fill();
+  // Broad filled spiral ribbons, rather than point clouds or wire orbits.
+  if(change>0){
+    ctx.save();ctx.globalAlpha=intro*change;
+    ctx.save();ctx.translate(300,230);ctx.rotate(-.22);ctx.scale(1,.54);
+    const disk=ctx.createRadialGradient(0,0,12,0,0,210);disk.addColorStop(0,'rgba(255,255,255,.09)');disk.addColorStop(.6,'rgba(255,255,255,.035)');disk.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=disk;ctx.fillRect(-210,-210,420,420);ctx.restore();
+    for(let arm=0;arm<4;arm++){
+      const edgeA=[],edgeB=[];
+      for(let j=0;j<=110;j++){
+        const u=j/110,radius=10+u*185,angle=arm*Math.PI/2+u*Math.PI*1.1,width=(3+22*Math.sin(u*Math.PI))*(1-u*.4);
+        edgeA.push(galaxyProject(radius+width,angle,time));edgeB.push(galaxyProject(Math.max(0,radius-width),angle,time));
+      }
+      fillSceneFace(ctx,edgeA.concat(edgeB.reverse()),.085+arm*.012);
+    }
+    ctx.restore();
   }
-  ctx.save();ctx.globalAlpha=intro*(1-arrival);ctx.translate(300,algorithmY);
-  const pulse=1+.07*Math.sin(time/950),glow=ctx.createRadialGradient(0,0,0,0,0,66*pulse);
-  glow.addColorStop(0,'rgba(255,255,255,.5)');glow.addColorStop(.25,'rgba(255,255,255,.13)');glow.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=glow;ctx.fillRect(-72,-72,144,144);
-  for(let i=0;i<3;i++){ctx.strokeStyle=`rgba(255,255,255,${.55-i*.12})`;ctx.lineWidth=.7;ctx.beginPath();ctx.ellipse(0,0,29+i*8,(29+i*8)*(.5+i*.2),(i%2?-1:1)*time/3800+i,0,Math.PI*2);ctx.stroke();}
-  ctx.strokeStyle='rgba(255,255,255,.95)';ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(-13,-13);ctx.lineTo(13,13);ctx.moveTo(-13,13);ctx.lineTo(13,-13);ctx.stroke();ctx.restore();
-  if(formed<=0){ctx.restore();return;}
-  ctx.save();ctx.translate(300,cy);ctx.scale(.18+formed*.82,.18+formed*.82);ctx.globalAlpha=intro*formed;
-  const rotation=progress*1.2+time/12000,r=153;
-  // Latitude / longitude filaments form a detailed, spatial orbital body.
-  for(let i=0;i<48;i++){
-    const a=i/48*Math.PI*2,tilt=a+rotation;
-    ctx.strokeStyle=`rgba(255,255,255,${.09+.25*(.5+.5*Math.cos(a+rotation))})`;ctx.lineWidth=.5;
-    ctx.beginPath();ctx.ellipse(0,0,r*(.28+.1*Math.sin(a*3)),r*(1+.07*Math.cos(a*4)),tilt,0,Math.PI*2);ctx.stroke();
+  for(const building of ABOUT_CITY){
+    const {x,z,height,shade,index}=building,size=34;
+    const roof=[[-size/2,-size/2],[size/2,-size/2],[size/2,size/2],[-size/2,size/2]].map(([dx,dz])=>cityProject(x+dx,height,z+dz,time));
+    const base=[[-size/2,-size/2],[size/2,-size/2],[size/2,size/2],[-size/2,size/2]].map(([dx,dz])=>cityProject(x+dx,0,z+dz,time));
+    const solid=Math.pow(1-change,1.6);
+    fillSceneFace(ctx,[roof[1],roof[2],base[2],base[1]],(.14+shade*.15)*solid);
+    fillSceneFace(ctx,[roof[2],roof[3],base[3],base[2]],(.065+shade*.1)*solid);
+    for(let tile=0;tile<4;tile++){
+      const dx=(tile%2-.5)*size/2,dz=(Math.floor(tile/2)-.5)*size/2,half=size/4-.3;
+      const corners=[[-half,-half],[half,-half],[half,half],[-half,half]].map(([a,b])=>cityProject(x+dx+a,height,z+dz+b,time));
+      const id=index*4+tile,u=Math.sqrt((id+.5)/324),arm=id%4;
+      const angle=arm*Math.PI/2+u*Math.PI*1.1+Math.sin(id*31.7)*.19+(1-change)*1.8;
+      const radius=12+u*182+Math.sin(id*17.3)*8,facet=(5+(1-u)*9)*(.65+(id%7)/10),depth=facet*.65;
+      const center=galaxyProject(radius,angle,time),tangent=angle+time/26000+Math.PI/2;
+      const target=[[-facet,-depth],[facet,-depth],[facet,depth],[-facet,depth]].map(([a,b])=>({x:center.x+a*Math.cos(tangent)-b*Math.sin(tangent),y:center.y+(a*Math.sin(tangent)+b*Math.cos(tangent))*.54}));
+      const local=sceneEase((change-(id%11)/110)/.91),lift=Math.sin(local*Math.PI)*(24+height*.55);
+      const points=corners.map((p,k)=>({x:p.x+(target[k].x-p.x)*local,y:p.y+(target[k].y-p.y)*local-lift}));
+      const light=shade*(1-local)+(.16+.38*(1-u)+.12*Math.sin(time/2400+id))*local;
+      fillSceneFace(ctx,points,Math.max(.08,light));
+    }
   }
-  for(let i=1;i<15;i++){
-    const latitude=i/15*Math.PI,y=Math.cos(latitude)*r,radius=Math.sin(latitude)*r;
-    ctx.strokeStyle='rgba(255,255,255,.14)';ctx.beginPath();ctx.ellipse(0,y*.82,radius,radius*.22,rotation*.2,0,Math.PI*2);ctx.stroke();
+  if(change>0){
+    ctx.save();ctx.globalAlpha=intro*change;ctx.translate(300,230);ctx.rotate(-.22);ctx.scale(1,.54);
+    const core=ctx.createRadialGradient(0,0,0,0,0,58);core.addColorStop(0,'rgba(255,255,255,.65)');core.addColorStop(.2,'rgba(255,255,255,.22)');core.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=core;ctx.fillRect(-58,-58,116,116);ctx.restore();
   }
-  for(let i=0;i<180;i++){
-    const y=1-2*(i+.5)/180,rad=Math.sqrt(1-y*y),a=i*2.39996+rotation,x=Math.cos(a)*rad,z=Math.sin(a)*rad;
-    const sx=x*r,sy=y*r*.86+z*r*.2;ctx.fillStyle=`rgba(255,255,255,${.18+.65*(z+1)/2})`;ctx.beginPath();ctx.arc(sx,sy,.55+(z+1)*.45,0,Math.PI*2);ctx.fill();
-  }
-  for(let i=0;i<3;i++){ctx.strokeStyle=`rgba(255,255,255,${.22-i*.05})`;ctx.beginPath();ctx.ellipse(0,0,192+i*10,55+i*8,-.35+i*.28+(i%2?-1:1)*time/30000,0,Math.PI*2);ctx.stroke();}
-  ctx.restore();ctx.restore();
+  ctx.restore();
 }
 function bindAboutGraphic(root,selector,paint){
   const canvas=$(selector,root),stage=canvas?.parentElement,ctx=canvas?.getContext('2d');

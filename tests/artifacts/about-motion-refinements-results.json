@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-05T05:34:51.547Z",
+  "testedAt": "2026-11-05T05:44:20.322Z",
   "results": [
     {
       "width": 1440,
@@ -7,7 +7,9 @@
       "variedAlignment": true,
       "originCrossingX": true,
       "continuousMotion": true,
-      "abstractCore": true,
+      "cityToGalaxy": true,
+      "pointsLinesSurfaces": true,
+      "noDividers": true,
       "blackGap": true,
       "reducedMotion": true
     },
@@ -17,7 +19,9 @@
       "variedAlignment": true,
       "originCrossingX": true,
       "continuousMotion": true,
-      "abstractCore": true,
+      "cityToGalaxy": true,
+      "pointsLinesSurfaces": true,
+      "noDividers": true,
       "blackGap": true,
       "reducedMotion": true
     },
@@ -27,7 +31,9 @@
       "variedAlignment": true,
       "originCrossingX": true,
       "continuousMotion": true,
-      "abstractCore": true,
+      "cityToGalaxy": true,
+      "pointsLinesSurfaces": true,
+      "noDividers": true,
       "blackGap": true,
       "reducedMotion": true
     }
