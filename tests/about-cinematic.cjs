@@ -57,6 +57,7 @@ async function main(){
    await page.evaluate(g=>scrollTo(0,g.top-g.head+g.travel*.8),formation);await page.waitForTimeout(100);
    assert(+(await page.locator('#x-cloud').getAttribute('data-formation'))>.99);assert(Math.abs((await page.locator('.x-field').boundingBox()).y-y1)<2,'Cloud stage must stay pinned');
    await page.locator('.x-field').screenshot({path:path.join(out,'x-formed-'+width+'.png')});
+   await page.evaluate(g=>scrollTo(0,g.top-g.head+g.travel*.12),formation);await page.waitForTimeout(100);assert(+(await page.locator('#x-cloud').getAttribute('data-formation'))>.99,'Point cloud assembly must not reverse');
    await page.locator('#byx-function').scrollIntoViewIfNeeded();await page.waitForFunction(()=>document.querySelector('.function-stage').dataset.motion==='running');
    const frame=+(await page.locator('#byx-function').getAttribute('data-frame'));await page.waitForTimeout(200);assert(+(await page.locator('#byx-function').getAttribute('data-frame'))>frame);
    await page.locator('[data-contact-launch]').click();await page.waitForSelector('#contact-dialog[open]');

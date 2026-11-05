@@ -1,9 +1,11 @@
 {
-  "testedAt": "2026-11-05T06:14:33.689Z",
+  "testedAt": "2026-11-05T06:25:09.537Z",
   "results": [
     {
       "width": 1440,
       "naturalTitle": true,
+      "textRevealOnce": true,
+      "oneWayAnimations": true,
       "variedAlignment": true,
       "originCrossingX": true,
       "continuousMotion": true,
@@ -20,6 +22,8 @@
     {
       "width": 390,
       "naturalTitle": true,
+      "textRevealOnce": true,
+      "oneWayAnimations": true,
       "variedAlignment": true,
       "originCrossingX": true,
       "continuousMotion": true,
@@ -36,6 +40,8 @@
     {
       "width": 320,
       "naturalTitle": true,
+      "textRevealOnce": true,
+      "oneWayAnimations": true,
       "variedAlignment": true,
       "originCrossingX": true,
       "continuousMotion": true,

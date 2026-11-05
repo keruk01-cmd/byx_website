@@ -702,14 +702,13 @@ body.about-story-page>footer a{color:inherit}
 .story-promise{margin:var(--story-space) var(--pad) 0;max-width:28ch;font-size:clamp(25px,3.7vw,58px);font-weight:500;font-variation-settings:'wght' 500;line-height:1.5;letter-spacing:-.045em;word-break:keep-all}
 .story-admin-note{margin:18px 0;padding:16px;border:var(--hair) solid var(--faint);font-size:12px;line-height:1.8}
 .about-story button:focus-visible,.story-chapter h2:focus-visible{outline:2px solid currentColor;outline-offset:5px}
-.story-reveal{transition:opacity .6s ease,transform .6s var(--ease)}
-.about-story.is-enhanced .story-reveal:not(.is-visible){opacity:.64;transform:translateY(14px)}
+.about-story.is-enhanced .story-word{opacity:var(--reveal-opacity,1);transition:opacity .12s linear}
 @media(max-width:760px){
   .story-hero-copy,.story-chapter-head{grid-template-columns:1fr;gap:26px}
   .story-hero-copy p,.story-chapter-head p{margin-left:0;max-width:48ch}
   .experience-drawing{min-height:310px;border-right:0;border-bottom:var(--hair) solid var(--fg)}
 }
-@media(prefers-reduced-motion:reduce){.about-story.is-enhanced .story-reveal:not(.is-visible){opacity:1;transform:none}.experience-progress{transition:none}}
+@media(prefers-reduced-motion:reduce){.about-story.is-enhanced .story-word{opacity:1;transition:none}.experience-progress{transition:none}}
 .map{aspect-ratio:16/9;border:var(--hair) solid var(--fg);overflow:hidden}
 .map img{width:100%;height:100%;object-fit:cover}
 /* The keyless Maps embed takes no style parameter, so the dark grey treatment
@@ -3451,8 +3450,9 @@ function bindAboutMotion(){
   function updateFormation(){
     scrollFrame=0;
     const box=canvas.getBoundingClientRect(),runway=canvas.closest('.cloud-scroll-runway');
-    if(runway){const r=runway.getBoundingClientRect(),head=$('#top').getBoundingClientRect().height,travel=Math.max(1,r.height-(innerHeight-head));formation=Math.max(0,Math.min(1,(head-r.top)/(travel*.62)));}
-    else formation=Math.max(0,Math.min(1,(innerHeight-box.top)/(innerHeight*.78)));
+    if(reduced.matches)formation=1;
+    else if(runway){const r=runway.getBoundingClientRect(),head=$('#top').getBoundingClientRect().height,travel=Math.max(1,r.height-(innerHeight-head));formation=Math.max(formation,Math.max(0,Math.min(1,(head-r.top)/(travel*.62))));}
+    else formation=Math.max(formation,Math.max(0,Math.min(1,(innerHeight-box.top)/(innerHeight*.78))));
     if(visible&&!raf)draw();
   }
   const scroll=()=>{if(!scrollFrame)scrollFrame=requestAnimationFrame(updateFormation);};
@@ -3473,7 +3473,7 @@ function bindAboutMotion(){
     if(e.key==='Enter'||e.key===' '){e.preventDefault();pointer.active=true;pointer.burst=1.6;if(reduced.matches)draw();return;}
     if(directions[e.key]){e.preventDefault();const [x,y]=directions[e.key];pointer.active=true;pointer.x=Math.max(0,Math.min(width,pointer.x+x));pointer.y=Math.max(0,Math.min(height,pointer.y+y));if(reduced.matches)draw();}
   };
-  const preference=()=>{if(reduced.matches){clock=0;for(const p of points)p.ox=p.oy=p.vx=p.vy=p.memory=0;}sync();};
+  const preference=()=>{if(reduced.matches){formation=1;clock=0;for(const p of points)p.ox=p.oy=p.vx=p.vy=p.memory=0;}sync();};
   const condition=event=>{clock=(Math.max(0,Math.min(3,Number(event.detail?.index)||0)))*4800;sync();};
   field.addEventListener('byx:condition',condition);
   const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:0});observer.observe(field);
@@ -3677,11 +3677,11 @@ function bindAboutGraphic(root,selector,paint){
     if(interactive){canvas.dataset.pointerX=pointer.x.toFixed(3);canvas.dataset.pointerY=pointer.y.toFixed(3);}
   }
   function tick(now){raf=0;if(disposed||!visible||document.hidden||reduced.matches)return;if(!last)last=now;if(now-last>=1000/30){clock+=Math.min(64,now-last);last=now;draw();}raf=requestAnimationFrame(tick);}
-  function sync(){cancelAnimationFrame(raf);raf=0;last=0;const running=visible&&!document.hidden&&!reduced.matches&&!$('#people-dialog[open],#contact-dialog[open]',root);stage.dataset.motion=running?'running':reduced.matches?'static':'idle';draw();if(running)raf=requestAnimationFrame(tick);}
+  function sync(){cancelAnimationFrame(raf);raf=0;last=0;if(reduced.matches)progress=1;const running=visible&&!document.hidden&&!reduced.matches&&!$('#people-dialog[open],#contact-dialog[open]',root);stage.dataset.motion=running?'running':reduced.matches?'static':'idle';draw();if(running)raf=requestAnimationFrame(tick);}
   function resize(){const rect=canvas.getBoundingClientRect();width=rect.width;height=rect.height;dpr=Math.min(devicePixelRatio||1,1.75);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);draw();}
   const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();});observer.observe(stage);
   const sizing=new ResizeObserver(resize);sizing.observe(stage);resize();
-  function updateProgress(){scrollRaf=0;const box=scene.getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;progress=Math.max(0,Math.min(1,(head-box.top)/Math.max(1,box.height-(innerHeight-head))));if(!raf)draw();}
+  function updateProgress(){scrollRaf=0;const box=scene.getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;progress=reduced.matches?1:Math.max(progress,Math.max(0,Math.min(1,(head-box.top)/Math.max(1,box.height-(innerHeight-head)))));if(visible&&!raf)draw();}
   const onScroll=()=>{if(!scrollRaf)scrollRaf=requestAnimationFrame(updateProgress);};
   const onPointer=event=>{
     if(!interactive||event.pointerType==='touch'||!visible||document.hidden||reduced.matches||$('#people-dialog[open],#contact-dialog[open]',root))return;
@@ -3789,10 +3789,48 @@ function bindAboutContact(root){
   return()=>{disposed=true;controller?.abort();if(dialog.open)dialog.close();restore();dialog.removeEventListener('close',restore);};
 }
 
+function bindAboutText(root){
+  const reduced=matchMedia('(prefers-reduced-motion:reduce)'),records=[];
+  const targets=$$('.story-hero-copy h2,.story-hero-copy p,.story-chapter-head h2,.story-chapter-head p,.reading-step>span,.reading-step h3,.reading-step p,.x-label,.people-intro h2,.people-intro p,.contact-invitation h2,.contact-invitation p',root);
+  for(const element of targets){
+    const nodes=[],words=[],walker=document.createTreeWalker(element,NodeFilter.SHOW_TEXT);
+    while(walker.nextNode())nodes.push(walker.currentNode);
+    for(const node of nodes){
+      const fragment=document.createDocumentFragment();
+      for(const part of node.textContent.split(/(\s+)/u)){
+        if(!part)continue;
+        if(/^\s+$/u.test(part)){fragment.append(document.createTextNode(part));continue;}
+        const word=document.createElement('span');word.className='story-word';word.textContent=part;words.push(word);fragment.append(word);
+      }node.replaceWith(fragment);
+    }
+    records.push({element,words,progress:0,applied:false});
+  }
+  let raf=0,disposed=false;
+  function update(){
+    raf=0;if(disposed||document.hidden)return;
+    for(const record of records){
+      if(record.applied&&record.progress===1)continue;
+      const box=record.element.getBoundingClientRect(),travel=innerHeight*.43+Math.min(box.height*.2,100);
+      const next=reduced.matches?1:Math.max(0,Math.min(1,(innerHeight*.93-box.top)/travel));
+      if(record.applied&&next<=record.progress)continue;
+      record.progress=Math.max(record.progress,next);record.element.dataset.revealProgress=record.progress.toFixed(3);
+      record.words.forEach((word,i)=>{
+        const stagger=record.words.length>1?i/(record.words.length-1)*.52:0,alpha=.12+.88*sceneEase((record.progress-stagger)/.48);
+        word.style.setProperty('--reveal-opacity',String(alpha));
+      });
+      record.applied=true;
+    }
+  }
+  const schedule=()=>{if(!raf)raf=requestAnimationFrame(update);};
+  window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule);document.addEventListener('visibilitychange',schedule);reduced.addEventListener('change',schedule);
+  document.fonts?.ready.then(()=>{if(!disposed)schedule();});update();
+  return()=>{disposed=true;cancelAnimationFrame(raf);window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);document.removeEventListener('visibilitychange',schedule);reduced.removeEventListener('change',schedule);};
+}
+
 function bindAboutStory(){
   const root=$('.about-story',app);
   if(!root)return()=>{};
-  const cleaners=[bindAboutTitle(root),bindAboutMotion(),bindAboutJourney(root),bindAboutFunction(root),bindAboutPeople(root),bindAboutContact(root)];
+  const cleaners=[bindAboutTitle(root),bindAboutText(root),bindAboutMotion(),bindAboutJourney(root),bindAboutFunction(root),bindAboutPeople(root),bindAboutContact(root)];
   root.classList.add('is-enhanced');
   const steps=new IntersectionObserver(entries=>{
     for(const entry of entries){
@@ -3809,9 +3847,7 @@ function bindAboutStory(){
     }
   },{rootMargin:'-35% 0px -35% 0px',threshold:0});
   $$('[data-journey-step],[data-source-step]',root).forEach(step=>steps.observe(step));
-  const reveal=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');reveal.unobserve(entry.target);}}),{threshold:.1});
-  $$('.story-reveal',root).forEach(element=>reveal.observe(element));
-  return()=>{cleaners.forEach(clean=>clean());steps.disconnect();reveal.disconnect();};
+  return()=>{cleaners.forEach(clean=>clean());steps.disconnect();};
 }
 
 function bindWorksFilter(){
