@@ -1,7 +1,7 @@
 {
-  "testedAt": "2026-11-05T07:16:07.739Z",
+  "testedAt": "2026-11-05T08:20:01.880Z",
   "base": "https://byx-website.vercel.app",
-  "sha256": "bda7e800888add75f647a40637a8887271228cbd8d76c2925830d1ffc36651d7",
+  "sha256": "581e6db44de822380e8ce9d157123bd441c21d86ce8532beb2865be02c9b1f82",
   "results": [
     {
       "route": "/",

@@ -29,4 +29,6 @@
 
 ## 운영 반영
 
-현재 구현과 로컬 검증을 완료했습니다. 병합·Vercel 배포 뒤 실제 결과를 이 절에 기록합니다.
+- 구현 커밋 `84c5a3a`를 [PR #14](https://github.com/keruk01-cmd/byx_website/pull/14)로 병합했습니다. 운영 main 배포 커밋은 `8a63ceb`이며 Vercel `success`를 확인했습니다.
+- 2026-11-05 17:20 KST에 `tests/check-deployment.cjs`로 `/`, `/index.html`, `/admin`, `/admin/`, `/guidelines`, `/guidelines/buttons`의 HTTP 200·현재 HTML SHA-256 일치와 가이드 API 26개 문서 응답을 확인했습니다. 결과는 [deployment-results.json](../tests/artifacts/deployment-results.json)에 저장했습니다.
+- 운영 URL: [BYX ABOUT](https://byx-website.vercel.app/#/about). 운영 데이터 쓰기 없이 읽기 전용으로 검증했습니다.
