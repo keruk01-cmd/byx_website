@@ -31,3 +31,9 @@
 - 완성 뒤의 점/선/은하 자동 움직임과 마우스 반응은 유지합니다. 화면 밖의 Canvas는 스크롤에 의한 불필요한 재그리기를 중단합니다. 글자 등장에 쓰는 스크롤/크기/탭/모션 설정 이벤트도 라우트 이탈 시 정리합니다.
 - `tests/about-motion-refinements.cjs`에 1440/390/320px의 단계별 단어 밝기/부분 등장/완료/역스크롤 밝기 유지와 두 장면의 진행 유지 검증을 추가했습니다. `tests/about-cinematic.cjs`는 첫 X 결집의 역재생 방지를 확인합니다. `tests/feed-people-scenes.cjs`도 누적 진행 기준으로 갱신했습니다. 앞선 역스크롤 재생 검증은 이 사용자 지시로 대체합니다.
 - 최신 소스에서 문구/누적 진행/기존 시각 조정의 3개 폭 검증, 기존 ABOUT·문의/FEED·구성원 검증, 5개 폭×10개 라우트 회귀를 실행해 모두 통과했습니다. 브라우저 오류 0개이며, 단계별 투명도 화면도 직접 검토했습니다. 구성 객체·브랜드 가이드·Vercel 경로·서버 정책과 운영 데이터는 보존했습니다.
+
+## 운영 반영
+
+- 구현 커밋 `c7c8894`(여백/밀도/상호작용/확대), `e764f8a`(문구 등장/진행 유지)를 [PR #12](https://github.com/keruk01-cmd/byx_website/pull/12)으로 병합했습니다. 운영 main 배포 커밋은 `74d1b05`입니다.
+- Vercel `success`를 확인했고, 2026-11-05 15:48 KST에 `tests/check-deployment.cjs`를 실행했습니다. `/`, `/index.html`, `/admin`, `/admin/`, `/guidelines`, `/guidelines/buttons` 모두 HTTP 200이며 현재 HTML SHA-256과 일치했습니다. 가이드 API의 26개 문서도 정상입니다.
+- 운영 URL: [https://byx-website.vercel.app/#/about](https://byx-website.vercel.app/#/about). 확인 결과는 [deployment-results.json](../tests/artifacts/deployment-results.json)에 기록했습니다. 이 확인은 읽기 전용이며 실제 관리자 저장/업로드 검증과 구분합니다.
