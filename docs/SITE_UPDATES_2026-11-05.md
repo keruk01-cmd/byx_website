@@ -64,3 +64,5 @@
 - ABOUT의 첫 화면 설명·챕터·단계 설명·People·문의 구간의 구분선을 제거했습니다. 기존 좌/우/중앙 정렬과 검은 간격으로 장면을 구분합니다. 직원/문의 모달 내부의 정보 구분과 다른 페이지/관리 화면은 보존합니다.
 
 이번 추가 수정은 `tests/about-motion-refinements.cjs`를 갱신해 1440/390/320px의 도시/전환/은하·지속 움직임·면 중심 렌더·챕터 선 없음·모달/모션 감소·기존 제목 비례/혼합 정렬을 검증했습니다. 데스크톱/모바일 이미지도 직접 검토했습니다. 5개 폭×10개 라우트 회귀와 기존 ABOUT/문의, FEED/구성원 검증을 현재 소스에서 재실행해 모두 통과했고 브라우저 오류는 0개입니다. 결과 JSON과 이미지는 `tests/artifacts/`에 갱신했습니다. 운영 저장·실기기/Safari/Firefox·스크린리더는 여전히 미검증입니다.
+
+도시→은하 운영 반영: 구현 `024dcbe`를 [PR #11](https://github.com/keruk01-cmd/byx_website/pull/11)으로 병합했습니다. main 배포 커밋은 `c4a0392`이고 Vercel `success`를 확인했습니다. 2026-11-05 14:47 KST에 6개 경로의 HTTP 200·현재 HTML 일치와 가이드 API 26개 문서 응답을 확인했습니다. [deployment-results.json](../tests/artifacts/deployment-results.json)은 이 최종 배포 결과입니다.
