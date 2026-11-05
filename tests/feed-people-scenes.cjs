@@ -61,6 +61,7 @@ async function main(){
    await page.locator('.people-group:not([data-copy]) > [data-person="'+memberIndex+'"]:not([data-fill])').click();await page.waitForSelector('#people-dialog[open]');
    assert.equal(await page.locator('#profile-name').innerText(),'새 직원 <script>');assert.match(await page.locator('.profile-career').innerText(),/학력 A/);assert.equal(await page.locator('.profile-intro').innerText(),'소개 첫 줄\n소개 둘째 줄');assert.equal(await page.locator('#people-dialog script').count(),0);await page.keyboard.press('Escape');
    await page.emulateMedia({reducedMotion:'no-preference'});
+   await page.evaluate(()=>location.hash='#/feed');await page.waitForSelector('.feed-card');await page.evaluate(()=>location.hash='#/about');await page.waitForSelector('#byx-journey');
    for(const [section,canvas] of [['#about-experience','#byx-journey'],['#about-technology','#byx-function']]){
     const geometry=await page.locator(section).evaluate(el=>{const b=el.querySelector('.journey-scroll,.function-layout').getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;return{top:b.top+scrollY,travel:b.height-(innerHeight-head),head};});
     const samples=[];
@@ -72,7 +73,7 @@ async function main(){
      assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     }
     assert.notEqual(samples[0],samples[2]);
-    await page.evaluate(g=>scrollTo(0,g.top-g.head+g.travel*.2),geometry);await page.waitForTimeout(100);assert(+(await page.locator(canvas).getAttribute('data-progress'))<.25);
+    await page.evaluate(g=>scrollTo(0,g.top-g.head+g.travel*.2),geometry);await page.waitForTimeout(100);assert(+(await page.locator(canvas).getAttribute('data-progress'))>.95,'Reverse scroll must preserve assembled state');
     assert.equal(await page.locator(section).evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(0, 0, 0)');
    }
    await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>document.querySelector('#byx-function').dataset.progress==='1');
