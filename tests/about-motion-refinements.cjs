@@ -22,7 +22,12 @@ async function main(){
    assert.equal(await page.locator('.people-intro').evaluate(el=>getComputedStyle(el).textAlign),'center');
    assert.equal(await page.locator('#about-technology').evaluate(el=>getComputedStyle(el).borderTopWidth),'0px');
    assert(await page.locator('.story-hero-copy,.story-chapter,.reading-step,.people-section,.contact-invitation').evaluateAll(els=>els.every(el=>{const s=getComputedStyle(el);return ['borderTopWidth','borderBottomWidth','borderLeftWidth','borderRightWidth'].every(key=>parseFloat(s[key])===0);})), 'About chapters and reading steps must have no divider rules');
-   const gap=await page.locator('#about-technology').evaluate(el=>el.querySelector('.function-layout').getBoundingClientRect().top-el.getBoundingClientRect().top);assert(gap>240);
+   for(const [section,layout,previous] of [['#about-experience','.journey-scroll','#about-system .x-field'],['#about-technology','.function-layout','#about-experience .journey-visual']]){
+    const gap=await page.locator(section).evaluate((el,layout)=>{const r=el.getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;return{top:r.top+scrollY,height:el.querySelector(layout).getBoundingClientRect().top-r.top,head};},layout);assert(gap.height>=890);
+    await page.evaluate(g=>scrollTo(0,g.top-g.head+(g.height-(innerHeight-g.head))/2),gap);await page.waitForTimeout(100);
+    assert((await page.locator(previous).boundingBox()).y+(await page.locator(previous).boundingBox()).height<=gap.head+3,'Previous scene must leave a fully black interval');assert((await page.locator(section+' '+layout).boundingBox()).y>=899,'Next scene must enter after the black interval');
+    await page.screenshot({path:path.join(out,'black-gap-'+section.slice(1)+'-'+width+'.png')});
+   }
    const paths=await page.evaluate(()=>{
     const origins=[0,Math.PI,Math.PI*2].flatMap(a=>[0,1].flatMap(f=>[0,12,25].map(l=>journeyPoint(a,l,f,3000,1))));
     const tips=[0,1].map(f=>journeyPoint(Math.PI/2,12,f,3000,1));return{origins,tips};
@@ -42,6 +47,13 @@ async function main(){
      assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     }
     // Stop/resume when a modal is open, without resetting the scene clock.
+    if(selector==='#byx-function'){
+     await page.mouse.move(width*.15,350);await page.waitForFunction(()=>+document.querySelector('#byx-function').dataset.pointerX<-.5);
+     await page.screenshot({path:path.join(out,'galaxy-pointer-left-'+width+'.png')});
+     await page.mouse.move(width*.85,650);await page.waitForFunction(()=>+document.querySelector('#byx-function').dataset.pointerX>.5&&+document.querySelector('#byx-function').dataset.pointerY>.15);
+     await page.screenshot({path:path.join(out,'galaxy-pointer-right-'+width+'.png')});
+     await page.mouse.move(10,20);await page.waitForFunction(()=>Math.abs(+document.querySelector('#byx-function').dataset.pointerX)<.08);
+    }
     await page.evaluate(()=>{document.querySelector('#contact-dialog').showModal();document.dispatchEvent(new Event('byx:modal'));});
     await page.waitForTimeout(100);const stopped=await page.locator(selector).getAttribute('data-frame');await page.waitForTimeout(160);assert.equal(await page.locator(selector).getAttribute('data-frame'),stopped);
     await page.evaluate(()=>{document.querySelector('#contact-dialog').close();document.dispatchEvent(new Event('byx:modal'));});await page.waitForFunction(sel=>document.querySelector(sel).parentElement.dataset.motion==='running',selector);
@@ -49,8 +61,11 @@ async function main(){
    assert(!/fillText\(['"]BYX/.test(await page.evaluate(()=>paintFunction.toString())));
    assert.match(await page.locator('#byx-function').getAttribute('aria-label'),/도시.*은하/);
    const surfaces=await page.evaluate(()=>{const c=document.createElement('canvas'),ctx=c.getContext('2d');let fills=0,strokes=0;const fill=ctx.fill.bind(ctx),stroke=ctx.stroke.bind(ctx);ctx.fill=()=>{fills++;fill();};ctx.stroke=()=>{strokes++;stroke();};paintFunction(ctx,3000,.18);return{fills,strokes};});assert(surfaces.fills>400&&surfaces.strokes===0,'Technology should use filled surfaces, not a wireframe');
+   const dense=await page.evaluate(()=>{const ctx=document.createElement('canvas').getContext('2d'),counts={fill:0,stroke:0,arc:0,quadraticCurveTo:0};for(const key of Object.keys(counts)){const original=ctx[key].bind(ctx);ctx[key]=(...args)=>{counts[key]++;return original(...args);};}paintFunction(ctx,3000,1);return{...counts,zoom:galaxyPose(0,1,{}).zoom};});assert(dense.fill>=324*4&&dense.quadraticCurveTo>=324*8&&dense.arc===0&&dense.stroke===0,'Final galaxy must contain at least four times as many curved surfaces and no dots/wires');assert.equal(dense.zoom,1.5);
+   const wakes=await page.evaluate(()=>{const ctx=document.createElement('canvas').getContext('2d');let strokes=0,arcs=0;const stroke=ctx.stroke.bind(ctx),arc=ctx.arc.bind(ctx);ctx.stroke=(...a)=>{strokes++;stroke(...a);};ctx.arc=(...a)=>{arcs++;arc(...a);};paintJourney(ctx,3000,1,{left:0,right:600,top:-200,bottom:660});return{strokes,arcs};});assert(wakes.strokes>=400&&wakes.arcs<=110,'Experience motion must use continuous wakes rather than particle heads');
    await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>document.querySelector('#byx-function').dataset.progress==='1');const still=await page.locator('#byx-function').evaluate(c=>c.toDataURL());await page.waitForTimeout(150);assert.equal(await page.locator('#byx-function').evaluate(c=>c.toDataURL()),still);
-   await page.evaluate(()=>location.hash='#/feed');await page.waitForSelector('.feed-card');results.push({width,naturalTitle:true,variedAlignment:true,originCrossingX:true,continuousMotion:true,cityToGalaxy:true,pointsLinesSurfaces:true,noDividers:true,blackGap:true,reducedMotion:true});await page.close();
+   assert.equal(await page.locator('#byx-function').getAttribute('data-pointer-x'),'0.000');
+   await page.evaluate(()=>location.hash='#/feed');await page.waitForSelector('.feed-card');results.push({width,naturalTitle:true,variedAlignment:true,originCrossingX:true,continuousMotion:true,cityToGalaxy:true,pointsLinesSurfaces:true,curvedSurfaces:dense.fill,pointerRotation:true,longWakes:true,largerObjects:true,noDividers:true,fullScreenBlackGaps:true,reducedMotion:true});await page.close();
   }
   assert.deepEqual(errors,[]);const result={testedAt:new Date().toISOString(),results,errors,limitations:'Isolated Chrome demo, no production writes. No physical-device or Safari/Firefox verification.'};fs.writeFileSync(path.join(out,'about-motion-refinements-results.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
  }finally{await browser.close();}
