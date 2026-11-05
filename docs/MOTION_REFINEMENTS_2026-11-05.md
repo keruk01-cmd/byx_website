@@ -1,5 +1,7 @@
 # ABOUT 발광·줄 단위 등장·이동 메뉴
 
+후속 회전 범위·국소 밀도·유리 전환·푸터 수정은 [최신 구현·검증](INTERACTION_POLISH_2026-11-05.md)을 우선합니다. 아래 방향키/Escape·690ms 메뉴 기록은 이전 상태입니다.
+
 2026-11-05 추가 사용자 요청의 구현·검증 기록입니다. [이전 기록](ABOUT_DEPTH_2026-11-05.md#사각-파티클과-국소-상호작용)의 단어별 등장·3,888개 면·경험 고정 선 기준을 갱신합니다.
 
 ## 현재 동작
@@ -29,4 +31,6 @@
 
 ## 운영 반영
 
-현재 구현과 로컬 검증을 완료했습니다. 병합·Vercel 배포 뒤 실제 결과를 이 절에 기록합니다.
+- 구현 커밋 `84c5a3a`를 [PR #14](https://github.com/keruk01-cmd/byx_website/pull/14)로 병합했습니다. 운영 main 배포 커밋은 `8a63ceb`이며 Vercel `success`를 확인했습니다.
+- 2026-11-05 17:20 KST에 `tests/check-deployment.cjs`로 `/`, `/index.html`, `/admin`, `/admin/`, `/guidelines`, `/guidelines/buttons`의 HTTP 200·현재 HTML SHA-256 일치와 가이드 API 26개 문서 응답을 확인했습니다. 결과는 [deployment-results.json](../tests/artifacts/deployment-results.json)에 저장했습니다.
+- 운영 URL: [BYX ABOUT](https://byx-website.vercel.app/#/about). 운영 데이터 쓰기 없이 읽기 전용으로 검증했습니다.

@@ -66,8 +66,11 @@ async function main(){
       const fixedBox=await page.locator('#works-top').boundingBox();
       for(const position of [0,450,900]){
         await page.evaluate(y=>window.scrollTo({top:y,behavior:'instant'}),position);
+        await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
         const currentBox=await page.locator('#works-top').boundingBox();
-        assert(Math.abs(currentBox.x-fixedBox.x)<1&&Math.abs(currentBox.y-fixedBox.y)<1,'Back-to-top moved with page scroll');
+        const footerBox=await page.locator('footer').boundingBox();
+        assert(Math.abs(currentBox.x-fixedBox.x)<1,'Back-to-top should keep its right alignment');
+        const expectedBottom=Math.min(880,footerBox.y-12);assert(Math.abs(currentBox.y+currentBox.height-expectedBottom)<2,'Back-to-top should stay fixed or clear the visible footer');
       }
       await page.locator('#works-top').click();await page.waitForFunction(()=>window.scrollY===0);
       assert(await page.locator('#works-top').isVisible());
@@ -169,7 +172,7 @@ async function main(){
         });
         assert(!('date_start' in compatibility));assert(!('date_end' in compatibility));assert(!('location_point' in compatibility));assert.equal(compatibility.year,2026);
       }
-      results.push({width,routes:10,columns:density.columns,cardWidth:density.cardWidth,titleSize:density.cardTitle,indexMeta:indexUI.meta,footer:true,infinite:true,backToTop:'viewport position constant',dateRange:true,status:true,mapSelection:'mock tiles',about:'full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion',header:glass,mobileScroll:width<=390?'single viewport scroll verified':'desktop',feed:'latest feature and compact archive, publication and links preserved'});await page.close();
+      results.push({width,routes:10,columns:density.columns,cardWidth:density.cardWidth,titleSize:density.cardTitle,indexMeta:indexUI.meta,footer:true,infinite:true,backToTop:'fixed viewport position with footer clearance',dateRange:true,status:true,mapSelection:'mock tiles',about:'full bleed, white overlays, 4.8s morph, stronger hover and click, recovery, reduced motion',header:glass,mobileScroll:width<=390?'single viewport scroll verified':'desktop',feed:'latest feature and compact archive, publication and links preserved'});await page.close();
     }
     assert.deepEqual(errors,[]);
     fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({testedAt:new Date().toISOString(),results,errors,limitations:'Demo memory only; map tiles mocked; no remote writes or schema execution.'},null,2)+'\n');

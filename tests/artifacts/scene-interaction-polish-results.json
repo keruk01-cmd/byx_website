@@ -1,0 +1,105 @@
+{
+  "testedAt": "2026-11-05T08:51:56.116Z",
+  "results": [
+    {
+      "width": 1440,
+      "height": 900,
+      "rotationBounds": {
+        "minX": 51.68814542946299,
+        "maxX": 1411.5130241975835,
+        "minY": 120.25007364454109,
+        "maxY": 790.5130387333703,
+        "width": 1440,
+        "height": 819
+      },
+      "localDensityAndTilt": true,
+      "removedArrowEscape": true,
+      "footerControls": {
+        "gap": 25,
+        "hit": "ig",
+        "buttonVisible": true
+      }
+    },
+    {
+      "width": 390,
+      "height": 900,
+      "rotationBounds": {
+        "minX": 10.399994341030506,
+        "maxX": 379.5999910958278,
+        "minY": 286.87488946148227,
+        "maxY": 600.5787876931124,
+        "width": 390,
+        "height": 844.49951171875
+      },
+      "localDensityAndTilt": true,
+      "removedArrowEscape": true,
+      "footerControls": {
+        "gap": 25,
+        "hit": "ig",
+        "buttonVisible": true
+      }
+    },
+    {
+      "width": 320,
+      "height": 900,
+      "rotationBounds": {
+        "minX": 8.533329448124746,
+        "maxX": 311.4666870294614,
+        "minY": 311.17319774741605,
+        "maxY": 568.571290956979,
+        "width": 320,
+        "height": 844.5
+      },
+      "localDensityAndTilt": true,
+      "removedArrowEscape": true,
+      "footerControls": {
+        "gap": 25,
+        "hit": "ig",
+        "buttonVisible": true
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "rotationBounds": {
+        "minX": 145.9217149257658,
+        "maxX": 708.5685596156623,
+        "minY": 47.59439904621286,
+        "maxY": 312.8812471909728,
+        "width": 844,
+        "height": 324.15625
+      },
+      "localDensityAndTilt": true,
+      "removedArrowEscape": true,
+      "footerControls": {
+        "gap": 25,
+        "hit": "ig",
+        "buttonVisible": true
+      }
+    }
+  ],
+  "emission": {
+    "neutral": {
+      "energy": 13500,
+      "extras": 0
+    },
+    "active": {
+      "energy": 287296,
+      "extras": 788
+    }
+  },
+  "compositorNav": {
+    "count": 61,
+    "keys": [
+      "offset",
+      "easing",
+      "composite",
+      "transform",
+      "computedOffset"
+    ],
+    "blur": "blur(14px) saturate(1.6)",
+    "background": "color(srgb 0 0 0 / 0.12)"
+  },
+  "errors": [],
+  "limitations": "Isolated Chrome demo; no production writes or physical-device checks."
+}
