@@ -13,7 +13,7 @@ async function main(){
    await page.waitForFunction(()=>document.querySelector('#top').dataset.tone==='dark');
    assert.equal(await page.locator('.story-studio,.about-grid,[data-about-condition],[data-about-journey],[data-about-data]').count(),0);
    assert.equal(await page.locator('.story-chapter').count(),3);assert.equal(await page.locator('[data-journey-step]').count(),2);assert.equal(await page.locator('[data-source-step]').count(),2);
-   assert.equal(await page.locator('#about-title').getAttribute('aria-label'),'POSSIBILITIES. BY X.');
+   assert.equal(await page.locator('#about-title').getAttribute('aria-label'),'POSSIBILITIES BY X');
    assert.equal(await page.locator('#about-title').getAttribute('data-motion'),'settled');
    assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).scrollbarWidth),'none');
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
