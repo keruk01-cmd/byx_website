@@ -1,0 +1,34 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),http=require('node:http');
+const {chromium}=require(process.env.BYX_PLAYWRIGHT_MODULE||'playwright');
+const root=path.resolve(__dirname,'..'),out=path.join(__dirname,'artifacts');
+const source=fs.readFileSync(path.join(root,'index.html'),'utf8').replace(/window\.BYX_CONFIG\s*=\s*\{[\s\S]*?\};/,"window.BYX_CONFIG={url:'',key:'',bucket:'media'};").replace(/<script src="https:\/\/cdn\.jsdelivr\.net\/npm\/@supabase[^>]+><\/script>/,'');
+const server=http.createServer((req,res)=>{res.setHeader('Content-Type','text/html;charset=utf-8');res.end(source);});
+async function main(){
+ await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({headless:true,executablePath:process.env.BYX_BROWSER||'C:/Program Files/Google/Chrome/Application/chrome.exe'}),errors=[],results=[];
+ try{
+  const origin='http://127.0.0.1:'+server.address().port,page=await browser.newPage({viewport:{width:1440,height:900}});page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(origin);await page.waitForSelector('#nav a.on');await page.evaluate(()=>document.fonts.ready);await page.waitForFunction(()=>document.querySelector('#nav').dataset.pillMotion==='settled');
+  await page.evaluate(()=>window.originalPill=document.querySelector('#nav-pill'));const from=await page.locator('#nav-pill').boundingBox();await page.locator('#nav a[data-p="about"]').click();await page.waitForFunction(()=>document.querySelector('#nav').dataset.pillMotion==='moving');
+  const frames=[];for(let i=0;i<9;i++){frames.push(await page.locator('#nav-pill').boundingBox());if(i===3)await page.screenshot({path:path.join(out,'liquid-nav-midflight.png')});await page.waitForTimeout(55);}
+  await page.waitForFunction(()=>document.querySelector('#nav').dataset.pillMotion==='settled');const end=await page.locator('#nav a.on').boundingBox(),pill=await page.locator('#nav-pill').boundingBox();
+  assert(frames.some(b=>b.x>from.x+5&&b.x<end.x-5),'Pill should travel between the old and new button');assert(frames.some(b=>b.height<from.height*.84),'Pill should thin during travel');assert(Math.abs(pill.x-end.x)<1&&Math.abs(pill.width-end.width)<1);assert(await page.evaluate(()=>window.originalPill===document.querySelector('#nav-pill')));assert.equal(await page.locator('#nav-pill').count(),1);
+  await page.locator('#nav a[data-p="feed"]').click();await page.waitForTimeout(110);await page.locator('#nav a[data-p="contact"]').click();await page.waitForFunction(()=>document.querySelector('#nav').dataset.pillMotion==='settled');assert.equal(await page.locator('#nav a[aria-current="page"]').getAttribute('data-p'),'contact');
+  const target=await page.locator('#nav a.on').boundingBox(),final=await page.locator('#nav-pill').boundingBox();assert(Math.abs(target.x-final.x)<1);await page.screenshot({path:path.join(out,'liquid-nav-settled.png')});
+  await page.locator('#nav a[data-p="project"]').focus();await page.keyboard.press('Enter');await page.waitForSelector('.grid');await page.waitForFunction(()=>document.querySelector('#nav').dataset.pillMotion==='settled');assert.equal(await page.locator('#nav a[aria-current="page"]').getAttribute('data-p'),'project');
+  await page.setViewportSize({width:390,height:900});await page.waitForTimeout(150);assert.equal(await page.locator('#nav').isVisible(),false);await page.locator('#burger').click();await page.locator('#mobnav a[href="#/about"]').click();await page.waitForSelector('.about-story');assert.equal(await page.evaluate(()=>document.body.classList.contains('menu')),false);
+  await page.setViewportSize({width:1440,height:900});await page.waitForFunction(()=>document.querySelector('#nav').dataset.pillMotion==='settled');assert.equal(await page.locator('#nav a.on').getAttribute('data-p'),'about');
+  await page.emulateMedia({reducedMotion:'reduce'});await page.locator('#nav a[data-p="feed"]').click();await page.waitForSelector('.feed-card');assert.equal(await page.locator('#nav').getAttribute('data-pill-motion'),'settled');assert.equal(await page.locator('#nav-pill').evaluate(el=>el.getAnimations().filter(a=>a.effect.getKeyframes().some(f=>f.transform)).length),0);await page.emulateMedia({reducedMotion:'no-preference'});await page.close();
+  for(const width of [1440,390,320]){
+   const p=await browser.newPage({viewport:{width,height:900}});p.on('pageerror',e=>errors.push(e.message));await p.goto(origin+'/#/about');await p.waitForSelector('.story-line-part');await p.evaluate(()=>document.fonts.ready);
+   const selector='#about-technology .story-chapter-head p',g=await p.locator(selector).evaluate(el=>{const b=el.getBoundingClientRect();return{top:b.top+scrollY,travel:innerHeight*.43+Math.min(b.height*.2,100)};});
+   await p.evaluate(g=>scrollTo(0,g.top-innerHeight*.93+g.travel*.5),g);await p.waitForTimeout(200);
+   const check=await p.locator(selector).evaluate(el=>{const groups={};for(const part of el.querySelectorAll('.story-line-part')){const key=part.dataset.revealLine;(groups[key]??=[]).push({top:part.getBoundingClientRect().top,opacity:+getComputedStyle(part).opacity});}return{count:+el.dataset.revealLines,groups,text:el.textContent};});
+   assert(check.count>=(width<500?2:1),'Natural text wrapping should produce the expected line groups');for(const parts of Object.values(check.groups)){assert(Math.max(...parts.map(v=>v.top))-Math.min(...parts.map(v=>v.top))<3);assert(Math.max(...parts.map(v=>v.opacity))-Math.min(...parts.map(v=>v.opacity))<.02);}
+   await p.screenshot({path:path.join(out,'line-reveal-natural-'+width+'.png')});await p.setViewportSize({width:width===1440?390:1440,height:900});await p.waitForTimeout(220);
+   const rows=await p.locator(selector).evaluate(el=>{const groups={};for(const part of el.querySelectorAll('.story-line-part'))(groups[part.dataset.revealLine]??=[]).push(+getComputedStyle(part).opacity);return groups;});for(const row of Object.values(rows))assert(Math.max(...row)-Math.min(...row)<.02,'Resizing should regroup whole lines');assert.equal(await p.locator(selector).textContent(),check.text);
+   assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));results.push({width,lineGroupedOpacity:true,resizeRegrouping:true,textPreserved:true});await p.close();
+  }
+  assert.deepEqual(errors,[]);const result={testedAt:new Date().toISOString(),liquidNav:{sharedPill:true,travel:true,thinning:true,interruption:true,keyboard:true,mobileMenu:true,reducedMotion:true},results,errors,limitations:'Isolated Chrome demo; no production content writes or physical-device verification.'};fs.writeFileSync(path.join(out,'liquid-nav-lines-results.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+ }finally{await browser.close();}
+}
+main().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>server.close());

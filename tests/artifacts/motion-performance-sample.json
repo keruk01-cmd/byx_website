@@ -1,0 +1,30 @@
+{
+  "testedAt": "2026-11-05T08:14:40.200Z",
+  "results": [
+    {
+      "width": 1440,
+      "scene": ".journey-scroll",
+      "canvasFrames": 23,
+      "elapsedMs": 1003
+    },
+    {
+      "width": 1440,
+      "scene": ".function-layout",
+      "canvasFrames": 23,
+      "elapsedMs": 1003
+    },
+    {
+      "width": 390,
+      "scene": ".journey-scroll",
+      "canvasFrames": 23,
+      "elapsedMs": 1007
+    },
+    {
+      "width": 390,
+      "scene": ".function-layout",
+      "canvasFrames": 22,
+      "elapsedMs": 1001
+    }
+  ],
+  "limitations": "One-second canvas paint sample in headless Chrome on this PC; not a physical-device performance guarantee."
+}
