@@ -9,12 +9,13 @@ async function main(){
  try{
   for(const width of [1440,390,320]){
    const page=await browser.newPage({viewport:{width,height:900}});page.on('pageerror',e=>errors.push(e.message));await page.goto('http://127.0.0.1:'+server.address().port+'/#/about');await page.waitForFunction(()=>document.querySelector('#about-title')?.dataset.motion==='scrambling');
-   const narrowReplacements=new Set();
+   const titleStarted=Date.now(),narrowReplacements=new Set();
    for(let i=0;i<13;i++){
     const check=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,letters:[...document.querySelectorAll('.scramble-letter')].map(el=>({final:el.dataset.final,char:el.textContent,transform:getComputedStyle(el.firstElementChild).transform,width:el.style.width})),fonts:[...document.querySelectorAll('#about-title>span')].map(line=>new Set([...line.querySelectorAll('.scramble-glyph')].map(el=>getComputedStyle(el).fontSize)).size)}));
     assert(!check.overflow);assert(check.letters.every(el=>el.transform==='none'&&!el.width));assert(check.fonts.every(n=>n===1));check.letters.filter(el=>el.final==='I'&&el.char!=='I').forEach(el=>narrowReplacements.add(el.char));await page.waitForTimeout(100);
    }
    assert(narrowReplacements.size>5);await page.screenshot({path:path.join(out,'natural-title-'+width+'.png')});await page.waitForFunction(()=>document.querySelector('#about-title').dataset.motion==='settled');
+   assert(Date.now()-titleStarted<3100,'Title scramble should settle in roughly 70% of its former duration');
    assert.equal(await page.locator('#about-system .story-chapter-head').evaluate(el=>getComputedStyle(el).textAlign),'center');
    assert.equal(await page.locator('[data-journey-step="1"]').evaluate(el=>getComputedStyle(el).textAlign),'right');
    assert.equal(await page.locator('#about-technology .story-chapter-head').evaluate(el=>getComputedStyle(el).textAlign),'right');
@@ -54,11 +55,18 @@ async function main(){
     await page.evaluate(g=>scrollTo(0,g.top-g.head+g.travel*.98),geometry);await page.waitForTimeout(120);
     // Stop/resume when a modal is open, without resetting the scene clock.
     if(selector==='#byx-function'){
+     const box=await page.locator(selector).boundingBox();await page.mouse.click(width*.5,box.y+box.height*.5);await page.waitForFunction(()=>+document.querySelector('#byx-function').dataset.rotation>.75);
+     const rotation=+(await page.locator(selector).getAttribute('data-rotation')),dx=Math.min(110,width*.25),startX=width*.4,startY=box.y+box.height*.45;
+     await page.mouse.move(startX,startY);await page.mouse.down();await page.mouse.move(startX+dx,startY+50,{steps:12});await page.mouse.up();await page.waitForFunction(r=>+document.querySelector('#byx-function').dataset.rotation>r+.3,rotation);
+     await page.locator(selector).focus();await page.keyboard.press('Escape');await page.waitForFunction(()=>Math.abs(+document.querySelector('#byx-function').dataset.rotation)<.03);await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>+document.querySelector('#byx-function').dataset.rotation>.3);await page.keyboard.press('Escape');await page.waitForFunction(()=>Math.abs(+document.querySelector('#byx-function').dataset.rotation)<.03);
      await page.mouse.move(width*.15,350);await page.waitForFunction(()=>+document.querySelector('#byx-function').dataset.pointerX<-.5);
      await page.screenshot({path:path.join(out,'galaxy-pointer-left-'+width+'.png')});
      await page.mouse.move(width*.85,650);await page.waitForFunction(()=>+document.querySelector('#byx-function').dataset.pointerX>.5&&+document.querySelector('#byx-function').dataset.pointerY>.15);
      await page.screenshot({path:path.join(out,'galaxy-pointer-right-'+width+'.png')});
      await page.mouse.move(10,20);await page.waitForFunction(()=>Math.abs(+document.querySelector('#byx-function').dataset.pointerX)<.08);
+    }else{
+     const box=await page.locator(selector).boundingBox();await page.mouse.move(width*.5,box.y+box.height*.5);await page.waitForFunction(()=>+document.querySelector('#byx-journey').dataset.influence>.15&&+document.querySelector('#byx-journey').dataset.interactionSpeed>1.2);
+     await page.screenshot({path:path.join(out,'experience-pointer-glow-'+width+'.png')});await page.mouse.move(10,20);await page.waitForFunction(()=>+document.querySelector('#byx-journey').dataset.influence<.08);
     }
     await page.evaluate(()=>{document.querySelector('#contact-dialog').showModal();document.dispatchEvent(new Event('byx:modal'));});
     await page.waitForTimeout(100);const stopped=await page.locator(selector).getAttribute('data-frame');await page.waitForTimeout(160);assert.equal(await page.locator(selector).getAttribute('data-frame'),stopped);
@@ -73,11 +81,11 @@ async function main(){
    assert(!/fillText\(['"]BYX/.test(await page.evaluate(()=>paintFunction.toString())));
    assert.match(await page.locator('#byx-function').getAttribute('aria-label'),/도시.*은하/);
    const surfaces=await page.evaluate(()=>{const c=document.createElement('canvas'),ctx=c.getContext('2d');let fills=0,strokes=0;const fill=ctx.fill.bind(ctx),stroke=ctx.stroke.bind(ctx);ctx.fill=()=>{fills++;fill();};ctx.stroke=()=>{strokes++;stroke();};paintFunction(ctx,3000,.18);return{fills,strokes};});assert(surfaces.fills>400&&surfaces.strokes===0,'Technology should use filled surfaces, not a wireframe');
-   const dense=await page.evaluate(()=>{const ctx=document.createElement('canvas').getContext('2d'),counts={fill:0,stroke:0,arc:0,quadraticCurveTo:0};for(const key of Object.keys(counts)){const original=ctx[key].bind(ctx);ctx[key]=(...args)=>{counts[key]++;return original(...args);};}paintFunction(ctx,3000,1);return{...counts,zoom:galaxyPose(0,1,{}).zoom};});assert(dense.fill>=324*4&&dense.quadraticCurveTo>=324*8&&dense.arc===0&&dense.stroke===0,'Final galaxy must contain at least four times as many curved surfaces and no dots/wires');assert.equal(dense.zoom,1.5);
+   const dense=await page.evaluate(()=>{const ctx=document.createElement('canvas').getContext('2d'),counts={fill:0,stroke:0,arc:0,quadraticCurveTo:0,fillRect:0,drawImage:0,createRadialGradient:0};for(const key of Object.keys(counts)){const original=ctx[key].bind(ctx);ctx[key]=(...args)=>{counts[key]++;return original(...args);};}paintFunction(ctx,3000,1);const heights=ABOUT_GALAXY.map(s=>s.center.z);return{...counts,zoom:galaxyPose(0,1,{}).zoom,core:ABOUT_GALAXY.filter(s=>s.core).length,depth:Math.max(...heights)-Math.min(...heights)};});assert.equal(dense.fill,3888);assert(dense.quadraticCurveTo===0&&dense.arc===0&&dense.stroke===0&&dense.fillRect===0&&dense.drawImage===0&&dense.createRadialGradient===0,'Final galaxy must consist only of square particle faces without a backing layer');assert(dense.zoom>1.5&&dense.core>=1700&&dense.depth>50,'Galaxy must be larger with a dense volumetric core');
    const wakes=await page.evaluate(()=>{const ctx=document.createElement('canvas').getContext('2d');let strokes=0,arcs=0;const stroke=ctx.stroke.bind(ctx),arc=ctx.arc.bind(ctx);ctx.stroke=(...a)=>{strokes++;stroke(...a);};ctx.arc=(...a)=>{arcs++;arc(...a);};paintJourney(ctx,3000,1,{left:0,right:600,top:-200,bottom:660});return{strokes,arcs};});assert(wakes.strokes>=400&&wakes.arcs<=110,'Experience motion must use continuous wakes rather than particle heads');
    await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>document.querySelector('#byx-function').dataset.progress==='1');const still=await page.locator('#byx-function').evaluate(c=>c.toDataURL());await page.waitForTimeout(150);assert.equal(await page.locator('#byx-function').evaluate(c=>c.toDataURL()),still);
    assert.equal(await page.locator('#byx-function').getAttribute('data-pointer-x'),'0.000');
-   await page.evaluate(()=>location.hash='#/feed');await page.waitForSelector('.feed-card');results.push({width,naturalTitle:true,textRevealOnce:true,oneWayAnimations:true,variedAlignment:true,originCrossingX:true,continuousMotion:true,cityToGalaxy:true,pointsLinesSurfaces:true,curvedSurfaces:dense.fill,pointerRotation:true,longWakes:true,largerObjects:true,noDividers:true,fullScreenBlackGaps:true,reducedMotion:true});await page.close();
+   await page.evaluate(()=>location.hash='#/feed');await page.waitForSelector('.feed-card');results.push({width,naturalTitle:true,shorterTitle:true,textRevealOnce:true,oneWayAnimations:true,variedAlignment:true,originCrossingX:true,continuousMotion:true,cityToGalaxy:true,squareParticles:dense.fill,coreParticles:dense.core,particleOnly:true,volumetricDepth:true,clickDragKeyboardRotation:true,experienceGlowSpeed:true,longWakes:true,largerObjects:true,noDividers:true,fullScreenBlackGaps:true,reducedMotion:true});await page.close();
   }
   assert.deepEqual(errors,[]);const result={testedAt:new Date().toISOString(),results,errors,limitations:'Isolated Chrome demo, no production writes. No physical-device or Safari/Firefox verification.'};fs.writeFileSync(path.join(out,'about-motion-refinements-results.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
  }finally{await browser.close();}
