@@ -53,3 +53,5 @@
 - `tests/site-regression.cjs`: 5개 폭 × 10개 라우트 및 기존 CMS/갤러리/점군/피드/이미지/날짜·지도/푸터 통과.
 - `tests/about-cinematic.cjs`, `tests/feed-people-scenes.cjs`: 각각 1440/390/320px의 기존 제목/People/문의, FEED 작성·사진 업로드·구성원 카드/정렬/저장·스크롤 장면 통과. 브라우저 오류 0개.
 - 중간/완성 장면과 모바일 제목 이미지를 직접 검토했습니다. 설정·라우트·DB/서버 정책·운영 콘텐츠는 변경하지 않았습니다. 기존 단위·헤더/압축·WORKS 필터의 별도 테스트는 이 후속 수정에서 재실행하지 않았으며, 위 첫 구현 검증과 구분합니다. 실제 기기·Safari/Firefox·스크린리더·운영 저장은 여전히 미검증입니다.
+
+후속 운영 반영: 구현 `445c4f5`를 [PR #10](https://github.com/keruk01-cmd/byx_website/pull/10)으로 병합했습니다. main 배포 커밋은 `03561ba`이며 Vercel `success`를 확인했습니다. 2026-11-05 14:37 KST에 6개 경로의 HTTP 200·최신 HTML 일치와 가이드 API 26개 문서를 확인했습니다. [deployment-results.json](../tests/artifacts/deployment-results.json)은 이 후속 배포 결과로 갱신했습니다.
