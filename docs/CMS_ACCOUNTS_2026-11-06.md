@@ -30,4 +30,6 @@
 
 ## 배포
 
-DB 정책·인증 함수·웹 순으로 반영하며 완료 후 운영 결과를 기록합니다.
+DB 정책과 `admin-accounts` 인증 함수를 먼저 반영한 뒤, 구현 `70b5d55`를 [PR #19](https://github.com/keruk01-cmd/byx_website/pull/19)/main `3125b49`로 배포했습니다. Vercel 운영 배포가 성공했고 2026-11-06 18:22 KST에 6개 경로의 최신 HTML/HTTP 200과 기존 가이드 API를 확인했습니다. [배포 결과](../tests/artifacts/deployment-results.json).
+
+기존 관리자 1개가 활성 Owner로 유지되며 검증 계정·글·Storage 메타데이터가 남지 않았음을 읽기 전용으로 확인했습니다. 계정 API는 토큰 없음/익명/위조 토큰 모두 401, 익명 컨텍스트·회원 표도 401이며 공개 프로젝트는 200, 비공개 글은 조회되지 않습니다. [실제 API 검사](../tests/artifacts/cms-live-checks.json). 실제 계정으로 생성/로그인/비밀번호 변경을 수행한 것은 아니며 이 왕복은 격리 데모·서버 단위 검증과 구분합니다.
