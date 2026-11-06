@@ -1,6 +1,8 @@
 # Feed 편집기와 관리자 계정
 
-사용자 후속 요청으로 사이트 안의 계정 추가·접근 제거·메뉴별 권한을 구현합니다. 단일 HTML 프런트를 유지하며, 이 요청에 필요한 인증 서버만 `supabase/functions/admin-accounts/index.ts`에 추가했습니다. 운영 설정값과 기존 Auth 계정·콘텐츠·Storage 파일을 보존합니다.
+상태: 구현·운영 반영 완료. 전체 사이트 인수인계는 [작업 마무리](SITE_UPDATES_2026-11-06.md)를 참고합니다.
+
+사용자 후속 요청으로 사이트 안의 계정 추가·접근 제거·메뉴별 권한을 구현했습니다. 단일 HTML 프런트를 유지하며, 이 요청에 필요한 인증 서버만 `supabase/functions/admin-accounts/index.ts`에 추가했습니다. 운영 설정값과 기존 Auth 계정·콘텐츠·Storage 파일을 보존합니다.
 
 ## 사용
 
