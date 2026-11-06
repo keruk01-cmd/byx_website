@@ -2,6 +2,13 @@
 
 작업 로그. 최신이 위로 옵니다.
 
+## 2026-11-06 · 유리 UI와 모바일 상호작용 운영 배포 완료
+
+- 사용자 요청으로 현재 로컬 결과를 운영에 반영했습니다. 구현 커밋 `3db3095`를 [PR #17](https://github.com/keruk01-cmd/byx_website/pull/17)로 병합했으며 운영 main 커밋은 `735f3c9`입니다. 미리보기와 운영 모두 Vercel `success`를 확인했습니다. [운영 배포](https://vercel.com/keruk01-cmds-projects/byx-website/CPWiwcBHrVrfACvpNu2ghqUX8HWD).
+- 배포 직전 `site-regression.cjs`의 5개 화면 폭×10개 라우트/CMS, `finite-coverflow.cjs`, `works-filter-position.cjs`, `island-contact-hover.cjs`를 다시 실행해 통과했습니다. 직전 제목 전환 불변/글자 크기·은하 확산·Dream 위치·슬롯 반전과 버튼 없는 모의 센서 검증도 같은 실행 소스의 결과입니다. 운영 설정 객체·서버/정책·Vercel 설정 불변과 내장 JavaScript 구문·diff 공백을 확인했습니다.
+- 2026-11-06 15:31 KST에 `tests/check-deployment.cjs`가 `/`, `/index.html`, `/admin`, `/admin/`, `/guidelines`, `/guidelines/buttons`의 HTTP 200과 배포 HTML 해시 일치를 확인했습니다. 브랜드 가이드 API는 26개 문서/기존 접근 모드를 유지합니다. [실제 배포 검증 결과](tests/artifacts/deployment-results.json).
+- 운영 URL: [ABOUT](https://byx-website.vercel.app/#/about), [WORKS](https://byx-website.vercel.app/#/), [CONTACT](https://byx-website.vercel.app/#/contact). 운영 콘텐츠 쓰기·실제 관리자 로그인/업로드/문의 제출은 수행하지 않았습니다. 실제 휴대전화 기울기/iOS 권한·Safari/Firefox 확인은 남아 있으며 사용자가 배포 후 모바일로 확인할 예정입니다. 아래 작업 중 운영 미배포 표현은 당시 상태입니다.
+
 ## 2026-11-06 · 고정된 제목 박스와 BY X
 
 - 글자 교체 때마다 현재 단어 폭에 맞춰 글자 크기를 다시 계산하던 동작이 BY/X의 크기와 두 줄 전체 위치까지 바꾸는 원인이었습니다. 최종 POSSIBILITIES의 글꼴과 폭으로 크기를 한 번 맞추고 각 글자의 자리를 고정했습니다. 전환 중에는 그 자리에 들어가는 글자만 교체하며 크기/위치는 화면 크기나 글꼴 준비 상태가 바뀔 때만 다시 맞춥니다.
