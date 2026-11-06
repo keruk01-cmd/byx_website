@@ -1,0 +1,43 @@
+{
+  "testedAt": "2026-11-06T08:48:35.492Z",
+  "results": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "ownerAccountsOnly": true,
+      "createUpdateRevoke": true,
+      "selfProtected": true,
+      "menuCapabilities": true,
+      "firstPasswordRequired": true,
+      "noEditingBeforePassword": true,
+      "logoutClearsPrivateState": true,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "ownerAccountsOnly": true,
+      "createUpdateRevoke": true,
+      "selfProtected": true,
+      "menuCapabilities": true,
+      "firstPasswordRequired": true,
+      "noEditingBeforePassword": true,
+      "logoutClearsPrivateState": true,
+      "noOverflow": true
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "ownerAccountsOnly": true,
+      "createUpdateRevoke": true,
+      "selfProtected": true,
+      "menuCapabilities": true,
+      "firstPasswordRequired": true,
+      "noEditingBeforePassword": true,
+      "logoutClearsPrivateState": true,
+      "noOverflow": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome demo accounts only. No real Auth identities, production passwords, email or production content mutations."
+}

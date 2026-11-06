@@ -1,0 +1,52 @@
+{
+  "testedAt": "2026-11-06T08:48:30.375Z",
+  "results": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "oneEditingSurface": true,
+      "explicitCategoryChoices": true,
+      "customCategories": true,
+      "automaticBlocks": true,
+      "automaticInline": true,
+      "undoRedo": true,
+      "selectionColorAndAlignment": true,
+      "hoverHelp": true,
+      "legacyRoundTrip": true,
+      "publicOutput": true,
+      "composition": "Chrome IME events"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "oneEditingSurface": true,
+      "explicitCategoryChoices": true,
+      "customCategories": true,
+      "automaticBlocks": true,
+      "automaticInline": true,
+      "undoRedo": true,
+      "selectionColorAndAlignment": true,
+      "hoverHelp": true,
+      "legacyRoundTrip": true,
+      "publicOutput": true,
+      "composition": "not exercised"
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "oneEditingSurface": true,
+      "explicitCategoryChoices": true,
+      "customCategories": true,
+      "automaticBlocks": true,
+      "automaticInline": true,
+      "undoRedo": true,
+      "selectionColorAndAlignment": true,
+      "hoverHelp": true,
+      "legacyRoundTrip": true,
+      "publicOutput": true,
+      "composition": "not exercised"
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome with demo data; IME uses browser composition events. Real administrator login, production writes, physical mobile keyboard/Safari/Firefox were not tested."
+}

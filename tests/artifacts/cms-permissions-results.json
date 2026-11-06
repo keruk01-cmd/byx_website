@@ -1,0 +1,19 @@
+{
+  "recordedAt": "2026-11-06T08:49:41.948Z",
+  "database": "BYX",
+  "allAssertionsPassed": true,
+  "allChangesRolledBack": true,
+  "fixtureUsersAbsent": true,
+  "schemaNotInstalledAfterTest": true,
+  "checks": [
+    "menu writes",
+    "membership/RPC escalation denial",
+    "anonymous/private posts",
+    "inquiry status/immutability",
+    "temporary password",
+    "Storage insert allow/deny",
+    "immediate revocation",
+    "existing owner",
+    "last owner"
+  ]
+}

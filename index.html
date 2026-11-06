@@ -1022,7 +1022,7 @@ body.admin-page{background:radial-gradient(ellipse at 12% 0%,#e8e8e8,transparent
 .admin-shell .lock{border:0;border-radius:999px;padding:4px 8px;background:rgba(0,0,0,.07);font-size:9px}
 .admin-shell label,.admin-shell .flabel{font-size:11px;letter-spacing:.035em;padding-top:18px;padding-bottom:8px;line-height:1.6}
 .admin-shell .fld{min-width:0}
-.admin-shell :is(input,textarea,[data-person-card],[data-person-drag]){scroll-margin-top:calc(var(--head-h) + 132px);scroll-margin-bottom:110px}
+.admin-shell :is(input,textarea,[contenteditable=true],[data-person-card],[data-person-drag]){scroll-margin-top:calc(var(--head-h) + 132px);scroll-margin-bottom:110px}
 .admin-shell input:not([type=color]),.admin-shell textarea,.admin-shell select{border:1px solid rgba(0,0,0,.11);border-radius:14px;padding:12px 15px;background:rgba(255,255,255,.86);color:var(--fg);font-size:14px;line-height:1.6;min-width:0;box-shadow:0 1px 2px rgba(0,0,0,.02);transition:border-color .25s ease,box-shadow .25s ease}
 .admin-shell textarea{border-radius:18px}
 .admin-shell input:not([type=color]):focus,.admin-shell textarea:focus,.admin-shell select:focus{border:1px solid rgba(0,0,0,.55);padding:12px 15px;box-shadow:0 0 0 3px rgba(0,0,0,.055)}
@@ -1048,6 +1048,61 @@ body.admin-page{background:radial-gradient(ellipse at 12% 0%,#e8e8e8,transparent
 .admin-shell .cpick{border:0;border-radius:20px;background:rgba(0,0,0,.04);padding:14px;gap:8px}
 .admin-shell .cpick .sw{width:26px;height:26px;border-radius:50%;border-color:rgba(0,0,0,.14)}
 .admin-shell .cpick input[type=color]{border-radius:8px}
+.suggest{position:relative;min-width:0}
+.suggest.is-open{z-index:55}
+.admin-shell .suggest input,.admin-shell .suggest input:focus{padding-right:44px}
+.admin-shell .suggest-toggle{position:absolute;top:25px;right:7px;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--fg);transition:background-color .25s ease}
+.admin-shell .suggest-toggle:hover{background:rgba(0,0,0,.07)}
+.suggest-toggle svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.suggest-options{position:absolute;left:0;right:0;top:calc(100% + 6px);padding:6px;border:1px solid rgba(0,0,0,.06);border-radius:18px;background:rgba(255,255,255,.94);backdrop-filter:blur(18px);box-shadow:0 10px 28px rgba(0,0,0,.12);overflow:auto;overscroll-behavior:contain}
+.suggest.opens-up .suggest-options{top:auto;bottom:calc(100% + 6px)}
+.suggest-options[hidden],.suggest-options [role=option][hidden],.suggest-options .suggest-empty[hidden]{display:none}
+.suggest-options [role=option]{display:block;width:100%;min-height:38px;padding:9px 12px;border-radius:12px;text-align:left;font-size:12px;line-height:1.6;overflow-wrap:anywhere;transition:background-color .2s ease,color .2s ease}
+.suggest-options [role=option]:hover,.suggest-options [role=option].is-active{background:#ededed}
+.suggest-options [aria-selected=true]{background:var(--fg);color:var(--bg)}
+.suggest-options [aria-selected=true]:hover{background:#333}
+.suggest-empty{padding:12px;font-size:11px;line-height:1.8;color:var(--mute)}
+.writer-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:24px}
+.writer-heading .flabel{padding:0}
+.writer-help{position:relative;z-index:46}
+.writer-help>button{width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.06);font-family:var(--font-mono);font-size:13px}
+.writer-help [role=tooltip]{position:absolute;right:0;top:calc(100% + 8px);width:min(340px,calc(100vw - 52px));padding:22px;border-radius:22px;background:rgba(24,24,24,.96);backdrop-filter:blur(16px);color:var(--bg);box-shadow:0 8px 28px rgba(0,0,0,.2);visibility:hidden;opacity:0;transform:translateY(4px);transition:opacity .2s ease,transform .2s ease,visibility .2s;font-size:12px;line-height:1.8;pointer-events:none}
+.writer-help:hover [role=tooltip],.writer-help:focus-within [role=tooltip],.writer-help.is-open [role=tooltip]{visibility:visible;opacity:1;transform:none;pointer-events:auto}
+.writer-help [role=tooltip]::before{content:"";position:absolute;left:0;right:0;top:-10px;height:12px}
+.writer-help dl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 12px;margin:16px 0}
+.writer-help dd{margin:0;color:#ccc}.writer-help dt{white-space:nowrap}
+.writer-help code{font-size:11px;background:rgba(255,255,255,.12);padding:3px 5px;border-radius:5px}
+.writer-help p{font-size:11px;line-height:1.9;color:#bdbdbd}
+.writer-tools{margin:14px 0 0;padding:10px 0 14px}
+.admin-shell .writer-tools .wtools{margin:6px 0;gap:6px}
+.admin-shell .writer-icon{padding:8px;width:34px;height:34px;min-height:34px}
+.writer-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.admin-shell .writer-surface{position:relative;min-height:60vh;width:100%;max-width:none;margin:0;border:1px solid rgba(0,0,0,.12);border-radius:22px;padding:clamp(20px,3vw,44px);background:#fff;outline:none;overflow-wrap:anywhere;line-height:1.9;font-size:clamp(16px,1.3vw,19px);transition:border-color .25s ease,box-shadow .25s ease}
+.admin-shell .writer-surface:focus{border-color:rgba(0,0,0,.5);box-shadow:0 0 0 3px rgba(0,0,0,.05)}
+.writer-surface>*:first-child{margin-top:0}.writer-surface>*:last-child{margin-bottom:0}
+.writer-surface[data-empty=true]::before{content:attr(data-placeholder);position:absolute;color:var(--mute);pointer-events:none;font-size:15px}
+.writer-surface h3{font-size:clamp(24px,3vw,40px)}
+.writer-surface .writer-media{position:relative;margin:28px 0;padding:10px;border:1px solid rgba(0,0,0,.08);border-radius:18px}
+.writer-media-images{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.writer-photo{min-width:0}.writer-photo img{width:100%;max-height:460px;object-fit:contain;background:#fff;border-radius:10px}
+.writer-surface .writer-photo figcaption{font-size:12px;line-height:1.8;min-height:30px;padding:7px 10px;outline:none;text-align:inherit;cursor:text}
+.writer-photo figcaption:empty::before{content:attr(data-placeholder);color:var(--mute)}
+.writer-media-remove{position:absolute;top:16px;right:16px;z-index:2;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.8);color:#fff;font-size:18px}
+.account-grid{display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.2fr);gap:24px;align-items:start}
+.account-grid>*{min-width:0}.account-add .f{max-width:none}.account-add .help{margin-bottom:10px}
+.member-card{padding:24px;margin-bottom:14px;border-radius:24px;background:rgba(255,255,255,.8);box-shadow:0 4px 26px rgba(0,0,0,.035)}
+.member-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.member-heading h3{font-family:var(--font-text);font-size:15px;font-weight:550;line-height:1.7;margin:0;overflow-wrap:anywhere}
+.member-badge{font-family:var(--font-mono);font-size:10px;line-height:1.5;padding:5px 10px;border-radius:999px;background:rgba(0,0,0,.06);white-space:nowrap}
+.admin-shell .member-card fieldset{border:0;padding:0;min-width:0}
+.admin-shell .member-permissions{display:flex;flex-wrap:wrap;gap:10px 18px;min-width:0;border:0;padding:14px 0 4px;margin:10px 0}
+.member-permissions legend{font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--mute);padding-top:16px;margin-bottom:10px}
+.admin-shell .member-permissions label{display:inline-flex;align-items:center;gap:7px;padding:0;letter-spacing:0;font-family:var(--font-text);font-size:12px;text-transform:none;cursor:var(--cur-hand)}
+.admin-shell .member-permissions input[type=checkbox]{width:16px;height:16px;min-width:16px;padding:0;box-shadow:none;accent-color:#000}
+.member-card fieldset:disabled .member-permissions,.member-permissions:disabled{opacity:.55}
+.member-card.is-revoked{opacity:.7}.member-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.account-list .admin-list-head{min-height:36px}.admin-shell button:disabled{cursor:default;opacity:.55}
+@media(max-width:880px){.account-grid{grid-template-columns:minmax(0,1fr)}.member-card{padding:20px}}
 .admin-shell .people-editor-head{margin-top:0;gap:14px}
 .admin-shell .pshots{gap:18px}
 .admin-shell .pshot{border:0;border-radius:24px;background:rgba(0,0,0,.03);padding:18px;gap:8px}
@@ -1789,6 +1844,11 @@ const DEFAULT_CONTACT = {
    ============================================================ */
 let sb = null;           // supabase client (null = demo mode)
 let session = null;      // logged-in admin
+let adminAccess=null,adminAccessError='';
+const CMS_CAPABILITIES=['projects','feed','about','contact','inquiries'];
+const cmsAccess=()=>adminAccess||(session&&DB.demo?{role:'owner',permissions:CMS_CAPABILITIES,active:true,must_change_password:false}:null);
+const canEdit=capability=>!!(session&&cmsAccess()?.active&&!cmsAccess().must_change_password&&(cmsAccess().role==='owner'||cmsAccess().permissions?.includes(capability)));
+const canManageAccounts=()=>!!(session&&cmsAccess()?.active&&!cmsAccess().must_change_password&&cmsAccess().role==='owner');
 
 /* ---- image downscaling -------------------------------------------------
    Photos come off a camera at 6000px / 8MB. Nothing on this site is ever
@@ -1892,7 +1952,8 @@ const DB = {
         sb = window.supabase.createClient(CFG.url, CFG.key);
         const { data } = await sb.auth.getSession();
         session = data ? data.session : null;
-        sb.auth.onAuthStateChange((event, s) => { session = s; });
+        sb.auth.onAuthStateChange((event, s) => { session = s;if(!s){adminAccess=null;AD.members=[];AD.membersLoaded=false;}else setTimeout(()=>DB.loadAdminAccess(),0); });
+        await DB.loadAdminAccess();
         await DB.refresh();
         DB.ready = true;
         return;
@@ -1951,6 +2012,7 @@ const DB = {
   },
 
   async saveSettings(key, obj){
+    if(!canEdit(key))throw Error('이 메뉴를 편집할 권한이 없습니다.');
     DB.settings[key] = {...obj};
     if (!sb) return;
     const { error } = await sb.from('settings').upsert({k: key, v: obj}).select();
@@ -1959,6 +2021,7 @@ const DB = {
   },
 
   async save(table, row){
+    if(!canEdit(table==='projects'?'projects':'feed'))throw Error('이 메뉴를 편집할 권한이 없습니다.');
     const list = DB[table];
     if (!sb){
       const i = list.findIndex(r => r.id === row.id);
@@ -1983,6 +2046,7 @@ const DB = {
   },
 
   async remove(table, id){
+    if(!canEdit(table==='projects'?'projects':'feed'))throw Error('이 메뉴를 편집할 권한이 없습니다.');
     if (!sb){ DB[table] = DB[table].filter(r => r.id !== id); return; }
     const { error } = await sb.from(table).delete().eq('id', id);
     if (error) throw error;
@@ -2015,24 +2079,54 @@ const DB = {
   },
 
   async login(email, pw){
-    if (!sb){ session = {user:{email: email || 'demo@byx.kr'}}; return; }
+    if (!sb){ session = {user:{id:'demo-owner',email: email || 'demo@byx.kr'}};adminAccess=null; return; }
     const { data, error } = await sb.auth.signInWithPassword({email, password: pw});
     if (error) throw error;
     session = data.session;
+    await DB.loadAdminAccess();
+  },
+  async loadAdminAccess(){
+    adminAccessError='';if(!session){adminAccess=null;return;}
+    if(!sb)return;
+    try{const{data,error}=await sb.rpc('cms_admin_context');if(error)throw error;adminAccess=data||null;if(!data)adminAccessError='관리자 접근 권한이 없습니다.';}
+    catch{adminAccess=null;adminAccessError='관리자 권한을 확인하지 못했습니다. 다시 로그인해주세요.';}
+  },
+  async accountRequest(action,payload={}){
+    if(!session)throw Error('관리자 로그인이 필요합니다.');
+    if(!sb){
+      if(action==='change_password'){if(adminAccess)adminAccess.must_change_password=false;return{ok:true};}
+      if(!canManageAccounts())throw Error('최고 관리자 권한이 필요합니다.');
+      if(!AD.members.length)AD.members=[{user_id:session.user.id||'demo-owner',email:session.user.email,role:'owner',permissions:CMS_CAPABILITIES,active:true,must_change_password:false}];
+      if(action==='list')return{members:AD.members};
+      if(action==='create'){
+        const existing=AD.members.find(row=>row.email===payload.email.toLowerCase());if(existing?.active)throw Error('이미 관리자 권한이 있는 계정입니다.');
+        const member={user_id:existing?.user_id||crypto.randomUUID(),email:payload.email.toLowerCase(),role:payload.role,permissions:payload.permissions,active:true,must_change_password:true};
+        if(existing)Object.assign(existing,member);else AD.members.push(member);return{member};
+      }
+      const member=AD.members.find(row=>row.user_id===payload.user_id);if(!member)throw Error('계정을 찾을 수 없습니다.');if(member.user_id===(session.user.id||'demo-owner'))throw Error('본인의 권한은 변경할 수 없습니다.');
+      if(action==='revoke')member.active=false;else{member.role=payload.role;member.permissions=payload.permissions;}return{member};
+    }
+    const{data}=await sb.auth.getSession();if(!data?.session?.access_token)throw Error('다시 로그인해주세요.');
+    const response=await fetch(CFG.url+'/functions/v1/admin-accounts',{method:'POST',headers:{apikey:CFG.key,Authorization:'Bearer '+data.session.access_token,'Content-Type':'application/json'},body:JSON.stringify({action,...payload})});
+    const result=await response.json().catch(()=>({}));if(!response.ok)throw Error(result.error||'요청을 완료하지 못했습니다.');
+    if(action==='change_password'){await sb.auth.refreshSession();await DB.loadAdminAccess();}
+    return result;
   },
   async loadInquiries(){
+    if(!canEdit('inquiries'))throw Error('Inquiries 접근 권한이 없습니다.');
     if(!sb)return;
     const {data,error}=await sb.from('contact_requests').select('id,created_at,subject,email,phone,body,status').order('created_at',{ascending:false}).limit(100);
     if(error)throw error;DB.inquiries=data||[];
   },
   async setInquiryStatus(id,status){
+    if(!canEdit('inquiries'))throw Error('Inquiries 편집 권한이 없습니다.');
     if(!['new','reviewed','closed'].includes(status))return;
     if(sb){const {error}=await sb.from('contact_requests').update({status}).eq('id',id);if(error)throw error;}
     const row=DB.inquiries.find(item=>item.id===id);if(row)row.status=status;
   },
   async logout(){
     if (sb) await sb.auth.signOut();
-    session = null;DB.inquiries=[];
+    session = null;adminAccess=null;adminAccessError='';DB.inquiries=[];AD.members=[];AD.membersLoaded=false;AD.memberError='';
   }
 };
 
@@ -2180,6 +2274,7 @@ function parseHash(){
 }
 
 function render(){
+  AD.cleanup?.();AD.cleanup=null;
   pageCleanup(); pageCleanup = () => {};
   const picker = $('#location-picker'); if (picker && picker.open) picker.close();
   const { page, arg } = parseHash();
@@ -2231,6 +2326,8 @@ window.addEventListener('hashchange', render);
    Only rendered while logged in — visitors never see it. */
 function editBar(page, arg){
   if (!session) return '';
+  const capability=page==='project'?'projects':['feed','news','blog'].includes(page)?'feed':page;
+  if(!canEdit(capability))return '';
   let btns = [];
   if (page === 'project' && !arg)
     btns = [['new:projects','+ 새 프로젝트'], ['list:projects','프로젝트 관리']];
@@ -2263,6 +2360,7 @@ function editBar(page, arg){
 /* open ADMIN already focused on the thing you were looking at */
 function gotoAdmin(spec){
   const [kind, tab, id] = spec.split(':');
+  if(!canEdit(['posts','news'].includes(tab)?'feed':tab)){toast('이 메뉴를 편집할 권한이 없습니다.');return;}
   AD.back = location.hash || '#/';
   AD.tab  = tab;
   if (kind === 'new')       AD.draft = blank(tab);
@@ -2455,7 +2553,7 @@ function viewNews(){
    can read it back. `pub` missing (older rows, or a database without the
    column) counts as public — silence must not hide anything. */
 const isHidden  = p => p && p.pub === false;
-const livePosts = () => DB.posts.filter(p => session || !isHidden(p));
+const livePosts = () => DB.posts.filter(p => canEdit('feed') || !isHidden(p));
 const lockTag   = p => isHidden(p) ? '<span class="lock">비밀글</span>' : '';
 
 /* One public stream; retain both source tables and every existing URL. */
@@ -2545,7 +2643,7 @@ function galleryHTML(b){
 function viewPost(slug){
   const p = DB.posts.find(x => x.slug === slug);
   /* a draft is not merely unlisted — the address itself gives nothing away */
-  if (!p || (isHidden(p) && !session))
+  if (!p || (isHidden(p) && !canEdit('feed')))
     return `<section class="art"><h1>Not Found</h1><p><a class="tag" href="#/feed">← FEED</a></p></section>`;
   return `
   <header class="post-cover">
@@ -2698,17 +2796,21 @@ function viewContact(){
    7. ADMIN
    ============================================================ */
 /* preview starts open — the marks are only readable once you see what they do */
-const AD = { tab:'projects', draft:null, back:null, preview:true,inquiryLoading:false,inquiryError:'' };
-const TABS = [['projects','Project'],['posts','Feed'],['about','About'],['contact','Contact'],['inquiries','문의함']];
+const AD = { tab:'projects', draft:null, back:null, preview:true,inquiryLoading:false,inquiryError:'',members:[],membersLoaded:false,membersLoading:false,memberError:'' };
+const TABS = [['projects','Project'],['posts','Feed'],['about','About'],['contact','Contact'],['inquiries','Inquiries'],['accounts','Accounts']];
+const permittedTabs=()=>TABS.filter(([key])=>key==='accounts'?canManageAccounts():canEdit(key==='posts'?'feed':key));
 const SETTING_TABS = ['about','contact'];
 
 const F  = (label, key, val, type) => `<div class="fld"><label>${label}</label><input data-k="${key}" type="${type||'text'}" value="${esc(val)}"></div>`;
 const TA = (label, key, val, min)  => `<div class="fld"><label>${label}</label><textarea data-k="${key}" style="min-height:${min||110}px">${esc(val)}</textarea></div>`;
 /* free text with suggestions from what has been typed before — new values are
    simply new values, no list to maintain */
-const SUG= (label, key, val, opts, id) => `<div class="fld"><label>${label}</label>
-  <input data-k="${key}" list="${id}" value="${esc(val)}" autocomplete="off" placeholder="입력하거나 아래에서 고르세요">
-  <datalist id="${id}">${opts.map(o => `<option value="${esc(o)}"></option>`).join('')}</datalist></div>`;
+const SUG= (label, key, val, opts, id) => `<div class="fld"><label for="${id}-input">${label}</label>
+  <div class="suggest" data-suggest>
+    <input id="${id}-input" data-k="${key}" value="${esc(val)}" role="combobox" aria-autocomplete="list" aria-controls="${id}" aria-expanded="false" autocomplete="off" placeholder="선택하거나 직접 입력하세요">
+    <button type="button" class="suggest-toggle" aria-label="${esc(label.split('/')[0].trim())} 선택 목록" aria-controls="${id}" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
+    <div class="suggest-options" id="${id}" role="listbox" hidden>${Array.from(new Set(opts.filter(Boolean))).map((o,i) => `<button type="button" id="${id}-${i}" role="option" data-value="${esc(o)}" aria-selected="${String(o===val)}">${esc(o)}</button>`).join('')}<p class="suggest-empty" hidden>새 항목을 직접 입력할 수 있습니다.</p></div>
+  </div></div>`;
 /* eight digits, plus a calendar that fills them in */
 const DATE8 = (label, key, val) => `<div class="fld"><label>${label}</label>
   <div class="dfield">
@@ -2751,10 +2853,16 @@ function viewAdmin(){
       </form>
     </div></div>`;
 
+  const access=cmsAccess();
+  if(!access||!access.active)return `<div class="admin-shell admin-login-shell"><div class="pane login"><h1>ACCESS</h1><p class="login-copy">${esc(adminAccessError||'관리자 접근 권한이 없습니다.')}</p><button class="abtn solid" data-act="logout">다른 계정으로 로그인</button><a class="abtn" href="#/">사이트 보기</a></div></div>`;
+  if(access.must_change_password)return `<div class="admin-shell admin-login-shell"><div class="pane login"><div class="admin-eyebrow">BY X / ACCOUNT</div><h1>PASSWORD</h1><p class="login-copy">처음 로그인한 계정입니다.<br>본인만 아는 새 비밀번호로 변경해주세요.</p><form class="f" data-password-form><label for="member-password">새 비밀번호</label><input id="member-password" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required><label for="member-password-confirm">새 비밀번호 확인</label><input id="member-password-confirm" name="confirm" type="password" autocomplete="new-password" minlength="12" maxlength="128" required><p class="help" role="status" data-password-status></p><button class="submit" type="submit">비밀번호 변경</button></form><button class="abtn" data-act="logout">로그아웃</button></div></div>`;
+  const tabs=permittedTabs();
+  if(!tabs.length)return `<div class="admin-shell admin-login-shell"><div class="pane login"><h1>ACCESS</h1><p class="login-copy">지정된 편집 권한이 없습니다. 최고 관리자에게 문의해주세요.</p><button class="abtn" data-act="logout">로그아웃</button></div></div>`;
+  if(!tabs.some(([key])=>key===(AD.tab==='news'?'posts':AD.tab))){AD.tab=tabs[0][0];AD.draft=null;}
   const bar = `
     <div class="adm-bar">
       <div class="admin-tabs" role="group" aria-label="관리 메뉴">
-      ${TABS.map(([k,l]) => {const active=AD.tab===k||(k==='posts'&&AD.tab==='news');return `<button data-tab="${k}" class="${active?'on':''}" aria-pressed="${active}">${l}</button>`;}).join('')}
+      ${tabs.map(([k,l]) => {const active=AD.tab===k||(k==='posts'&&AD.tab==='news');return `<button data-tab="${k}" class="${active?'on':''}" aria-pressed="${active}">${l}</button>`;}).join('')}
       </div>
       <div class="admin-account">
       ${AD.back ? `<button data-act="back">← 사이트로</button>` : ''}
@@ -2770,17 +2878,31 @@ function viewAdmin(){
       : '';
 
   let pane;
-  if (AD.tab==='inquiries') pane=adminInquiries();
+  if (AD.tab==='accounts') pane=adminAccounts();
+  else if (AD.tab==='inquiries') pane=adminInquiries();
   else if (SETTING_TABS.includes(AD.tab)) pane = edSettings(AD.tab);
   else if (AD.draft)                 pane = AD.tab === 'projects' ? edProject() : AD.tab === 'news' ? edNews() : edPost();
   else                               pane = adminList();
   const tab=AD.tab==='news'?'posts':AD.tab,label=(TABS.find(([key])=>key===tab)||TABS[0])[1];
-  const descriptions={projects:'프로젝트와 이미지를 등록하고 관리합니다.',posts:'새 소식과 이야기를 작성하고 공개 상태를 관리합니다.',about:'함께하는 사람들의 사진과 프로필을 관리합니다.',contact:'연락처와 찾아오는 길을 관리합니다.',inquiries:'함께하고 싶은 이야기를 확인합니다.'};
+  const descriptions={projects:'프로젝트와 이미지를 등록하고 관리합니다.',posts:'새 소식과 이야기를 작성하고 공개 상태를 관리합니다.',about:'함께하는 사람들의 사진과 프로필을 관리합니다.',contact:'연락처와 찾아오는 길을 관리합니다.',inquiries:'함께하고 싶은 이야기를 확인합니다.',accounts:'관리자 계정과 편집 가능한 메뉴를 관리합니다.'};
   return `<div class="admin-shell"><header class="admin-heading"><div><div class="admin-eyebrow">BY X / WORKSPACE</div><h1>${label}</h1><p>${descriptions[tab]||''}</p></div><a class="abtn admin-site-link" href="${esc(AD.back||'#/')}">사이트 보기 ↗</a></header>${bar}${warn?`<div class="admin-warning">${warn}</div>`:''}<section class="admin-workspace" aria-label="${label} 관리">${pane}</section></div>`;
 }
 
 function adminInquiries(){
-  return `<div class="pane"><div class="location-head"><h2 class="display h-m">문의함</h2><button type="button" class="abtn" data-inquiry-refresh>새로고침</button></div><p class="inquiry-meta">최근 접수된 문의를 최대 100개 표시합니다.</p>${AD.inquiryLoading?'<p role="status">문의 불러오는 중…</p>':AD.inquiryError?`<p role="alert">${esc(AD.inquiryError)}</p>`:DB.inquiries.length?DB.inquiries.map(row=>`<details class="inquiry-item"><summary>${esc(row.subject)} <span class="mono">· ${esc({new:'새 문의',reviewed:'확인',closed:'완료'}[row.status]||row.status)}</span></summary><div class="inquiry-meta">${esc(new Date(row.created_at).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'}))}<br>이메일: ${esc(row.email)}<br>연락처: ${esc(row.phone||'미기재')}</div><label>처리 상태 <select data-inquiry-status="${esc(row.id)}">${[['new','새 문의'],['reviewed','확인'],['closed','완료']].map(([key,label])=>`<option value="${key}"${row.status===key?' selected':''}>${label}</option>`).join('')}</select></label><p class="inquiry-body">${esc(row.body)}</p></details>`).join(''):'<p class="mute">접수된 문의가 없습니다.</p>'}</div>`;
+  return `<div class="pane"><div class="location-head"><h2 class="display h-m">Inquiries</h2><button type="button" class="abtn" data-inquiry-refresh>새로고침</button></div><p class="inquiry-meta">최근 접수된 문의를 최대 100개 표시합니다.</p>${AD.inquiryLoading?'<p role="status">문의 불러오는 중…</p>':AD.inquiryError?`<p role="alert">${esc(AD.inquiryError)}</p>`:DB.inquiries.length?DB.inquiries.map(row=>`<details class="inquiry-item"><summary>${esc(row.subject)} <span class="mono">· ${esc({new:'새 문의',reviewed:'확인',closed:'완료'}[row.status]||row.status)}</span></summary><div class="inquiry-meta">${esc(new Date(row.created_at).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'}))}<br>이메일: ${esc(row.email)}<br>연락처: ${esc(row.phone||'미기재')}</div><label>처리 상태 <select data-inquiry-status="${esc(row.id)}">${[['new','새 문의'],['reviewed','확인'],['closed','완료']].map(([key,label])=>`<option value="${key}"${row.status===key?' selected':''}>${label}</option>`).join('')}</select></label><p class="inquiry-body">${esc(row.body)}</p></details>`).join(''):'<p class="mute">접수된 문의가 없습니다.</p>'}</div>`;
+}
+
+const memberMenuLabels={projects:'Project',feed:'Feed',about:'About',contact:'Contact',inquiries:'Inquiries'};
+function memberPermissionFields(values,disabled=false){
+  return `<fieldset class="member-permissions"${disabled?' disabled':''}><legend>편집 가능한 메뉴</legend>${CMS_CAPABILITIES.map(key=>`<label><input type="checkbox" name="permission" value="${key}"${values.includes(key)?' checked':''}>${memberMenuLabels[key]}</label>`).join('')}</fieldset>`;
+}
+function adminAccounts(){
+  if(!canManageAccounts())return '';
+  const self=session.user.id||'demo-owner';
+  return `<div class="account-grid"><section class="pane account-add"><h2 class="display">Add account</h2><p class="help">임시 비밀번호를 새 관리자에게 별도로 전달해주세요. 첫 로그인 때 본인의 비밀번호로 변경해야 편집할 수 있습니다.</p><form class="f" data-member-create><label for="new-member-email">이메일</label><input id="new-member-email" name="email" type="email" autocomplete="off" required maxlength="254"><label for="new-member-password">임시 비밀번호 · 12자 이상</label><input id="new-member-password" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required><label for="new-member-role">계정 등급</label><select id="new-member-role" name="role"><option value="editor">Editor · 지정한 메뉴 편집</option><option value="owner">Owner · 전체 편집 및 계정 관리</option></select>${memberPermissionFields(['projects','feed'])}<p class="help" role="status" data-member-feedback></p><button class="submit" type="submit">계정 추가</button></form></section><section class="account-list"><div class="admin-list-head"><span class="count">${AD.members.filter(row=>row.active).length} ACTIVE ACCOUNTS</span><button type="button" class="abtn sm" data-members-refresh${AD.membersLoading?' disabled':''}>새로고침</button></div>${AD.memberError?`<p class="note warn" role="alert">${esc(AD.memberError)}</p>`:''}${!AD.membersLoaded?'<p class="note" role="status">계정을 불러오는 중…</p>':AD.members.map(member=>{
+    const isSelf=member.user_id===self;
+    return `<article class="member-card${member.active?'':' is-revoked'}"><div class="member-heading"><h3>${esc(member.email)}</h3><span class="member-badge">${!member.active?'Access removed':member.role==='owner'?'Owner':'Editor'}${isSelf?' · You':''}</span></div>${member.active?`<form data-member-update="${esc(member.user_id)}"><fieldset${isSelf?' disabled':''}><label>계정 등급<select name="role"><option value="editor"${member.role==='editor'?' selected':''}>Editor · 지정한 메뉴 편집</option><option value="owner"${member.role==='owner'?' selected':''}>Owner · 전체 편집 및 계정 관리</option></select></label>${memberPermissionFields(member.role==='owner'?CMS_CAPABILITIES:member.permissions)}<p class="help" role="status" data-member-feedback></p>${isSelf?'<p class="help">현재 계정입니다. 본인의 최고 관리자 권한은 변경하거나 제거할 수 없습니다.</p>':`<div class="member-actions"><button class="abtn solid" type="submit">권한 저장</button><button class="abtn" type="button" data-member-revoke="${esc(member.user_id)}">접근 권한 제거</button></div>`}</fieldset></form>`:'<p class="help">관리자 접근이 차단된 계정입니다. 콘텐츠와 이미지는 유지됩니다. 다시 추가하려면 왼쪽에서 같은 이메일과 새 임시 비밀번호를 입력하세요.</p>'}</article>`;
+  }).join('')}</section></div>`;
 }
 
 function adminList(){
@@ -2947,6 +3069,140 @@ function colorPicker(kind, label){
   </div>`;
 }
 
+const writerImageURL=value=>/^(https?:\/\/|\/|data:image\/(?:png|jpe?g|webp|gif|avif|svg\+xml)[;,])/i.test(String(value||''))?String(value):'';
+function writerBodyHTML(body){
+  const html=(body||[]).map(block=>{
+    if(!['img','gal'].includes(block.t))return postBodyHTML([block]);
+    const items=(block.t==='gal'?(block.items||[]):[{v:block.v,c:block.c}]).filter(item=>item&&writerImageURL(item.v));
+    if(!items.length)return '';
+    return `<figure class="writer-media${block.a==='c'?' al-c':block.a==='r'?' al-r':''}" data-w-media="${block.t}" contenteditable="false"><button type="button" class="writer-media-remove" aria-label="이미지 삭제">×</button><div class="writer-media-images">${items.map(item=>`<div class="writer-photo"><img src="${esc(writerImageURL(item.v))}" alt="" draggable="false"><figcaption contenteditable="true" role="textbox" aria-label="이미지 설명" data-placeholder="이미지 설명">${rich(item.c||'')}</figcaption></div>`).join('')}</div></figure>`;
+  }).join('');
+  return html+(html&&!/(<\/p>|<\/ul>|<\/ol>)$/.test(html)?'<p><br></p>':'')||'<p><br></p>';
+}
+function writerColor(value){
+  const hex=safeColor(value);if(hex)return hex;
+  const rgb=String(value||'').match(/^rgba?\(\s*(\d+)\s*[, ]\s*(\d+)\s*[, ]\s*(\d+)(?:\s*[,/]\s*([\d.]+))?\s*\)$/i);
+  return rgb&&(!rgb[4]||+rgb[4]===1)?'#'+rgb.slice(1,4).map(n=>Math.max(0,Math.min(255,+n)).toString(16).padStart(2,'0')).join(''):'';
+}
+function writerInline(node){
+  if(node.nodeType===3)return node.nodeValue.replace(/\u00a0/g,' ').replace(/[\u200b\ufeff]/g,'');
+  if(node.nodeType!==1)return '';
+  const tag=node.tagName;if(['SCRIPT','STYLE','BUTTON','IFRAME','OBJECT','IMG'].includes(tag))return '';
+  if(tag==='BR')return '\n';
+  let text=Array.from(node.childNodes,writerInline).join('');if(!text)return '';
+  if(tag==='A')return `[${text}](${SAFE_HREF(node.getAttribute('href'))})`;
+  if(tag==='CODE')return '`'+text+'`';
+  if(['B','STRONG'].includes(tag)||+node.style.fontWeight>=600)text='**'+text+'**';
+  if(['I','EM'].includes(tag)||node.style.fontStyle==='italic')text='*'+text+'*';
+  if(tag==='U'||node.style.textDecorationLine.includes('underline'))text='__'+text+'__';
+  if(['S','STRIKE','DEL'].includes(tag)||node.style.textDecorationLine.includes('line-through'))text='~~'+text+'~~';
+  if(tag==='MARK')text='=='+text+'==';
+  if(node.classList.contains('tx-disp'))text='@@'+text+'@@';
+  if(node.classList.contains('tx-mute'))text='(('+text+'))';
+  const bg=tag==='MARK'?'':writerColor(node.style.backgroundColor||node.style.background);
+  const fg=node.classList.contains('tx-bg')?'':writerColor(node.style.color||node.getAttribute('color'));
+  if(fg)text='{글자색:'+fg+'|'+text+'}';
+  if(bg)text='{배경색:'+bg+'|'+text+'}';
+  return text+(['P','DIV'].includes(tag)?'\n':'');
+}
+function writerRead(editor){
+  const blocks=[];
+  const alignment=(node,inherited)=>node.classList?.contains('al-c')?'c':node.classList?.contains('al-r')?'r':/center/.test(node.style?.textAlign||node.getAttribute?.('align')||'')?'c':/right|end/.test(node.style?.textAlign||node.getAttribute?.('align')||'')?'r':/left|start/.test(node.style?.textAlign||'')?'':inherited;
+  const emit=(block,a)=>{if(a)block.a=a;if(['hr','img','gal'].includes(block.t)||String(block.v??block.items?.join('')??'').trim())blocks.push(block);};
+  const walk=(parent,inherited='')=>{
+    let pending='';const flush=()=>{if(pending.trim())emit({t:'p',v:pending.trim()},inherited);pending='';};
+    for(const node of parent.childNodes){
+      if(node.nodeType===3){pending+=writerInline(node);continue;}if(node.nodeType!==1)continue;
+      const tag=node.tagName,a=alignment(node,inherited);
+      if(node.hasAttribute('data-w-media')){
+        flush();const items=$$('.writer-photo',node).map(photo=>({v:writerImageURL($('img',photo)?.getAttribute('src')),c:Array.from($('figcaption',photo)?.childNodes||[],writerInline).join('').trim()})).filter(item=>item.v);
+        if(items.length)emit(node.dataset.wMedia==='gal'?{t:'gal',items}:{t:'img',...items[0]},a);continue;
+      }
+      if(tag==='HR'){flush();emit({t:'hr'},a);continue;}
+      if(tag==='IMG'){flush();const v=writerImageURL(node.getAttribute('src'));if(v)emit({t:'img',v,c:''},a);continue;}
+      if(['UL','OL'].includes(tag)){flush();let group=null;for(const child of Array.from(node.children).filter(item=>item.tagName==='LI')){const text=Array.from(child.childNodes,writerInline).join('').trim(),itemAlign=alignment(child,a);if(!text)continue;if(!group||group.a!==itemAlign){group={t:tag.toLowerCase(),items:[],a:itemAlign};blocks.push(group);}group.items.push(text);}for(const item of blocks)if(item.a==='')delete item.a;continue;}
+      if(tag==='BLOCKQUOTE'||/^H[1-6]$/.test(tag)){flush();emit({t:tag==='BLOCKQUOTE'?'q':'h',v:Array.from(node.childNodes,writerInline).join('').trim()},a);continue;}
+      if(['P','DIV','SECTION','ARTICLE'].includes(tag)){
+        flush();if(Array.from(node.children).some(child=>/^(P|DIV|H[1-6]|BLOCKQUOTE|UL|OL|FIGURE|HR)$/.test(child.tagName)))walk(node,a);
+        else emit({t:'p',v:Array.from(node.childNodes,writerInline).join('').trim()},a);continue;
+      }
+      if(!['BUTTON','SCRIPT','STYLE','IFRAME','OBJECT'].includes(tag))pending+=writerInline(node);
+    }flush();
+  };walk(editor);return blocks;
+}
+function writerTextRange(parent,start,end=start){
+  const range=document.createRange(),walker=document.createTreeWalker(parent,NodeFilter.SHOW_TEXT);let node,offset=0,first=false;
+  while(node=walker.nextNode()){
+    const next=offset+node.nodeValue.length;
+    if(!first&&start<=next){range.setStart(node,Math.max(0,start-offset));first=true;}
+    if(first&&end<=next){range.setEnd(node,Math.max(0,end-offset));return range;}offset=next;
+  }
+  if(!first){range.selectNodeContents(parent);range.collapse(false);}else{range.setEnd(parent,parent.childNodes.length);}return range;
+}
+function bindPostWriter(root,editor){
+  let saved=null,composing=false,busy=false;
+  const current=()=>{const selection=getSelection();return selection.rangeCount&&editor.contains(selection.getRangeAt(0).commonAncestorContainer)?selection.getRangeAt(0):null;};
+  const remember=()=>{const range=current();if(range)saved=range.cloneRange();};
+  const restore=()=>{editor.focus({preventScroll:true});const selection=getSelection();if(saved&&editor.contains(saved.commonAncestorContainer)){selection.removeAllRanges();selection.addRange(saved);}else{const range=document.createRange();range.selectNodeContents(editor);range.collapse(false);selection.removeAllRanges();selection.addRange(range);}};
+  const sync=()=>{const body=writerRead(editor);AD.draft.body=body;AD.draft.bodyText=bodyToText(body);editor.dataset.empty=String(!editor.textContent.replace(/[\u200b\ufeff]/g,'').trim()&&!editor.querySelector('img,hr'));};
+  const command=(name,value)=>{restore();busy=true;try{document.execCommand(name,false,value);}finally{busy=false;}sync();remember();};
+  const insertHTML=html=>command('insertHTML',html);
+  const block=()=>{const range=current();let node=range?.startContainer;node=node?.nodeType===3?node.parentElement:node;return node?.closest('p,h1,h2,h3,h4,h5,h6,blockquote,li')||editor;};
+  const autoBlock=()=>{
+    const range=current();if(!range?.collapsed||composing||busy)return false;
+    const parent=block();if(parent.closest('[data-w-media]'))return false;
+    const prefix=range.cloneRange();prefix.selectNodeContents(parent);prefix.setEnd(range.startContainer,range.startOffset);
+    const before=prefix.toString(),match=before.match(/^(##|>|[-*]|1[.)])\s/);if(!match)return false;
+    const isList=match[1]!=='##'&&match[1]!=='>',existing=parent.closest('ul,ol');if(existing&&!isList)return false;
+    const offset=before.length-match[0].length,selection=getSelection();selection.removeAllRanges();selection.addRange(writerTextRange(parent,0,match[0].length));remember();command('delete');
+    if(isList){const ordered=match[1].startsWith('1');if(!existing)command('formatBlock','p');if(existing?.tagName!==(ordered?'OL':'UL'))command(ordered?'insertOrderedList':'insertUnorderedList');}
+    else command('formatBlock',match[1]==='##'?'h3':'blockquote');
+    const next=block();selection.removeAllRanges();selection.addRange(writerTextRange(next,offset));remember();sync();return true;
+  };
+  const autoInline=()=>{
+    const range=current();if(!range?.collapsed||composing||busy)return;
+    const parent=block();if(parent.closest('[data-w-media]'))return;
+    const prefix=range.cloneRange();prefix.selectNodeContents(parent);prefix.setEnd(range.startContainer,range.startOffset);const before=prefix.toString();
+    const match=before.match(/(?<!\*)(\*\*|__|~~|==|@@|`|\*)((?:(?!\1)[^\n])+?)\1$/)||before.match(/\[[^\]\n]+\]\((?:https?:\/\/|mailto:|tel:|#|\/)[^)\s]+\)$/);
+    if(!match)return;const token=match[0],html=rich(token);if(html===esc(token))return;
+    const selection=getSelection();selection.removeAllRanges();selection.addRange(writerTextRange(parent,before.length-token.length,before.length));remember();insertHTML(html+'&#8203;');
+  };
+  editor._writer={sync,remember,restore,command,insertHTML,block};
+  editor.oncompositionstart=()=>{composing=true;};
+  editor.oncompositionend=()=>{composing=false;sync();remember();queueMicrotask(()=>{if(editor.isConnected){autoBlock();autoInline();}});};
+  editor.oninput=event=>{sync();remember();if(!busy&&!event.isComposing&&!composing&&!event.inputType?.startsWith('history')){autoBlock();autoInline();}};
+  editor.onkeyup=remember;editor.onpointerup=remember;editor.onfocus=remember;
+  editor.onkeydown=event=>{
+    if(event.isComposing||composing||event.keyCode===229)return;
+    if(event.key==='Enter'&&!event.shiftKey){const parent=block();if((parent.tagName==='BLOCKQUOTE'||/^H[1-6]$/.test(parent.tagName))&&!parent.textContent.trim()){event.preventDefault();command('formatBlock','p');}}
+    if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();root.querySelector('[data-ins="link"]')?.click();}
+  };
+  editor.onpaste=event=>{event.preventDefault();remember();const files=Array.from(event.clipboardData.files||[]).filter(isImageFile);if(files.length){insertImagesAt(editor,files);return;}const text=event.clipboardData.getData('text/plain');if(text)insertHTML(writerBodyHTML(textToBody(text)));};
+  editor.ondragover=event=>{event.preventDefault();editor.classList.add('on');};editor.ondragleave=()=>editor.classList.remove('on');
+  editor.ondrop=event=>{event.preventDefault();editor.classList.remove('on');const range=document.caretRangeFromPoint?.(event.clientX,event.clientY);if(range&&editor.contains(range.commonAncestorContainer)){getSelection().removeAllRanges();getSelection().addRange(range);remember();}const files=Array.from(event.dataTransfer.files||[]).filter(isImageFile);if(files.length)insertImagesAt(editor,files);else{const text=event.dataTransfer.getData('text/plain');if(text)insertHTML(writerBodyHTML(textToBody(text)));}};
+  editor.onclick=event=>{if(event.target.closest('a'))event.preventDefault();const remove=event.target.closest('.writer-media-remove');if(remove){event.preventDefault();const range=document.createRange();range.selectNode(remove.closest('[data-w-media]'));getSelection().removeAllRanges();getSelection().addRange(range);remember();command('delete');}};
+  const applyInline=(tag,cls)=>{restore();const range=current(),contents=range?.cloneContents(),holder=document.createElement('div');if(contents)holder.append(contents);insertHTML(`<${tag}${cls?` class="${cls}"`:''}>${rich(writerInline(holder).trim())||'&#8203;'}</${tag}>&#8203;`);};
+  $$('[data-wrap]',root).forEach(button=>button.onclick=()=>{const kind=button.dataset.wrap,commands={'**':'bold','*':'italic','__':'underline','~~':'strikeThrough'};if(commands[kind])command(commands[kind]);else if(kind==='==')applyInline('mark');else if(kind==='@@')applyInline('span','tx-disp');else if(kind==='((|))')applyInline('span','tx-mute');else applyInline('code');});
+  $$('[data-ins]',root).forEach(button=>button.onclick=async()=>{
+    const kind=button.dataset.ins;
+    if(kind==='img'){remember();return insertImagesAt(editor,await pickFiles(true));}
+    if(kind==='link'){remember();const url=prompt('연결할 주소를 입력하세요.','https://');if(!url)return;const safe=SAFE_HREF(url);if(safe==='#'&&url!=='#'){toast('연결할 수 있는 주소를 입력해주세요.');return;}restore();if(getSelection().isCollapsed)insertHTML(`<a href="${esc(safe)}">${esc(url)}</a>&#8203;`);else command('createLink',safe);return;}
+    if(kind==='h'||kind==='q')return command('formatBlock',kind==='h'?'h3':'blockquote');
+    if(kind==='ul'||kind==='ol'){if(!block().closest('ul,ol'))command('formatBlock','p');return command(kind==='ul'?'insertUnorderedList':'insertOrderedList');}
+    if(kind==='hr')return insertHTML('<hr><p><br></p>');
+    if(kind==='nocolor')return command('removeFormat');
+    if(kind.startsWith('al-')){command(kind==='al-c'?'justifyCenter':kind==='al-r'?'justifyRight':'justifyLeft');const parent=block();parent.classList.remove('al-c','al-r');sync();}
+  });
+  const color=(kind,hex)=>{const safe=safeColor(hex);if(safe)command(kind==='fg'?'foreColor':'hiliteColor',safe);};
+  $$('[data-pop]',root).forEach(button=>button.onclick=()=>{remember();const panel=$('#cp-'+button.dataset.pop,root);$$('.cpick',root).forEach(other=>{if(other!==panel)other.hidden=true;});panel.hidden=!panel.hidden;});
+  $$('[data-swatch]',root).forEach(button=>button.onclick=()=>{const[kind,hex]=button.dataset.swatch.split(':');color(kind,hex);});
+  $$('[data-capply]',root).forEach(button=>button.onclick=()=>color(button.dataset.capply,$('[data-cin="'+button.dataset.capply+'"]',root).value));
+  $$('.writer-tools button,.cpick button',root).forEach(button=>button.onpointerdown=event=>{remember();event.preventDefault();});
+  const help=$('[data-writer-help]',root);if(help){help.onclick=()=>help.parentElement.classList.toggle('is-open');help.onkeydown=event=>{if(event.key==='Escape'){help.parentElement.classList.remove('is-open');help.blur();}};}
+  document.addEventListener('selectionchange',remember);document.execCommand('defaultParagraphSeparator',false,'p');sync();
+  return()=>{document.removeEventListener('selectionchange',remember);editor._writer=null;};
+}
+
 function edPost(){
   const d = AD.draft;
   if (d.bodyText == null) d.bodyText = bodyToText(d.body);
@@ -2974,7 +3230,8 @@ function edPost(){
     <p class="help">소식은 Category에 NEWS를 입력하고 같은 글쓰기 화면에서 작성하세요.</p>
     ${TA('Summary / 목록에 보일 한 줄','x',d.x,70)}
 
-    <div class="flabel" style="margin-top:18px">Body / 본문</div>
+    <div class="writer-heading"><div class="flabel">Body / 본문</div><div class="writer-help"><button type="button" data-writer-help aria-label="작성 방법" aria-describedby="writer-help">?</button><div id="writer-help" role="tooltip"><b>작성 방법</b><dl><dt><code>##</code> + Space</dt><dd>소제목</dd><dt><code>&gt;</code> + Space</dt><dd>인용</dd><dt><code>-</code> + Space</dt><dd>목록</dd><dt><code>1.</code> + Space</dt><dd>번호 목록</dd><dt><code>**굵게**</code></dt><dd>굵은 글자</dd><dt>Enter</dt><dd>다음 문단 · 빈 줄에서는 본문으로</dd><dt>Shift + Enter</dt><dd>같은 문단에서 줄바꿈</dd></dl><p>글자를 선택한 뒤 서식·색상 버튼을 누를 수도 있습니다. 이미지 여러 장은 한 묶음으로 표시됩니다.</p></div></div></div>
+    <div class="writer-tools">
     <div class="wtools">
       <button class="abtn sm wb" data-wrap="**" title="굵게">B</button>
       <button class="abtn sm wi" data-wrap="*" title="기울임">I</button>
@@ -2999,24 +3256,13 @@ function edPost(){
       <button class="abtn sm" data-ins="ul">목록</button>
       <button class="abtn sm" data-ins="ol">번호 목록</button>
       <button class="abtn sm" data-ins="hr">구분선</button>
-      <button class="abtn sm" data-ins="al-c">가운데</button>
-      <button class="abtn sm" data-ins="al-r">오른쪽</button>
-      <button class="abtn sm" data-ins="al-l">정렬 해제</button>
+      <button class="abtn sm writer-icon" data-ins="al-l" aria-label="왼쪽 정렬" title="왼쪽 정렬"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 10h10M4 15h16M4 20h10"/></svg></button>
+      <button class="abtn sm writer-icon" data-ins="al-c" aria-label="가운데 정렬" title="가운데 정렬"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M7 10h10M4 15h16M7 20h10"/></svg></button>
+      <button class="abtn sm writer-icon" data-ins="al-r" aria-label="오른쪽 정렬" title="오른쪽 정렬"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M10 10h10M4 15h16M10 20h10"/></svg></button>
       <button class="abtn sm solid" data-ins="img">＋ 이미지</button>
-      <button class="abtn sm" data-act="preview">${AD.preview ? '미리보기 접기' : '미리보기 펼치기'}</button>
     </div>
-    <div class="wtools"><span class="hint">빈 줄로 문단을 나눕니다 · 사진 여러 장을 한 번에 넣으면 좌우로 넘기는 묶음이 됩니다 · 색은 글자를 고른 뒤 누르세요</span></div>
-    <div class="wsplit${AD.preview ? ' on' : ''}">
-      <textarea id="wbody" data-k="bodyText" class="wbody" aria-label="본문" placeholder="여기에 글을 씁니다.
-
-빈 줄을 하나 두면 다음 문단이 시작됩니다.
-
-## 이렇게 쓰면 소제목
-&gt; 이렇게 쓰면 인용
-- 이렇게 쓰면 목록
-**굵게** *기울임* __밑줄__ ~~취소선~~ ==강조==">${esc(d.bodyText)}</textarea>
-      ${AD.preview ? `<div class="wprev art" id="wprev">${postBodyHTML(textToBody(d.bodyText))}</div>` : ''}
     </div>
+    <div id="wbody" class="writer-surface art" contenteditable="true" role="textbox" aria-multiline="true" aria-label="본문" data-placeholder="여기에 이야기를 작성하세요." spellcheck="true">${writerBodyHTML(textToBody(d.bodyText))}</div>
     ${actionsBar()}
   </div>`;
 }
@@ -3147,6 +3393,7 @@ function leaveEditor(){
 }
 
 function refreshAdmin(){
+  AD.cleanup?.();AD.cleanup=null;
   const y = window.scrollY;
   app.innerHTML = '<div>' + viewAdmin() + '</div>';
   bindAdmin();
@@ -3186,6 +3433,7 @@ async function handleFiles(key, files){
    Several images at once become one swipe group — consecutive image lines. */
 async function insertImagesAt(ta, files){
   if (!files || !files.length) return;
+  const draft=AD.draft;ta._writer?.remember();
   toast('이미지 정리 중…');
   try{
     let before = 0, after = 0;
@@ -3195,12 +3443,14 @@ async function insertImagesAt(ta, files){
       before += f.size; after += small.size;
       marks.push(`![](${await DB.upload(small)})`);
     }
+    if(AD.draft!==draft||!ta.isConnected)return;
     insertAtCaret(ta, '\n\n' + marks.join('\n') + '\n\n');
     toast(`${marks.length > 1 ? `이미지 ${marks.length}장 묶음 추가` : '이미지 추가'}${after < before ? ` · ${kb(before)} → ${kb(after)}` : ''}`);
   }catch(e){ console.error(e); toast('업로드 실패: ' + (e.message || e)); }
 }
 
 function insertAtCaret(ta, text){
+  if(ta.isContentEditable){ta._writer?.insertHTML(writerBodyHTML(textToBody(text)));return;}
   const a = ta.selectionStart, b = ta.selectionEnd;
   ta.value = ta.value.slice(0, a) + text + ta.value.slice(b);
   const pos = a + text.length;
@@ -3284,6 +3534,7 @@ function clearColor(ta){
 
 /* keep the draft and the live preview in step without re-rendering ADMIN */
 function syncBody(ta){
+  if(ta.isContentEditable){ta._writer?.sync();return;}
   AD.draft.bodyText = ta.value;
   const pv = $('#wprev', app);
   if (pv) pv.innerHTML = postBodyHTML(textToBody(ta.value));
@@ -3345,8 +3596,64 @@ function openLocationPicker(){
   dialog.onclose=()=>{content.replaceChildren();};draw();
 }
 
+function bindSuggestions(root){
+  const menus=[];
+  $$('[data-suggest]',root).forEach(container=>{
+    const input=$('input',container),toggle=$('.suggest-toggle',container),list=$('[role="listbox"]',container),options=$$('[role="option"]',list),empty=$('.suggest-empty',list);let index=-1;
+    const close=()=>{list.hidden=true;container.classList.remove('is-open');input.setAttribute('aria-expanded','false');toggle.setAttribute('aria-expanded','false');input.removeAttribute('aria-activedescendant');index=-1;};
+    const visible=()=>options.filter(option=>!option.hidden);
+    const highlight=next=>{const items=visible();index=items.length?(next+items.length)%items.length:-1;options.forEach(option=>option.classList.toggle('is-active',option===items[index]));if(items[index]){input.setAttribute('aria-activedescendant',items[index].id);items[index].scrollIntoView({block:'nearest'});}};
+    const open=all=>{menus.forEach(menu=>{if(menu.container!==container)menu.close();});const term=all?'':input.value.trim().toLowerCase();options.forEach(option=>{option.hidden=!!term&&!option.dataset.value.toLowerCase().includes(term);});empty.hidden=visible().length>0;list.hidden=false;container.classList.add('is-open');input.setAttribute('aria-expanded','true');toggle.setAttribute('aria-expanded','true');const box=container.getBoundingClientRect(),below=innerHeight-box.bottom-12,above=box.top-document.querySelector('#top').offsetHeight-12,up=below<140&&above>below;container.classList.toggle('opens-up',up);list.style.maxHeight=Math.max(100,Math.min(260,up?above:below))+'px';index=-1;};
+    const choose=option=>{input.value=option.dataset.value;input.dispatchEvent(new Event('input',{bubbles:true}));options.forEach(item=>item.setAttribute('aria-selected',String(item===option)));close();input.focus({preventScroll:true});};
+    toggle.onclick=()=>{if(list.hidden){open(true);input.focus({preventScroll:true});}else close();};
+    options.forEach(option=>{option.onpointerdown=event=>event.preventDefault();option.onclick=()=>choose(option);});
+    input.addEventListener('input',()=>open(false));
+    container.onfocusout=event=>{if(!container.contains(event.relatedTarget))close();};
+    input.onkeydown=event=>{if(event.key==='ArrowDown'||event.key==='ArrowUp'){event.preventDefault();if(list.hidden)open(true);highlight(index+(event.key==='ArrowDown'?1:-1));}else if(event.key==='Enter'&&!list.hidden){event.preventDefault();const option=visible()[index];if(option)choose(option);else close();}else if(event.key==='Escape'||event.key==='Tab')close();};
+    menus.push({container,close});
+  });
+  const outside=event=>menus.forEach(menu=>{if(!menu.container.contains(event.target))menu.close();});document.addEventListener('pointerdown',outside);
+  return()=>document.removeEventListener('pointerdown',outside);
+}
+
+function bindAccountControls(root){
+  const readPermissions=form=>({role:$('[name="role"]',form).value,permissions:$$('[name="permission"]:checked',form).map(input=>input.value)});
+  const load=async()=>{
+    if(!canManageAccounts()||AD.membersLoading)return;const actor=session.user.id||session.user.email;AD.membersLoading=true;AD.memberError='';
+    try{const result=await DB.accountRequest('list');if((session?.user.id||session?.user.email)===actor&&canManageAccounts()){AD.members=result.members||[];AD.membersLoaded=true;}}
+    catch(error){AD.memberError=error.message||'계정을 불러오지 못했습니다.';}
+    finally{AD.membersLoading=false;if(parseHash().page==='admin'&&AD.tab==='accounts'&&canManageAccounts())refreshAdmin();}
+  };
+  $$('[data-members-refresh]',root).forEach(button=>button.onclick=load);
+  $$('[data-member-create],[data-member-update]',root).forEach(form=>{
+    const role=$('[name="role"]',form),permissions=$('.member-permissions',form);role.onchange=()=>{permissions.disabled=role.value==='owner';if(role.value==='owner')$$('[type="checkbox"]',permissions).forEach(input=>input.checked=true);};
+    form.onsubmit=async event=>{
+      event.preventDefault();const button=$('[type="submit"]',form),feedback=$('[data-member-feedback]',form),values=readPermissions(form);button.disabled=true;feedback.textContent='저장 중…';
+      try{
+        if(form.hasAttribute('data-member-create'))await DB.accountRequest('create',{...values,email:$('[name="email"]',form).value.trim(),password:$('[name="password"]',form).value});
+        else await DB.accountRequest('update',{...values,user_id:form.dataset.memberUpdate});
+        if(form.hasAttribute('data-member-create'))form.reset();AD.membersLoaded=false;await load();toast('계정 권한을 저장했습니다.');
+      }catch(error){feedback.textContent=error.message||'저장하지 못했습니다.';button.disabled=false;}
+    };
+  });
+  $$('[data-member-revoke]',root).forEach(button=>button.onclick=async()=>{
+    if(!confirm('이 계정의 관리자 접근 권한을 제거할까요? 기존 글과 이미지는 유지됩니다.'))return;
+    const feedback=$('[data-member-feedback]',button.closest('form'));button.disabled=true;
+    try{await DB.accountRequest('revoke',{user_id:button.dataset.memberRevoke});AD.membersLoaded=false;await load();toast('관리자 접근 권한을 제거했습니다.');}
+    catch(error){feedback.textContent=error.message||'권한을 제거하지 못했습니다.';button.disabled=false;}
+  });
+  const passwordForm=$('[data-password-form]',root);
+  if(passwordForm)passwordForm.onsubmit=async event=>{
+    event.preventDefault();const password=$('[name="password"]',passwordForm).value,confirmPassword=$('[name="confirm"]',passwordForm).value,status=$('[data-password-status]',passwordForm),button=$('[type="submit"]',passwordForm);
+    if(password!==confirmPassword){status.textContent='입력한 비밀번호가 서로 다릅니다.';return;}button.disabled=true;status.textContent='변경 중…';
+    try{await DB.accountRequest('change_password',{password});AD.draft=null;AD.membersLoaded=false;refreshAdmin();toast('비밀번호를 변경했습니다.');}
+    catch(error){status.textContent=error.message||'비밀번호를 변경하지 못했습니다.';button.disabled=false;}
+  };
+  if(AD.tab==='accounts'&&canManageAccounts()&&!AD.membersLoaded&&!AD.membersLoading&&!AD.memberError)queueMicrotask(load);
+}
+
 function bindAdmin(){
-  const root = app;
+  const root = app,cleanups=[];
   const reloadInquiries=async()=>{
     AD.inquiryLoading=true;AD.inquiryError='';refreshAdmin();
     try{await DB.loadInquiries();}catch(error){AD.inquiryError='문의를 불러오지 못했습니다. 관리자 권한과 연결을 확인해주세요.';}
@@ -3455,7 +3762,8 @@ function bindAdmin(){
 
   /* post body: insert marks / images at the caret, never re-render */
   const wb = $('#wbody', root);
-  if (wb){
+  if(wb?.isContentEditable)cleanups.push(bindPostWriter(root,wb));
+  else if (wb){
     wb.oninput = () => syncBody(wb);
     $$('[data-wrap]', root).forEach(b => b.onclick = () => wrapSelection(wb, b.dataset.wrap));
     $$('[data-ins]', root).forEach(b => b.onclick = async () => {
@@ -3566,6 +3874,7 @@ function bindAdmin(){
       return;
     }
     if (a === 'save'){
+      $('#wbody',root)?._writer?.sync();
       const d = {...AD.draft};
       if (AD.tab === 'projects'){
         if (!d.code || !d.name){ toast('코드와 프로젝트명은 필수입니다'); return; }
@@ -3585,7 +3894,7 @@ function bindAdmin(){
         /* the editor works in bare digits; the site reads 2026.06.02 */
         if (d.d8 != null){ d.d = d8Dot(d.d8); delete d.d8; }
         d.pub = d.pub !== false;
-        d.body = textToBody(d.bodyText);
+        d.body = $('#wbody',root)?.isContentEditable ? writerRead($('#wbody',root)) : textToBody(d.bodyText);
         delete d.bodyText;
       }
       d.sort = AD.tab === 'projects' ? ymNum(d) : dnum(d.d);   // ordering is derived, never typed
@@ -3597,6 +3906,8 @@ function bindAdmin(){
       catch(e){ console.error(e); toast('저장 실패: ' + (e.message||e)); }
     }
   });
+  cleanups.push(bindSuggestions(root));bindAccountControls(root);AD.cleanup=()=>cleanups.forEach(clean=>clean());
+  const activeTab=$('.admin-tabs .on',root),tabGroup=$('.admin-tabs',root);if(activeTab&&tabGroup){const a=activeTab.getBoundingClientRect(),b=tabGroup.getBoundingClientRect();if(a.right>b.right)tabGroup.scrollLeft+=a.right-b.right+6;else if(a.left<b.left)tabGroup.scrollLeft-=b.left-a.left+6;}
 }
 
 /* ============================================================

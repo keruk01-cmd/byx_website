@@ -1,0 +1,12 @@
+{
+  "testedAt": "2026-11-06T09:19:06.158Z",
+  "preflight": 204,
+  "missingToken": 401,
+  "anonymousToken": 401,
+  "forgedToken": 401,
+  "anonymousContext": 401,
+  "anonymousMemberTable": 401,
+  "publicProjects": 200,
+  "anonymousDraftsVisible": false,
+  "productionWrites": false
+}
