@@ -15,7 +15,7 @@ async function main(){
    await page.evaluate(async()=>{await DB.login('demo@byx.kr','');render();});
    assert.equal(await page.locator('[data-ed="new:news"]').count(),0);
    await page.locator('[data-ed="new:posts"]').click();await page.waitForSelector('#wbody');
-   assert(await page.locator('#dl-postk option[value="NEWS"]').count());
+   assert(await page.locator('#dl-postk [role="option"][data-value="NEWS"]').count());
    await page.locator('[data-k="t"]').fill('새 소식 통합 테스트');await page.locator('[data-k="k"]').fill('NEWS');await page.locator('#wbody').fill('새글에서 작성한 소식 본문입니다.');
    await page.locator('[data-pub="1"]').click();await page.locator('[data-act="save"]').click();await page.waitForSelector('.feed-card');
    assert.match(await page.locator('.page').innerText(),/새 소식 통합 테스트/);

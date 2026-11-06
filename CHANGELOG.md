@@ -2,6 +2,13 @@
 
 작업 로그. 최신이 위로 옵니다.
 
+## 2026-11-06 · 통합 Feed 편집기·관리자 계정과 메뉴 권한
+
+- Feed의 작성/미리보기를 하나의 시각 편집기로 통합했습니다. 인용/소제목/목록/인라인 표기 자동 변환, 선택 서식·색상·정렬 아이콘, hover/focus/tap 작성 도움말과 기존 본문 블록 호환을 유지합니다. CATEGORY/유형/상태의 기본 datalist를 직접 입력 가능한 명시적 선택 메뉴로 교체했습니다. 문의함은 Inquiries입니다.
+- Owner 전용 Accounts에서 계정 추가/접근 제거/메뉴 권한을 관리합니다. 기존 계정은 Owner이며 Editor는 지정한 메뉴만 편집합니다. 새 계정은 첫 로그인 비밀번호 변경이 필요합니다. 실제 저장/Storage/문의 권한은 DB에서 검사하고 마지막 Owner와 본인 제거를 방지합니다.
+- 사용자 후속 계정 관리 요청으로 필요한 인증 Edge Function과 멤버십/RLS 정책을 추가했습니다. 서비스 키는 서버 전용입니다. 공개 사이트의 관리자 링크 비노출, 단일 HTML, 설정값/기존 계정·콘텐츠·파일과 Vercel 구조를 보존합니다.
+- [구현·사용법·검증·운영 기록](docs/CMS_ACCOUNTS_2026-11-06.md). 기능 테스트는 격리 데모/모의 서버이며 실제 DB 권한 검증은 모든 변경을 롤백했습니다. 실제 관리자 자격증명·실기기/Safari/Firefox는 미검증입니다.
+
 ## 2026-11-06 · 둥근 유리 관리자 작업 공간
 
 - 운영 배포 완료: 구현 커밋 `71ed670`을 [PR #18](https://github.com/keruk01-cmd/byx_website/pull/18)로 병합했습니다. 운영 main `044899a`의 [Vercel 배포](https://vercel.com/keruk01-cmds-projects/byx-website/EbVoErVQQUeZGtCaSSTitd7aUA6b) 성공 뒤 2026-11-06 16:13 KST에 6개 경로의 HTTP 200/최신 HTML 일치와 기존 가이드 API 응답을 확인했습니다. [배포 검증](tests/artifacts/deployment-results.json), [관리자 로그인](https://byx-website.vercel.app/admin). 운영 저장/로그인 검증은 수행하지 않았습니다.

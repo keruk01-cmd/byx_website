@@ -126,7 +126,7 @@ async function main(){
       await page.evaluate(()=>{location.hash='#/admin';});await page.waitForSelector('#lform');await page.locator('#lform button').click();
       await page.waitForSelector('[data-edit]');await page.locator('[data-edit]').first().click();
       await page.locator('[data-k="status"]').fill('CUSTOM REVIEW');
-      assert((await page.locator('#dl-status option').count())>=8);
+      assert((await page.locator('#dl-status [role="option"]').count())>=8);
       await page.locator('[data-k="date_start_input"]').fill('920128');await page.locator('[data-k="date_end_input"]').fill('199402');
       assert.equal(await page.locator('[data-project-calendar="date_start_input"]').inputValue(),'1992-01-28');
       await page.locator('[data-pick-location]').click();await page.waitForSelector('.location-dialog[open]');
@@ -166,9 +166,9 @@ async function main(){
       }
       if(width===1440){
         const compatibility=await page.evaluate(async()=>{
-          let payload;const client={from:()=>({upsert:p=>{payload=p;return{select:async()=>({error:null})};}})};
+          const oldSession=session,oldAccess=adminAccess;session={user:{id:'compatibility-editor'}};adminAccess={role:'editor',active:true,permissions:['projects'],must_change_password:false};let payload;const client={from:()=>({upsert:p=>{payload=p;return{select:async()=>({error:null})};}})};
           sb=client;const oldRefresh=DB.refresh;DB.refresh=async()=>{};DB.cols.projectDates=false;DB.cols.projectPoint=false;
-          try{await DB.save('projects',{code:'old',year:2026,month:1,date_start:'2026.01',date_end:null,location_point:null});return payload;}finally{sb=null;DB.refresh=oldRefresh;DB.cols.projectDates=true;DB.cols.projectPoint=true;}
+          try{await DB.save('projects',{code:'old',year:2026,month:1,date_start:'2026.01',date_end:null,location_point:null});return payload;}finally{sb=null;session=oldSession;adminAccess=oldAccess;DB.refresh=oldRefresh;DB.cols.projectDates=true;DB.cols.projectPoint=true;}
         });
         assert(!('date_start' in compatibility));assert(!('date_end' in compatibility));assert(!('location_point' in compatibility));assert.equal(compatibility.year,2026);
       }
