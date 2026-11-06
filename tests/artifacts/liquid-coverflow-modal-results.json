@@ -1,0 +1,201 @@
+{
+  "testedAt": "2026-11-06T05:17:35.283Z",
+  "results": [
+    {
+      "optics": {
+        "border": "0px",
+        "header": "color(srgb 1 1 1 / 0.22)",
+        "blur": "blur(10px) saturate(1.2)",
+        "aperture": "path(evenodd, \"M 0 0 H 1440 V 81 H 0 Z M 1074.76 21.2969 H 1117.82 A 19.1953 19.1953 0 0 1 1137.02 40.4922 A 19.1953 19.1953 0 0 1 1117.82 59.6875 H 1074.76 A 19.1953 19.1953 0 0 1 1055.56 40.4922 A 19.1953 19.1953 0 0 1 1074.76 21.2969 Z\")",
+        "map": true
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "launch": {
+        "font": "17.28px",
+        "padding": "16px 26px",
+        "height": 59
+      },
+      "modal": {
+        "height": 482,
+        "client": 482,
+        "scroll": 482,
+        "width": 660,
+        "radius": "32px",
+        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "text": "×\n      프로젝트 이야기를 들려주세요.\n        제목\n        이메일연락처 (선택)\n        설명\n        Website\n        문의 답변을 위한 이메일·연락처 및 문의 내용의 수집·이용에 동의합니다.\n        문의 보내기\n      \n    Dream with us ↗",
+        "close": "0px",
+        "inputRadius": "999px"
+      },
+      "peopleSwipe": true,
+      "profile": {
+        "radius": "32px",
+        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "text": "×LEESenior Architect성균관대 건축학과前 원오원 아키텍츠",
+        "borders": [
+          [
+            "0px",
+            "0px"
+          ],
+          [
+            "0px",
+            "0px"
+          ],
+          [
+            "0px",
+            "0px"
+          ],
+          [
+            "0px",
+            "0px"
+          ]
+        ]
+      },
+      "coverflow": {
+        "bg": "rgb(255, 255, 255)",
+        "ghosts": 0,
+        "side": 2,
+        "scroll": 0
+      },
+      "gallerySwipe": "mouse",
+      "floatingTools": {
+        "background": "rgba(0, 0, 0, 0)",
+        "pointer": "none"
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "launch": {
+        "font": "14px",
+        "padding": "16px 26px",
+        "height": 54
+      },
+      "modal": {
+        "height": 566,
+        "client": 566,
+        "scroll": 566,
+        "width": 358,
+        "radius": "26px",
+        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "text": "×\n      프로젝트 이야기를 들려주세요.\n        제목\n        이메일연락처 (선택)\n        설명\n        Website\n        문의 답변을 위한 이메일·연락처 및 문의 내용의 수집·이용에 동의합니다.\n        문의 보내기\n      \n    Dream with us ↗",
+        "close": "0px",
+        "inputRadius": "999px"
+      },
+      "peopleSwipe": true,
+      "profile": {
+        "radius": "32px",
+        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "text": "×KIMPartner홍익대 건축학과前 매스스터디스2024 젊은건축가상",
+        "borders": [
+          [
+            "0px",
+            "0px"
+          ],
+          [
+            "0px",
+            "0px"
+          ],
+          [
+            "0px",
+            "0px"
+          ],
+          [
+            "0px",
+            "0px"
+          ],
+          [
+            "0px",
+            "0px"
+          ]
+        ]
+      },
+      "coverflow": {
+        "bg": "rgb(255, 255, 255)",
+        "ghosts": 0,
+        "side": 2,
+        "scroll": 0
+      },
+      "gallerySwipe": "touch",
+      "floatingTools": {
+        "background": "rgba(0, 0, 0, 0)",
+        "pointer": "none"
+      }
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "launch": {
+        "font": "14px",
+        "padding": "16px 26px",
+        "height": 54
+      },
+      "modal": {
+        "height": 521,
+        "client": 521,
+        "scroll": 521,
+        "width": 288,
+        "radius": "26px",
+        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "text": "×\n      프로젝트 이야기를 들려주세요.\n        제목\n        이메일연락처 (선택)\n        설명\n        Website\n        문의 답변을 위한 이메일·연락처 및 문의 내용의 수집·이용에 동의합니다.\n        문의 보내기\n      \n    Dream with us ↗",
+        "close": "0px",
+        "inputRadius": "999px"
+      },
+      "peopleSwipe": true,
+      "profile": {
+        "radius": "32px",
+        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "text": "×KIMPartner홍익대 건축학과前 매스스터디스2024 젊은건축가상",
+        "borders": [
+          [
+            "0px",
+            "0px"
+          ],
+          [
+            "0px",
+            "0px"
+          ],
+          [
+            "0px",
+            "0px"
+          ],
+          [
+            "0px",
+            "0px"
+          ],
+          [
+            "0px",
+            "0px"
+          ]
+        ]
+      },
+      "coverflow": {
+        "bg": "rgb(255, 255, 255)",
+        "ghosts": 0,
+        "side": 2,
+        "scroll": 0
+      },
+      "gallerySwipe": "touch",
+      "floatingTools": {
+        "background": "rgba(0, 0, 0, 0)",
+        "pointer": "none"
+      }
+    },
+    {
+      "rigidPerspective": {
+        "origin": {
+          "x": 300,
+          "y": 230
+        },
+        "rightSpan": 185.1737036202005,
+        "leftSpan": 171.12016927220836,
+        "speed": 2.196873683442626,
+        "strands": 1352
+      }
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome; touch emulated. No production writes, physical-device or Safari/Firefox checks."
+}

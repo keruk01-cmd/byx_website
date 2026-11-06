@@ -1,18 +1,19 @@
 {
-  "testedAt": "2026-11-05T09:11:49.000Z",
+  "testedAt": "2026-11-06T05:56:12.163Z",
   "headers": [
     {
       "width": 1440,
       "light": {
         "color": "rgb(0, 0, 0)",
-        "background": "color(srgb 1 1 1 / 0.6)"
+        "background": "color(srgb 1 1 1 / 0.22)"
       },
       "dark": {
         "color": "rgb(255, 255, 255)",
-        "background": "color(srgb 0 0 0 / 0.6)",
-        "blur": "blur(22px) saturate(1.2)",
-        "rule": "rgb(255, 255, 255)",
-        "pill": "color(srgb 1 1 1 / 0.48)",
+        "background": "color(srgb 0 0 0 / 0.22)",
+        "blur": "blur(10px) saturate(1.2)",
+        "slotBox": "rgb(255, 255, 255)",
+        "slotInk": "rgb(0, 0, 0)",
+        "pill": "color(srgb 1 1 1 / 0.28)",
         "pillText": "rgb(255, 255, 255)"
       },
       "menu": true,
@@ -24,14 +25,15 @@
       "width": 390,
       "light": {
         "color": "rgb(0, 0, 0)",
-        "background": "color(srgb 1 1 1 / 0.6)"
+        "background": "color(srgb 1 1 1 / 0.22)"
       },
       "dark": {
         "color": "rgb(255, 255, 255)",
-        "background": "color(srgb 0 0 0 / 0.6)",
-        "blur": "blur(22px) saturate(1.2)",
-        "rule": "rgb(255, 255, 255)",
-        "pill": "color(srgb 1 1 1 / 0.48)",
+        "background": "color(srgb 0 0 0 / 0.22)",
+        "blur": "blur(10px) saturate(1.2)",
+        "slotBox": "rgb(255, 255, 255)",
+        "slotInk": "rgb(0, 0, 0)",
+        "pill": "color(srgb 1 1 1 / 0.28)",
         "pillText": "rgb(0, 0, 0)"
       },
       "menu": true,
@@ -43,14 +45,15 @@
       "width": 320,
       "light": {
         "color": "rgb(0, 0, 0)",
-        "background": "color(srgb 1 1 1 / 0.6)"
+        "background": "color(srgb 1 1 1 / 0.22)"
       },
       "dark": {
         "color": "rgb(255, 255, 255)",
-        "background": "color(srgb 0 0 0 / 0.6)",
-        "blur": "blur(22px) saturate(1.2)",
-        "rule": "rgb(255, 255, 255)",
-        "pill": "color(srgb 1 1 1 / 0.48)",
+        "background": "color(srgb 0 0 0 / 0.22)",
+        "blur": "blur(10px) saturate(1.2)",
+        "slotBox": "rgb(255, 255, 255)",
+        "slotInk": "rgb(0, 0, 0)",
+        "pill": "color(srgb 1 1 1 / 0.28)",
         "pillText": "rgb(0, 0, 0)"
       },
       "menu": true,
@@ -110,7 +113,7 @@
   },
   "upload": {
     "uploaded": {
-      "path": "2026/id39sp62swmw3btse4.png",
+      "path": "2026/id9bhdv2ibmw4ka2ut.png",
       "type": "image/png",
       "options": {
         "cacheControl": "31536000",
@@ -118,7 +121,7 @@
         "contentType": "image/png"
       }
     },
-    "url": "https://example.test/2026/id39sp62swmw3btse4.png",
+    "url": "https://example.test/2026/id9bhdv2ibmw4ka2ut.png",
     "authCalls": 1,
     "storageCalls": 1,
     "expired": "로그인이 만료되었습니다. 다시 로그인한 뒤 이미지를 추가해주세요.",

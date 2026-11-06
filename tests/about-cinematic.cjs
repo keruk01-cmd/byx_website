@@ -26,7 +26,7 @@ async function main(){
     const label=await page.locator('.x-label-left').evaluate(el=>{const a=el.getBoundingClientRect(),b=el.parentElement.getBoundingClientRect();return Math.abs(a.y+a.height/2-b.y-b.height/2);});assert(label<2,'Mobile X label must be vertically centered');
    }
    const copy=await page.locator('.story-chapter').allInnerTexts();assert(!/건축|대지|법령|도면|인테리어/.test(copy.join('')),'About copy must span services');
-   assert.equal(await page.locator('.people-section').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(0, 0, 0)');assert.equal(await page.locator('footer').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(0, 0, 0)');
+   assert.equal(await page.locator('.people-section').evaluate(el=>getComputedStyle(el).backgroundColor),'rgba(0, 0, 0, 0)');assert.equal(await page.locator('footer').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(0, 0, 0)');
    await page.locator('#byx-journey').scrollIntoViewIfNeeded();await page.locator('.experience-drawing').screenshot({path:path.join(out,'byx-journey-'+width+'.png')});
    await page.locator('#byx-function').scrollIntoViewIfNeeded();assert.equal(await page.locator('.function-stage').getAttribute('data-motion'),'static');
    await page.locator('.function-stage').screenshot({path:path.join(out,'byx-function-'+width+'.png')});

@@ -22,8 +22,8 @@ async function main(){
       await page.goto(origin);await page.waitForFunction(()=>DB.ready&&document.querySelector('.card'));
       await page.evaluate(()=>document.fonts.ready);
       assert.equal(await page.evaluate(()=>DB.demo),true);
-      const glass=await page.locator('#top').evaluate(el=>{const s=getComputedStyle(el);return {blur:s.backdropFilter||s.webkitBackdropFilter,background:s.backgroundColor};});
-      assert(glass.blur.includes('22px'),'Frosted header blur missing');assert(!['rgb(255, 255, 255)','rgba(255, 255, 255, 1)'].includes(glass.background),'Header is opaque');
+      const glass=await page.locator('#top').evaluate(el=>{const s=getComputedStyle(el,'::before');return {blur:s.backdropFilter||s.webkitBackdropFilter,background:s.backgroundColor};});
+      assert(glass.blur.includes('10px'),'Frosted header blur missing');assert(!['rgb(255, 255, 255)','rgba(255, 255, 255, 1)'].includes(glass.background),'Header is opaque');
       const density=await page.evaluate(()=>({columns:getComputedStyle(document.querySelector('.grid')).gridTemplateColumns.split(' ').length,cardWidth:document.querySelector('.card').getBoundingClientRect().width,cardTitle:getComputedStyle(document.querySelector('.card .nm')).fontSize}));
       if(width>=1440)assert.equal(density.columns,width===2560?7:width===1920?5:4);
       await page.screenshot({path:path.join(out,'grid-'+width+'.png'),fullPage:true});
@@ -97,7 +97,7 @@ async function main(){
         assert(label.x>=fieldBox.x&&label.x+label.width<=fieldBox.x+fieldBox.width&&label.y>=fieldBox.y&&label.y+label.height<=fieldBox.y+fieldBox.height,'White label is outside black area');
         assert.equal(await page.locator('.x-label-'+side).evaluate(el=>getComputedStyle(el).color),'rgb(255, 255, 255)');
       }
-      assert.equal(await page.locator('.x-field').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(0, 0, 0)');
+      assert.equal(await page.locator('.x-field').evaluate(el=>getComputedStyle(el).backgroundColor),'rgba(0, 0, 0, 0)');
       const canvas=page.locator('#x-cloud'),box=await canvas.boundingBox();
       await page.waitForTimeout(100);const still=await canvas.getAttribute('data-frame');await page.waitForTimeout(100);assert.equal(await canvas.getAttribute('data-frame'),still);
       await page.mouse.move(box.x+box.width/2,box.y+box.height/2);assert(+(await canvas.getAttribute('data-dispersal'))>0);

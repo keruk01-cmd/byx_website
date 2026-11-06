@@ -1,0 +1,171 @@
+{
+  "testedAt": "2026-11-06T06:28:02.913Z",
+  "results": [
+    {
+      "width": 1440,
+      "height": 900,
+      "initial": {
+        "scroll": 900,
+        "top": 89,
+        "bottom": 621.859375,
+        "left": 1092,
+        "right": 1396,
+        "gap": -45,
+        "iconGap": 0,
+        "anchorRight": 1396,
+        "open": true,
+        "modal": false,
+        "overflow": ""
+      },
+      "scrolled": {
+        "scroll": 1320,
+        "top": 89,
+        "bottom": 621.859375,
+        "left": 1092,
+        "right": 1396,
+        "gap": -45,
+        "iconGap": 0,
+        "anchorRight": 1396,
+        "open": true,
+        "modal": false,
+        "overflow": ""
+      },
+      "glass": {
+        "background": "color(srgb 1 1 1 / 0.68)",
+        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "radius": "28px",
+        "border": "0px",
+        "fieldRadius": "999px"
+      },
+      "resize": true,
+      "keyboardAndOutsideClose": true,
+      "touchScroll": false,
+      "routeAndViewCleanup": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "initial": {
+        "scroll": 900,
+        "top": 63.5,
+        "bottom": 596.359375,
+        "left": 70,
+        "right": 374,
+        "gap": -45,
+        "iconGap": 0,
+        "anchorRight": 374,
+        "open": true,
+        "modal": false,
+        "overflow": ""
+      },
+      "scrolled": {
+        "scroll": 1320,
+        "top": 63.5,
+        "bottom": 596.359375,
+        "left": 70,
+        "right": 374,
+        "gap": -45,
+        "iconGap": 0,
+        "anchorRight": 374,
+        "open": true,
+        "modal": false,
+        "overflow": ""
+      },
+      "glass": {
+        "background": "color(srgb 1 1 1 / 0.68)",
+        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "radius": "28px",
+        "border": "0px",
+        "fieldRadius": "999px"
+      },
+      "resize": true,
+      "keyboardAndOutsideClose": true,
+      "touchScroll": true,
+      "routeAndViewCleanup": true
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "initial": {
+        "scroll": 900,
+        "top": 63.5,
+        "bottom": 596.359375,
+        "left": 12,
+        "right": 308,
+        "gap": -45,
+        "iconGap": 0,
+        "anchorRight": 304,
+        "open": true,
+        "modal": false,
+        "overflow": ""
+      },
+      "scrolled": {
+        "scroll": 1320,
+        "top": 63.5,
+        "bottom": 596.359375,
+        "left": 12,
+        "right": 308,
+        "gap": -45,
+        "iconGap": 0,
+        "anchorRight": 304,
+        "open": true,
+        "modal": false,
+        "overflow": ""
+      },
+      "glass": {
+        "background": "color(srgb 1 1 1 / 0.68)",
+        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "radius": "28px",
+        "border": "0px",
+        "fieldRadius": "999px"
+      },
+      "resize": true,
+      "keyboardAndOutsideClose": true,
+      "touchScroll": true,
+      "routeAndViewCleanup": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "initial": {
+        "scroll": 900,
+        "top": 73.828125,
+        "bottom": 378,
+        "left": 513,
+        "right": 817,
+        "gap": -45,
+        "iconGap": 0,
+        "anchorRight": 817,
+        "open": true,
+        "modal": false,
+        "overflow": ""
+      },
+      "scrolled": {
+        "scroll": 1320,
+        "top": 73.828125,
+        "bottom": 378,
+        "left": 513,
+        "right": 817,
+        "gap": -45,
+        "iconGap": 0,
+        "anchorRight": 817,
+        "open": true,
+        "modal": false,
+        "overflow": ""
+      },
+      "glass": {
+        "background": "color(srgb 1 1 1 / 0.68)",
+        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "radius": "28px",
+        "border": "0px",
+        "fieldRadius": "999px"
+      },
+      "resize": true,
+      "keyboardAndOutsideClose": true,
+      "touchScroll": false,
+      "routeAndViewCleanup": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome demo with synthetic long lists, desktop wheel and emulated touch. No production writes or physical-device/Safari/Firefox verification."
+}
