@@ -1,0 +1,43 @@
+{
+  "testedAt": "2026-11-06T07:08:56.305Z",
+  "results": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "privateEntry": true,
+      "roundControls": true,
+      "projectSave": true,
+      "writerSelectionAndPreview": true,
+      "postPublication": true,
+      "peopleAndContactSave": true,
+      "logoutHidesEditing": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "privateEntry": true,
+      "roundControls": true,
+      "projectSave": true,
+      "writerSelectionAndPreview": true,
+      "postPublication": true,
+      "peopleAndContactSave": true,
+      "logoutHidesEditing": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "privateEntry": true,
+      "roundControls": true,
+      "projectSave": true,
+      "writerSelectionAndPreview": true,
+      "postPublication": true,
+      "peopleAndContactSave": true,
+      "logoutHidesEditing": true,
+      "noHorizontalOverflow": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome demo data and map fixtures. No real administrator login, production writes or physical mobile/Safari/Firefox testing."
+}
