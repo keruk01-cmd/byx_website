@@ -31,21 +31,21 @@ async function main(){
       await page.evaluate(()=>location.hash='#/contact');await page.waitForSelector('.contact');
       await page.waitForFunction(()=>document.querySelector('#top').dataset.tone==='light');
       await page.waitForFunction(()=>getComputedStyle(document.querySelector('#top')).color==='rgb(0, 0, 0)');
-      const light=await page.locator('#top').evaluate(el=>({color:getComputedStyle(el).color,background:getComputedStyle(el).backgroundColor}));
+      const light=await page.locator('#top').evaluate(el=>({color:getComputedStyle(el).color,background:getComputedStyle(el,'::before').backgroundColor}));
       assert.equal(light.color,'rgb(0, 0, 0)');
       await page.screenshot({path:path.join(out,'adaptive-header-light-'+width+'.png')});
       await page.evaluate(()=>location.hash='#/about');await page.waitForSelector('.x-cloud-section');
       await page.evaluate(()=>scrollTo(0,document.querySelector('.x-cloud-section').getBoundingClientRect().top+scrollY+100));
       await page.waitForFunction(()=>document.querySelector('#top').dataset.tone==='dark');
       await page.waitForFunction(()=>getComputedStyle(document.querySelector('#top')).color==='rgb(255, 255, 255)');
-      const dark=await page.locator('#top').evaluate(el=>({color:getComputedStyle(el).color,background:getComputedStyle(el).backgroundColor,blur:getComputedStyle(el).backdropFilter,rule:getComputedStyle(document.querySelector('#rule')).backgroundColor,pill:getComputedStyle(document.querySelector('#nav-pill')).backgroundColor,pillText:getComputedStyle(document.querySelector('#nav a.on')).color}));
-      assert.equal(dark.color,'rgb(255, 255, 255)','header '+width);assert.equal(dark.rule,dark.color,'slot rule '+width);assert.match(dark.pill,/0\.48|48%/,'translucent navigation pill '+width);if(width>880)assert.equal(dark.pillText,dark.color);assert.match(dark.blur,/22px/);
+      const dark=await page.locator('#top').evaluate(el=>({color:getComputedStyle(el).color,background:getComputedStyle(el,'::before').backgroundColor,blur:getComputedStyle(el,'::before').backdropFilter,slotBox:getComputedStyle(document.querySelector('#slotwrap')).backgroundColor,slotInk:getComputedStyle(document.querySelector('#slot')).color,pill:getComputedStyle(document.querySelector('#nav-pill')).backgroundColor,pillText:getComputedStyle(document.querySelector('#nav a.on')).color}));
+      assert.equal(dark.color,'rgb(255, 255, 255)','header '+width);assert.equal(dark.slotBox,'rgb(255, 255, 255)','slot box '+width);assert.equal(dark.slotInk,'rgb(0, 0, 0)','slot ink '+width);assert.match(dark.pill,/0\.28|28%/,'translucent navigation pill '+width);if(width>880)assert.equal(dark.pillText,dark.color);assert.match(dark.blur,/10px/);
       await page.screenshot({path:path.join(out,'adaptive-header-dark-'+width+'.png')});
       const cdp=await page.context().newCDPSession(page);
       await cdp.send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-transparency',value:'reduce'}]});
-      assert.equal(await page.locator('#top').evaluate(el=>getComputedStyle(el).backdropFilter),'none');
-      await page.waitForFunction(()=>getComputedStyle(document.querySelector('#top')).backgroundColor==='rgb(0, 0, 0)');
-      assert.equal(await page.locator('#top').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(0, 0, 0)');
+      assert.equal(await page.locator('#top').evaluate(el=>getComputedStyle(el,'::before').backdropFilter),'none');
+      await page.waitForFunction(()=>getComputedStyle(document.querySelector('#top'),'::before').backgroundColor==='rgb(0, 0, 0)');
+      assert.equal(await page.locator('#top').evaluate(el=>getComputedStyle(el,'::before').backgroundColor),'rgb(0, 0, 0)');
       await cdp.send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
       if(width<500){
         await page.locator('#burger').click();await page.waitForFunction(()=>document.querySelector('#top').dataset.tone==='light');

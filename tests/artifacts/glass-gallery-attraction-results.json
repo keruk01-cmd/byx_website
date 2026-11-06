@@ -1,0 +1,190 @@
+{
+  "testedAt": "2026-11-06T01:15:25.237Z",
+  "results": [
+    {
+      "convergence": {
+        "before": 16132.613726240153,
+        "after": 15056.416772057777,
+        "neutral": {
+          "energy": 2223997,
+          "extras": 0
+        },
+        "active": {
+          "energy": 15241734,
+          "extras": 15488
+        }
+      }
+    },
+    {
+      "nav": {
+        "duration": 320,
+        "filter": "url(\"#nav-refraction\") blur(0.8px) saturate(1.55)",
+        "background": "color(srgb 0 0 0 / 0.84)"
+      }
+    },
+    {
+      "width": 1440,
+      "controls": {
+        "styles": [
+          {
+            "radius": "999px",
+            "filter": "url(\"#nav-refraction\") blur(0.8px) saturate(1.55)",
+            "shadow": "color(srgb 1 1 1 / 0.86) 0px 1px 1px 0px inset, color(srgb 1 1 1 / 0.42) 1px 0px 2px 0px inset, color(srgb 0 0 0 / 0.16) 0px -1px 2px 0px inset, color(srgb 0 0 0 / 0.1) 0px 3px 10px 0px"
+          },
+          {
+            "radius": "999px",
+            "filter": "url(\"#nav-refraction\") blur(0.8px) saturate(1.55)",
+            "shadow": "color(srgb 1 1 1 / 0.86) 0px 1px 1px 0px inset, color(srgb 1 1 1 / 0.42) 1px 0px 2px 0px inset, color(srgb 0 0 0 / 0.16) 0px -1px 2px 0px inset, color(srgb 0 0 0 / 0.1) 0px 3px 10px 0px"
+          },
+          {
+            "radius": "50%",
+            "filter": "url(\"#nav-refraction\") blur(0.8px) saturate(1.55)",
+            "shadow": "color(srgb 1 1 1 / 0.86) 0px 1px 1px 0px inset, color(srgb 1 1 1 / 0.42) 1px 0px 2px 0px inset, color(srgb 0 0 0 / 0.16) 0px -1px 2px 0px inset, color(srgb 0 0 0 / 0.1) 0px 3px 10px 0px"
+          }
+        ],
+        "topCircle": true,
+        "gap": 14.4
+      },
+      "gallery": {
+        "images": 3,
+        "arrows": true,
+        "keyboard": true,
+        "dots": true,
+        "nativeScroll": true,
+        "touchSwipe": false,
+        "singleImage": true,
+        "resize": true,
+        "reducedMotion": true,
+        "lastWidth": 1440
+      },
+      "stages": {
+        "heights": [
+          1044,
+          1089,
+          1800
+        ],
+        "masks": [
+          "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(0, 0, 0) 90px, rgb(0, 0, 0) calc(100% - 2116px), rgba(0, 0, 0, 0) calc(100% - 2026px))",
+          "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(0, 0, 0) 90px, rgb(0, 0, 0) calc(100% - 5356px), rgba(0, 0, 0, 0) calc(100% - 5266px))",
+          "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(0, 0, 0) 90px, rgb(0, 0, 0) calc(100% - 9532px), rgba(0, 0, 0, 0) calc(100% - 9442px))"
+        ],
+        "viewport": 819
+      },
+      "viewportFade": {
+        "inset": 240,
+        "expected": 240.03125
+      },
+      "attractionAndReset": true
+    },
+    {
+      "width": 390,
+      "controls": {
+        "styles": [
+          {
+            "radius": "999px",
+            "filter": "url(\"#nav-refraction\") blur(0.8px) saturate(1.55)",
+            "shadow": "color(srgb 1 1 1 / 0.86) 0px 1px 1px 0px inset, color(srgb 1 1 1 / 0.42) 1px 0px 2px 0px inset, color(srgb 0 0 0 / 0.16) 0px -1px 2px 0px inset, color(srgb 0 0 0 / 0.1) 0px 3px 10px 0px"
+          },
+          {
+            "radius": "999px",
+            "filter": "url(\"#nav-refraction\") blur(0.8px) saturate(1.55)",
+            "shadow": "color(srgb 1 1 1 / 0.86) 0px 1px 1px 0px inset, color(srgb 1 1 1 / 0.42) 1px 0px 2px 0px inset, color(srgb 0 0 0 / 0.16) 0px -1px 2px 0px inset, color(srgb 0 0 0 / 0.1) 0px 3px 10px 0px"
+          },
+          {
+            "radius": "50%",
+            "filter": "url(\"#nav-refraction\") blur(0.8px) saturate(1.55)",
+            "shadow": "color(srgb 1 1 1 / 0.86) 0px 1px 1px 0px inset, color(srgb 1 1 1 / 0.42) 1px 0px 2px 0px inset, color(srgb 0 0 0 / 0.16) 0px -1px 2px 0px inset, color(srgb 0 0 0 / 0.1) 0px 3px 10px 0px"
+          }
+        ],
+        "topCircle": true,
+        "gap": 8
+      },
+      "gallery": {
+        "images": 3,
+        "arrows": true,
+        "keyboard": true,
+        "dots": true,
+        "nativeScroll": true,
+        "touchSwipe": true,
+        "singleImage": true,
+        "resize": true,
+        "reducedMotion": true,
+        "lastWidth": 390
+      },
+      "stages": {
+        "heights": [
+          1069.5001220703125,
+          1114.5,
+          1564.5
+        ],
+        "masks": [
+          "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(0, 0, 0) 90px, rgb(0, 0, 0) calc(100% - 1957.4px), rgba(0, 0, 0, 0) calc(100% - 1867.4px))",
+          "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(0, 0, 0) 90px, rgb(0, 0, 0) calc(100% - 5197.4px), rgba(0, 0, 0, 0) calc(100% - 5107.4px))",
+          "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(0, 0, 0) 90px, rgb(0, 0, 0) calc(100% - 9157.4px), rgba(0, 0, 0, 0) calc(100% - 9067.4px))"
+        ],
+        "viewport": 844
+      },
+      "viewportFade": {
+        "inset": 240.6,
+        "expected": 240.625
+      },
+      "attractionAndReset": true
+    },
+    {
+      "width": 320,
+      "controls": {
+        "styles": [
+          {
+            "radius": "999px",
+            "filter": "url(\"#nav-refraction\") blur(0.8px) saturate(1.55)",
+            "shadow": "color(srgb 1 1 1 / 0.86) 0px 1px 1px 0px inset, color(srgb 1 1 1 / 0.42) 1px 0px 2px 0px inset, color(srgb 0 0 0 / 0.16) 0px -1px 2px 0px inset, color(srgb 0 0 0 / 0.1) 0px 3px 10px 0px"
+          },
+          {
+            "radius": "999px",
+            "filter": "url(\"#nav-refraction\") blur(0.8px) saturate(1.55)",
+            "shadow": "color(srgb 1 1 1 / 0.86) 0px 1px 1px 0px inset, color(srgb 1 1 1 / 0.42) 1px 0px 2px 0px inset, color(srgb 0 0 0 / 0.16) 0px -1px 2px 0px inset, color(srgb 0 0 0 / 0.1) 0px 3px 10px 0px"
+          },
+          {
+            "radius": "50%",
+            "filter": "url(\"#nav-refraction\") blur(0.8px) saturate(1.55)",
+            "shadow": "color(srgb 1 1 1 / 0.86) 0px 1px 1px 0px inset, color(srgb 1 1 1 / 0.42) 1px 0px 2px 0px inset, color(srgb 0 0 0 / 0.16) 0px -1px 2px 0px inset, color(srgb 0 0 0 / 0.1) 0px 3px 10px 0px"
+          }
+        ],
+        "topCircle": true,
+        "gap": 8
+      },
+      "gallery": {
+        "images": 3,
+        "arrows": true,
+        "keyboard": true,
+        "dots": true,
+        "nativeScroll": true,
+        "touchSwipe": true,
+        "singleImage": true,
+        "resize": true,
+        "reducedMotion": true,
+        "lastWidth": 320
+      },
+      "stages": {
+        "heights": [
+          1069.5001220703125,
+          1114.5,
+          1564.5
+        ],
+        "masks": [
+          "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(0, 0, 0) 90px, rgb(0, 0, 0) calc(100% - 1984px), rgba(0, 0, 0, 0) calc(100% - 1894px))",
+          "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(0, 0, 0) 90px, rgb(0, 0, 0) calc(100% - 5224px), rgba(0, 0, 0, 0) calc(100% - 5134px))",
+          "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(0, 0, 0) 90px, rgb(0, 0, 0) calc(100% - 9184px), rgba(0, 0, 0, 0) calc(100% - 9094px))"
+        ],
+        "viewport": 844
+      },
+      "viewportFade": {
+        "inset": 240,
+        "expected": 240.03125
+      },
+      "attractionAndReset": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome demo. No production writes, physical-device or Safari/Firefox checks."
+}

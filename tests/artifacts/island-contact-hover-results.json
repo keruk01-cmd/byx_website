@@ -1,0 +1,238 @@
+{
+  "testedAt": "2026-11-06T06:28:34.886Z",
+  "results": [
+    {
+      "contactHover": {
+        "before": "rgb(255, 255, 255)",
+        "entering": "rgb(136, 136, 136)",
+        "after": "rgb(0, 0, 0)",
+        "leaving": "rgb(98, 98, 98)"
+      }
+    },
+    {
+      "rowHover": {
+        "before": "rgb(0, 0, 0)",
+        "entering": "rgb(97, 97, 97)",
+        "after": "rgb(255, 255, 255)",
+        "leaving": "rgb(158, 158, 158)"
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "layout": {
+        "height": 900,
+        "viewport": 900,
+        "button": {
+          "left": 44,
+          "bottom": 823
+        },
+        "contact": {
+          "left": 0,
+          "bottom": 850
+        },
+        "footer": {
+          "top": 850,
+          "bottom": 900
+        },
+        "visit": false,
+        "padding": 44
+      },
+      "contact": {
+        "clip": "inset(211.766px 240.227px round 29.3906px)",
+        "width": 179.54600000000002,
+        "height": 58.468000000000046,
+        "hidden": "hidden"
+      },
+      "about": {
+        "clip": "inset(211.766px 240.227px round 29.3906px)",
+        "width": 179.54600000000002,
+        "height": 58.468000000000046,
+        "hidden": "hidden"
+      },
+      "filter": {
+        "clip": "inset(3px 0px 487.859px 259px round 21px)",
+        "width": 45,
+        "height": 42.14100000000002,
+        "hidden": "hidden"
+      },
+      "sortInFilter": true,
+      "reducedMotion": true,
+      "routeCleanup": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "layout": {
+        "height": 768,
+        "viewport": 768,
+        "button": {
+          "left": 32.765625,
+          "bottom": 694.96875
+        },
+        "contact": {
+          "left": 0,
+          "bottom": 718
+        },
+        "footer": {
+          "top": 718,
+          "bottom": 768
+        },
+        "visit": false,
+        "padding": 32.768
+      },
+      "contact": {
+        "clip": "inset(209.555px 252.328px round 26.8438px)",
+        "width": 155.34400000000002,
+        "height": 53.889999999999986,
+        "hidden": "hidden"
+      },
+      "about": {
+        "clip": "inset(209.555px 252.328px round 26.8438px)",
+        "width": 155.34400000000002,
+        "height": 53.889999999999986,
+        "hidden": "hidden"
+      },
+      "filter": {
+        "clip": "inset(3px 0px 487.859px 259px round 21px)",
+        "width": 45,
+        "height": 42.14100000000002,
+        "hidden": "hidden"
+      },
+      "sortInFilter": true,
+      "reducedMotion": true,
+      "routeCleanup": true
+    },
+    {
+      "width": 1440,
+      "height": 650,
+      "layout": {
+        "height": 650,
+        "viewport": 650,
+        "button": {
+          "left": 44,
+          "bottom": 580.5
+        },
+        "contact": {
+          "left": 0,
+          "bottom": 600
+        },
+        "footer": {
+          "top": 600,
+          "bottom": 650
+        },
+        "visit": false,
+        "padding": 44
+      },
+      "contact": {
+        "clip": "inset(174.008px 240.227px round 29.3906px)",
+        "width": 179.54600000000002,
+        "height": 58.98399999999998,
+        "hidden": "hidden"
+      },
+      "about": {
+        "clip": "inset(174.008px 240.227px round 29.3906px)",
+        "width": 179.54600000000002,
+        "height": 58.98399999999998,
+        "hidden": "hidden"
+      },
+      "filter": {
+        "clip": "inset(3px 0px 487.859px 259px round 21px)",
+        "width": 45,
+        "height": 42.14100000000002,
+        "hidden": "hidden"
+      },
+      "sortInFilter": true,
+      "reducedMotion": true,
+      "routeCleanup": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "layout": {
+        "height": 844,
+        "viewport": 844,
+        "button": {
+          "left": 16,
+          "bottom": 336.0625
+        },
+        "contact": {
+          "left": 0,
+          "bottom": 623.9375
+        },
+        "footer": {
+          "top": 772,
+          "bottom": 844
+        },
+        "visit": false,
+        "padding": 16
+      },
+      "contact": {
+        "clip": "inset(256.047px 101.328px round 26.8438px)",
+        "width": 155.34400000000002,
+        "height": 53.90599999999995,
+        "hidden": "hidden"
+      },
+      "about": {
+        "clip": "inset(256.047px 101.328px round 26.8438px)",
+        "width": 155.34400000000002,
+        "height": 53.90599999999995,
+        "hidden": "hidden"
+      },
+      "filter": {
+        "clip": "inset(3px 0px 487.859px 259px round 21px)",
+        "width": 45,
+        "height": 42.14100000000002,
+        "hidden": "hidden"
+      },
+      "sortInFilter": true,
+      "reducedMotion": true,
+      "routeCleanup": true
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "layout": {
+        "height": 713,
+        "viewport": 640,
+        "button": {
+          "left": 16,
+          "bottom": 374.8125
+        },
+        "contact": {
+          "left": 0,
+          "bottom": 623.3125
+        },
+        "footer": {
+          "top": 623.3125,
+          "bottom": 713.3125
+        },
+        "visit": false,
+        "padding": 16
+      },
+      "contact": {
+        "clip": "inset(233.547px 66.3281px round 26.8438px)",
+        "width": 155.3438,
+        "height": 53.90599999999998,
+        "hidden": "hidden"
+      },
+      "about": {
+        "clip": "inset(233.547px 66.3281px round 26.8438px)",
+        "width": 155.3438,
+        "height": 53.90599999999998,
+        "hidden": "hidden"
+      },
+      "filter": {
+        "clip": "inset(3px 4px 487.859px 247px round 21px)",
+        "width": 45,
+        "height": 42.14100000000002,
+        "hidden": "hidden"
+      },
+      "sortInFilter": true,
+      "reducedMotion": true,
+      "routeCleanup": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome. Demo content and map fixture; no production writes, real devices or Safari/Firefox checks."
+}

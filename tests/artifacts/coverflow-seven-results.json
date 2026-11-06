@@ -1,0 +1,243 @@
+{
+  "testedAt": "2026-11-06T06:27:30.195Z",
+  "results": [
+    {
+      "width": 1440,
+      "height": 900,
+      "layout": {
+        "bands": {
+          "0": 78,
+          "1": 140,
+          "2": 227,
+          "3": 490,
+          "4": 227,
+          "5": 140,
+          "6": 79
+        },
+        "main": 489.59375,
+        "photos": [
+          {
+            "index": 0,
+            "left": 20.675674438476562,
+            "right": 98.13214111328125,
+            "top": 159.94586181640625,
+            "bottom": 387.2415771484375,
+            "turn": 65.90769230769232,
+            "opacity": "1"
+          },
+          {
+            "index": 1,
+            "left": 102.1744384765625,
+            "right": 241.27804565429688,
+            "top": 131.32864379882812,
+            "bottom": 415.85888671875,
+            "turn": 53.87692307692308,
+            "opacity": "1"
+          },
+          {
+            "index": 2,
+            "left": 244.5950927734375,
+            "right": 470.7708435058594,
+            "top": 101.45510864257812,
+            "bottom": 445.732421875,
+            "turn": 38,
+            "opacity": "1"
+          },
+          {
+            "index": 3,
+            "left": 474.96875,
+            "right": 964.5625,
+            "top": 0,
+            "bottom": 547.1875,
+            "turn": 0,
+            "opacity": "1"
+          },
+          {
+            "index": 4,
+            "left": 968.7603759765625,
+            "right": 1194.9361572265625,
+            "top": 101.45510864257812,
+            "bottom": 445.732421875,
+            "turn": 38,
+            "opacity": "1"
+          },
+          {
+            "index": 5,
+            "left": 1198.253173828125,
+            "right": 1337.3568115234375,
+            "top": 131.32864379882812,
+            "bottom": 415.85888671875,
+            "turn": 53.87692307692308,
+            "opacity": "1"
+          },
+          {
+            "index": 6,
+            "left": 1341.399169921875,
+            "right": 1418.8555908203125,
+            "top": 159.94586181640625,
+            "bottom": 387.2415771484375,
+            "turn": 65.90769230769232,
+            "opacity": "1"
+          }
+        ],
+        "width": 1440,
+        "height": 547.1875
+      },
+      "finiteKeyboardBounds": true,
+      "finiteSwipeBounds": true,
+      "noClones": true,
+      "resize": true,
+      "reducedMotion": true,
+      "allSourceCounts": true
+    },
+    {
+      "width": 390,
+      "height": 900,
+      "layout": {
+        "bands": {
+          "2": 24,
+          "3": 320,
+          "4": 25
+        },
+        "main": 319.28717041015625,
+        "photos": [
+          {
+            "index": 2,
+            "left": 9.624969482421875,
+            "right": 32.860076904296875,
+            "top": 210.6055908203125,
+            "bottom": 289.3944091796875,
+            "turn": 62,
+            "opacity": "1"
+          },
+          {
+            "index": 3,
+            "left": 35.04124450683594,
+            "right": 354.3284149169922,
+            "top": 0.3302764892578125,
+            "bottom": 499.66969299316406,
+            "turn": 0.1167608286252354,
+            "opacity": "1"
+          },
+          {
+            "index": 4,
+            "left": 356.276123046875,
+            "right": 380.1712341308594,
+            "top": 209.78118896484375,
+            "bottom": 290.21881103515625,
+            "turn": 61.76647834274953,
+            "opacity": "1"
+          }
+        ],
+        "width": 390,
+        "height": 500
+      },
+      "finiteKeyboardBounds": true,
+      "finiteSwipeBounds": true,
+      "noClones": true,
+      "resize": true,
+      "reducedMotion": true,
+      "allSourceCounts": true
+    },
+    {
+      "width": 320,
+      "height": 900,
+      "layout": {
+        "bands": {
+          "2": 20,
+          "3": 263,
+          "4": 20
+        },
+        "main": 262.390625,
+        "photos": [
+          {
+            "index": 2,
+            "left": 8.1651611328125,
+            "right": 27.193435668945312,
+            "top": 210.8070068359375,
+            "bottom": 289.1929931640625,
+            "turn": 62,
+            "opacity": "1"
+          },
+          {
+            "index": 3,
+            "left": 28.578125,
+            "right": 290.96875,
+            "top": 0,
+            "bottom": 500,
+            "turn": 0,
+            "opacity": "1"
+          },
+          {
+            "index": 4,
+            "left": 292.35345458984375,
+            "right": 311.3817138671875,
+            "top": 210.8070068359375,
+            "bottom": 289.1929931640625,
+            "turn": 62,
+            "opacity": "1"
+          }
+        ],
+        "width": 320,
+        "height": 500
+      },
+      "finiteKeyboardBounds": true,
+      "finiteSwipeBounds": true,
+      "noClones": true,
+      "resize": true,
+      "reducedMotion": true,
+      "allSourceCounts": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "layout": {
+        "bands": {
+          "2": 54,
+          "3": 693,
+          "4": 55
+        },
+        "main": 692.078125,
+        "photos": [
+          {
+            "index": 2,
+            "left": 19.801513671875,
+            "right": 73.27545166015625,
+            "top": 107.7095947265625,
+            "bottom": 152.2904052734375,
+            "turn": 62,
+            "opacity": "1"
+          },
+          {
+            "index": 3,
+            "left": 75.671875,
+            "right": 767.75,
+            "top": 0,
+            "bottom": 260,
+            "turn": 0,
+            "opacity": "1"
+          },
+          {
+            "index": 4,
+            "left": 770.1464233398438,
+            "right": 823.620361328125,
+            "top": 107.7095947265625,
+            "bottom": 152.2904052734375,
+            "turn": 62,
+            "opacity": "1"
+          }
+        ],
+        "width": 844,
+        "height": 260
+      },
+      "finiteKeyboardBounds": true,
+      "finiteSwipeBounds": true,
+      "noClones": true,
+      "resize": true,
+      "reducedMotion": true,
+      "allSourceCounts": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Chrome with numbered demo imagery and emulated touch. No production writes, real devices or Safari/Firefox verification."
+}

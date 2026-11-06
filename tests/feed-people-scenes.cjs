@@ -74,7 +74,7 @@ async function main(){
     }
     assert.notEqual(samples[0],samples[2]);
     await page.evaluate(g=>scrollTo(0,g.top-g.head+g.travel*.2),geometry);await page.waitForTimeout(100);assert(+(await page.locator(canvas).getAttribute('data-progress'))>.95,'Reverse scroll must preserve assembled state');
-    assert.equal(await page.locator(section).evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(0, 0, 0)');
+    assert.equal(await page.locator(section).evaluate(el=>getComputedStyle(el).backgroundColor),'rgba(0, 0, 0, 0)');
    }
    await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>document.querySelector('#byx-function').dataset.progress==='1');
    await page.evaluate(()=>location.hash='#/feed');await page.waitForSelector('.feed-card');

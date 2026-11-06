@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-05T09:22:46.152Z",
+  "testedAt": "2026-11-06T05:56:40.138Z",
   "results": [
     {
       "width": 1440,
@@ -16,7 +16,7 @@
       "independentOpacity": true,
       "particleOnly": true,
       "volumetricDepth": true,
-      "clickDragRotation": true,
+      "gentleDragWithoutClick": true,
       "noCanvasFrame": true,
       "experienceGlowSpeed": true,
       "movingStrands": 96,
@@ -41,7 +41,7 @@
       "independentOpacity": true,
       "particleOnly": true,
       "volumetricDepth": true,
-      "clickDragRotation": true,
+      "gentleDragWithoutClick": true,
       "noCanvasFrame": true,
       "experienceGlowSpeed": true,
       "movingStrands": 96,
@@ -66,7 +66,7 @@
       "independentOpacity": true,
       "particleOnly": true,
       "volumetricDepth": true,
-      "clickDragRotation": true,
+      "gentleDragWithoutClick": true,
       "noCanvasFrame": true,
       "experienceGlowSpeed": true,
       "movingStrands": 96,

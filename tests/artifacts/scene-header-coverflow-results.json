@@ -1,0 +1,124 @@
+{
+  "testedAt": "2026-11-06T03:14:35.337Z",
+  "results": [
+    {
+      "headerCanvasDifference": 99.31592857142857
+    },
+    {
+      "width": 1440,
+      "scenes": [
+        {
+          "id": "x-cloud",
+          "canvasMask": "none",
+          "surfaceMask": "none",
+          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "edgeTop": 80.65966796875,
+          "edgeBottom": 899.65966796875,
+          "head": 81,
+          "pointer": "none",
+          "canvasTop": -59.34033203125
+        },
+        {
+          "id": "byx-journey",
+          "canvasMask": "none",
+          "surfaceMask": "none",
+          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "edgeTop": 80.96875,
+          "edgeBottom": 899.96875,
+          "head": 81,
+          "pointer": "none",
+          "canvasTop": -84.03125
+        },
+        {
+          "id": "byx-function",
+          "canvasMask": "none",
+          "surfaceMask": "none",
+          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "edgeTop": 81,
+          "edgeBottom": 900,
+          "head": 81,
+          "pointer": "none",
+          "canvasTop": -409.5
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scenes": [
+        {
+          "id": "x-cloud",
+          "canvasMask": "none",
+          "surfaceMask": "none",
+          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "edgeTop": 55.95625000000001,
+          "edgeBottom": 899.95625,
+          "head": 56,
+          "pointer": "none",
+          "canvasTop": -85.34375
+        },
+        {
+          "id": "byx-journey",
+          "canvasMask": "none",
+          "surfaceMask": "none",
+          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "edgeTop": 55.974999999999994,
+          "edgeBottom": 899.975,
+          "head": 56,
+          "pointer": "none",
+          "canvasTop": -108.625
+        },
+        {
+          "id": "byx-function",
+          "canvasMask": "none",
+          "surfaceMask": "none",
+          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "edgeTop": 56,
+          "edgeBottom": 900,
+          "head": 56,
+          "pointer": "none",
+          "canvasTop": -304.5
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scenes": [
+        {
+          "id": "x-cloud",
+          "canvasMask": "none",
+          "surfaceMask": "none",
+          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "edgeTop": 56.04804687500001,
+          "edgeBottom": 900.048046875,
+          "head": 56,
+          "pointer": "none",
+          "canvasTop": -85.751953125
+        },
+        {
+          "id": "byx-journey",
+          "canvasMask": "none",
+          "surfaceMask": "none",
+          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "edgeTop": 55.96875,
+          "edgeBottom": 899.96875,
+          "head": 56,
+          "pointer": "none",
+          "canvasTop": -109.03125
+        },
+        {
+          "id": "byx-function",
+          "canvasMask": "none",
+          "surfaceMask": "none",
+          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "edgeTop": 56,
+          "edgeBottom": 900,
+          "head": 56,
+          "pointer": "none",
+          "canvasTop": -304.5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome; synthetic canvas/legacy-layout fixtures. No production writes or physical-device/Safari/Firefox verification."
+}

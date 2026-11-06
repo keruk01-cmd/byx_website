@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-05T09:21:29.245Z",
+  "testedAt": "2026-11-06T04:12:11.412Z",
   "results": [
     {
       "width": 1440,
@@ -7,17 +7,18 @@
       "segmentedView": true,
       "compactPopover": {
         "width": 304,
-        "height": 416.671875,
+        "height": 457.265625,
         "right": 1396,
         "anchorRight": 1396,
-        "gap": 10,
+        "gap": -45,
         "modal": false,
-        "overflow": ""
+        "overflow": "",
+        "iconGap": 0
       },
       "sharedInquiryDemo": true,
       "dreamCopy": true,
       "tallerGalaxy": {
-        "height": 1584,
+        "height": 1800,
         "viewport": 819
       },
       "edgeFade": {
@@ -31,17 +32,18 @@
       "segmentedView": true,
       "compactPopover": {
         "width": 304,
-        "height": 416.671875,
+        "height": 457.265625,
         "right": 374,
         "anchorRight": 374,
-        "gap": 10,
+        "gap": -45,
         "modal": false,
-        "overflow": ""
+        "overflow": "",
+        "iconGap": 0
       },
       "sharedInquiryDemo": true,
       "dreamCopy": true,
       "tallerGalaxy": {
-        "height": 1339.5,
+        "height": 1564.5,
         "viewport": 844
       },
       "edgeFade": {
@@ -55,17 +57,18 @@
       "segmentedView": true,
       "compactPopover": {
         "width": 296,
-        "height": 416.671875,
+        "height": 457.265625,
         "right": 308,
         "anchorRight": 304,
-        "gap": 10,
+        "gap": -45,
         "modal": false,
-        "overflow": ""
+        "overflow": "",
+        "iconGap": 0
       },
       "sharedInquiryDemo": true,
       "dreamCopy": true,
       "tallerGalaxy": {
-        "height": 1339.5,
+        "height": 1564.5,
         "viewport": 844
       },
       "edgeFade": {

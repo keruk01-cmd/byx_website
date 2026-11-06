@@ -1,0 +1,143 @@
+{
+  "testedAt": "2026-11-06T04:16:46.278Z",
+  "results": [
+    {
+      "width": 1440,
+      "geometry": {
+        "client": 547,
+        "scroll": 547,
+        "overflow": "hidden"
+      },
+      "legacyOverflow": {
+        "page": 100,
+        "inner": 0
+      },
+      "wheel": [
+        {
+          "page": 100,
+          "inner": 0,
+          "max": 411
+        },
+        {
+          "page": 200,
+          "inner": 0,
+          "max": 411
+        },
+        {
+          "page": 300,
+          "inner": 0,
+          "max": 411
+        },
+        {
+          "page": 400,
+          "inner": 0,
+          "max": 411
+        }
+      ],
+      "footer": {
+        "center": 720,
+        "rows": [
+          720
+        ]
+      },
+      "fog": {
+        "min": 0,
+        "max": 17,
+        "scrollDelta": -300,
+        "reducedMotion": true
+      },
+      "transparentCloud": 0.9805089931885909
+    },
+    {
+      "width": 390,
+      "geometry": {
+        "client": 220,
+        "scroll": 220,
+        "overflow": "hidden"
+      },
+      "legacyOverflow": null,
+      "wheel": [
+        {
+          "page": 100,
+          "inner": 0,
+          "max": 230
+        },
+        {
+          "page": 200,
+          "inner": 0,
+          "max": 230
+        },
+        {
+          "page": 230,
+          "inner": 0,
+          "max": 230
+        },
+        {
+          "page": 230,
+          "inner": 0,
+          "max": 230
+        }
+      ],
+      "footer": {
+        "center": 195,
+        "rows": [
+          194.9921875
+        ]
+      },
+      "fog": {
+        "min": 0,
+        "max": 17,
+        "scrollDelta": -300,
+        "reducedMotion": true
+      },
+      "transparentCloud": 0.97411933860532
+    },
+    {
+      "width": 320,
+      "geometry": {
+        "client": 220,
+        "scroll": 220,
+        "overflow": "hidden"
+      },
+      "legacyOverflow": null,
+      "wheel": [
+        {
+          "page": 100,
+          "inner": 0,
+          "max": 309
+        },
+        {
+          "page": 200,
+          "inner": 0,
+          "max": 309
+        },
+        {
+          "page": 300,
+          "inner": 0,
+          "max": 309
+        },
+        {
+          "page": 309,
+          "inner": 0,
+          "max": 309
+        }
+      ],
+      "footer": {
+        "center": 160,
+        "rows": [
+          159.9921875,
+          160
+        ]
+      },
+      "fog": {
+        "min": 0,
+        "max": 17,
+        "scrollDelta": -300,
+        "reducedMotion": true
+      },
+      "transparentCloud": 0.9692610981308412
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome desktop wheel and CSS rendering. No production writes, physical-device or Safari/Firefox verification."
+}

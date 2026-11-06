@@ -1,0 +1,662 @@
+{
+  "testedAt": "2026-11-06T06:20:37.537Z",
+  "results": [
+    {
+      "width": 1440,
+      "height": 900,
+      "initial": {
+        "box": {
+          "left": 120,
+          "right": 1320,
+          "top": 232.1875,
+          "width": 1200,
+          "height": 250,
+          "cx": 720,
+          "cy": 490.484375
+        },
+        "word": {
+          "left": 129.515625,
+          "right": 1310.484375
+        },
+        "by": {
+          "text": "BY",
+          "left": 120,
+          "right": 346.046875,
+          "top": 499.453125,
+          "cy": 624.1171875
+        },
+        "x": {
+          "text": "X",
+          "left": 1201.625,
+          "right": 1320,
+          "top": 499.453125,
+          "cy": 624.1171875
+        },
+        "signatureTop": 499.453125,
+        "boxBottom": 482.1875,
+        "centerX": 720,
+        "centerY": 490.5,
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)",
+        "glyphTransforms": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "overflow": false
+      },
+      "settled": {
+        "box": {
+          "left": 120,
+          "right": 1320,
+          "top": 232.1875,
+          "width": 1200,
+          "height": 250,
+          "cx": 720,
+          "cy": 490.484375
+        },
+        "word": {
+          "left": 129.515625,
+          "right": 1310.484375
+        },
+        "by": {
+          "text": "BY",
+          "left": 120,
+          "right": 346.046875,
+          "top": 499.453125,
+          "cy": 624.1171875
+        },
+        "x": {
+          "text": "X",
+          "left": 1201.625,
+          "right": 1320,
+          "top": 499.453125,
+          "cy": 624.1171875
+        },
+        "signatureTop": 499.453125,
+        "boxBottom": 482.1875,
+        "centerX": 720,
+        "centerY": 490.5,
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)",
+        "glyphTransforms": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "overflow": false
+      },
+      "logo": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "radius": "0px",
+        "padding": 5.13,
+        "box": {
+          "left": 44,
+          "right": 280.25,
+          "cx": 162.125,
+          "width": 236.25,
+          "height": 49.578125
+        },
+        "word": {
+          "left": 62.93597412109375,
+          "right": 275.125,
+          "cx": 169.03048706054688
+        },
+        "rule": false
+      },
+      "changingWords": 9,
+      "home": true,
+      "spinExtension": true,
+      "landing": true,
+      "reducedMotion": true,
+      "resize": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "initial": {
+        "box": {
+          "left": 16,
+          "right": 374,
+          "top": 342.734375,
+          "width": 358,
+          "height": 74.578125,
+          "cx": 195,
+          "cy": 421.9921875
+        },
+        "word": {
+          "left": 19.9140625,
+          "right": 370.0859375
+        },
+        "by": {
+          "text": "BY",
+          "left": 16,
+          "right": 83.15625,
+          "top": 427.3125,
+          "cy": 464.28125
+        },
+        "x": {
+          "text": "X",
+          "left": 338.828125,
+          "right": 374,
+          "top": 427.3125,
+          "cy": 464.28125
+        },
+        "signatureTop": 427.3125,
+        "boxBottom": 417.3125,
+        "centerX": 195,
+        "centerY": 422,
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)",
+        "glyphTransforms": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "overflow": false
+      },
+      "settled": {
+        "box": {
+          "left": 16,
+          "right": 374,
+          "top": 342.734375,
+          "width": 358,
+          "height": 74.578125,
+          "cx": 195,
+          "cy": 421.9921875
+        },
+        "word": {
+          "left": 19.9140625,
+          "right": 370.0859375
+        },
+        "by": {
+          "text": "BY",
+          "left": 16,
+          "right": 83.15625,
+          "top": 427.3125,
+          "cy": 464.28125
+        },
+        "x": {
+          "text": "X",
+          "left": 338.828125,
+          "right": 374,
+          "top": 427.3125,
+          "cy": 464.28125
+        },
+        "signatureTop": 427.3125,
+        "boxBottom": 417.3125,
+        "centerX": 195,
+        "centerY": 422,
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)",
+        "glyphTransforms": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "overflow": false
+      },
+      "logo": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "radius": "0px",
+        "padding": 2.97,
+        "box": {
+          "left": 16,
+          "right": 133,
+          "cx": 74.5,
+          "width": 117,
+          "height": 28.703125
+        },
+        "word": {
+          "left": 25.625900268554688,
+          "right": 130.03125,
+          "cx": 77.82857513427734
+        },
+        "rule": false
+      },
+      "changingWords": 9,
+      "home": true,
+      "spinExtension": true,
+      "landing": true,
+      "reducedMotion": true,
+      "resize": true
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "initial": {
+        "box": {
+          "left": 16,
+          "right": 304,
+          "top": 255.375,
+          "width": 288,
+          "height": 60,
+          "cx": 160,
+          "cy": 319.9921875
+        },
+        "word": {
+          "left": 19.734375,
+          "right": 300.265625
+        },
+        "by": {
+          "text": "BY",
+          "left": 16,
+          "right": 69.78125,
+          "top": 325.375,
+          "cy": 354.9921875
+        },
+        "x": {
+          "text": "X",
+          "left": 275.828125,
+          "right": 304,
+          "top": 325.375,
+          "cy": 354.9921875
+        },
+        "signatureTop": 325.375,
+        "boxBottom": 315.375,
+        "centerX": 160,
+        "centerY": 320,
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)",
+        "glyphTransforms": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "overflow": false
+      },
+      "settled": {
+        "box": {
+          "left": 16,
+          "right": 304,
+          "top": 255.375,
+          "width": 288,
+          "height": 60,
+          "cx": 160,
+          "cy": 319.9921875
+        },
+        "word": {
+          "left": 19.734375,
+          "right": 300.265625
+        },
+        "by": {
+          "text": "BY",
+          "left": 16,
+          "right": 69.78125,
+          "top": 325.375,
+          "cy": 354.9921875
+        },
+        "x": {
+          "text": "X",
+          "left": 275.828125,
+          "right": 304,
+          "top": 325.375,
+          "cy": 354.9921875
+        },
+        "signatureTop": 325.375,
+        "boxBottom": 315.375,
+        "centerX": 160,
+        "centerY": 320,
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)",
+        "glyphTransforms": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "overflow": false
+      },
+      "logo": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "radius": "0px",
+        "padding": 2.97,
+        "box": {
+          "left": 16,
+          "right": 133,
+          "cx": 74.5,
+          "width": 117,
+          "height": 28.703125
+        },
+        "word": {
+          "left": 25.625900268554688,
+          "right": 130.03125,
+          "cx": 77.82857513427734
+        },
+        "rule": false
+      },
+      "changingWords": 9,
+      "home": true,
+      "spinExtension": true,
+      "landing": true,
+      "reducedMotion": true,
+      "resize": true
+    },
+    {
+      "width": 2560,
+      "height": 1080,
+      "initial": {
+        "box": {
+          "left": 680,
+          "right": 1880,
+          "top": 321.15625,
+          "width": 1200,
+          "height": 250,
+          "cx": 1280,
+          "cy": 580.5
+        },
+        "word": {
+          "left": 691,
+          "right": 1869
+        },
+        "by": {
+          "text": "BY",
+          "left": 680,
+          "right": 904.59375,
+          "top": 591.15625,
+          "cy": 715.5
+        },
+        "x": {
+          "text": "X",
+          "left": 1762.359375,
+          "right": 1880,
+          "top": 591.15625,
+          "cy": 715.5
+        },
+        "signatureTop": 591.15625,
+        "boxBottom": 571.15625,
+        "centerX": 1280,
+        "centerY": 580.5,
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)",
+        "glyphTransforms": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "overflow": false
+      },
+      "settled": {
+        "box": {
+          "left": 680,
+          "right": 1880,
+          "top": 321.15625,
+          "width": 1200,
+          "height": 250,
+          "cx": 1280,
+          "cy": 580.5
+        },
+        "word": {
+          "left": 691,
+          "right": 1869
+        },
+        "by": {
+          "text": "BY",
+          "left": 680,
+          "right": 904.59375,
+          "top": 591.15625,
+          "cy": 715.5
+        },
+        "x": {
+          "text": "X",
+          "left": 1762.359375,
+          "right": 1880,
+          "top": 591.15625,
+          "cy": 715.5
+        },
+        "signatureTop": 591.15625,
+        "boxBottom": 571.15625,
+        "centerX": 1280,
+        "centerY": 580.5,
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)",
+        "glyphTransforms": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "overflow": false
+      },
+      "logo": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "radius": "0px",
+        "padding": 5.13,
+        "box": {
+          "left": 44,
+          "right": 280.25,
+          "cx": 162.125,
+          "width": 236.25,
+          "height": 49.578125
+        },
+        "word": {
+          "left": 62.93597412109375,
+          "right": 275.125,
+          "cx": 169.03048706054688
+        },
+        "rule": false
+      },
+      "changingWords": 9,
+      "home": true,
+      "spinExtension": true,
+      "landing": true,
+      "reducedMotion": true,
+      "resize": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "initial": {
+        "box": {
+          "left": 266,
+          "right": 578,
+          "top": 125.515625,
+          "width": 312,
+          "height": 65,
+          "cx": 422,
+          "cy": 194.96875
+        },
+        "word": {
+          "left": 270.96875,
+          "right": 573.03125
+        },
+        "by": {
+          "text": "BY",
+          "left": 266,
+          "right": 322.328125,
+          "top": 200.640625,
+          "cy": 232.53125
+        },
+        "x": {
+          "text": "X",
+          "left": 548.453125,
+          "right": 578,
+          "top": 200.640625,
+          "cy": 232.53125
+        },
+        "signatureTop": 200.640625,
+        "boxBottom": 190.515625,
+        "centerX": 422,
+        "centerY": 195,
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)",
+        "glyphTransforms": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "overflow": false
+      },
+      "settled": {
+        "box": {
+          "left": 266,
+          "right": 578,
+          "top": 125.515625,
+          "width": 312,
+          "height": 65,
+          "cx": 422,
+          "cy": 194.96875
+        },
+        "word": {
+          "left": 270.96875,
+          "right": 573.03125
+        },
+        "by": {
+          "text": "BY",
+          "left": 266,
+          "right": 322.328125,
+          "top": 200.640625,
+          "cy": 232.53125
+        },
+        "x": {
+          "text": "X",
+          "left": 548.453125,
+          "right": 578,
+          "top": 200.640625,
+          "cy": 232.53125
+        },
+        "signatureTop": 200.640625,
+        "boxBottom": 190.515625,
+        "centerX": 422,
+        "centerY": 195,
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)",
+        "glyphTransforms": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "overflow": false
+      },
+      "logo": {
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "radius": "0px",
+        "padding": 3.9879,
+        "box": {
+          "left": 27,
+          "right": 172.578125,
+          "cx": 99.7890625,
+          "width": 145.578125,
+          "height": 38.546875
+        },
+        "word": {
+          "left": 38.852935791015625,
+          "right": 168.59375,
+          "cx": 103.72334289550781
+        },
+        "rule": false
+      },
+      "changingWords": 9,
+      "home": true,
+      "spinExtension": true,
+      "landing": true,
+      "reducedMotion": true,
+      "resize": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome with demo data; no production writes, real-device or Safari/Firefox verification."
+}

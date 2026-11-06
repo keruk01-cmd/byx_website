@@ -1,0 +1,763 @@
+{
+  "testedAt": "2026-11-06T05:19:10.984Z",
+  "results": [
+    {
+      "scatterDisplacement": 146.04480546571446,
+      "finalGalaxyUnchanged": true
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "alignments": [
+        {
+          "active": false,
+          "time": 0,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": false,
+          "time": 160,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.742031, 0.524986, -0.577564, 0.816346, 0, 3.91993)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.372811, 0, 0, 1, 0, 0)",
+              "opacity": "0.216014"
+            },
+            {
+              "transform": "matrix(2.4391, -1.72566, 0.577564, 0.816346, 0, -3.91993)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": false,
+          "time": 400,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.629817, 0.621539, -0.702414, 0.711769, 0, 4.95789)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.206738, 0, 0, 1, 0, 0)",
+              "opacity": "0.00842288"
+            },
+            {
+              "transform": "matrix(2.50128, -2.46841, 0.702414, 0.711769, 0, -4.95789)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 0,
+          "closeColor": "rgb(255, 255, 255)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 160,
+          "closeColor": "rgb(120, 120, 120)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.742031, 0.524986, -0.577564, 0.816346, 0, 3.91993)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.372811, 0, 0, 1, 0, 0)",
+              "opacity": "0.216014"
+            },
+            {
+              "transform": "matrix(2.4391, -1.72566, 0.577564, 0.816346, 0, -3.91993)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 400,
+          "closeColor": "rgb(8, 8, 8)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.629817, 0.621539, -0.702414, 0.711769, 0, 4.95789)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.206738, 0, 0, 1, 0, 0)",
+              "opacity": "0.00842288"
+            },
+            {
+              "transform": "matrix(2.50128, -2.46841, 0.702414, 0.711769, 0, -4.95789)",
+              "opacity": "1"
+            }
+          ]
+        }
+      ],
+      "fullPhotoBounds": [
+        {
+          "virtual": 0,
+          "left": 20.675674438476562,
+          "right": 98.13214111328125,
+          "top": 159.94586181640625,
+          "bottom": 387.2415771484375,
+          "width": 1440,
+          "height": 547.1875,
+          "turn": 65.90769230769232,
+          "scale": 0.38556324181189905
+        },
+        {
+          "virtual": 1,
+          "left": 102.1744384765625,
+          "right": 241.27804565429688,
+          "top": 131.32864379882812,
+          "bottom": 415.85888671875,
+          "width": 1440,
+          "height": 547.1875,
+          "turn": 53.87692307692308,
+          "scale": 0.47894884784405045
+        },
+        {
+          "virtual": 2,
+          "left": 244.5950927734375,
+          "right": 470.7708435058594,
+          "top": 101.45510864257812,
+          "bottom": 445.732421875,
+          "width": 1440,
+          "height": 547.1875,
+          "turn": 38,
+          "scale": 0.583099365234375
+        },
+        {
+          "virtual": 3,
+          "left": 474.96875,
+          "right": 964.5625,
+          "top": 0,
+          "bottom": 547.1875,
+          "width": 1440,
+          "height": 547.1875,
+          "turn": 0,
+          "scale": 1
+        },
+        {
+          "virtual": 4,
+          "left": 968.7603759765625,
+          "right": 1194.9361572265625,
+          "top": 101.45510864257812,
+          "bottom": 445.732421875,
+          "width": 1440,
+          "height": 547.1875,
+          "turn": 38,
+          "scale": 0.583099365234375
+        },
+        {
+          "virtual": 5,
+          "left": 1198.253173828125,
+          "right": 1337.3568115234375,
+          "top": 131.32864379882812,
+          "bottom": 415.85888671875,
+          "width": 1440,
+          "height": 547.1875,
+          "turn": 53.87692307692308,
+          "scale": 0.47894884784405045
+        },
+        {
+          "virtual": 6,
+          "left": 1341.399169921875,
+          "right": 1418.8555908203125,
+          "top": 159.94586181640625,
+          "bottom": 387.2415771484375,
+          "width": 1440,
+          "height": 547.1875,
+          "turn": 65.90769230769232,
+          "scale": 0.38556324181189905
+        }
+      ],
+      "clickRemoved": true,
+      "rotationDelta": 0.257,
+      "pitch": 0.041,
+      "reducedMotion": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "alignments": [
+        {
+          "active": false,
+          "time": 0,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": false,
+          "time": 160,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.742031, 0.524986, -0.577564, 0.816346, 0, 3.91993)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.372811, 0, 0, 1, 0, 0)",
+              "opacity": "0.216014"
+            },
+            {
+              "transform": "matrix(2.4391, -1.72566, 0.577564, 0.816346, 0, -3.91993)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": false,
+          "time": 400,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.629817, 0.621539, -0.702414, 0.711769, 0, 4.95789)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.206738, 0, 0, 1, 0, 0)",
+              "opacity": "0.00842288"
+            },
+            {
+              "transform": "matrix(2.50128, -2.46841, 0.702414, 0.711769, 0, -4.95789)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 0,
+          "closeColor": "rgb(255, 255, 255)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 160,
+          "closeColor": "rgb(120, 120, 120)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.742031, 0.524986, -0.577564, 0.816346, 0, 3.91993)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.372811, 0, 0, 1, 0, 0)",
+              "opacity": "0.216014"
+            },
+            {
+              "transform": "matrix(2.4391, -1.72566, 0.577564, 0.816346, 0, -3.91993)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 400,
+          "closeColor": "rgb(8, 8, 8)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.629817, 0.621539, -0.702414, 0.711769, 0, 4.95789)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.206738, 0, 0, 1, 0, 0)",
+              "opacity": "0.00842288"
+            },
+            {
+              "transform": "matrix(2.50128, -2.46841, 0.702414, 0.711769, 0, -4.95789)",
+              "opacity": "1"
+            }
+          ]
+        }
+      ],
+      "fullPhotoBounds": [
+        {
+          "virtual": 2,
+          "left": 9.624969482421875,
+          "right": 32.860076904296875,
+          "top": 206.189453125,
+          "bottom": 283.326171875,
+          "width": 390,
+          "height": 489.515625,
+          "turn": 62,
+          "scale": 0.15470947265624999
+        },
+        {
+          "virtual": 3,
+          "left": 35.04124450683594,
+          "right": 354.3284149169922,
+          "top": 0.3233489990234375,
+          "bottom": 489.19224548339844,
+          "width": 390,
+          "height": 489.515625,
+          "turn": 0.1167608286252354,
+          "scale": 0.9984081157677143
+        },
+        {
+          "virtual": 4,
+          "left": 356.276123046875,
+          "right": 380.1712341308594,
+          "top": 205.38232421875,
+          "bottom": 284.1332702636719,
+          "width": 390,
+          "height": 489.515625,
+          "turn": 61.76647834274953,
+          "scale": 0.1578932411208216
+        }
+      ],
+      "clickRemoved": true,
+      "rotationDelta": 0.266,
+      "pitch": 0.043,
+      "reducedMotion": true
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "alignments": [
+        {
+          "active": false,
+          "time": 0,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": false,
+          "time": 160,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.742031, 0.524986, -0.577564, 0.816346, 0, 3.91993)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.372811, 0, 0, 1, 0, 0)",
+              "opacity": "0.216014"
+            },
+            {
+              "transform": "matrix(2.4391, -1.72566, 0.577564, 0.816346, 0, -3.91993)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": false,
+          "time": 400,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.629817, 0.621539, -0.702414, 0.711769, 0, 4.95789)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.206738, 0, 0, 1, 0, 0)",
+              "opacity": "0.00842288"
+            },
+            {
+              "transform": "matrix(2.50128, -2.46841, 0.702414, 0.711769, 0, -4.95789)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 0,
+          "closeColor": "rgb(255, 255, 255)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 160,
+          "closeColor": "rgb(120, 120, 120)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.742031, 0.524986, -0.577564, 0.816346, 0, 3.91993)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.372811, 0, 0, 1, 0, 0)",
+              "opacity": "0.216014"
+            },
+            {
+              "transform": "matrix(2.4391, -1.72566, 0.577564, 0.816346, 0, -3.91993)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 400,
+          "closeColor": "rgb(8, 8, 8)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.629817, 0.621539, -0.702414, 0.711769, 0, 4.95789)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.206738, 0, 0, 1, 0, 0)",
+              "opacity": "0.00842288"
+            },
+            {
+              "transform": "matrix(2.50128, -2.46841, 0.702414, 0.711769, 0, -4.95789)",
+              "opacity": "1"
+            }
+          ]
+        }
+      ],
+      "fullPhotoBounds": [
+        {
+          "virtual": 2,
+          "left": 8.1651611328125,
+          "right": 27.193435668945312,
+          "top": 156.49786376953125,
+          "bottom": 214.68963623046875,
+          "width": 320,
+          "height": 371.1875,
+          "turn": 62,
+          "scale": 0.15443481445312496
+        },
+        {
+          "virtual": 3,
+          "left": 28.578125,
+          "right": 290.96875,
+          "top": 0,
+          "bottom": 371.1875,
+          "width": 320,
+          "height": 371.1875,
+          "turn": 0,
+          "scale": 1
+        },
+        {
+          "virtual": 4,
+          "left": 292.35345458984375,
+          "right": 311.3817138671875,
+          "top": 156.49786376953125,
+          "bottom": 214.68963623046875,
+          "width": 320,
+          "height": 371.1875,
+          "turn": 62,
+          "scale": 0.15443481445312496
+        }
+      ],
+      "clickRemoved": true,
+      "rotationDelta": 0.264,
+      "pitch": 0.042,
+      "reducedMotion": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "alignments": [
+        {
+          "active": false,
+          "time": 0,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": false,
+          "time": 160,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.742031, 0.524986, -0.577564, 0.816346, 0, 3.91993)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.372811, 0, 0, 1, 0, 0)",
+              "opacity": "0.216014"
+            },
+            {
+              "transform": "matrix(2.4391, -1.72566, 0.577564, 0.816346, 0, -3.91993)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": false,
+          "time": 400,
+          "closeColor": "rgb(0, 0, 0)",
+          "sourceColor": "rgb(0, 0, 0)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.629817, 0.621539, -0.702414, 0.711769, 0, 4.95789)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.206738, 0, 0, 1, 0, 0)",
+              "opacity": "0.00842288"
+            },
+            {
+              "transform": "matrix(2.50128, -2.46841, 0.702414, 0.711769, 0, -4.95789)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 0,
+          "closeColor": "rgb(255, 255, 255)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 160,
+          "closeColor": "rgb(120, 120, 120)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.742031, 0.524986, -0.577564, 0.816346, 0, 3.91993)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.372811, 0, 0, 1, 0, 0)",
+              "opacity": "0.216014"
+            },
+            {
+              "transform": "matrix(2.4391, -1.72566, 0.577564, 0.816346, 0, -3.91993)",
+              "opacity": "1"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "time": 400,
+          "closeColor": "rgb(8, 8, 8)",
+          "sourceColor": "rgb(255, 255, 255)",
+          "dx": 0,
+          "dy": 0,
+          "paths": [
+            {
+              "transform": "matrix(0.629817, 0.621539, -0.702414, 0.711769, 0, 4.95789)",
+              "opacity": "1"
+            },
+            {
+              "transform": "matrix(0.206738, 0, 0, 1, 0, 0)",
+              "opacity": "0.00842288"
+            },
+            {
+              "transform": "matrix(2.50128, -2.46841, 0.702414, 0.711769, 0, -4.95789)",
+              "opacity": "1"
+            }
+          ]
+        }
+      ],
+      "fullPhotoBounds": [
+        {
+          "virtual": 2,
+          "left": 19.801513671875,
+          "right": 73.27545166015625,
+          "top": 107.7095947265625,
+          "bottom": 152.2904052734375,
+          "width": 844,
+          "height": 260,
+          "turn": 62,
+          "scale": 0.16429229736328127
+        },
+        {
+          "virtual": 3,
+          "left": 75.671875,
+          "right": 767.75,
+          "top": 0,
+          "bottom": 260,
+          "width": 844,
+          "height": 260,
+          "turn": 0,
+          "scale": 1
+        },
+        {
+          "virtual": 4,
+          "left": 770.1464233398438,
+          "right": 823.620361328125,
+          "top": 107.7095947265625,
+          "bottom": 152.2904052734375,
+          "width": 844,
+          "height": 260,
+          "turn": 62,
+          "scale": 0.16429229736328127
+        }
+      ],
+      "clickRemoved": true,
+      "rotationDelta": 0.262,
+      "pitch": 0.042,
+      "reducedMotion": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome, deterministic demo imagery and canvas proofs; no production writes or physical-device/Safari/Firefox verification."
+}

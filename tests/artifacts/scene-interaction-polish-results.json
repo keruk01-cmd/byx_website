@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-05T09:21:36.933Z",
+  "testedAt": "2026-11-06T05:56:56.689Z",
   "results": [
     {
       "width": 1440,
@@ -7,10 +7,10 @@
       "rotationBounds": {
         "minX": 21.365219865306614,
         "maxX": 1418.6347600931829,
-        "minY": 279.6620349786537,
-        "maxY": 1466.8746798422196,
+        "minY": 387.6620349786537,
+        "maxY": 1574.8746798422196,
         "width": 1440,
-        "height": 1584
+        "height": 1800
       },
       "localDensityAndTilt": true,
       "removedArrowEscape": true,
@@ -26,10 +26,10 @@
       "rotationBounds": {
         "minX": 7.799992619752736,
         "maxX": 382.19999086878147,
-        "minY": 532.4686925955075,
-        "maxY": 850.5909449054134,
+        "minY": 644.9684484548825,
+        "maxY": 963.0907007647884,
         "width": 390,
-        "height": 1339.50048828125
+        "height": 1564.5
       },
       "localDensityAndTilt": true,
       "removedArrowEscape": true,
@@ -45,10 +45,10 @@
       "rotationBounds": {
         "minX": 6.399994512948595,
         "maxX": 313.6000203660125,
-        "minY": 557.1087074828818,
-        "maxY": 818.1321171812858,
+        "minY": 669.6087074828818,
+        "maxY": 930.6321171812858,
         "width": 320,
-        "height": 1339.5
+        "height": 1564.5
       },
       "localDensityAndTilt": true,
       "removedArrowEscape": true,
@@ -64,10 +64,10 @@
       "rotationBounds": {
         "minX": 140.16829845894995,
         "maxX": 716.3471181503132,
-        "minY": 258.03305131953465,
-        "maxY": 735.7618500123699,
+        "minY": 321.33761674922215,
+        "maxY": 799.0664154420574,
         "width": 844,
-        "height": 928.390869140625
+        "height": 1055
       },
       "localDensityAndTilt": true,
       "removedArrowEscape": true,
@@ -84,8 +84,8 @@
       "extras": 0
     },
     "active": {
-      "energy": 152133,
-      "extras": 788
+      "energy": 236138,
+      "extras": 1328
     }
   },
   "compositorNav": {
@@ -97,8 +97,8 @@
       "transform",
       "computedOffset"
     ],
-    "blur": "url(\"#nav-refraction\") blur(1.4px) saturate(1.45)",
-    "background": "color(srgb 0 0 0 / 0.48)"
+    "blur": "url(\"#nav-refraction\") blur(0.25px) saturate(1.3)",
+    "background": "color(srgb 0 0 0 / 0.28)"
   },
   "errors": [],
   "limitations": "Isolated Chrome demo; no production writes or physical-device checks."
