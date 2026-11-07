@@ -1,20 +1,20 @@
 {
-  "testedAt": "2026-11-07T04:33:59.446Z",
+  "testedAt": "2026-11-07T05:15:30.975Z",
   "results": [
     {
       "contactHover": {
         "before": "rgb(255, 255, 255)",
-        "entering": "rgb(152, 152, 152)",
+        "entering": "rgb(142, 142, 142)",
         "after": "rgb(0, 0, 0)",
-        "leaving": "rgb(112, 112, 112)"
+        "leaving": "rgb(94, 94, 94)"
       }
     },
     {
       "rowHover": {
         "before": "rgb(0, 0, 0)",
-        "entering": "rgb(102, 102, 102)",
+        "entering": "rgb(130, 130, 130)",
         "after": "rgb(255, 255, 255)",
-        "leaving": "rgb(152, 152, 152)"
+        "leaving": "rgb(82, 82, 82)"
       }
     },
     {
@@ -51,7 +51,7 @@
         "hidden": "hidden"
       },
       "filter": {
-        "clip": "inset(3px 0px 252.5px 235px round 21px)",
+        "clip": "inset(3px 0px 208.5px 235px round 21px)",
         "width": 45,
         "height": 42.5,
         "hidden": "hidden"
@@ -94,7 +94,7 @@
         "hidden": "hidden"
       },
       "filter": {
-        "clip": "inset(3px 0px 252.5px 235px round 21px)",
+        "clip": "inset(3px 0px 208.5px 235px round 21px)",
         "width": 45,
         "height": 42.5,
         "hidden": "hidden"
@@ -137,7 +137,7 @@
         "hidden": "hidden"
       },
       "filter": {
-        "clip": "inset(3px 0px 252.5px 235px round 21px)",
+        "clip": "inset(3px 0px 208.5px 235px round 21px)",
         "width": 45,
         "height": 42.5,
         "hidden": "hidden"
@@ -180,7 +180,7 @@
         "hidden": "hidden"
       },
       "filter": {
-        "clip": "inset(3px 0px 252.5px 235px round 21px)",
+        "clip": "inset(3px 0px 208.5px 235px round 21px)",
         "width": 45,
         "height": 42.5,
         "hidden": "hidden"
@@ -223,7 +223,7 @@
         "hidden": "hidden"
       },
       "filter": {
-        "clip": "inset(3px 0px 252.5px 235px round 21px)",
+        "clip": "inset(3px 0px 208.5px 235px round 21px)",
         "width": 45,
         "height": 42.5,
         "hidden": "hidden"

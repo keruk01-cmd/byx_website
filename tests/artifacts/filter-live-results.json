@@ -1,0 +1,179 @@
+{
+  "testedAt": "2026-11-07T05:16:02.386Z",
+  "results": [
+    {
+      "width": 1440,
+      "height": 900,
+      "visual": {
+        "background": "color(srgb 1 1 1 / 0.68)",
+        "backdrop": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "height": 254
+      },
+      "resetAndCloseAligned": true,
+      "dropdowns": [
+        {
+          "key": "type",
+          "inputBottom": 192.109375,
+          "listTop": 197.109375
+        },
+        {
+          "key": "status",
+          "inputBottom": 260.609375,
+          "listTop": 265.609375
+        },
+        {
+          "key": "year",
+          "inputBottom": 260.609375,
+          "listTop": 265.609375
+        },
+        {
+          "key": "sort",
+          "inputBottom": 329.109375,
+          "listTop": 334.109375
+        },
+        {
+          "key": "dir",
+          "inputBottom": 329.109375,
+          "listTop": 334.109375
+        }
+      ],
+      "immediateGridAndIndex": true,
+      "stableFilterDom": true,
+      "resultHeightCollapse": true,
+      "resetImmediate": true,
+      "keyboardFocus": true,
+      "routeCleanup": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "visual": {
+        "background": "color(srgb 1 1 1 / 0.88)",
+        "backdrop": "blur(18px) saturate(1.45)",
+        "height": 254
+      },
+      "resetAndCloseAligned": true,
+      "dropdowns": [
+        {
+          "key": "type",
+          "inputBottom": 166,
+          "listTop": 171
+        },
+        {
+          "key": "status",
+          "inputBottom": 234.5,
+          "listTop": 239.5
+        },
+        {
+          "key": "year",
+          "inputBottom": 234.5,
+          "listTop": 239.5
+        },
+        {
+          "key": "sort",
+          "inputBottom": 303,
+          "listTop": 308
+        },
+        {
+          "key": "dir",
+          "inputBottom": 303,
+          "listTop": 308
+        }
+      ],
+      "immediateGridAndIndex": true,
+      "stableFilterDom": true,
+      "resultHeightCollapse": true,
+      "resetImmediate": true,
+      "keyboardFocus": true,
+      "routeCleanup": true
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "visual": {
+        "background": "color(srgb 1 1 1 / 0.88)",
+        "backdrop": "blur(18px) saturate(1.45)",
+        "height": 254
+      },
+      "resetAndCloseAligned": true,
+      "dropdowns": [
+        {
+          "key": "type",
+          "inputBottom": 166,
+          "listTop": 171
+        },
+        {
+          "key": "status",
+          "inputBottom": 234.5,
+          "listTop": 239.5
+        },
+        {
+          "key": "year",
+          "inputBottom": 234.5,
+          "listTop": 239.5
+        },
+        {
+          "key": "sort",
+          "inputBottom": 303,
+          "listTop": 308
+        },
+        {
+          "key": "dir",
+          "inputBottom": 303,
+          "listTop": 308
+        }
+      ],
+      "immediateGridAndIndex": true,
+      "stableFilterDom": true,
+      "resultHeightCollapse": true,
+      "resetImmediate": true,
+      "keyboardFocus": true,
+      "routeCleanup": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "visual": {
+        "background": "color(srgb 1 1 1 / 0.88)",
+        "backdrop": "blur(18px) saturate(1.45)",
+        "height": 254
+      },
+      "resetAndCloseAligned": true,
+      "dropdowns": [
+        {
+          "key": "type",
+          "inputBottom": 176.328125,
+          "listTop": 181.328125
+        },
+        {
+          "key": "status",
+          "inputBottom": 244.828125,
+          "listTop": 249.828125
+        },
+        {
+          "key": "year",
+          "inputBottom": 244.828125,
+          "listTop": 249.828125
+        },
+        {
+          "key": "sort",
+          "inputBottom": 313.328125,
+          "listTop": 318.328125
+        },
+        {
+          "key": "dir",
+          "inputBottom": 313.328125,
+          "listTop": 318.328125
+        }
+      ],
+      "immediateGridAndIndex": true,
+      "stableFilterDom": true,
+      "resultHeightCollapse": true,
+      "resetImmediate": true,
+      "keyboardFocus": true,
+      "routeCleanup": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome and emulated touch; physical iPhone Chrome/Safari compositing and screen reader behavior remain unverified. No production writes."
+}

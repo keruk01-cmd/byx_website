@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-07T04:32:11.267Z",
+  "testedAt": "2026-11-07T05:12:52.695Z",
   "results": [
     {
       "width": 1440,
@@ -7,7 +7,7 @@
       "initial": {
         "scroll": 900,
         "top": 89,
-        "bottom": 386.5,
+        "bottom": 342.5,
         "left": 1116,
         "right": 1396,
         "gap": -45,
@@ -48,7 +48,7 @@
       "initial": {
         "scroll": 900,
         "top": 63.5,
-        "bottom": 361,
+        "bottom": 317,
         "left": 94,
         "right": 374,
         "gap": -45,
@@ -72,8 +72,8 @@
         "overflow": ""
       },
       "glass": {
-        "background": "color(srgb 1 1 1 / 0.68)",
-        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "background": "color(srgb 1 1 1 / 0.88)",
+        "filter": "blur(18px) saturate(1.45)",
         "radius": "28px",
         "border": "0px",
         "fieldRadius": "999px"
@@ -89,7 +89,7 @@
       "initial": {
         "scroll": 900,
         "top": 63.5,
-        "bottom": 361,
+        "bottom": 317,
         "left": 24,
         "right": 304,
         "gap": -45,
@@ -113,8 +113,8 @@
         "overflow": ""
       },
       "glass": {
-        "background": "color(srgb 1 1 1 / 0.68)",
-        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "background": "color(srgb 1 1 1 / 0.88)",
+        "filter": "blur(18px) saturate(1.45)",
         "radius": "28px",
         "border": "0px",
         "fieldRadius": "999px"
@@ -130,7 +130,7 @@
       "initial": {
         "scroll": 900,
         "top": 73.828125,
-        "bottom": 371.328125,
+        "bottom": 327.328125,
         "left": 537,
         "right": 817,
         "gap": -45,
@@ -154,8 +154,8 @@
         "overflow": ""
       },
       "glass": {
-        "background": "color(srgb 1 1 1 / 0.68)",
-        "filter": "url(\"#panel-refraction\") blur(18px) saturate(1.45)",
+        "background": "color(srgb 1 1 1 / 0.88)",
+        "filter": "blur(18px) saturate(1.45)",
         "radius": "28px",
         "border": "0px",
         "fieldRadius": "999px"
