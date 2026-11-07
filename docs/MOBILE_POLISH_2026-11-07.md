@@ -1,5 +1,7 @@
 # 2026-11-07 모바일 조작과 WORKS 필터
 
+전체 인수인계와 다음 작업 시작 순서는 [최신 작업 마무리](SITE_UPDATES_2026-11-07.md)를 먼저 읽습니다. 이 문서는 세부 구현과 초기→후속 변경 이력을 보관합니다.
+
 상태: 운영 반영 완료. 사용자 후속 요청으로 Preview 확인 범위를 운영 배포까지 확대해 [PR #20](https://github.com/keruk01-cmd/byx_website/pull/20)을 main `6d7a266`에 병합했습니다. 검증한 실행 소스는 `1fbc884`이며 기존 계정/서버/DB 정책은 보존합니다. 계정 관리 기준은 [11월 6일 인수인계](SITE_UPDATES_2026-11-06.md)를 따릅니다.
 
 ## 운영 배포 — 2026-11-07
@@ -16,16 +18,16 @@
 - TYPE/STATUS/YEAR/SORT BY/ORDER를 선택하면 즉시 목록에 반영합니다. APPLY 버튼은 제거하고 필터창은 계속 엽니다. 전체 페이지나 필터 DOM을 재렌더하지 않고 결과 영역·적용 개수만 바꿔 포커스·위치를 보존합니다. GRID의 추가 로딩과 INDEX의 정렬/행 이동을 다시 연결합니다. 결과 축소로 문서 스크롤이 조정돼도 필터가 자동으로 닫히지 않도록 처리합니다.
 - RESET은 왼쪽 상단으로 옮기고 오른쪽 X와 높이/중심을 맞췄습니다. 초기화도 즉시 반영하며 선택값은 닫았다 열어도 유지합니다. 기본 필터 높이는 약 254px입니다. 이전 첫 구현의 적용/초기화 하단 버튼과 미적용 값 폐기 규칙은 이번 사용자 요청으로 갱신합니다.
 - `filter-live.cjs`: 1440/390/320px·844×390의 배경/블러, RESET/X 정렬, 모든 드롭다운의 하단 배치와 화면 내 위치, GRID/INDEX 즉시 적용, 결과 축소·동일 필터 DOM/키보드 포커스, 즉시 초기화·행 이동·라우트 정리를 검증했습니다. [결과](../tests/artifacts/filter-live-results.json). 새 캡처는 `live-filter-*`입니다.
-- `works-filter.cjs`, `works-filter-position.cjs`, `mobile-polish.cjs`, `mobile-experience.cjs`, `island-contact-hover.cjs`도 현재 즉시 적용 사양으로 검증했습니다. `site-regression.cjs`의 5개 화면 폭 × 10개 라우트/CMS를 포함해 이번 7개 검증을 모두 통과했습니다. 운영 쓰기·계정/DB 정책 변경은 수행하지 않았습니다. 같은 미리보기 브랜치를 갱신하며 운영 main은 유지합니다.
+- `works-filter.cjs`, `works-filter-position.cjs`, `mobile-polish.cjs`, `mobile-experience.cjs`, `island-contact-hover.cjs`도 현재 즉시 적용 사양으로 검증했습니다. `site-regression.cjs`의 5개 화면 폭 × 10개 라우트/CMS를 포함해 최종 7개 검증을 모두 통과했습니다. 이후 사용자 요청에 따라 운영 main에 반영했으며 배포 확인은 상단 기록을 따릅니다. 운영 콘텐츠 쓰기·계정/DB 정책 변경은 수행하지 않았습니다.
 
 ## 모바일 확인 후 후속 수정 — 현재 기준
 
 - 이전 `b1884d7`은 남은 글자를 매 프레임 한 칸씩 순환시켜 I가 규칙적으로 이동했습니다. 현재는 매 프레임 Fisher–Yates로 독립적으로 섞습니다. 같은 글자 구성과 I 개수·전체 폭·글자 크기·흰 박스·BY/X 고정은 유지합니다.
-- X 점군의 터치 입력은 손을 뗄 때 10px 이내·500ms 미만의 짧은 탭만 허용합니다. 스크롤 이동·취소·길게 누르기는 점군을 밀지 않습니다. 터치 힘은 기존 마우스의 22%, 반응 범위는 62%, 반응 시간은 110ms이며 변위 한도와 원위치 복귀 시간을 줄였습니다. PC 마우스 반응은 `b1884d7`과 같습니다.
+- X 점군의 터치 입력은 손을 뗄 때 10px 이내·500ms 미만의 짧은 탭만 허용합니다. 스크롤 이동·취소·길게 누르기는 점군을 밀지 않습니다. 터치 힘은 기존 마우스의 22%, 반응 범위는 62%, 탭 입력 활성 시간은 110ms이며 변위 한도와 원위치 복귀 시간을 줄였습니다. PC 마우스 반응은 `b1884d7`과 같습니다.
 - 기울기 센서 기능을 제거했습니다. 권한 요청, 자동 센서 연결, 방향 이벤트 리스너와 세 장면의 센서 수신을 모두 제거합니다. 반복 방문·화면 방향 변경·본문 탭에서도 센서 권한을 요청하지 않습니다. 일반 스크롤/자동 애니메이션·PC 포인터 반응은 유지합니다. 아래 첫 구현의 센서 설명과 실기기 센서 확인 과제는 이번 사용자 요청으로 종료합니다.
 - `mobile-polish.cjs`: 필터/포인터/키보드 회귀, 무작위 재배열이 단순 순환이 아님, I 개수·전체 폭 고정, 390/932px의 센서 요청/연결 0회를 통과했습니다. [최신 결과](../tests/artifacts/mobile-polish-results.json).
 - `about-touch-random.cjs`: 1440/390/320px에서 PC 반응이 `b1884d7`과 동일하고 터치 탭은 약하며 스와이프/취소는 변위 0임을 확인했습니다. 모션 감소의 동일 좌표 비교에서 터치 변위는 마우스의 약 17%이고, 일반 애니메이션의 탭 반응도 축소한 변위 범위 안에 있습니다. 실기기 수치로 해석하지 않습니다. [결과](../tests/artifacts/about-touch-random-results.json).
-- 기존 모바일 메뉴/CTA·제목 전체 폭/BY/X 고정과 5개 화면 폭 × 10개 라우트/CMS도 다시 검증해 통과했습니다. 실제 iPhone Chrome/Safari의 탭 체감은 사용자 확인이 필요하며 운영 main은 변경하지 않습니다. 같은 작업 브랜치로 Preview를 갱신합니다.
+- 기존 모바일 메뉴/CTA·제목 전체 폭/BY/X 고정과 5개 화면 폭 × 10개 라우트/CMS도 다시 검증해 통과했습니다. 初期 Preview 확인 뒤 사용자 요청으로 운영 배포까지 완료했습니다. 실제 iPhone Chrome/Safari의 최종 탭 체감은 사용자 확인이 필요합니다.
 
 ## 첫 구현 기록 — 이전 센서 동작은 위 후속 수정으로 갱신
 
@@ -39,11 +41,11 @@
 
 ## 검증
 
-운영 연결값을 메모리에서 제거한 격리 사본과 기존 외부 Playwright 설치를 사용합니다. 제품 의존성·빌드 단계는 추가하지 않습니다.
+아래는 구현·배포 단계의 실제 결과이며 문서 마무리에서 다시 실행한 검증이 아닙니다. 운영 연결값을 메모리에서 제거한 격리 사본과 기존 외부 Playwright 설치를 사용했고 제품 의존성·빌드 단계는 추가하지 않았습니다.
 
-- `mobile-polish.cjs`: 1440/390/320px 필터 크기·실제 선택/적용·초기화·영문/대문자·둥근 목록·키보드·포인터 테두리·바깥 휠/터치 스와이프·문서 스크롤·3초 타이머/재진입, People/Dream 양쪽 문의창을 검사합니다. 390/932px에서 touchend 권한 예외→click 재시도, 세 장면의 모의 센서 반응, I 위치 변화와 동일 글자 구성/폭/크기, 모션 감소를 검사합니다. [결과](../tests/artifacts/mobile-polish-results.json).
+- `mobile-polish.cjs`: 1440/390/320px 필터 크기·즉시 적용/초기화·영문/대문자·둥근 목록·키보드·포인터 테두리·바깥 휠/터치 스와이프·문서 스크롤·3초 타이머/재진입, People/Dream 양쪽 문의창을 확인했습니다. 390/932px에서 센서 요청/연결 0회, 단순 순환이 아닌 무작위 제목, 동일 I 개수/글자 구성/폭/크기와 모션 감소를 확인했습니다. [결과](../tests/artifacts/mobile-polish-results.json).
 - `site-regression.cjs`: 2560/1920/1440/390/320px × 10개 라우트, 데모 CMS·본문 호환·이미지/업로드·정렬/추가 로딩·데이터 폴백을 통과했습니다. [결과](../tests/artifacts/results.json).
-- `mobile-experience.cjs`: 기존 모바일 메뉴, 권한 거절/암묵적 권한, 메뉴/모달 일시정지·이탈 정리, 모션 감소·CTA를 통과했습니다. [결과](../tests/artifacts/mobile-experience-results.json).
+- `mobile-experience.cjs`: 기존 모바일 메뉴, 센서 요청/연결 0회, 모션 감소·CTA·라우트 정리를 통과했습니다. 초기 권한 거절/센서 동작 검사는 센서 제거 후 현재의 0회 검사로 갱신했습니다. [결과](../tests/artifacts/mobile-experience-results.json).
 - `title-spread-stable-cta.cjs`: 1440/390/320/844px의 제목 박스/전체 폭/크기/BY/X 고정, Dream 호버 기하·문의창, 슬롯 반전과 기존 은하 확산을 통과했습니다. [결과](../tests/artifacts/title-spread-stable-cta-results.json).
 - `scene-header-coverflow.cjs`: 1440/390/320px의 투명한 장면 감쇠와 실제 캔버스가 유리 헤더에 비치는 픽셀 차이를 통과했습니다. [결과](../tests/artifacts/scene-header-coverflow-results.json).
 - `works-filter-position.cjs`·`works-filter.cjs`: 스크롤 위치 보존·아이콘 고정·바깥 스크롤 닫힘·짧은 화면·리사이즈·라우트 정리, 필터/정렬·초기화·빈 결과·이스케이프를 통과했습니다. [위치 결과](../tests/artifacts/works-filter-position-results.json), [기능 결과](../tests/artifacts/works-filter-results.json).
