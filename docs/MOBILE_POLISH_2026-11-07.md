@@ -1,6 +1,13 @@
 # 2026-11-07 모바일 조작과 WORKS 필터
 
-상태: 구현·격리 Chrome 검증 완료. 2026-11-07 사용자 요청으로 작업 브랜치 `design/byx-brand-identitycodex`에 커밋·푸시하고 모바일 확인용 Vercel Preview를 확인합니다. 운영 main 병합·Production 배포는 이번 push 범위에 포함하지 않습니다. 기존 운영과 계정 관리는 [11월 6일 인수인계](SITE_UPDATES_2026-11-06.md)를 따릅니다.
+상태: 운영 반영 완료. 사용자 후속 요청으로 Preview 확인 범위를 운영 배포까지 확대해 [PR #20](https://github.com/keruk01-cmd/byx_website/pull/20)을 main `6d7a266`에 병합했습니다. 검증한 실행 소스는 `1fbc884`이며 기존 계정/서버/DB 정책은 보존합니다. 계정 관리 기준은 [11월 6일 인수인계](SITE_UPDATES_2026-11-06.md)를 따릅니다.
+
+## 운영 배포 — 2026-11-07
+
+- [운영 WORKS](https://byx-website.vercel.app/#/), [운영 ABOUT](https://byx-website.vercel.app/#/about), [관리자](https://byx-website.vercel.app/admin).
+- GitHub의 병합 결과 HTML blob이 검증한 `1fbc884`와 동일함을 확인한 후 병합했습니다. [Vercel 운영 배포](https://vercel.com/keruk01-cmds-projects/byx-website/GyybgBWEpVRGjGABp2PfDaDmcfMi)가 성공했습니다.
+- 2026-11-07 14:30 KST에 `/`, `/index.html`, `/admin`, `/admin/`, `/guidelines`, `/guidelines/buttons`의 HTTP 200과 최신 HTML 해시 일치를 확인했습니다. 브랜드 가이드 API도 기존 26개 문서/접근 모드를 유지합니다. [실제 운영 검증](../tests/artifacts/deployment-results.json).
+- 실제 관리자 로그인/저장/업로드·운영 콘텐츠 쓰기·계정/DB 정책 변경은 수행하지 않았습니다. 아래 Preview 전용 범위 기록은 이번 운영 배포 요청으로 갱신합니다. 배포 확인 문서는 기존 방식대로 작업 브랜치에 보관합니다.
 
 ## 필터 후속 — 현재 기준
 
@@ -45,6 +52,6 @@
 
 ## 남은 확인
 
-실제 iPhone Chrome의 탭 체감·스크롤/포커스 렌더링과 Safari/Firefox·스크린리더는 미검증입니다. 센서 기능과 권한 요청은 후속 사용자 요청으로 제거했으므로 센서 검증은 남은 과제가 아닙니다. 운영 콘텐츠 쓰기·계정/DB 정책 변경·운영 배포는 수행하지 않았습니다.
+실제 iPhone Chrome의 탭 체감·스크롤/포커스 렌더링과 Safari/Firefox·스크린리더는 미검증입니다. 센서 기능과 권한 요청은 후속 사용자 요청으로 제거했으므로 센서 검증은 남은 과제가 아닙니다. 운영 콘텐츠 쓰기·계정/DB 정책 변경은 수행하지 않았으며 웹 운영 배포는 위 기록처럼 완료했습니다.
 
 이전 센서 구현 참고: [MDN DeviceOrientationEvent.requestPermission](https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/requestPermission_static).
