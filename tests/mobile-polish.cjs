@@ -6,7 +6,6 @@ const server=http.createServer((q,r)=>{r.setHeader('Content-Type','text/html;cha
 const errors=[],results=[];
 async function open(p,touch=false){const launch=p.locator('[data-open-filter]');await (touch?launch.tap():launch.click());await p.waitForFunction(()=>document.querySelector('#works-filter-dialog').dataset.islandState==='open');}
 async function choose(p,name,index){const field=p.locator('select[name="'+name+'"]').locator('..');await field.locator('.filter-picker').click();await field.locator('[role="option"]').nth(index).click();}
-async function sensors(p,beta,gamma){await p.evaluate(({beta,gamma})=>{for(let n=0;n<18;n++){const e=new Event('deviceorientation');Object.defineProperties(e,{beta:{value:beta},gamma:{value:gamma}});dispatchEvent(e);}},{beta,gamma});}
 async function scene(p,selector){await p.locator(selector).evaluate(el=>{const b=el.getBoundingClientRect(),head=document.querySelector('.header-row').offsetHeight;scrollTo(0,b.top+scrollY-head+(b.height-innerHeight+head)*.9);});await p.waitForTimeout(200);}
 async function main(){
  await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;
@@ -36,18 +35,17 @@ async function main(){
   }
   for(const width of [390,932]){
    const p=await browser.newPage({viewport:{width,height:width===932?430:844},hasTouch:true});p.on('pageerror',e=>errors.push(e.message));
-   await p.addInitScript(()=>{window.__calls=[];Object.defineProperty(DeviceOrientationEvent,'requestPermission',{configurable:true,value:async()=>{const type=window.event?.type;window.__calls.push(type);if(type==='touchend')throw new DOMException('Gesture not accepted','NotAllowedError');return 'granted';}});});
+   await p.addInitScript(()=>{window.__calls=[];window.__sensorListeners=0;const add=window.addEventListener.bind(window);window.addEventListener=(type,...args)=>{if(type==='deviceorientation'||type==='devicemotion')window.__sensorListeners++;return add(type,...args);};for(const api of [window.DeviceOrientationEvent,window.DeviceMotionEvent])if(api)Object.defineProperty(api,'requestPermission',{configurable:true,value:async()=>{window.__calls.push('permission');return 'granted';}});});
    await p.goto(origin+'/#/about');await p.waitForFunction(()=>document.querySelector('#about-title')?.dataset.motion==='scrambling');
    const samples=[];for(let n=0;n<12;n++){samples.push(await p.locator('.story-title-word').evaluate(el=>({text:el.textContent,width:el.getBoundingClientRect().width,box:el.parentElement.getBoundingClientRect().width,size:getComputedStyle(el).fontSize})));await p.waitForTimeout(85);}
    const inventory='POSSIBILITIES'.split('').sort().join('');assert(samples.every(s=>s.text.split('').sort().join('')===inventory));assert(new Set(samples.map(s=>[...s.text].map((c,i)=>c==='I'?i:'').filter(String).join(','))).size>3);assert(samples.every(s=>Math.abs(s.width-samples[0].width)<.2&&s.size===samples[0].size&&s.width/s.box>.94));
-   await p.waitForFunction(()=>document.querySelector('#about-title').dataset.motion==='settled');await p.locator('.story-title-box').tap();await p.waitForFunction(()=>document.querySelector('.about-story').dataset.tilt==='on');const calls=await p.evaluate(()=>window.__calls);assert(calls.includes('touchend')&&calls.includes('click'));
-   await sensors(p,45,0);await scene(p,'.cloud-scroll-runway');await sensors(p,60,18);await p.waitForFunction(()=>+document.querySelector('#x-cloud').dataset.tiltX>.4);
-   await scene(p,'.journey-scroll');await sensors(p,60,18);await p.waitForFunction(()=>+document.querySelector('#byx-journey').dataset.pointerX>.4);
-   await scene(p,'.function-layout');await sensors(p,35,-18);await p.waitForFunction(()=>+document.querySelector('#byx-function').dataset.pointerX<-.4);
+   assert(samples.slice(1).some((s,i)=>!(samples[i].text+samples[i].text).includes(s.text)),'Scrambling must shuffle independently instead of cycling left');
+   await p.waitForFunction(()=>document.querySelector('#about-title').dataset.motion==='settled');await p.locator('.story-title-box').tap();await p.locator('.story-title-box').tap();assert.equal(await p.evaluate(()=>window.__calls.length),0);assert.equal(await p.evaluate(()=>window.__sensorListeners),0);
+   for(const selector of ['.cloud-scroll-runway','.journey-scroll','.function-layout'])await scene(p,selector);
    const masks=await p.locator('#x-cloud,#byx-journey,#byx-function').evaluateAll(nodes=>nodes.map(e=>getComputedStyle(e).maskImage));assert(masks.every(m=>m.includes('linear-gradient')));assert.equal(await p.locator('.function-visual').evaluate(e=>getComputedStyle(e,'::after').content),'none');await p.screenshot({path:path.join(out,'mobile-polish-galaxy-'+width+'.png')});
-   await p.emulateMedia({reducedMotion:'reduce'});await p.waitForFunction(()=>document.querySelector('.about-story').dataset.tilt==='off');await p.evaluate(()=>location.hash='#/');await p.waitForSelector('.grid');results.push({width,permutedTitle:true,constantTitleWidth:true,gestureRetry:calls,allThreeTiltScenes:true,transparentSceneEdges:true,reducedMotion:true});await p.close();
+   await p.emulateMedia({reducedMotion:'reduce'});await p.waitForFunction(()=>document.querySelector('.function-stage').dataset.motion==='static');assert.equal(await p.evaluate(()=>window.__calls.length),0);await p.evaluate(()=>location.hash='#/');await p.waitForSelector('.grid');results.push({width,randomTitle:true,constantTitleWidth:true,noSensorRequests:true,noSensorListeners:true,transparentSceneEdges:true,reducedMotion:true});await p.close();
   }
-  assert.deepEqual(errors,[]);const report={testedAt:new Date().toISOString(),results,errors,limitations:'Isolated desktop Chrome and emulated touch/sensors. Physical iPhone Chrome/Safari permission prompts and sensors were not tested. No production writes or deployment.'};fs.writeFileSync(path.join(out,'mobile-polish-results.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
+  assert.deepEqual(errors,[]);const report={testedAt:new Date().toISOString(),results,errors,limitations:'Isolated desktop Chrome and emulated touch with permission/listener spies. Physical iPhone Chrome/Safari rendering was not tested. No production writes or deployment.'};fs.writeFileSync(path.join(out,'mobile-polish-results.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
  }finally{await browser.close();}
 }
 main().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>server.close());

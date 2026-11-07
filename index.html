@@ -3959,15 +3959,16 @@ function bindAboutMotion(){
   if(!ctx)return()=>{};
   const reduced=matchMedia('(prefers-reduced-motion:reduce)');
   let points=[],order=[],width=0,height=0,dpr=0,raf=0,last=0,clock=0,visible=false,disposed=false,frames=0,formation=0,scrollFrame=0;
-  const pointer={active:false,x:0,y:0,vx:0,vy:0,burst:0},tilt={x:0,y:0},tiltRoot=field.closest('.about-story');
-  const onTilt=event=>{tilt.x=event.detail.active&&!reduced.matches?event.detail.x:0;tilt.y=event.detail.active&&!reduced.matches?event.detail.y:0;};tiltRoot.addEventListener('byx:tilt',onTilt);
+  const pointer={active:false,x:0,y:0,vx:0,vy:0,burst:0,touch:false};
+  let touch=null,touchTimer=0;
   function draw(delta=0){
     if(!width||!height||disposed)return;
     syncSceneEdges(canvas,field,reduced.matches);
     const phase=xCloudPhase(clock),seconds=clock/1000,step=Math.min(delta,64)/16.667,assembled=reduced.matches?1:formation*formation*(3-2*formation);
-    const yaw=seconds*.18+tilt.x*.26,pitch=.24+Math.sin(seconds*.13)*.2+tilt.y*.18,roll=Math.sin(seconds*.09)*.11-tilt.x*.05;
+    const yaw=seconds*.18,pitch=.24+Math.sin(seconds*.13)*.2,roll=Math.sin(seconds*.09)*.11;
     const cy=Math.cos(yaw),sy=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch),cr=Math.cos(roll),sr=Math.sin(roll);
-    const radius=Math.min(width,height)*.35,reach=Math.min(280,Math.min(width,height)*.43)*(1+pointer.burst*.5),sizeScale=Math.max(.85,Math.min(1.3,width/1000));
+    const strength=pointer.touch?.22:1,limit=pointer.touch?.1:.45;
+    const radius=Math.min(width,height)*.35,reach=Math.min(280,Math.min(width,height)*.43)*(1+pointer.burst*.5)*(pointer.touch?.62:1),sizeScale=Math.max(.85,Math.min(1.3,width/1000));
     let dispersal=0;
     for(let i=0;i<points.length;i++){
       const p=points[i],a=p.forms[phase.from],b=p.forms[phase.to];
@@ -3980,17 +3981,17 @@ function bindAboutMotion(){
       let dx=px+p.ox-pointer.x,dy=py+p.oy-pointer.y,dist=Math.hypot(dx,dy);
       if(dist<.1){dx=Math.cos(i*goldenAngle());dy=Math.sin(i*goldenAngle());dist=1;}
       const influence=pointer.active?Math.pow(Math.max(0,1-dist/reach),1.6)*assembled:0;
-      if(reduced.matches){p.ox=dx/dist*influence*reach*1.1;p.oy=dy/dist*influence*reach*1.1;p.vx=p.vy=p.memory=0;}
+      if(reduced.matches){p.ox=dx/dist*influence*reach*1.1*strength;p.oy=dy/dist*influence*reach*1.1*strength;p.vx=p.vy=p.memory=0;}
       else if(step){
-        // Preserve direct input strength; let touched points settle more slowly.
+        // Touch is a short local pulse; mouse input keeps its original strength and memory.
         p.memory=Math.max(0,p.memory-Math.min(delta,64));
-        if(influence>.01)p.memory=1600;
-        const spring=influence>.01?.011:p.memory>0?.0008:.0032;
-        const force=8*(1+pointer.burst*2);
+        if(influence>.01)p.memory=pointer.touch?350:1600;
+        const spring=pointer.touch?(influence>.01?.02:p.memory>0?.003:.008):(influence>.01?.011:p.memory>0?.0008:.0032);
+        const force=8*(1+pointer.burst*2)*strength;
         p.vx+=(-p.ox*spring+dx/dist*influence*force+pointer.vx*influence*.1)*step;
         p.vy+=(-p.oy*spring+dy/dist*influence*force+pointer.vy*influence*.1)*step;
         const damping=Math.pow(influence>.01?.86:.93,step);p.vx*=damping;p.vy*=damping;
-        p.ox=Math.max(-width*.45,Math.min(width*.45,p.ox+p.vx*step));p.oy=Math.max(-height*.45,Math.min(height*.45,p.oy+p.vy*step));
+        p.ox=Math.max(-width*limit,Math.min(width*limit,p.ox+p.vx*step));p.oy=Math.max(-height*limit,Math.min(height*limit,p.oy+p.vy*step));
       }
       dispersal=Math.max(dispersal,Math.hypot(p.ox,p.oy));
       p.sx=px+p.ox*assembled;p.sy=py+p.oy*assembled;p.depth=depth;p.perspective=perspective;
@@ -4005,7 +4006,7 @@ function bindAboutMotion(){
       ctx.beginPath();ctx.moveTo(p.sx+ax,p.sy+ay);ctx.lineTo(p.sx-ax,p.sy-ay);ctx.moveTo(p.sx+bx,p.sy+by);ctx.lineTo(p.sx-bx,p.sy-by);ctx.stroke();
     }
     ctx.globalAlpha=1;
-    canvas.dataset.shape=String(phase.from);canvas.dataset.points=String(points.length);canvas.dataset.frame=String(++frames);canvas.dataset.dispersal=dispersal.toFixed(2);canvas.dataset.formation=(reduced.matches?1:formation).toFixed(3);canvas.dataset.tiltX=tilt.x.toFixed(3);canvas.dataset.tiltY=tilt.y.toFixed(3);
+    canvas.dataset.shape=String(phase.from);canvas.dataset.points=String(points.length);canvas.dataset.frame=String(++frames);canvas.dataset.dispersal=dispersal.toFixed(2);canvas.dataset.formation=(reduced.matches?1:formation).toFixed(3);
   }
   function goldenAngle(){return Math.PI*(3-Math.sqrt(5));}
   function tick(now){
@@ -4043,18 +4044,22 @@ function bindAboutMotion(){
   window.addEventListener('scroll',scroll,{passive:true});
   function move(event){
     const box=canvas.getBoundingClientRect(),x=event.clientX-box.left,y=event.clientY-box.top;
+    pointer.touch=event.pointerType==='touch';
     pointer.vx=pointer.active?x-pointer.x:0;pointer.vy=pointer.active?y-pointer.y:0;pointer.x=x;pointer.y=y;pointer.active=true;
     if(reduced.matches)draw();
   }
   function release(){pointer.active=false;pointer.vx=pointer.vy=pointer.burst=0;if(reduced.matches)draw();}
-  function burst(event){move(event);pointer.burst=1.6;if(reduced.matches)draw();}
-  canvas.onpointermove=move;canvas.onpointerdown=burst;canvas.onpointerleave=release;canvas.onpointercancel=release;
-  canvas.onpointerup=e=>{if(e.pointerType==='touch')release();};
-  canvas.onfocus=()=>{if(!pointer.active){pointer.active=true;pointer.x=width/2;pointer.y=height/2;}if(reduced.matches)draw();};canvas.onblur=release;
+  function burst(event){move(event);pointer.burst=pointer.touch?.45:1.6;if(reduced.matches)draw();}
+  const cancelTouch=()=>{touch=null;clearTimeout(touchTimer);release();};
+  canvas.onpointerdown=event=>{if(event.pointerType==='touch'){cancelTouch();touch={id:event.pointerId,x:event.clientX,y:event.clientY,time:performance.now(),moved:false};}else burst(event);};
+  canvas.onpointermove=event=>{if(event.pointerType==='touch'){if(touch&&Math.hypot(event.clientX-touch.x,event.clientY-touch.y)>10)touch.moved=true;}else move(event);};
+  canvas.onpointerup=event=>{if(event.pointerType!=='touch')return;const tap=touch&&touch.id===event.pointerId&&!touch.moved&&Math.hypot(event.clientX-touch.x,event.clientY-touch.y)<=10&&performance.now()-touch.time<500;touch=null;if(tap){burst(event);touchTimer=setTimeout(release,110);}else release();};
+  canvas.onpointerleave=event=>{if(event.pointerType!=='touch')release();};canvas.onpointercancel=cancelTouch;
+  canvas.onfocus=()=>{if(document.documentElement.dataset.input==='keyboard'&&!pointer.active){pointer.touch=false;pointer.active=true;pointer.x=width/2;pointer.y=height/2;}if(reduced.matches)draw();};canvas.onblur=cancelTouch;
   canvas.onkeydown=e=>{
     const directions={ArrowLeft:[-24,0],ArrowRight:[24,0],ArrowUp:[0,-24],ArrowDown:[0,24]};
     if(e.key==='Escape'){release();return;}
-    if(e.key==='Enter'||e.key===' '){e.preventDefault();pointer.active=true;pointer.burst=1.6;if(reduced.matches)draw();return;}
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();pointer.touch=false;pointer.active=true;pointer.burst=1.6;if(reduced.matches)draw();return;}
     if(directions[e.key]){e.preventDefault();const [x,y]=directions[e.key];pointer.active=true;pointer.x=Math.max(0,Math.min(width,pointer.x+x));pointer.y=Math.max(0,Math.min(height,pointer.y+y));if(reduced.matches)draw();}
   };
   const preference=()=>{if(reduced.matches){formation=1;clock=0;for(const p of points)p.ox=p.oy=p.vx=p.vy=p.memory=0;}sync();};
@@ -4063,7 +4068,7 @@ function bindAboutMotion(){
   const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:0});observer.observe(field);
   const sizing=new ResizeObserver(resize);sizing.observe(field);window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',sync);document.addEventListener('byx:modal',sync);reduced.addEventListener('change',preference);resize();
-  return()=>{disposed=true;cancelAnimationFrame(raf);cancelAnimationFrame(scrollFrame);observer.disconnect();sizing.disconnect();tiltRoot.removeEventListener('byx:tilt',onTilt);window.removeEventListener('resize',resize);window.removeEventListener('scroll',scroll);document.removeEventListener('visibilitychange',sync);document.removeEventListener('byx:modal',sync);reduced.removeEventListener('change',preference);field.removeEventListener('byx:condition',condition);};
+  return()=>{disposed=true;clearTimeout(touchTimer);cancelAnimationFrame(raf);cancelAnimationFrame(scrollFrame);observer.disconnect();sizing.disconnect();window.removeEventListener('resize',resize);window.removeEventListener('scroll',scroll);document.removeEventListener('visibilitychange',sync);document.removeEventListener('byx:modal',sync);reduced.removeEventListener('change',preference);field.removeEventListener('byx:condition',condition);};
 }
 
 function bindAboutTitle(root){
@@ -4092,9 +4097,11 @@ function bindAboutTitle(root){
     if(frame!==Math.floor(time/80)){
       frame=Math.floor(time/80);
       const settled=Math.max(0,Math.min(letters.length,Math.floor((time-1400)/66.5)+1)),pool=letters.slice(settled).map(letter=>letter.dataset.final);
-      const offset=pool.length?frame%pool.length:0,pixels=parseFloat(title.style.getPropertyValue('--title-word-size'));
+      // Shuffle independently instead of rotating the word, which looks like a leftward marquee.
+      for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+      const pixels=parseFloat(title.style.getPropertyValue('--title-word-size'));
       letters.forEach((letter,index)=>{
-        const char=index<settled?letter.dataset.final:pool[(index-settled+offset)%pool.length];
+        const char=index<settled?letter.dataset.final:pool[index-settled];
         letter.firstElementChild.textContent=char;letter.style.width=((widths.get(char)-1.5)*pixels/100)+'px';
       });
     }
@@ -4327,7 +4334,6 @@ function bindAboutGraphic(root,selector,paint){
   function updateProgress(){scrollRaf=0;const box=scene.getBoundingClientRect(),head=document.querySelector('#top').offsetHeight,viewport=innerHeight-head,travel=Math.max(1,box.height-viewport-(isGalaxy?Math.max(0,height-viewport)*.5:0));progress=reduced.matches?1:Math.max(progress,Math.max(0,Math.min(1,(head-box.top)/travel)));if(visible&&!raf)draw();}
   const onScroll=()=>{if(!scrollRaf)scrollRaf=requestAnimationFrame(updateProgress);};
   const canInteract=()=>visible&&!document.hidden&&!reduced.matches&&progress>=(isGalaxy?.45:.77)&&!$('#people-dialog[open],#contact-dialog[open]',root);
-  const onTilt=event=>{const d=event.detail,active=d.active&&visible&&!document.hidden&&!reduced.matches&&!$('#people-dialog[open],#contact-dialog[open]',root);pointer.targetX=active?d.x*.85:0;pointer.targetY=active?d.y*.85:0;pointer.targetStrength=active?Math.min(1,Math.hypot(d.x,d.y)*1.3):0;};root.addEventListener('byx:tilt',onTilt);
   const onPointer=event=>{
     if(event.pointerType==='touch'||!canInteract())return;
     const box=canvas.getBoundingClientRect();pointer.targetX=Math.max(-1,Math.min(1,(event.clientX-box.left)/Math.max(1,box.width)*2-1));pointer.targetY=Math.max(-1,Math.min(1,(event.clientY-box.top)/Math.max(1,box.height)*2-1));
@@ -4342,7 +4348,7 @@ function bindAboutGraphic(root,selector,paint){
   canvas.addEventListener('pointerdown',onDown);canvas.addEventListener('pointerup',onUp);canvas.addEventListener('pointercancel',onCancel);canvas.addEventListener('lostpointercapture',onUp);
   window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);updateProgress();
   document.addEventListener('visibilitychange',sync);document.addEventListener('byx:modal',sync);reduced.addEventListener('change',sync);document.fonts?.ready.then(()=>{if(!disposed)draw();});
-  return()=>{disposed=true;cancelAnimationFrame(raf);cancelAnimationFrame(scrollRaf);observer.disconnect();sizing.disconnect();root.removeEventListener('byx:tilt',onTilt);if(motion.lightCanvas){motion.lightCanvas.width=motion.lightCanvas.height=0;motion.lightCanvas=null;}scene.removeEventListener('pointermove',onPointer);scene.removeEventListener('pointerleave',resetPointer);canvas.removeEventListener('pointerdown',onDown);canvas.removeEventListener('pointerup',onUp);canvas.removeEventListener('pointercancel',onCancel);canvas.removeEventListener('lostpointercapture',onUp);window.removeEventListener('scroll',onScroll);window.removeEventListener('resize',onScroll);document.removeEventListener('visibilitychange',sync);document.removeEventListener('byx:modal',sync);reduced.removeEventListener('change',sync);};
+  return()=>{disposed=true;cancelAnimationFrame(raf);cancelAnimationFrame(scrollRaf);observer.disconnect();sizing.disconnect();if(motion.lightCanvas){motion.lightCanvas.width=motion.lightCanvas.height=0;motion.lightCanvas=null;}scene.removeEventListener('pointermove',onPointer);scene.removeEventListener('pointerleave',resetPointer);canvas.removeEventListener('pointerdown',onDown);canvas.removeEventListener('pointerup',onUp);canvas.removeEventListener('pointercancel',onCancel);canvas.removeEventListener('lostpointercapture',onUp);window.removeEventListener('scroll',onScroll);window.removeEventListener('resize',onScroll);document.removeEventListener('visibilitychange',sync);document.removeEventListener('byx:modal',sync);reduced.removeEventListener('change',sync);};
 }
 function bindAboutFunction(root){return bindAboutGraphic(root,'#byx-function',paintFunction);}
 function bindAboutJourney(root){return bindAboutGraphic(root,'#byx-journey',paintJourney);}
@@ -4556,45 +4562,10 @@ function bindAboutText(root){
   return()=>{disposed=true;cancelAnimationFrame(raf);window.removeEventListener('scroll',schedule);window.removeEventListener('resize',remeasure);document.removeEventListener('visibilitychange',schedule);reduced.removeEventListener('change',schedule);};
 }
 
-function bindAboutTilt(root){
-  const reduced=matchMedia('(prefers-reduced-motion:reduce)'),mobile=matchMedia('(max-width:880px)'),coarse=matchMedia('(pointer:coarse)');
-  const needsPermission=typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function';
-  let enabled=false,connected=false,disposed=false,baseline=null,x=0,y=0,permission=needsPermission?'unknown':'granted',requesting=false;
-  const available=()=>(coarse.matches||navigator.maxTouchPoints>0)&&typeof DeviceOrientationEvent!=='undefined'&&isSecureContext&&!reduced.matches;
-  const emit=active=>{root.dataset.tiltX=x.toFixed(3);root.dataset.tiltY=y.toFixed(3);root.dispatchEvent(new CustomEvent('byx:tilt',{detail:{active,x,y}}));};
-  const neutral=()=>{baseline=null;x=y=0;emit(false);};
-  const onOrientation=event=>{
-    if(!connected||!Number.isFinite(event.beta)||!Number.isFinite(event.gamma))return;
-    if(!baseline)baseline={beta:event.beta,gamma:event.gamma};
-    const beta=((event.beta-baseline.beta+540)%360-180)/25,gamma=(event.gamma-baseline.gamma)/22,angle=(screen.orientation?.angle??window.orientation??0)*Math.PI/180;
-    const targetX=Math.max(-1,Math.min(1,gamma*Math.cos(angle)+beta*Math.sin(angle))),targetY=Math.max(-1,Math.min(1,beta*Math.cos(angle)-gamma*Math.sin(angle)));
-    x+=(targetX-x)*.22;y+=(targetY-y)*.22;emit(true);
-  };
-  const sync=()=>{
-    enabled=available()&&permission==='granted';root.dataset.tilt=enabled?'on':'off';
-    const run=enabled&&!document.hidden&&!reduced.matches&&!document.body.classList.contains('menu')&&!$('#people-dialog[open],#contact-dialog[open]',root);
-    if(run&&!connected){window.addEventListener('deviceorientation',onOrientation,{passive:true});connected=true;}
-    else if(!run&&connected){window.removeEventListener('deviceorientation',onOrientation);connected=false;neutral();}
-  };
-  // Permission-gated sensors start from a direct touch on the story, without a floating control.
-  const request=async event=>{
-    if(!available()||permission!=='unknown'||requesting||!event.isTrusted||event.target.closest('a,button,input,select,textarea,[role="dialog"],dialog'))return;
-    requesting=true;
-    try{
-      const result=await DeviceOrientationEvent.requestPermission();
-      if(!disposed){permission=result;sync();}
-    }catch(error){if(!disposed){permission='unknown';sync();}}
-    finally{requesting=false;}
-  };
-  const recalibrate=()=>neutral();
-  const gestures=['touchend','click'];gestures.forEach(type=>root.addEventListener(type,request,{capture:true,passive:true}));document.addEventListener('visibilitychange',sync);document.addEventListener('byx:modal',sync);document.addEventListener('byx:menu',sync);window.addEventListener('resize',sync);window.addEventListener('orientationchange',recalibrate);screen.orientation?.addEventListener('change',recalibrate);reduced.addEventListener('change',sync);mobile.addEventListener('change',sync);coarse.addEventListener('change',sync);sync();
-  return()=>{disposed=true;enabled=false;root.dataset.tilt='off';if(connected)window.removeEventListener('deviceorientation',onOrientation);connected=false;neutral();gestures.forEach(type=>root.removeEventListener(type,request,true));document.removeEventListener('visibilitychange',sync);document.removeEventListener('byx:modal',sync);document.removeEventListener('byx:menu',sync);window.removeEventListener('resize',sync);window.removeEventListener('orientationchange',recalibrate);screen.orientation?.removeEventListener('change',recalibrate);reduced.removeEventListener('change',sync);mobile.removeEventListener('change',sync);coarse.removeEventListener('change',sync);};
-}
-
 function bindAboutStory(){
   const root=$('.about-story',app);
   if(!root)return()=>{};
-  const cleaners=[bindAboutTitle(root),bindAboutText(root),bindAboutMotion(),bindAboutJourney(root),bindAboutFunction(root),bindAboutPeople(root),bindAboutContact(root),bindAboutTilt(root)];
+  const cleaners=[bindAboutTitle(root),bindAboutText(root),bindAboutMotion(),bindAboutJourney(root),bindAboutFunction(root),bindAboutPeople(root),bindAboutContact(root)];
   root.classList.add('is-enhanced');
   const intro=$('.story-hero-copy',root),introObserver=new IntersectionObserver(entries=>{if(scrollY>1&&entries.some(entry=>entry.isIntersecting)){root.dataset.introVisible='true';introObserver.disconnect();}},{threshold:.02});introObserver.observe(intro);
   const steps=new IntersectionObserver(entries=>{

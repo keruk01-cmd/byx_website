@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-07T04:31:21.086Z",
+  "testedAt": "2026-11-07T04:54:04.131Z",
   "results": [
     {
       "widerRelease": {
@@ -70,14 +70,14 @@
       },
       "aboutHover": {
         "start": "rgb(0, 0, 0)",
-        "intermediate": "rgb(112, 112, 112)",
+        "intermediate": "rgb(130, 130, 130)",
         "hover": "rgb(255, 255, 255)",
         "fixedGeometry": true,
         "modalStillWorks": true
       },
       "contactHover": {
         "start": "rgb(255, 255, 255)",
-        "intermediate": "rgb(125, 125, 125)",
+        "intermediate": "rgb(134, 134, 134)",
         "hover": "rgb(0, 0, 0)",
         "fixedGeometry": true,
         "modalStillWorks": true
@@ -145,14 +145,14 @@
       },
       "aboutHover": {
         "start": "rgb(0, 0, 0)",
-        "intermediate": "rgb(130, 130, 130)",
+        "intermediate": "rgb(112, 112, 112)",
         "hover": "rgb(255, 255, 255)",
         "fixedGeometry": true,
         "modalStillWorks": true
       },
       "contactHover": {
         "start": "rgb(255, 255, 255)",
-        "intermediate": "rgb(143, 143, 143)",
+        "intermediate": "rgb(117, 117, 117)",
         "hover": "rgb(0, 0, 0)",
         "fixedGeometry": true,
         "modalStillWorks": true
@@ -220,14 +220,14 @@
       },
       "aboutHover": {
         "start": "rgb(0, 0, 0)",
-        "intermediate": "rgb(121, 121, 121)",
+        "intermediate": "rgb(112, 112, 112)",
         "hover": "rgb(255, 255, 255)",
         "fixedGeometry": true,
         "modalStillWorks": true
       },
       "contactHover": {
         "start": "rgb(255, 255, 255)",
-        "intermediate": "rgb(143, 143, 143)",
+        "intermediate": "rgb(118, 118, 118)",
         "hover": "rgb(0, 0, 0)",
         "fixedGeometry": true,
         "modalStillWorks": true
@@ -295,7 +295,7 @@
       },
       "aboutHover": {
         "start": "rgb(0, 0, 0)",
-        "intermediate": "rgb(112, 112, 112)",
+        "intermediate": "rgb(153, 153, 153)",
         "hover": "rgb(255, 255, 255)",
         "fixedGeometry": true,
         "modalStillWorks": true
@@ -311,5 +311,5 @@
     }
   ],
   "errors": [],
-  "limitations": "Chrome desktop and mobile viewport rendering. Real-phone tilt remains deferred until a later deployment; no production writes or Safari/Firefox validation."
+  "limitations": "Chrome desktop and mobile viewport rendering. Physical-device touch rendering and Safari/Firefox remain unverified; no production writes."
 }

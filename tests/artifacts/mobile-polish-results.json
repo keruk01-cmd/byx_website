@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-07T04:32:04.813Z",
+  "testedAt": "2026-11-07T04:52:52.934Z",
   "results": [
     {
       "width": 1440,
@@ -45,29 +45,23 @@
     },
     {
       "width": 390,
-      "permutedTitle": true,
+      "randomTitle": true,
       "constantTitleWidth": true,
-      "gestureRetry": [
-        "touchend",
-        "click"
-      ],
-      "allThreeTiltScenes": true,
+      "noSensorRequests": true,
+      "noSensorListeners": true,
       "transparentSceneEdges": true,
       "reducedMotion": true
     },
     {
       "width": 932,
-      "permutedTitle": true,
+      "randomTitle": true,
       "constantTitleWidth": true,
-      "gestureRetry": [
-        "touchend",
-        "click"
-      ],
-      "allThreeTiltScenes": true,
+      "noSensorRequests": true,
+      "noSensorListeners": true,
       "transparentSceneEdges": true,
       "reducedMotion": true
     }
   ],
   "errors": [],
-  "limitations": "Isolated desktop Chrome and emulated touch/sensors. Physical iPhone Chrome/Safari permission prompts and sensors were not tested. No production writes or deployment."
+  "limitations": "Isolated desktop Chrome and emulated touch with permission/listener spies. Physical iPhone Chrome/Safari rendering was not tested. No production writes or deployment."
 }

@@ -102,7 +102,7 @@ async function main(){
       await page.waitForTimeout(100);const still=await canvas.getAttribute('data-frame');await page.waitForTimeout(100);assert.equal(await canvas.getAttribute('data-frame'),still);
       await page.mouse.move(box.x+box.width/2,box.y+box.height/2);assert(+(await canvas.getAttribute('data-dispersal'))>0);
       await page.mouse.move(0,0);assert.equal(+(await canvas.getAttribute('data-dispersal')),0);
-      if(width<=390){await canvas.dispatchEvent('pointerdown',{pointerType:'touch',pointerId:1,clientX:box.x+box.width/2,clientY:box.y+box.height/2});assert(+(await canvas.getAttribute('data-dispersal'))>0);await canvas.dispatchEvent('pointerup',{pointerType:'touch',pointerId:1});assert.equal(+(await canvas.getAttribute('data-dispersal')),0);}
+      if(width<=390){const tap={pointerType:'touch',pointerId:1,clientX:box.x+box.width/2,clientY:box.y+box.height/2};await canvas.dispatchEvent('pointerdown',tap);assert.equal(+(await canvas.getAttribute('data-dispersal')),0);await canvas.dispatchEvent('pointerup',tap);assert(+(await canvas.getAttribute('data-dispersal'))>0);await page.waitForTimeout(160);assert.equal(+(await canvas.getAttribute('data-dispersal')),0);}
       await page.emulateMedia({reducedMotion:'no-preference'});
       await page.evaluate(()=>{const run=document.querySelector('.cloud-scroll-runway'),r=run.getBoundingClientRect(),head=document.querySelector('#top').offsetHeight;scrollTo(0,r.top+scrollY-head+(r.height-(innerHeight-head))*.8);});
       await page.waitForFunction(()=>document.querySelector('.x-field').dataset.motion==='running');

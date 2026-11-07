@@ -2,7 +2,16 @@
 
 상태: 구현·격리 Chrome 검증 완료. 2026-11-07 사용자 요청으로 작업 브랜치 `design/byx-brand-identitycodex`에 커밋·푸시하고 모바일 확인용 Vercel Preview를 확인합니다. 운영 main 병합·Production 배포는 이번 push 범위에 포함하지 않습니다. 기존 운영과 계정 관리는 [11월 6일 인수인계](SITE_UPDATES_2026-11-06.md)를 따릅니다.
 
-## 변경
+## 모바일 확인 후 후속 수정 — 현재 기준
+
+- 이전 `b1884d7`은 남은 글자를 매 프레임 한 칸씩 순환시켜 I가 규칙적으로 이동했습니다. 현재는 매 프레임 Fisher–Yates로 독립적으로 섞습니다. 같은 글자 구성과 I 개수·전체 폭·글자 크기·흰 박스·BY/X 고정은 유지합니다.
+- X 점군의 터치 입력은 손을 뗄 때 10px 이내·500ms 미만의 짧은 탭만 허용합니다. 스크롤 이동·취소·길게 누르기는 점군을 밀지 않습니다. 터치 힘은 기존 마우스의 22%, 반응 범위는 62%, 반응 시간은 110ms이며 변위 한도와 원위치 복귀 시간을 줄였습니다. PC 마우스 반응은 `b1884d7`과 같습니다.
+- 기울기 센서 기능을 제거했습니다. 권한 요청, 자동 센서 연결, 방향 이벤트 리스너와 세 장면의 센서 수신을 모두 제거합니다. 반복 방문·화면 방향 변경·본문 탭에서도 센서 권한을 요청하지 않습니다. 일반 스크롤/자동 애니메이션·PC 포인터 반응은 유지합니다. 아래 첫 구현의 센서 설명과 실기기 센서 확인 과제는 이번 사용자 요청으로 종료합니다.
+- `mobile-polish.cjs`: 필터/포인터/키보드 회귀, 무작위 재배열이 단순 순환이 아님, I 개수·전체 폭 고정, 390/932px의 센서 요청/연결 0회를 통과했습니다. [최신 결과](../tests/artifacts/mobile-polish-results.json).
+- `about-touch-random.cjs`: 1440/390/320px에서 PC 반응이 `b1884d7`과 동일하고 터치 탭은 약하며 스와이프/취소는 변위 0임을 확인했습니다. 모션 감소의 동일 좌표 비교에서 터치 변위는 마우스의 약 17%이고, 일반 애니메이션의 탭 반응도 축소한 변위 범위 안에 있습니다. 실기기 수치로 해석하지 않습니다. [결과](../tests/artifacts/about-touch-random-results.json).
+- 기존 모바일 메뉴/CTA·제목 전체 폭/BY/X 고정과 5개 화면 폭 × 10개 라우트/CMS도 다시 검증해 통과했습니다. 실제 iPhone Chrome/Safari의 탭 체감은 사용자 확인이 필요하며 운영 main은 변경하지 않습니다. 같은 작업 브랜치로 Preview를 갱신합니다.
+
+## 첫 구현 기록 — 이전 센서 동작은 위 후속 수정으로 갱신
 
 - People 소개의 X, WORKS 필터와 Dream 문의창: 터치/마우스 입력과 키보드 입력을 구별합니다. 포인터로 연 창에는 자동 포커스 테두리·탭 하이라이트를 표시하지 않고, 키보드 포커스는 계속 표시합니다. 필터를 포인터로 열면 첫 선택 칸을 자동 선택하지 않습니다.
 - 필터: 중복 `WORKS / FILTER`·`프로젝트 필터` 제목을 제거하고 280px 폭·약 298px 높이의 두 열 구성으로 줄였습니다. TYPE/STATUS/YEAR/SORT BY/ORDER/RESET/APPLY, 대문자 정렬 항목, A–Z/Z–A를 사용합니다. 프로젝트가 가진 실제 분류 값은 보존합니다.
@@ -27,6 +36,6 @@
 
 ## 남은 확인
 
-실제 iPhone Chrome의 권한창·센서·스크롤/포커스 렌더링과 Safari/Firefox·스크린리더는 미검증입니다. iPhone 센서 권한은 ABOUT 본문의 직접 터치에서 요청되며 실제 거절 상태나 기기 설정으로 차단된 권한을 코드가 우회하지 않습니다. 모의 센서 통과를 실제 기기 해결로 단정하지 않습니다. 운영 콘텐츠 쓰기·계정/DB 정책 변경·운영 배포는 수행하지 않았습니다.
+실제 iPhone Chrome의 탭 체감·스크롤/포커스 렌더링과 Safari/Firefox·스크린리더는 미검증입니다. 센서 기능과 권한 요청은 후속 사용자 요청으로 제거했으므로 센서 검증은 남은 과제가 아닙니다. 운영 콘텐츠 쓰기·계정/DB 정책 변경·운영 배포는 수행하지 않았습니다.
 
-권한 요청과 사용자 제스처 참고: [MDN DeviceOrientationEvent.requestPermission](https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/requestPermission_static).
+이전 센서 구현 참고: [MDN DeviceOrientationEvent.requestPermission](https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/requestPermission_static).
