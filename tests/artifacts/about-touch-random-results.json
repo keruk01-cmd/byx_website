@@ -1,0 +1,74 @@
+{
+  "testedAt": "2026-11-07T04:54:44.990Z",
+  "results": [
+    {
+      "width": 1440,
+      "desktopUnchanged": true,
+      "desktop": {
+        "down": 198.12,
+        "up": 198.12
+      },
+      "tap": {
+        "down": 0,
+        "up": 34.28
+      },
+      "swipe": {
+        "down": 0,
+        "up": 0
+      },
+      "cancel": {
+        "down": 0,
+        "up": 0
+      },
+      "touchToMouseRatio": 0.1730264486169998
+    },
+    {
+      "width": 390,
+      "desktopUnchanged": true,
+      "desktop": {
+        "down": 118.66,
+        "up": 118.66
+      },
+      "tap": {
+        "down": 0,
+        "up": 20.81
+      },
+      "swipe": {
+        "down": 0,
+        "up": 0
+      },
+      "cancel": {
+        "down": 0,
+        "up": 0
+      },
+      "touchToMouseRatio": 0.17537502106859934
+    },
+    {
+      "width": 320,
+      "desktopUnchanged": true,
+      "desktop": {
+        "down": 97.36,
+        "up": 97.36
+      },
+      "tap": {
+        "down": 0,
+        "up": 16.62
+      },
+      "swipe": {
+        "down": 0,
+        "up": 0
+      },
+      "cancel": {
+        "down": 0,
+        "up": 0
+      },
+      "touchToMouseRatio": 0.17070665571076418
+    }
+  ],
+  "animatedTap": {
+    "peak": 81.19,
+    "limit": 107.28934010422472
+  },
+  "errors": [],
+  "limitations": "Isolated Chrome, synthetic pointer gestures and emulated mobile viewport. Physical iPhone Safari/Chrome was not tested. No production writes."
+}

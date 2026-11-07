@@ -1,44 +1,38 @@
 {
-  "testedAt": "2026-11-06T03:14:35.337Z",
+  "testedAt": "2026-11-07T04:31:43.102Z",
   "results": [
     {
-      "headerCanvasDifference": 99.31592857142857
+      "headerCanvasDifference": 99.2805
     },
     {
       "width": 1440,
       "scenes": [
         {
           "id": "x-cloud",
-          "canvasMask": "none",
+          "canvasMask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 135px, rgba(0, 0, 0, 0) 136px, rgb(0, 0, 0) 262px, rgb(0, 0, 0) calc(100% - 215px), rgba(0, 0, 0, 0) calc(100% - 89px), rgb(0, 0, 0) calc(100% - 88px), rgb(0, 0, 0) 100%)",
           "surfaceMask": "none",
-          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
-          "edgeTop": 80.65966796875,
-          "edgeBottom": 899.65966796875,
-          "head": 81,
-          "pointer": "none",
-          "canvasTop": -59.34033203125
+          "overlay": "none",
+          "edgeTop": 80.96875,
+          "edgeBottom": 899.96875,
+          "head": 81
         },
         {
           "id": "byx-journey",
-          "canvasMask": "none",
+          "canvasMask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 164px, rgba(0, 0, 0, 0) 165px, rgb(0, 0, 0) 291px, rgb(0, 0, 0) calc(100% - 231px), rgba(0, 0, 0, 0) calc(100% - 105px), rgb(0, 0, 0) calc(100% - 104px), rgb(0, 0, 0) 100%)",
           "surfaceMask": "none",
-          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "overlay": "none",
           "edgeTop": 80.96875,
           "edgeBottom": 899.96875,
-          "head": 81,
-          "pointer": "none",
-          "canvasTop": -84.03125
+          "head": 81
         },
         {
           "id": "byx-function",
-          "canvasMask": "none",
+          "canvasMask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 489.5px, rgba(0, 0, 0, 0) 490.5px, rgb(0, 0, 0) 616.5px, rgb(0, 0, 0) calc(100% - 616.5px), rgba(0, 0, 0, 0) calc(100% - 490.5px), rgb(0, 0, 0) calc(100% - 489.5px), rgb(0, 0, 0) 100%)",
           "surfaceMask": "none",
-          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "overlay": "none",
           "edgeTop": 81,
           "edgeBottom": 900,
-          "head": 81,
-          "pointer": "none",
-          "canvasTop": -409.5
+          "head": 81
         }
       ]
     },
@@ -47,36 +41,30 @@
       "scenes": [
         {
           "id": "x-cloud",
-          "canvasMask": "none",
+          "canvasMask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 137.6px, rgba(0, 0, 0, 0) 138.6px, rgb(0, 0, 0) 264.6px, rgb(0, 0, 0) calc(100% - 212.9px), rgba(0, 0, 0, 0) calc(100% - 86.9px), rgb(0, 0, 0) calc(100% - 85.9px), rgb(0, 0, 0) 100%)",
           "surfaceMask": "none",
-          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
-          "edgeTop": 55.95625000000001,
-          "edgeBottom": 899.95625,
-          "head": 56,
-          "pointer": "none",
-          "canvasTop": -85.34375
+          "overlay": "none",
+          "edgeTop": 55.974999999999994,
+          "edgeBottom": 899.975,
+          "head": 56
         },
         {
           "id": "byx-journey",
-          "canvasMask": "none",
+          "canvasMask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 163.6px, rgba(0, 0, 0, 0) 164.6px, rgb(0, 0, 0) 290.6px, rgb(0, 0, 0) calc(100% - 231.9px), rgba(0, 0, 0, 0) calc(100% - 105.9px), rgb(0, 0, 0) calc(100% - 104.9px), rgb(0, 0, 0) 100%)",
           "surfaceMask": "none",
-          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "overlay": "none",
           "edgeTop": 55.974999999999994,
           "edgeBottom": 899.975,
-          "head": 56,
-          "pointer": "none",
-          "canvasTop": -108.625
+          "head": 56
         },
         {
           "id": "byx-function",
-          "canvasMask": "none",
+          "canvasMask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 359.5px, rgba(0, 0, 0, 0) 360.5px, rgb(0, 0, 0) 486.5px, rgb(0, 0, 0) calc(100% - 486px), rgba(0, 0, 0, 0) calc(100% - 360px), rgb(0, 0, 0) calc(100% - 359px), rgb(0, 0, 0) 100%)",
           "surfaceMask": "none",
-          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "overlay": "none",
           "edgeTop": 56,
           "edgeBottom": 900,
-          "head": 56,
-          "pointer": "none",
-          "canvasTop": -304.5
+          "head": 56
         }
       ]
     },
@@ -85,36 +73,30 @@
       "scenes": [
         {
           "id": "x-cloud",
-          "canvasMask": "none",
+          "canvasMask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 137px, rgba(0, 0, 0, 0) 138px, rgb(0, 0, 0) 264px, rgb(0, 0, 0) calc(100% - 213.5px), rgba(0, 0, 0, 0) calc(100% - 87.5px), rgb(0, 0, 0) calc(100% - 86.5px), rgb(0, 0, 0) 100%)",
           "surfaceMask": "none",
-          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
-          "edgeTop": 56.04804687500001,
-          "edgeBottom": 900.048046875,
-          "head": 56,
-          "pointer": "none",
-          "canvasTop": -85.751953125
+          "overlay": "none",
+          "edgeTop": 55.96875,
+          "edgeBottom": 899.96875,
+          "head": 56
         },
         {
           "id": "byx-journey",
-          "canvasMask": "none",
+          "canvasMask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 164px, rgba(0, 0, 0, 0) 165px, rgb(0, 0, 0) 291px, rgb(0, 0, 0) calc(100% - 231.5px), rgba(0, 0, 0, 0) calc(100% - 105.5px), rgb(0, 0, 0) calc(100% - 104.5px), rgb(0, 0, 0) 100%)",
           "surfaceMask": "none",
-          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "overlay": "none",
           "edgeTop": 55.96875,
           "edgeBottom": 899.96875,
-          "head": 56,
-          "pointer": "none",
-          "canvasTop": -109.03125
+          "head": 56
         },
         {
           "id": "byx-function",
-          "canvasMask": "none",
+          "canvasMask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 359.5px, rgba(0, 0, 0, 0) 360.5px, rgb(0, 0, 0) 486.5px, rgb(0, 0, 0) calc(100% - 486px), rgba(0, 0, 0, 0) calc(100% - 360px), rgb(0, 0, 0) calc(100% - 359px), rgb(0, 0, 0) 100%)",
           "surfaceMask": "none",
-          "gradient": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 126px, rgba(0, 0, 0, 0) calc(100% - 126px), rgb(0, 0, 0))",
+          "overlay": "none",
           "edgeTop": 56,
           "edgeBottom": 900,
-          "head": 56,
-          "pointer": "none",
-          "canvasTop": -304.5
+          "head": 56
         }
       ]
     }

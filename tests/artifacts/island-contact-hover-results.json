@@ -1,20 +1,20 @@
 {
-  "testedAt": "2026-11-06T06:28:34.886Z",
+  "testedAt": "2026-11-07T05:15:30.975Z",
   "results": [
     {
       "contactHover": {
         "before": "rgb(255, 255, 255)",
-        "entering": "rgb(136, 136, 136)",
+        "entering": "rgb(142, 142, 142)",
         "after": "rgb(0, 0, 0)",
-        "leaving": "rgb(98, 98, 98)"
+        "leaving": "rgb(94, 94, 94)"
       }
     },
     {
       "rowHover": {
         "before": "rgb(0, 0, 0)",
-        "entering": "rgb(97, 97, 97)",
+        "entering": "rgb(130, 130, 130)",
         "after": "rgb(255, 255, 255)",
-        "leaving": "rgb(158, 158, 158)"
+        "leaving": "rgb(82, 82, 82)"
       }
     },
     {
@@ -51,9 +51,9 @@
         "hidden": "hidden"
       },
       "filter": {
-        "clip": "inset(3px 0px 487.859px 259px round 21px)",
+        "clip": "inset(3px 0px 208.5px 235px round 21px)",
         "width": 45,
-        "height": 42.14100000000002,
+        "height": 42.5,
         "hidden": "hidden"
       },
       "sortInFilter": true,
@@ -94,9 +94,9 @@
         "hidden": "hidden"
       },
       "filter": {
-        "clip": "inset(3px 0px 487.859px 259px round 21px)",
+        "clip": "inset(3px 0px 208.5px 235px round 21px)",
         "width": 45,
-        "height": 42.14100000000002,
+        "height": 42.5,
         "hidden": "hidden"
       },
       "sortInFilter": true,
@@ -137,9 +137,9 @@
         "hidden": "hidden"
       },
       "filter": {
-        "clip": "inset(3px 0px 487.859px 259px round 21px)",
+        "clip": "inset(3px 0px 208.5px 235px round 21px)",
         "width": 45,
-        "height": 42.14100000000002,
+        "height": 42.5,
         "hidden": "hidden"
       },
       "sortInFilter": true,
@@ -180,9 +180,9 @@
         "hidden": "hidden"
       },
       "filter": {
-        "clip": "inset(3px 0px 487.859px 259px round 21px)",
+        "clip": "inset(3px 0px 208.5px 235px round 21px)",
         "width": 45,
-        "height": 42.14100000000002,
+        "height": 42.5,
         "hidden": "hidden"
       },
       "sortInFilter": true,
@@ -223,9 +223,9 @@
         "hidden": "hidden"
       },
       "filter": {
-        "clip": "inset(3px 4px 487.859px 247px round 21px)",
+        "clip": "inset(3px 0px 208.5px 235px round 21px)",
         "width": 45,
-        "height": 42.14100000000002,
+        "height": 42.5,
         "hidden": "hidden"
       },
       "sortInFilter": true,

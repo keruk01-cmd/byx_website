@@ -1,5 +1,9 @@
 # CLAUDE.md
 
+## 최신 인수인계 (2026.11.06)
+
+[작업 마무리](docs/SITE_UPDATES_2026-11-06.md)를 먼저 읽습니다. Feed는 한 영역에서 편집/표시하며 본문 블록 저장 호환을 유지합니다. 계정 생성·접근 제거·메뉴 권한은 사용자의 후속 요청으로 추가한 `admin-accounts` Edge Function과 DB RLS로 처리합니다. 기존 관리자는 Owner이고 Editor는 지정 메뉴만 접근합니다. 단순 `session` 존재로 권한을 확대하거나 초기 설치용 광범위 쓰기 정책을 운영에 재적용하지 않습니다. 현재 운영은 PR #19/main `3125b49`입니다. [기능·검증·운영 범위](docs/CMS_ACCOUNTS_2026-11-06.md).
+
 ## ABOUT 문의 예외 (2026.11.04 사용자 요청)
 
 사용자가 ABOUT 하단 협업 CTA와 문의 폼·People 모달·스크롤 애니메이션을 명시적으로 요청했습니다. 프런트 코드는 단일 `index.html`에 유지하며 실제 문의 접수 서버는 `supabase/functions/contact-inquiry/index.ts`입니다. 문의함은 기존 관리자에게만 공개합니다. 이전의 문의 폼/CTA 재도입 금지는 이 범위에서 갱신합니다. [작업 기록](docs/ABOUT_CINEMATIC_2026-11-04.md).

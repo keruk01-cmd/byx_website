@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-06T06:21:48.703Z",
+  "testedAt": "2026-11-07T05:14:13.051Z",
   "results": [
     {
       "width": 1440,
@@ -26,12 +26,9 @@
         "radius": "999px",
         "lens": "url(\"#nav-refraction\") blur(0.25px) saturate(1.3)"
       },
-      "simulatedTilt": true,
       "noTiltButton": true,
-      "permissionGesture": true,
-      "denialHandled": true,
-      "implicitApi": false,
-      "sensorPauseAndCleanup": true
+      "noSensorRequests": true,
+      "noSensorListeners": true
     },
     {
       "width": 390,
@@ -58,12 +55,9 @@
         "radius": "999px",
         "lens": "url(\"#nav-refraction\") blur(0.25px) saturate(1.3)"
       },
-      "simulatedTilt": true,
       "noTiltButton": true,
-      "permissionGesture": false,
-      "denialHandled": false,
-      "implicitApi": true,
-      "sensorPauseAndCleanup": true
+      "noSensorRequests": true,
+      "noSensorListeners": true
     },
     {
       "width": 320,
@@ -90,12 +84,9 @@
         "radius": "999px",
         "lens": "url(\"#nav-refraction\") blur(0.25px) saturate(1.3)"
       },
-      "simulatedTilt": true,
       "noTiltButton": true,
-      "permissionGesture": true,
-      "denialHandled": false,
-      "implicitApi": false,
-      "sensorPauseAndCleanup": true
+      "noSensorRequests": true,
+      "noSensorListeners": true
     },
     {
       "width": 844,
@@ -115,5 +106,5 @@
     }
   ],
   "errors": [],
-  "limitations": "Chrome desktop/mobile emulation, mocked permission and orientation events. Real phone sensor/Safari behavior and production writes were not tested."
+  "limitations": "Chrome desktop/mobile emulation with sensor permission/listener spies. Physical iPhone/Safari behavior and production writes were not tested."
 }
