@@ -1,0 +1,73 @@
+{
+  "testedAt": "2026-11-07T04:32:04.813Z",
+  "results": [
+    {
+      "width": 1440,
+      "compactPanel": {
+        "x": 1116,
+        "y": 89,
+        "width": 280,
+        "height": 297.5
+      },
+      "roundedOptions": true,
+      "englishSort": true,
+      "keyboard": true,
+      "touchOutlinesRemoved": true,
+      "outsideDismiss": true
+    },
+    {
+      "width": 390,
+      "compactPanel": {
+        "x": 94,
+        "y": 63.5,
+        "width": 280,
+        "height": 297.5
+      },
+      "roundedOptions": true,
+      "englishSort": true,
+      "keyboard": true,
+      "touchOutlinesRemoved": true,
+      "outsideDismiss": true
+    },
+    {
+      "width": 320,
+      "compactPanel": {
+        "x": 24,
+        "y": 63.5,
+        "width": 280,
+        "height": 297.5
+      },
+      "roundedOptions": true,
+      "englishSort": true,
+      "keyboard": true,
+      "touchOutlinesRemoved": true,
+      "outsideDismiss": true
+    },
+    {
+      "width": 390,
+      "permutedTitle": true,
+      "constantTitleWidth": true,
+      "gestureRetry": [
+        "touchend",
+        "click"
+      ],
+      "allThreeTiltScenes": true,
+      "transparentSceneEdges": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 932,
+      "permutedTitle": true,
+      "constantTitleWidth": true,
+      "gestureRetry": [
+        "touchend",
+        "click"
+      ],
+      "allThreeTiltScenes": true,
+      "transparentSceneEdges": true,
+      "reducedMotion": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated desktop Chrome and emulated touch/sensors. Physical iPhone Chrome/Safari permission prompts and sensors were not tested. No production writes or deployment."
+}
