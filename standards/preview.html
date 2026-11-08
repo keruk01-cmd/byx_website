@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BYX — Graphic Standards / Visual Draft 0.2</title>
+<style>
+:root{--black:#090909;--white:#fff;--grey:#686868;--line:#d7d7d7;--x:1;--speed:1.4s;color-scheme:light}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--black);font-family:"Wanted Sans","Helvetica Neue",Arial,sans-serif;line-height:1.5}
+button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-underline-offset:3px}
+.shell{max-width:1500px;margin:auto}.bar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #111;display:flex;gap:20px;align-items:center;justify-content:space-between;padding:15px 28px}
+.brand{font-weight:900;font-size:23px;letter-spacing:-.08em;line-height:1}.bar small{font-size:10px;letter-spacing:.12em}
+.nav{display:flex;gap:5px;overflow:auto}.nav button{white-space:nowrap;background:transparent;color:#555;border:0;padding:10px 12px;font-size:11px;font-weight:700;letter-spacing:.03em}.nav button[aria-current="page"]{background:#080808;color:#fff}
+.sheet{display:none;margin:0 auto;padding:clamp(20px,3vw,48px) clamp(20px,5vw,80px);min-height:calc(100vh - 95px);max-width:1400px}
+.sheet.active{display:block}.topline,.footline{display:flex;align-items:center;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.12em;gap:20px;text-transform:uppercase}
+.topline{border-bottom:1px solid #111;padding:0 0 12px}.footline{border-top:1px solid #111;padding:14px 0;margin-top:45px}
+.display{font-family:"Arial Black",Impact,"Arial Narrow",sans-serif;font-weight:900;letter-spacing:-.072em;line-height:.89}
+.hero{margin:52px 0 36px}.hero .display{font-size:clamp(68px,14vw,210px)}.row{display:grid;grid-template-columns:1fr 1fr;gap:42px}.label{font-size:11px;text-transform:uppercase;letter-spacing:.11em;font-weight:700;color:#555}.lead{font-size:clamp(23px,3.8vw,48px);font-weight:700;line-height:1.12;letter-spacing:-.05em;margin:12px 0 25px}
+.body{font-size:15px;max-width:560px;line-height:1.7;color:#333}.hr{border:0;border-top:1px solid #171717;margin:27px 0}.bigX{font-family:"Arial Black",Impact,sans-serif;letter-spacing:-.09em;font-weight:900;font-size:clamp(180px,34vw,490px);line-height:.86;text-align:center}
+.sectionhead{font-family:"Arial Black",Impact,sans-serif;letter-spacing:-.06em;font-weight:900;font-size:clamp(42px,7vw,95px);line-height:.95;margin:36px 0 28px}
+.smallhead{font-size:24px;letter-spacing:-.045em;font-weight:750;margin:5px 0 14px}
+.num{font-size:11px;letter-spacing:.08em;font-weight:750}
+.ruleCard{border-top:1px solid #111;padding:14px 0 24px}
+.blackpanel{background:#0b0b0b;color:#fff;min-height:360px;padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.typehero{font-family:"Arial Black",Impact,sans-serif;font-size:clamp(45px,8vw,100px);line-height:1;letter-spacing:-.075em;word-break:break-word}
+.swatches{display:flex;height:105px;border:1px solid #ccc;margin:24px 0}
+.swatches div{flex:1;padding:12px;display:flex;align-items:end;font-size:11px;font-weight:700}
+.sampleFont{font-weight:600;font-size:22px}
+.expgrid{display:grid;grid-template-columns:230px 1fr;gap:22px;margin-top:20px}
+.choices{display:grid;gap:1px;background:#ddd;align-content:start}
+.choices button{background:#fff;border:0;text-align:left;padding:13px 15px;font-size:12px;font-weight:700;display:flex;justify-content:space-between}
+.choices button.selected{background:#080808;color:#fff}
+.experiment{background:#f5f5f5;min-height:390px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.xmark{position:relative;font-family:"Arial Black",Impact,sans-serif;letter-spacing:-.08em;font-weight:900;font-size:clamp(180px,30vw,360px);line-height:1;user-select:none;will-change:transform}
+.xmark.moving{animation:breath var(--speed) ease-in-out infinite alternate}@keyframes breath{from{transform:scaleX(.65)}to{transform:scaleX(1.25)}}
+.xmark.trace{isolation:isolate}.trail{position:absolute;inset:0;color:#111;opacity:.1;pointer-events:none}
+.slice-part{position:absolute;inset:0;pointer-events:none}.s0{clip-path:inset(0 0 66% 0);transform:translateX(-22px)}.s1{clip-path:inset(35% 0 32% 0);transform:translateX(14px)}.s2{clip-path:inset(69% 0 0 0);transform:translateX(-7px)}
+.field{display:grid;grid-template-columns:repeat(7,1fr);width:100%;height:100%;gap:6px;align-items:center;justify-items:center;padding:26px}.field span{font-family:"Arial Black",Impact,sans-serif;font-size:clamp(25px,4vw,60px);line-height:1}
+.experiment .corner{position:absolute;top:14px;left:17px;font-size:11px;letter-spacing:.1em;z-index:2}
+.expctrl{display:flex;align-items:center;gap:15px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid #111}.expctrl input{flex:1;min-width:120px;accent-color:#111}
+.cardgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:25px 0}.card{border-top:2px solid #111;padding:12px 0;min-width:0}.card h3{font-size:18px;letter-spacing:-.035em}.card p{color:#555;font-size:13px}
+.mocks{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px}.mock{border:1px solid #111;background:#fff;padding:18px;min-height:200px;display:flex;flex-direction:column;justify-content:space-between}
+.mock h3{font-family:"Arial Black",Impact,sans-serif;letter-spacing:-.05em;margin:10px 0;font-size:35px;line-height:1}
+.mock small{font-size:9px;font-weight:700;letter-spacing:.05em}
+.mock-doc{min-height:330px}.cad{background:#fff;min-height:250px}.cadSvg{width:100%;height:auto}
+.previewsite{border:1px solid #111;min-height:400px;margin:25px 0;padding:25px;background:#fff}.previewsite .mid{display:grid;grid-template-columns:2fr 1fr;gap:30px;align-items:center;min-height:285px}.previewsite h2{font-family:"Arial Black",Impact,sans-serif;font-size:clamp(42px,8vw,98px);line-height:.92;letter-spacing:-.07em;margin:12px 0}.previewsite .miniX{font-family:"Arial Black",Impact,sans-serif;font-weight:900;font-size:clamp(150px,18vw,280px);line-height:1;letter-spacing:-.08em;animation:breath 3.3s ease-in-out infinite alternate}
+.callout{border-top:1px solid #111;border-bottom:1px solid #111;padding:25px 0;display:flex;justify-content:space-between;gap:12px}
+@media(max-width:850px){.bar{flex-wrap:wrap;padding:11px 14px}.bar small{display:none}.nav{width:100%}.nav button{padding:8px}.sheet{padding:24px 16px;min-height:0}.row,.expgrid,.mocks{grid-template-columns:1fr}.cardgrid{grid-template-columns:1fr 1fr}.experiment{min-height:320px}.hero{margin:35px 0}.previewsite .mid{grid-template-columns:1fr}.previewsite .miniX{text-align:center}.bigX{font-size:48vw}}
+@media(max-width:500px){.cardgrid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="bar"><div class="brand">BYX<span style="font-weight:400"> / STANDARDS</span></div><nav class="nav" aria-label="Draft pages">
+<button data-page="0" aria-current="page">00 COVER</button><button data-page="1">01 IDEA</button><button data-page="2">02 TYPE & COLOR</button><button data-page="3">03 X LAB</button><button data-page="4">04 APPLICATION</button><button data-page="5">05 ABOUT</button></nav><small>DRAFT 0.2 / NOT APPROVED</small></header>
+<main>
+<section class="sheet active" data-sheet="0">
+<div class="topline"><span>ARCHITECTS BYX</span><span>VISUAL SYSTEM / 2026</span></div>
+<div class="hero"><div class="label">GRAPHIC STANDARDS · WORKING DRAFT</div><div class="display" style="margin-top:12px">BYX.</div></div>
+<div class="row" style="align-items:end"><div><p class="lead">A SYSTEM<br>FOR DESIGNING<br>THE UNKNOWN.</p><p class="body">규칙을 설계하고, 변수를 해석하고, 경험을 축적한다. BYX의 모든 결과물에 적용할 수 있는 공통 디자인 언어.</p></div><div><div class="bigX">X</div></div></div>
+<div class="footline"><span>00 / INTRODUCTION</span><span>WHITE / BLACK / TYPOGRAPHY</span></div>
+</section>
+<section class="sheet" data-sheet="1">
+<div class="topline"><span>BYX / DESIGN PHILOSOPHY</span><span>01 / 05</span></div>
+<div class="sectionhead">VARIABLE.<br>EXPERIENCE.</div>
+<div class="row"><div class="ruleCard"><div class="num">01 / VARIABLE X</div><h2 class="smallhead">INPUT DEFINES POSSIBILITIES.</h2><p class="body">발주자, 대지, 법규, 예산, 재료, 시간. 프로젝트를 둘러싼 미지수들을 디자인을 위한 입력값으로 취급한다.</p></div><div class="ruleCard"><div class="num">02 / eXPERIENCE X</div><h2 class="smallhead">JUDGEMENT SHAPES OUTCOMES.</h2><p class="body">축적된 경험은 입력값을 해석하는 방법을 바꾼다. 우리는 결과뿐만 아니라 결과가 도출되는 함수를 설계한다.</p></div></div>
+<hr class="hr"><div class="row"><div class="body">두 철학은 고정된 두 로고를 의미하지 않는다. X를 출발점으로 수없이 다양한 그래픽 표현을 실험할 수 있다.</div><div class="display" style="font-size:clamp(55px,9vw,130px)">f(x) → y</div></div>
+<div class="footline"><span>ARCHITECTURE BY X</span><span>FURNITURE / LANDSCAPE / UIUX / ...</span></div>
+</section>
+<section class="sheet" data-sheet="2">
+<div class="topline"><span>TYPOGRAPHY / FOUNDATION</span><span>02 / 05</span></div>
+<div class="sectionhead">TYPE IS<br>THE IDENTITY.</div>
+<div class="row">
+<div><div class="label">DISPLAY TYPE / TO BE SELECTED</div><div class="typehero">EXPERIENCE<br>BY X.</div><p class="body">두껍고 기하학적인 영문 서체. 별도의 X 심볼 대신 디스플레이 폰트의 글자 X를 그래픽 모티프로 사용한다.</p><p class="label">PREVIEW USES SYSTEM FONT — NOT FINAL TYPEFACE</p></div>
+<div><div class="label">BODY TYPE / WANTED SANS</div><p class="sampleFont">우리는 결과를 만드는 함수를 설계합니다.</p><p class="body">읽기 쉬운 설명 텍스트는 Wanted Sans를 중심으로 정리한다. 국문·영문 본문, 숫자, 메타데이터의 위계를 명확히 한다.</p><hr class="hr"><div class="label">COLOR / NEUTRAL FIRST</div><div class="swatches"><div style="background:#fff;color:#111">WHITE</div><div style="background:#000;color:#fff">BLACK</div><div style="background:#777;color:#fff">GRAY</div></div><p class="body">청록·에메랄드 컬러는 임의의 UI 기본색이 아니라, 선택된 프로젝트 요소에만 사용한다.</p></div>
+</div>
+<div class="footline"><span>DISPLAY / BODY / META</span><span>03 COLORS · OPEN SPACE</span></div>
+</section>
+<section class="sheet" data-sheet="3">
+<div class="topline"><span>GENERATIVE GRAPHICS / X EXPRESSIONS</span><span>03 / 05</span></div>
+<div class="sectionhead">X IS NOT<br>ONE SHAPE.</div>
+<div class="row"><div class="body">X는 별도로 고정된 심볼이 아니다. 선택한 디스플레이 글꼴의 X를 바탕으로 변형, 축적, 재구성한다. 아래의 표현은 예시이며 유형의 수를 제한하지 않는다.</div><div class="label">TYPE GLYPH → BEHAVIOR → EXPRESSION</div></div>
+<div class="expgrid"><div class="choices" role="group" aria-label="X behavior selection">
+<button class="selected" data-mode="stretch" aria-pressed="true">V01 / STRETCH <span>↗</span></button>
+<button data-mode="slice" aria-pressed="false">V02 / SLICE <span>↗</span></button>
+<button data-mode="field" aria-pressed="false">V03 / FIELD <span>↗</span></button>
+<button data-mode="trace" aria-pressed="false">E01 / TRACE <span>↗</span></button>
+<button data-mode="converge" aria-pressed="false">E02 / CONVERGE <span>↗</span></button>
+<button data-mode="archive" aria-pressed="false">E03 / ARCHIVE <span>↗</span></button>
+</div>
+<div><div class="experiment" id="experiment"><span class="corner" id="modeCaption">V01 — VARIABLE / STRETCH</span><div class="xmark moving" id="xmark">X</div></div><div class="expctrl"><label for="parameter" class="num">PARAMETER</label><input id="parameter" type="range" min="20" max="100" value="60"><output id="rangeval">60</output><button id="toggleMotion" style="background:#fff;border:1px solid #111;padding:7px 12px;font-size:11px">PAUSE</button></div><p class="body" id="modeDescription">조건에 따라 X의 가로 비례가 달라지는 움직임.</p></div></div>
+<div class="footline"><span>VARIABLE × EXPERIENCE</span><span>UNLIMITED EXPRESSION FAMILIES</span></div>
+</section>
+<section class="sheet" data-sheet="4">
+<div class="topline"><span>APPLICATION / TEMPLATES</span><span>04 / 05</span></div>
+<div class="sectionhead">ONE SYSTEM.<br>MANY OUTPUTS.</div>
+<div class="mocks">
+<div><div class="label">01 / PRESENTATION — 16:9</div><div class="mock" style="aspect-ratio:16/9"><small>ARCHITECTS BYX / PROJECT 001</small><h3>DESIGNING<br>THE FUNCTION.</h3><small>SELECTED WORK / 2026</small></div></div>
+<div><div class="label">02 / ARCHITECTURAL DRAWING — TITLE BLOCK</div><div class="mock cad"><small>BYX — ARCHITECTS BYX</small><svg class="cadSvg" viewBox="0 0 320 120" aria-label="Diagrammatic architectural plan placeholder"><g stroke="#111" fill="none"><path d="M25 20H230V105H25Z M50 20V105 M130 20V105 M50 55H230 M130 80H230" stroke-width="1.1"/><path d="M25 55H50 M130 55V80" stroke-width="3"/><path d="M250 20V105 M260 20V105 M275 20V105" stroke-width=".4" stroke-dasharray="3 4"/></g></svg><small>DRAWING NO. A-001 / SCHEMATIC DESIGN / SCALE NTS</small></div></div>
+<div><div class="label">03 / DOCUMENT — A4</div><div class="mock mock-doc"><small>ARCHITECTS BYX / REPORT 2026</small><div><h3>PROJECT<br>OVERVIEW</h3><p style="font-size:12px;line-height:1.7;max-width:290px">프로젝트의 의사결정과 설계 조건을 명확한 위계의 정보로 정리합니다.</p></div><small>2026. 10 / 01</small></div></div>
+<div><div class="label">04 / SOFTWARE — TOOL</div><div class="mock mock-doc"><small>BYX / TOOL INTERFACE</small><div><h3 style="font-size:28px">PROJECT DATA</h3><div style="border-top:1px solid #111;padding:12px 0;display:flex;justify-content:space-between;font-size:12px"><span>Project Name</span><span>BYX — 001</span></div><div style="border-top:1px solid #aaa;padding:12px 0;display:flex;justify-content:space-between;font-size:12px"><span>Category</span><span>Architecture</span></div><div style="border-top:1px solid #aaa;padding:12px 0;display:flex;justify-content:space-between;font-size:12px"><span>Status</span><span>Active</span></div></div><small>FUNCTION BEFORE DECORATION</small></div></div>
+</div>
+<div class="footline"><span>PPT / CAD / DOC / UI / SOCIAL</span><span>APPLICATIONS ARE ILLUSTRATIVE</span></div>
+</section>
+<section class="sheet" data-sheet="5">
+<div class="topline"><span>WEBSITE / ABOUT PAGE STUDY</span><span>05 / 05</span></div>
+<div class="sectionhead">ABOUT, AS<br>AN EXPERIENCE.</div>
+<div class="previewsite"><div style="display:flex;justify-content:space-between;border-bottom:1px solid #111;padding-bottom:14px"><b>BYX.</b><span class="label">WORKS &nbsp; ABOUT &nbsp; CONTACT</span></div><div class="mid"><div><div class="label">ARCHITECTS BYX / 01</div><h2>DESIGN<br>THROUGH<br>VARIABLES.</h2><p class="body">X는 프로젝트의 조건이자, 설계자의 경험이다.</p></div><div class="miniX">X</div></div><div class="callout"><span class="num">VARIABLE X</span><span class="num">eXPERIENCE X</span><span class="num">SCROLL TO EXPLORE ↓</span></div></div>
+<div class="cardgrid">
+<div class="card"><div class="num">SECTION 01</div><h3>INTRODUCTION</h3><p>브랜드 철학을 큰 영문 타이포와 짧은 국문 설명으로 전달.</p></div>
+<div class="card"><div class="num">SECTION 02</div><h3>VARIABLE</h3><p>사용자 입력과 조건 변화에 반응하는 X 실험.</p></div>
+<div class="card"><div class="num">SECTION 03</div><h3>EXPERIENCE</h3><p>경험의 레이어·축적·수렴을 보여주는 X 실험.</p></div>
+<div class="card"><div class="num">SECTION 04</div><h3>X EXPRESSIONS</h3><p>다양한 애니메이션을 선택해 볼 수 있는 열린 라이브러리.</p></div>
+<div class="card"><div class="num">SECTION 05</div><h3>OUR PRACTICE</h3><p>추상적인 개념을 실제 프로젝트와 두 건축사의 작업으로 연결.</p></div>
+</div>
+<div class="footline"><span>DESIGNING THE FUNCTION.</span><span>END OF DRAFT / FEEDBACK WELCOME</span></div>
+</section>
+</main>
+</div>
+<script>
+const tabs=[...document.querySelectorAll('[data-page]')],sheets=[...document.querySelectorAll('[data-sheet]')];
+function goPage(n){sheets.forEach(s=>s.classList.toggle('active',s.dataset.sheet===String(n)));tabs.forEach(t=>{if(t.dataset.page===String(n))t.setAttribute('aria-current','page');else t.removeAttribute('aria-current')});window.scrollTo({top:0,behavior:'instant'});history.replaceState(null,'','#page-'+n)}
+tabs.forEach(t=>t.addEventListener('click',()=>goPage(+t.dataset.page)));
+const modes={stretch:['V01 — VARIABLE / STRETCH','조건에 따라 X의 가로 비례가 달라지는 움직임.'],slice:['V02 — VARIABLE / SLICE','X의 획을 여러 수평 영역으로 분절하고 재조합.'],field:['V03 — VARIABLE / FIELD','반복되는 X의 밀도와 크기가 하나의 입력값에 반응.'],trace:['E01 — EXPERIENCE / TRACE','과거 상태가 잔상처럼 남고 현재 상태 위에 축적.'],converge:['E02 — EXPERIENCE / CONVERGE','서로 어긋난 X가 하나의 읽을 수 있는 형태로 수렴.'],archive:['E03 — EXPERIENCE / ARCHIVE','서로 다른 X 상태를 시간순으로 배열한 시각적 기록.']};
+const box=document.getElementById('experiment'),cap=document.getElementById('modeCaption'),desc=document.getElementById('modeDescription'),slider=document.getElementById('parameter'),out=document.getElementById('rangeval'),toggle=document.getElementById('toggleMotion');let active='stretch',isMoving=true;
+function render(){
+const v=+slider.value;out.textContent=v;cap.textContent=modes[active][0];desc.textContent=modes[active][1];document.querySelectorAll('[data-mode]').forEach(b=>{const ok=b.dataset.mode===active;b.classList.toggle('selected',ok);b.setAttribute('aria-pressed',String(ok))});
+box.innerHTML='';box.append(cap);
+let el=document.createElement('div');el.className='xmark';el.textContent='X';
+if(active==='stretch'){el.style.transform='scaleX('+(0.45+v/100)+')';if(isMoving)el.classList.add('moving')}
+if(active==='trace'||active==='converge'){for(let i=4;i>=1;i--){let t=document.createElement('span');t.className='trail';t.textContent='X';t.style.opacity=String((5-i)*.09);t.style.transform='translate('+(i*(active==='trace'?7:4))+'px,'+(i*(active==='trace'?2:4))+'px)';el.append(t)}if(active==='converge')el.style.transform='scaleX('+(0.7+v/300)+')'}
+if(active==='slice'){el.style.opacity='0';for(let i=0;i<3;i++){let q=document.createElement('div');q.className='xmark slice-part s'+i;q.textContent='X';q.style.fontSize='inherit';q.style.transform='translateX('+((i-1)*(v-40)*.75)+'px)';el.append(q)}}
+if(active==='field'||active==='archive'){let grid=document.createElement('div');grid.className='field';let count=active==='field'?49:28;grid.style.gridTemplateColumns=active==='field'?'repeat(7,1fr)':'repeat(7,1fr)';for(let i=0;i<count;i++){let x=document.createElement('span');x.textContent='X';let u=active==='field'?.3+((i*17+v)%95)/125:1;x.style.transform='scale('+u+')';x.style.opacity=active==='archive'?String(.18+((i*11)%10)/12):'.86';grid.append(x)}box.append(grid);return}
+box.append(el)}
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.mode;render()}));
+slider.addEventListener('input',render);toggle.addEventListener('click',()=>{isMoving=!isMoving;toggle.textContent=isMoving?'PAUSE':'PLAY';render()});
+const hash=location.hash.match(/page-(\d)/);if(hash)goPage(Math.min(5,+hash[1]));render();
+</script>
+</body>
+</html>
