@@ -1,6 +1,15 @@
 # 메뉴 호버와 프로젝트 배경 — 2026-11-13
 
-상태: 로컬 구현과 격리 검증 완료, 기존 Vercel 운영 반영 진행. 비교 기준은 `af8bab2`입니다. 사용자는 직전 배포를 확인하는 흐름에서 메뉴 호버와 프로젝트 경계 제거를 함께 요청했습니다.
+후속 사용자 정정: 아래 프로젝트의 고정 배경·스크롤 감쇠는 이전 구현 기록입니다. 현재는 **Cover Flow와 본문이 함께 스크롤하고 하단 반사만 본문·CODE 뒤에 겹칩니다.** 메뉴 호버는 유지합니다. [최종 프로젝트 사양](PROJECT_REFLECTION_FLOW_2026-11-13.md)을 우선합니다.
+
+상태: 운영 배포 완료. 비교 기준은 `af8bab2`, 검증한 실행 소스는 `3826809`, 운영 main은 `b16e301`입니다. 사용자는 직전 배포를 확인하는 흐름에서 메뉴 호버와 프로젝트 경계 제거를 함께 요청했습니다.
+
+## 운영 배포
+
+- [운영 사이트](https://byx-website.vercel.app/#/)에 [PR #22](https://github.com/keruk01-cmd/byx_website/pull/22)를 병합했고 [Vercel 운영 배포](https://vercel.com/keruk01-cmds-projects/byx-website/2a5pZagPGkKz1ew6cDXLJzB6ksMc)가 성공했습니다.
+- GitHub 병합 결과의 `index.html` blob과 검증한 소스의 일치를 확인했습니다. 운영 콘텐츠·서버·DB 정책은 변경하지 않았습니다.
+- 2026-11-13 11:12 KST에 기존 운영 주소의 `/`, `/index.html`, `/admin`, `/admin/`, `/guidelines`, `/guidelines/buttons`에서 HTTP 200과 최신 HTML 해시 일치를 확인했습니다. 브랜드 가이드 API도 기존 26개 문서와 URL 접근 모드가 유지됩니다. [실제 운영 검증](../tests/artifacts/deployment-results.json).
+- 후속 배포 확인 기록은 기존 작업 브랜치에 별도 커밋으로 보관합니다. 운영 로그인·저장·업로드는 수행하지 않았습니다.
 
 ## 화면과 동작
 

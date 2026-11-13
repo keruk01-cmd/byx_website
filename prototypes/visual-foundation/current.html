@@ -381,13 +381,14 @@ table.idx .st{display:inline-block;max-width:100%;white-space:normal;overflow-wr
 .specs dt,.specs dd{font-family:var(--font-mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;padding:8px 0;border-bottom:var(--hair) solid var(--faint);margin:0}
 .specs dt{color:var(--mute);padding-right:22px;white-space:nowrap}
 .specs dd{text-align:right}
-.project-scene{position:relative;isolation:isolate}
-.project-scene .project-gallery{position:sticky;top:var(--head-h);z-index:0;background:transparent;opacity:calc(1 - var(--project-reading,0)*.84)}
-.project-scene .gal-track{background:transparent}
-.project-scene .pd-body{position:relative;z-index:1;align-items:start;min-height:55svh;padding-bottom:clamp(60px,12svh,140px);background:transparent;pointer-events:none}
-.project-scene .pd-body :is(.txt,.specs){position:relative;background:transparent;pointer-events:auto;text-shadow:0 0 9px var(--bg),0 1px 3px var(--bg)}
+.project-scene{position:relative;isolation:isolate;overflow-x:clip}
+.project-scene .project-gallery{position:relative;z-index:0;background:transparent}
+.project-scene .project-gallery .gal-track{background:transparent;overflow:visible}
+.project-scene .project-gallery .cover-reflection{height:48%}
+.project-scene .project-gallery .gal-dots{position:absolute;left:0;right:0;bottom:0;padding:0 12px}
+.project-scene .pd-body{position:relative;z-index:1;align-items:start;background:transparent}
+.project-scene .pd-body :is(.txt,.specs){background:transparent}
 .project-scene .specs :is(dt,dd){border:0}
-@media(prefers-reduced-motion:reduce){.project-scene .project-gallery{position:relative;top:auto;opacity:1}}
 .shots{display:grid;grid-template-columns:1fr;gap:var(--hair);background:var(--fg)}
 .shots .s{background:var(--bg)}
 .shots img{width:100%;height:auto;max-height:82vh;object-fit:cover;display:block}
@@ -4686,8 +4687,7 @@ function bindPage(page, arg){
 function bindProjectGallery(g){
   const track=$('.gal-track',g),cards=$$('[data-cover]',g),dots=$$('.gal-dot',g),status=$('[data-gallery-status]',g),n=cards.length,reduced=matchMedia('(prefers-reduced-motion:reduce)');
   if(!n)return()=>{};
-  const scene=g.closest('.project-scene'),body=scene&&$('.pd-body',scene);
-  let index=0,position=0,target=0,velocity=0,frame=0,lastTime=0,width=1,spacing=1,drag=null,wheel=null,wheelTimer=0,readingFrame=0,suppress=false,disposed=false;
+  let index=0,position=0,target=0,velocity=0,frame=0,lastTime=0,width=1,spacing=1,drag=null,wheel=null,wheelTimer=0,suppress=false,disposed=false;
   const bound=x=>Math.max(0,Math.min(n-1,x));
   const nearest=()=>Math.round(bound(position));
   const rubber=x=>{const edge=bound(x),over=x-edge;return edge+over*.3/(1+Math.abs(over)*.7);};
@@ -4797,23 +4797,14 @@ function bindProjectGallery(g){
   }
   function measure(){
     // Read dimensions once per resize, never in the animation loop.
-    clearDrag();finishWheel();stop();width=$('.cover-plane',cards[0]).offsetWidth;spacing=Math.max(100,width*.64);position=target=index;velocity=0;paint();updateReading();
+    clearDrag();finishWheel();stop();width=$('.cover-plane',cards[0]).offsetWidth;spacing=Math.max(100,width*.64);position=target=index;velocity=0;paint();
   }
-  function updateReading(){
-    readingFrame=0;if(!body)return;
-    // The gallery stays behind the transparent copy and gently recedes as it overlaps.
-    const overlap=g.getBoundingClientRect().bottom-body.getBoundingClientRect().top,span=Math.max(160,Math.min(track.clientHeight*.6,innerHeight*.5));
-    const progress=reduced.matches?0:Math.max(0,Math.min(1,overlap/span));
-    scene.style.setProperty('--project-reading',progress.toFixed(4));
-  }
-  const onReadingScroll=()=>{if(!readingFrame)readingFrame=requestAnimationFrame(updateReading);};
   function onVisibility(){if(document.hidden){clearDrag();finishWheel();stop();position=target=nearest();paint();}}
   dots.forEach((dot,i)=>dot.onclick=()=>{track.focus({preventScroll:true});go(i);});
   const size=new ResizeObserver(measure);size.observe(track);
   track.addEventListener('pointerdown',onDown);track.addEventListener('pointermove',onMove);track.addEventListener('pointerup',onUp);track.addEventListener('pointercancel',onCancel);track.addEventListener('lostpointercapture',onCancel);track.addEventListener('click',onClick);track.addEventListener('wheel',onWheel,{passive:false});g.addEventListener('keydown',onKey);reduced.addEventListener('change',measure);document.addEventListener('visibilitychange',onVisibility);window.addEventListener('blur',onCancel);
-  window.addEventListener('scroll',onReadingScroll,{passive:true});
   measure();
-  return()=>{disposed=true;clearDrag();stop();clearTimeout(wheelTimer);cancelAnimationFrame(readingFrame);size.disconnect();dots.forEach(dot=>dot.onclick=null);track.removeEventListener('pointerdown',onDown);track.removeEventListener('pointermove',onMove);track.removeEventListener('pointerup',onUp);track.removeEventListener('pointercancel',onCancel);track.removeEventListener('lostpointercapture',onCancel);track.removeEventListener('click',onClick);track.removeEventListener('wheel',onWheel);g.removeEventListener('keydown',onKey);reduced.removeEventListener('change',measure);document.removeEventListener('visibilitychange',onVisibility);window.removeEventListener('blur',onCancel);window.removeEventListener('scroll',onReadingScroll);};
+  return()=>{disposed=true;clearDrag();stop();clearTimeout(wheelTimer);size.disconnect();dots.forEach(dot=>dot.onclick=null);track.removeEventListener('pointerdown',onDown);track.removeEventListener('pointermove',onMove);track.removeEventListener('pointerup',onUp);track.removeEventListener('pointercancel',onCancel);track.removeEventListener('lostpointercapture',onCancel);track.removeEventListener('click',onClick);track.removeEventListener('wheel',onWheel);g.removeEventListener('keydown',onKey);reduced.removeEventListener('change',measure);document.removeEventListener('visibilitychange',onVisibility);window.removeEventListener('blur',onCancel);};
 }
 function bindGalleries(root){
   const cleaners=[];

@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-13T02:05:43.715Z",
+  "testedAt": "2026-11-13T02:20:24.901Z",
   "results": [
     {
       "navigation": true,
@@ -16,7 +16,7 @@
       "width": 1440,
       "height": 1000,
       "geometry": {
-        "gallery": "sticky",
+        "gallery": "relative",
         "background": "rgba(0, 0, 0, 0)",
         "bodyBorder": "0px",
         "rows": [
@@ -41,23 +41,30 @@
           "0px",
           "0px"
         ],
-        "initialTop": 266.484375
+        "reflectionBottom": 1133.84375,
+        "copyTop": 960.484375,
+        "initialTop": 260.484375,
+        "trackOverflow": "visible"
       },
       "overlay": {
         "gallery": {
-          "top": 82.2061767578125,
-          "bottom": 790.2061767578125
+          "top": -120.515625,
+          "bottom": 539.484375
         },
         "body": {
-          "top": 401.6905517578125,
-          "bottom": 951.6905517578125
+          "top": 539.484375,
+          "bottom": 949.953125
         },
-        "progress": 0.9811,
-        "opacity": 0.175876,
+        "reflectionBottom": 752.84375,
+        "opacity": 1,
         "overflow": false
       },
       "transparentForeground": true,
-      "readabilityFade": true,
+      "reflectionOverlap": true,
+      "nativeScrollDelta": 120,
+      "noPinnedGallery": true,
+      "noScrollFade": true,
+      "galleryLeavesViewport": true,
       "contentPreserved": true,
       "galleryKeys": true,
       "mobileMenu": false,
@@ -68,7 +75,7 @@
       "width": 390,
       "height": 844,
       "geometry": {
-        "gallery": "sticky",
+        "gallery": "relative",
         "background": "rgba(0, 0, 0, 0)",
         "bodyBorder": "0px",
         "rows": [
@@ -93,23 +100,30 @@
           "0px",
           "0px"
         ],
-        "initialTop": 148.328125
+        "reflectionBottom": 534.171875,
+        "copyTop": 489.921875,
+        "initialTop": 142.328125,
+        "trackOverflow": "visible"
       },
       "overlay": {
         "gallery": {
-          "top": 56.705169677734375,
-          "bottom": 432.29888916015625
+          "top": -18.671875,
+          "bottom": 308.921875
         },
         "body": {
-          "top": 304.12701416015625,
-          "bottom": 1058.1895751953125
+          "top": 308.921875,
+          "bottom": 961.71875
         },
-        "progress": 0.6513,
-        "opacity": 0.452908,
+        "reflectionBottom": 373.171875,
+        "opacity": 1,
         "overflow": false
       },
       "transparentForeground": true,
-      "readabilityFade": true,
+      "reflectionOverlap": true,
+      "nativeScrollDelta": 120,
+      "noPinnedGallery": true,
+      "noScrollFade": true,
+      "galleryLeavesViewport": true,
       "contentPreserved": true,
       "galleryKeys": true,
       "mobileMenu": true,
@@ -120,7 +134,7 @@
       "width": 320,
       "height": 640,
       "geometry": {
-        "gallery": "sticky",
+        "gallery": "relative",
         "background": "rgba(0, 0, 0, 0)",
         "bodyBorder": "0px",
         "rows": [
@@ -145,23 +159,30 @@
           "0px",
           "0px"
         ],
-        "initialTop": 148.328125
+        "reflectionBottom": 462.5625,
+        "copyTop": 431.125,
+        "initialTop": 142.328125,
+        "trackOverflow": "visible"
       },
       "overlay": {
         "gallery": {
-          "top": 56.93463134765625,
-          "bottom": 373.73150634765625
+          "top": -20.671875,
+          "bottom": 248.125
         },
         "body": {
-          "top": 243.55963134765625,
-          "bottom": 1033.5751953125
+          "top": 248.125,
+          "bottom": 961.34375
         },
-        "progress": 0.8065,
-        "opacity": 0.32254,
+        "reflectionBottom": 299.5625,
+        "opacity": 1,
         "overflow": false
       },
       "transparentForeground": true,
-      "readabilityFade": true,
+      "reflectionOverlap": true,
+      "nativeScrollDelta": 120,
+      "noPinnedGallery": true,
+      "noScrollFade": true,
+      "galleryLeavesViewport": true,
       "contentPreserved": true,
       "galleryKeys": true,
       "mobileMenu": true,
@@ -172,7 +193,7 @@
       "width": 844,
       "height": 390,
       "geometry": {
-        "gallery": "sticky",
+        "gallery": "relative",
         "background": "rgba(0, 0, 0, 0)",
         "bodyBorder": "0px",
         "rows": [
@@ -197,23 +218,30 @@
           "0px",
           "0px"
         ],
-        "initialTop": 196.53125
+        "reflectionBottom": 572.484375,
+        "copyTop": 512.234375,
+        "initialTop": 190.53125,
+        "trackOverflow": "visible"
       },
       "overlay": {
         "gallery": {
-          "top": 67.03399658203125,
-          "bottom": 411.42462158203125
+          "top": -113.46875,
+          "bottom": 182.921875
         },
         "body": {
-          "top": 178.12774658203125,
-          "bottom": 871.893310546875
+          "top": 182.921875,
+          "bottom": 816.6875
         },
-        "progress": 1,
-        "opacity": 0.16,
+        "reflectionBottom": 268.484375,
+        "opacity": 1,
         "overflow": false
       },
       "transparentForeground": true,
-      "readabilityFade": true,
+      "reflectionOverlap": true,
+      "nativeScrollDelta": 120,
+      "noPinnedGallery": true,
+      "noScrollFade": true,
+      "galleryLeavesViewport": true,
       "contentPreserved": true,
       "galleryKeys": true,
       "mobileMenu": true,
