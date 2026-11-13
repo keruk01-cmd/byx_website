@@ -1,6 +1,13 @@
 # 프로젝트 Cover Flow — 2026-11-13
 
-상태: 로컬 구현과 격리 Chrome 검증 완료. 비교 기준은 `e7e6a92`이며 커밋·푸시·운영 배포는 수행하지 않았습니다.
+상태: 사용자 후속 요청으로 운영 배포 완료. 비교 기준은 `e7e6a92`, 검증한 실행 소스는 `c4974cf`, 운영 main은 `a2c23df`입니다.
+
+## 운영 배포
+
+- [운영 WORKS](https://byx-website.vercel.app/#/)에서 프로젝트를 열어 확인할 수 있습니다. [PR #21](https://github.com/keruk01-cmd/byx_website/pull/21)을 병합했고 [Vercel 운영 배포](https://vercel.com/keruk01-cmds-projects/byx-website/HdomhxUateUvsSeh2KpRv4PAeGmv)가 성공했습니다.
+- 병합 전에 GitHub 병합 결과의 `index.html` blob이 검증한 소스와 동일함을 확인했습니다. 운영 콘텐츠·서버·DB 정책은 변경하지 않았습니다.
+- 2026-11-13 10:56 KST에 `/`, `/index.html`, `/admin`, `/admin/`, `/guidelines`, `/guidelines/buttons`의 HTTP 200과 최신 HTML 해시 일치를 확인했습니다. 브랜드 가이드 API는 기존 26개 문서와 URL 접근 모드를 유지합니다. [운영 검증 결과](../tests/artifacts/deployment-results.json).
+- 운영 로그인·저장·업로드나 실제 기기 조작은 수행하지 않았습니다. 배포 확인 문서와 결과는 기존 작업 브랜치에 후속 커밋으로 보관합니다.
 
 사용자가 제공한 [Arc Cover Flow](https://uiarc.dev/components/cover-flow)의 동작 설명을 기준으로 BYX의 단일 HTML 구조에 직접 구현했습니다. Pro 소스나 React/Motion 패키지를 설치하지 않았습니다. 문서 URL의 직접 조회는 타임아웃이 발생해 제공된 프롬프트를 구현 기준으로 사용했습니다.
 
@@ -42,4 +49,4 @@ BLOG 갤러리·슬롯 로고·설정 객체·Auth/Storage/DB·Vercel 설정·�
 
 이전 `finite-coverflow.cjs`는 동일 밝기·모든 7컷 경계 맞춤 등 과거 시각 사양에 고정되어 있어 이번 새 사양의 합격 기준으로 사용하지 않았습니다. 새 동작은 `coverflow-momentum.cjs`에 기록합니다.
 
-미검증: 실제 휴대전화/트랙패드의 체감과 합성, Safari/Firefox, 스크린리더 실제 낭독, 실제 운영 관리자 로그인/저장/업로드와 운영 배포. 별도의 추가 사양 결정은 없습니다.
+미검증: 실제 휴대전화/트랙패드의 체감과 합성, Safari/Firefox, 스크린리더 실제 낭독, 실제 운영 관리자 로그인/저장/업로드. 별도의 추가 사양 결정은 없습니다.
