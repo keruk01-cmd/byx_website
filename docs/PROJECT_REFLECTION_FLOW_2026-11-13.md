@@ -1,6 +1,12 @@
 # 프로젝트 반사와 일반 스크롤 — 2026-11-13
 
-상태: 로컬 정정 구현/검증 완료, 기존 운영 주소 반영 진행. 비교 기준은 `81f1445`입니다.
+상태: 운영 정정 배포 완료. 비교 기준은 `81f1445`, 검증한 소스는 `5f4c416`, 운영 main은 `ef92531`입니다.
+
+## 운영 확인
+
+- [PR #23](https://github.com/keruk01-cmd/byx_website/pull/23)을 병합했고 [Vercel 배포](https://vercel.com/keruk01-cmds-projects/byx-website/9j6UcWsoPv5TW6wm2y9dGXjQ835K)가 성공했습니다. [기존 운영 주소](https://byx-website.vercel.app/#/)에서 확인합니다.
+- 병합 결과 HTML blob과 검증한 소스가 동일합니다. 2026-11-13 11:24 KST에 기존 주소 6개 경로의 HTTP 200/최신 HTML 일치와 가이드 API의 기존 26개 문서/접근 모드를 확인했습니다. [운영 검증](../tests/artifacts/deployment-results.json).
+- 운영 콘텐츠/계정/서버/DB 정책은 변경하지 않았습니다. 후속 배포 확인 기록은 작업 브랜치에 별도 커밋으로 보관합니다.
 
 ## 최종 사양
 
