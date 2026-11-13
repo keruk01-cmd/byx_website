@@ -1,0 +1,191 @@
+{
+  "testedAt": "2026-11-13T01:49:14.956Z",
+  "results": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "initial": {
+        "index": 3,
+        "slides": 9,
+        "visible": 7,
+        "exposed": 1,
+        "tabs": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "touch": "pan-y pinch-zoom",
+        "fit": true,
+        "reflection": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 85%)",
+        "extra": 0,
+        "front": {
+          "x": 345.59375,
+          "y": 223.6875,
+          "width": 748.796875,
+          "height": 561.59375,
+          "top": 223.6875,
+          "right": 1094.390625,
+          "bottom": 785.28125,
+          "left": 345.59375
+        }
+      },
+      "slow": 3,
+      "fast": 4,
+      "clickNeighbour": true,
+      "keyboard": true,
+      "rubberBand": true,
+      "trackpad": true,
+      "touch": true,
+      "reducedMotion": true,
+      "resize": true,
+      "finiteCounts": true,
+      "cleanup": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "initial": {
+        "index": 3,
+        "slides": 9,
+        "visible": 7,
+        "exposed": 1,
+        "tabs": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "touch": "pan-y pinch-zoom",
+        "fit": true,
+        "reflection": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 85%)",
+        "extra": 0,
+        "front": {
+          "x": 35.09375,
+          "y": 170.203125,
+          "width": 319.796875,
+          "height": 239.84375,
+          "top": 170.203125,
+          "right": 354.890625,
+          "bottom": 410.046875,
+          "left": 35.09375
+        }
+      },
+      "slow": 3,
+      "fast": 4,
+      "clickNeighbour": true,
+      "keyboard": true,
+      "rubberBand": true,
+      "trackpad": true,
+      "touch": true,
+      "reducedMotion": true,
+      "resize": true,
+      "finiteCounts": true,
+      "cleanup": true
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "initial": {
+        "index": 3,
+        "slides": 9,
+        "visible": 7,
+        "exposed": 1,
+        "tabs": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "touch": "pan-y pinch-zoom",
+        "fit": true,
+        "reflection": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 85%)",
+        "extra": 0,
+        "front": {
+          "x": 28.796875,
+          "y": 162.328125,
+          "width": 262.390625,
+          "height": 196.78125,
+          "top": 162.328125,
+          "right": 291.1875,
+          "bottom": 359.109375,
+          "left": 28.796875
+        }
+      },
+      "slow": 3,
+      "fast": 4,
+      "clickNeighbour": true,
+      "keyboard": true,
+      "rubberBand": true,
+      "trackpad": true,
+      "touch": true,
+      "reducedMotion": true,
+      "resize": true,
+      "finiteCounts": true,
+      "cleanup": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "initial": {
+        "index": 3,
+        "slides": 9,
+        "visible": 7,
+        "exposed": 1,
+        "tabs": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "touch": "pan-y pinch-zoom",
+        "fit": true,
+        "reflection": "linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0) 85%)",
+        "extra": 0,
+        "front": {
+          "x": 258.203125,
+          "y": 63.875,
+          "width": 327.59375,
+          "height": 245.6875,
+          "top": 63.875,
+          "right": 585.796875,
+          "bottom": 309.5625,
+          "left": 258.203125
+        }
+      },
+      "slow": 3,
+      "fast": 4,
+      "clickNeighbour": true,
+      "keyboard": true,
+      "rubberBand": true,
+      "trackpad": true,
+      "touch": true,
+      "reducedMotion": true,
+      "resize": true,
+      "finiteCounts": true,
+      "cleanup": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome demo and emulated touch/trackpad. No production writes or real-device/Safari/Firefox/screen-reader checks."
+}
