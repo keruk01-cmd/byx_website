@@ -1,0 +1,226 @@
+{
+  "testedAt": "2026-11-13T02:05:43.715Z",
+  "results": [
+    {
+      "navigation": true,
+      "rightExtension": 10,
+      "leftExtension": 10,
+      "anchoredEdges": true,
+      "fixedLabels": true,
+      "selectionUnchangedOnHover": true,
+      "rapidHoverAndClick": true,
+      "keyboard": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "geometry": {
+        "gallery": "sticky",
+        "background": "rgba(0, 0, 0, 0)",
+        "bodyBorder": "0px",
+        "rows": [
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "initialTop": 266.484375
+      },
+      "overlay": {
+        "gallery": {
+          "top": 82.2061767578125,
+          "bottom": 790.2061767578125
+        },
+        "body": {
+          "top": 401.6905517578125,
+          "bottom": 951.6905517578125
+        },
+        "progress": 0.9811,
+        "opacity": 0.175876,
+        "overflow": false
+      },
+      "transparentForeground": true,
+      "readabilityFade": true,
+      "contentPreserved": true,
+      "galleryKeys": true,
+      "mobileMenu": false,
+      "reducedMotion": true,
+      "cleanup": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "geometry": {
+        "gallery": "sticky",
+        "background": "rgba(0, 0, 0, 0)",
+        "bodyBorder": "0px",
+        "rows": [
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "initialTop": 148.328125
+      },
+      "overlay": {
+        "gallery": {
+          "top": 56.705169677734375,
+          "bottom": 432.29888916015625
+        },
+        "body": {
+          "top": 304.12701416015625,
+          "bottom": 1058.1895751953125
+        },
+        "progress": 0.6513,
+        "opacity": 0.452908,
+        "overflow": false
+      },
+      "transparentForeground": true,
+      "readabilityFade": true,
+      "contentPreserved": true,
+      "galleryKeys": true,
+      "mobileMenu": true,
+      "reducedMotion": true,
+      "cleanup": true
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "geometry": {
+        "gallery": "sticky",
+        "background": "rgba(0, 0, 0, 0)",
+        "bodyBorder": "0px",
+        "rows": [
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "initialTop": 148.328125
+      },
+      "overlay": {
+        "gallery": {
+          "top": 56.93463134765625,
+          "bottom": 373.73150634765625
+        },
+        "body": {
+          "top": 243.55963134765625,
+          "bottom": 1033.5751953125
+        },
+        "progress": 0.8065,
+        "opacity": 0.32254,
+        "overflow": false
+      },
+      "transparentForeground": true,
+      "readabilityFade": true,
+      "contentPreserved": true,
+      "galleryKeys": true,
+      "mobileMenu": true,
+      "reducedMotion": true,
+      "cleanup": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "geometry": {
+        "gallery": "sticky",
+        "background": "rgba(0, 0, 0, 0)",
+        "bodyBorder": "0px",
+        "rows": [
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "initialTop": 196.53125
+      },
+      "overlay": {
+        "gallery": {
+          "top": 67.03399658203125,
+          "bottom": 411.42462158203125
+        },
+        "body": {
+          "top": 178.12774658203125,
+          "bottom": 871.893310546875
+        },
+        "progress": 1,
+        "opacity": 0.16,
+        "overflow": false
+      },
+      "transparentForeground": true,
+      "readabilityFade": true,
+      "contentPreserved": true,
+      "galleryKeys": true,
+      "mobileMenu": true,
+      "reducedMotion": true,
+      "cleanup": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome demo; mouse and mobile viewport emulation. No production writes, real-device/Safari/Firefox or screen-reader verification."
+}
