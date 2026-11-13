@@ -5061,7 +5061,7 @@ function bindGuidelines(arg){
 /* ============================================================
    9. CHROME + BOOT
    ============================================================ */
-const NAV_PILL={animation:null,inkAnimation:null,wordAnimation:null,lensFrame:0,key:'',target:null,mapKey:'',hoverKey:'',traveling:false};
+const NAV_PILL={animation:null,inkAnimation:null,wordAnimation:null,lensFrame:0,key:'',target:null,mapKey:'',traveling:false,pointerX:null,hoverBase:null,hoverFrame:0,hoverTime:0,hoverOffset:0,hoverVelocity:0};
 function updateNavLens(width,height){
   const key=Math.round(width)+'/'+Math.round(height);if(NAV_PILL.mapKey===key)return;NAV_PILL.mapKey=key;
   updateLensMap($('#nav-lens-map'),width,height,height/2,14,.09);
@@ -5083,6 +5083,44 @@ function navAperture(g,parent){
   const path=`M0 0H${w}V${h}H0Z M${x+r} ${y}H${right-r}A${r} ${r} 0 0 1 ${right} ${y+r}A${r} ${r} 0 0 1 ${right-r} ${bottom}H${x+r}A${r} ${r} 0 0 1 ${x} ${y+r}A${r} ${r} 0 0 1 ${x+r} ${y}Z`;
   head.style.setProperty('--nav-aperture',`path(evenodd, "${path}")`);
 }
+function stopNavHover(){
+  cancelAnimationFrame(NAV_PILL.hoverFrame);NAV_PILL.hoverFrame=0;
+  NAV_PILL.hoverOffset=0;NAV_PILL.hoverVelocity=0;NAV_PILL.hoverBase=null;
+  $('#nav').dataset.hoverMotion='settled';
+}
+function paintNavHover(){
+  const base=NAV_PILL.hoverBase;if(!base)return;
+  const offset=NAV_PILL.hoverOffset,width=base.width+Math.abs(offset),x=base.x+offset/2;
+  const transform=`translate3d(${x}px,-50%,0) translateX(-50%) scale(${width/base.width},1)`;
+  for(const el of [$('#nav-pill'),$('#nav-ink')])el.style.transform=transform;
+  // Counter-scale the decorative labels, so only the glass changes shape.
+  $('#nav-ink-words').style.transform=`scale(${base.width/width},1) translate(${-(x-width/2)}px,${-(base.parent.height-base.height)/2}px)`;
+  navAperture({x,width,height:base.height},base.parent);
+}
+function startNavHover(){
+  const base=NAV_PILL.hoverBase,nav=$('#nav');
+  if(!base||NAV_PILL.traveling||NAV_PILL.animation)return;
+  const enabled=!document.hidden&&!matchMedia('(prefers-reduced-motion:reduce)').matches&&matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(!enabled){
+    cancelAnimationFrame(NAV_PILL.hoverFrame);NAV_PILL.hoverFrame=0;NAV_PILL.pointerX=null;NAV_PILL.hoverOffset=NAV_PILL.hoverVelocity=0;
+    paintNavHover();nav.dataset.hoverMotion='settled';return;
+  }
+  if(NAV_PILL.hoverFrame)return;
+  const destination=()=>NAV_PILL.pointerX===null?0:14*Math.tanh((NAV_PILL.pointerX-base.x)/300);
+  if(Math.abs(destination()-NAV_PILL.hoverOffset)<.005&&Math.abs(NAV_PILL.hoverVelocity)<.02){nav.dataset.hoverMotion='settled';return;}
+  NAV_PILL.hoverTime=performance.now();nav.dataset.hoverMotion='moving';
+  function tick(now){
+    const elapsed=Math.min(.032,Math.max(.001,(now-NAV_PILL.hoverTime)/1000));NAV_PILL.hoverTime=now;
+    const target=destination();
+    // Pointer events only change the target. The same spring keeps its velocity
+    // through every link boundary, reversal and mouse leave.
+    for(let t=0;t<elapsed;t+=.008){const dt=Math.min(.008,elapsed-t);NAV_PILL.hoverVelocity+=((target-NAV_PILL.hoverOffset)*150-NAV_PILL.hoverVelocity*26)*dt;NAV_PILL.hoverOffset+=NAV_PILL.hoverVelocity*dt;}
+    const settled=Math.abs(target-NAV_PILL.hoverOffset)<.005&&Math.abs(NAV_PILL.hoverVelocity)<.02;
+    if(settled){NAV_PILL.hoverOffset=target;NAV_PILL.hoverVelocity=0;NAV_PILL.hoverFrame=0;nav.dataset.hoverMotion='settled';}
+    paintNavHover();if(!settled)NAV_PILL.hoverFrame=requestAnimationFrame(tick);
+  }
+  NAV_PILL.hoverFrame=requestAnimationFrame(tick);
+}
 function updateNavPill(instant=false){
   const nav=$('#nav'),pill=$('#nav-pill'),ink=$('#nav-ink'),words=$('#nav-ink-words'),links=$$('#nav a'),selected=$('#nav a.on');
   if(!nav||!pill)return;
@@ -5090,24 +5128,16 @@ function updateNavPill(instant=false){
   links.forEach(link=>{if(link===selected)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});
   const parent=nav.getBoundingClientRect();
   const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if(instant||document.hidden||reduced||!matchMedia('(hover:hover) and (pointer:fine)').matches)NAV_PILL.hoverKey='';
+  if(instant||document.hidden||reduced||!matchMedia('(hover:hover) and (pointer:fine)').matches)NAV_PILL.pointerX=null;
   if(!selected||!parent.width||!parent.height){
-    updateNavLens(100,44);cancel();$('#top').style.removeProperty('--nav-aperture');NAV_PILL.target=null;NAV_PILL.hoverKey='';NAV_PILL.traveling=false;nav.dataset.pillMotion='hidden';pill.style.opacity=ink.style.opacity='0';return;
+    updateNavLens(100,44);cancel();stopNavHover();$('#top').style.removeProperty('--nav-aperture');NAV_PILL.target=null;NAV_PILL.pointerX=null;NAV_PILL.traveling=false;nav.dataset.pillMotion='hidden';pill.style.opacity=ink.style.opacity='0';return;
   }
   const r=selected.getBoundingClientRect(),target={x:r.x+r.width/2-parent.x,width:r.width,height:r.height},key=selected.dataset.p;
-  const hoverOnly=NAV_PILL.key===key,hovered=links.find(link=>link.dataset.p===NAV_PILL.hoverKey&&link!==selected&&link.matches(':hover'));
-  if(hovered){
-    const h=hovered.getBoundingClientRect(),distance=h.x+h.width/2-r.x-r.width/2,reach=Math.min(10,3+Math.abs(distance)*.045);
-    // Keep the far edge anchored; only the edge facing the hovered link reaches out.
-    target.x+=Math.sign(distance)*reach/2;target.width+=reach;
-  }
-  // A hover can queue a lean, but never interrupt a route transition.
-  if(hoverOnly&&NAV_PILL.traveling&&NAV_PILL.animation&&!instant)return;
   const same=NAV_PILL.key===key&&NAV_PILL.target&&Math.abs(NAV_PILL.target.x-target.x)<.5&&Math.abs(NAV_PILL.target.width-target.width)<.5;
-  if(same&&NAV_PILL.animation&&!instant)return;
+  if(same&&(NAV_PILL.animation||NAV_PILL.hoverBase)&&!instant)return;
   const current=pill.getBoundingClientRect(),shown=pill.style.opacity==='1'&&current.width>0;
   const from=shown?{x:current.x+current.width/2-parent.x,width:current.width,height:current.height}:target;
-  cancel();
+  cancel();stopNavHover();
   NAV_PILL.key=key;NAV_PILL.target=target;nav.dataset.pillReady='true';pill.style.opacity=ink.style.opacity='1';
   words.replaceChildren(...links.map(link=>{const r=link.getBoundingClientRect(),span=document.createElement('span');span.className='nav-ink-word';span.textContent=link.textContent;span.style.cssText=`left:${r.x-parent.x}px;top:${r.y-parent.y}px;width:${r.width}px;height:${r.height}px`;return span;}));
   words.style.width=parent.width+'px';words.style.height=parent.height+'px';
@@ -5115,16 +5145,16 @@ function updateNavPill(instant=false){
   const counter=(x,width,height)=>`scale(${target.width/width},${target.height/height}) translate(${-(x-width/2)}px,${-(parent.height-height)/2}px)`;
   const apply=g=>{for(const el of [pill,ink]){el.style.transform=transform(g.x);el.style.width=g.width+'px';el.style.height=g.height+'px';el.style.borderRadius='999px';}words.style.transform=counter(g.x,g.width,g.height);};
   updateNavLens(target.width,target.height);
-  const finish=()=>{apply(target);navAperture(target,parent);pill.classList.remove('is-traveling');NAV_PILL.traveling=false;nav.dataset.pillMotion='settled';};
-  if(instant||!shown||document.hidden||reduced||same){finish();return;}
-  const dx=target.x-from.x,stretch=hoverOnly?0:Math.min(24,Math.abs(dx)*.12),duration=hoverOnly?240:320;
-  NAV_PILL.traveling=!hoverOnly;
+  const finish=()=>{apply(target);navAperture(target,parent);pill.classList.remove('is-traveling');NAV_PILL.traveling=false;NAV_PILL.hoverBase={...target,parent};nav.dataset.pillMotion='settled';};
+  if(instant||!shown||document.hidden||reduced||same){finish();startNavHover();return;}
+  const dx=target.x-from.x,stretch=Math.min(24,Math.abs(dx)*.12),duration=320;
+  NAV_PILL.traveling=true;
   apply(target);pill.classList.add('is-traveling');nav.dataset.pillMotion='moving';
-  const progress=t=>hoverOnly?(1-(1+8*t)*Math.exp(-8*t))/(1-9*Math.exp(-8)):1-Math.pow(1-t,3);
+  const progress=t=>1-Math.pow(1-t,3);
   // Shape recovery follows travel progress, so both settle at the same instant.
   const wordFrames=[];
   const keyframes=Array.from({length:61},(_,i)=>{
-    const t=i/60,p=progress(t),liquid=hoverOnly?0:Math.sin(Math.PI*p)**2;
+    const t=i/60,p=progress(t),liquid=Math.sin(Math.PI*p)**2;
     const width=from.width+(target.width-from.width)*p+stretch*liquid,height=from.height+(target.height-from.height)*p-target.height*.24*liquid;
     wordFrames.push({transform:counter(from.x+dx*p,width,height),offset:t});
     return{transform:transform(from.x+dx*p)+` scale(${width/target.width},${height/target.height})`,offset:t};
@@ -5132,14 +5162,14 @@ function updateNavPill(instant=false){
   const timing={duration,easing:'linear',fill:'both'},animation=pill.animate(keyframes,timing);
   NAV_PILL.animation=animation;
   NAV_PILL.inkAnimation=ink.animate(keyframes,timing);NAV_PILL.wordAnimation=words.animate(wordFrames,timing);
-  const apertureFrame=()=>{if(NAV_PILL.animation!==animation)return;const t=Math.max(0,Math.min(1,(animation.currentTime||0)/duration)),p=progress(t),liquid=hoverOnly?0:Math.sin(Math.PI*p)**2;navAperture({x:from.x+dx*p,width:from.width+(target.width-from.width)*p+stretch*liquid,height:from.height+(target.height-from.height)*p-target.height*.24*liquid},parent);NAV_PILL.lensFrame=requestAnimationFrame(apertureFrame);};apertureFrame();
-  animation.onfinish=()=>{if(NAV_PILL.animation!==animation)return;finish();cancel();updateNavPill();};
+  const apertureFrame=()=>{if(NAV_PILL.animation!==animation)return;const t=Math.max(0,Math.min(1,(animation.currentTime||0)/duration)),p=progress(t),liquid=Math.sin(Math.PI*p)**2;navAperture({x:from.x+dx*p,width:from.width+(target.width-from.width)*p+stretch*liquid,height:from.height+(target.height-from.height)*p-target.height*.24*liquid},parent);NAV_PILL.lensFrame=requestAnimationFrame(apertureFrame);};apertureFrame();
+  animation.onfinish=()=>{if(NAV_PILL.animation!==animation)return;finish();cancel();startNavHover();};
 }
-function clearNavHover(){if(NAV_PILL.hoverKey){NAV_PILL.hoverKey='';updateNavPill();}}
-$('#nav').addEventListener('pointerover',event=>{
+function clearNavHover(){NAV_PILL.pointerX=null;startNavHover();}
+$('#nav').addEventListener('pointermove',event=>{
   if(event.pointerType!=='mouse')return;
-  const key=event.target.closest('#nav a')?.dataset.p||'';
-  if(key!==NAV_PILL.hoverKey){NAV_PILL.hoverKey=key;updateNavPill();}
+  const parent=NAV_PILL.hoverBase?.parent||$('#nav').getBoundingClientRect();
+  NAV_PILL.pointerX=event.clientX-parent.x;startNavHover();
 });
 $('#nav').addEventListener('pointerleave',clearNavHover);
 document.addEventListener('pointerdown',event=>{if(event.pointerType!=='mouse')clearNavHover();},{passive:true});

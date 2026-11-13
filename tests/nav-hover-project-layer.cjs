@@ -8,13 +8,13 @@ async function main(){
   const browser=await chromium.launch({headless:true,executablePath:process.env.BYX_BROWSER||'C:/Program Files/Google/Chrome/Application/chrome.exe'}),errors=[],results=[];
   try{
     const origin='http://127.0.0.1:'+server.address().port,p=await browser.newPage({viewport:{width:1440,height:1000}});p.on('pageerror',e=>errors.push(e.message));
-    const rest=async()=>{await p.waitForFunction(()=>document.querySelector('#nav').dataset.pillMotion==='settled');await p.waitForTimeout(40);};
+    const rest=async()=>{await p.waitForFunction(()=>{const n=document.querySelector('#nav');return n.dataset.pillMotion==='settled'&&n.dataset.hoverMotion!=='moving';});await p.waitForTimeout(40);};
     const box=()=>p.locator('#nav-pill').boundingBox();
     const words=()=>p.locator('#nav-ink-words .nav-ink-word').evaluateAll(nodes=>nodes.map(e=>{const b=e.getBoundingClientRect();return{x:b.x,y:b.y,width:b.width,height:b.height};}));
     await p.goto(origin);await p.evaluate(()=>document.fonts.ready);await p.mouse.move(1,1);await rest();
     const base=await box(),labels=await words(),hash=await p.evaluate(()=>location.hash);
     await p.locator('#nav a[data-p="contact"]').hover();await rest();const right=await box();
-    assert(right.width>base.width+3&&right.width<=base.width+11);assert(Math.abs(right.x-base.x)<.5,'Far edge stays anchored');assert(Math.abs(right.height-base.height)<.5);
+    assert(right.width>base.width+3&&right.width<=base.width+14.1);assert(Math.abs(right.x-base.x)<.5,'Far edge stays anchored');assert(Math.abs(right.height-base.height)<.5);
     assert.equal(await p.evaluate(()=>location.hash),hash);assert.equal(await p.locator('#nav a[aria-current="page"]').getAttribute('data-p'),'project');
     for(const [i,w]of (await words()).entries())for(const key of ['x','y','width','height'])assert(Math.abs(w[key]-labels[i][key])<.5,'Inverted labels stay fixed');
     await p.screenshot({path:path.join(out,'nav-hover-right-1440.png')});

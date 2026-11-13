@@ -1,10 +1,10 @@
 {
-  "testedAt": "2026-11-13T02:20:24.901Z",
+  "testedAt": "2026-11-13T02:43:04.433Z",
   "results": [
     {
       "navigation": true,
-      "rightExtension": 10,
-      "leftExtension": 10,
+      "rightExtension": 9.625,
+      "leftExtension": 9.62548828125,
       "anchoredEdges": true,
       "fixedLabels": true,
       "selectionUnchangedOnHover": true,

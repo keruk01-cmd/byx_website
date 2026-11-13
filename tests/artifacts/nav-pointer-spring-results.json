@@ -1,0 +1,109 @@
+{
+  "testedAt": "2026-11-13T02:43:58.210Z",
+  "results": [
+    {
+      "width": 1440,
+      "withinMenuExtension": 2.3927001953125,
+      "samples": [
+        {
+          "pointerX": 1149.921875,
+          "x": 1055.5625,
+          "y": 21.2890625,
+          "width": 83.9296875,
+          "height": 38.390625
+        },
+        {
+          "pointerX": 1177.546875,
+          "x": 1055.5625,
+          "y": 21.2890625,
+          "width": 85.155029296875,
+          "height": 38.390625
+        },
+        {
+          "pointerX": 1205.171875,
+          "x": 1055.5625,
+          "y": 21.2890625,
+          "width": 86.3223876953125,
+          "height": 38.390625
+        },
+        {
+          "pointerX": 1214.125,
+          "x": 1055.5625,
+          "y": 21.2890625,
+          "width": 86.685791015625,
+          "height": 38.390625
+        },
+        {
+          "pointerX": 1223.078125,
+          "x": 1055.5625,
+          "y": 21.2890625,
+          "width": 87.0411376953125,
+          "height": 38.390625
+        }
+      ],
+      "continuousAcrossGap": true,
+      "anchoredFarEdge": true,
+      "noLabelOrLensRebuild": true,
+      "smoothReversal": true,
+      "smoothLeave": true,
+      "motionFrames": 78,
+      "clickTravel": true,
+      "keyboard": true,
+      "reducedMotion": true,
+      "mobileResize": true
+    },
+    {
+      "width": 1024,
+      "withinMenuExtension": 2.135498046875,
+      "samples": [
+        {
+          "pointerX": 778.3125,
+          "x": 696.390625,
+          "y": 22.8125,
+          "width": 73.4393310546875,
+          "height": 34.21875
+        },
+        {
+          "pointerX": 802.5234375,
+          "x": 696.390625,
+          "y": 22.8125,
+          "width": 74.52691650390625,
+          "height": 34.21875
+        },
+        {
+          "pointerX": 826.734375,
+          "x": 696.390625,
+          "y": 22.8125,
+          "width": 75.5748291015625,
+          "height": 34.21875
+        },
+        {
+          "pointerX": 834.546875,
+          "x": 696.390625,
+          "y": 22.8125,
+          "width": 75.9027099609375,
+          "height": 34.21875
+        },
+        {
+          "pointerX": 842.359375,
+          "x": 696.390625,
+          "y": 22.8125,
+          "width": 76.2249755859375,
+          "height": 34.21875
+        }
+      ],
+      "continuousAcrossGap": true,
+      "anchoredFarEdge": true,
+      "noLabelOrLensRebuild": true,
+      "smoothReversal": true,
+      "smoothLeave": true,
+      "motionFrames": 75,
+      "clickTravel": true,
+      "keyboard": true,
+      "reducedMotion": true,
+      "mobileResize": true
+    }
+  ],
+  "errors": [],
+  "limitations": "Isolated Chrome mouse and responsive viewport checks. No production writes or physical-device/Safari/Firefox verification."
+}
