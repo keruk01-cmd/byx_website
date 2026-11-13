@@ -567,21 +567,22 @@ a:hover>.feed-image img,a:focus-visible>.feed-image img{transform:scale(1.035);f
   position:absolute;top:10px;right:10px;background:var(--fg);color:var(--bg);
   font-family:var(--font-mono);font-size:9.5px;letter-spacing:.08em;padding:3px 7px;line-height:1;
 }
-.project-gallery{--cover-width:min(34vw,680px);--cover-step:clamp(56px,9vw,150px);margin:0;background:var(--bg)}
-.project-gallery[data-count="2"],.project-gallery[data-count="3"]{--cover-width:min(56vw,900px)}
-.project-gallery[data-count="4"],.project-gallery[data-count="5"]{--cover-width:min(44vw,760px)}
-.project-gallery .gal-track{position:relative;isolation:isolate;height:clamp(220px,38vw,calc(100svh - var(--head-h) - 130px));gap:0;padding-inline:calc((100% - var(--cover-step))*.5);overflow-y:hidden;background:var(--bg);touch-action:pan-x pan-y pinch-zoom;outline-offset:-4px;cursor:var(--cur-hand);user-select:none}
-.project-gallery :is(.gal-s,.cover-ghost){flex:0 0 var(--cover-step);scroll-snap-align:center;min-width:0;margin:0;height:100%;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.project-gallery .cover-plane{flex:none;display:block;width:var(--cover-width);height:100%;perspective:1200px;transform:translateX(calc(var(--cover-shift,0)*1px));will-change:transform}
-.project-gallery :is(.gal-s,.cover-ghost) img{width:100%;max-width:none;height:100%;object-fit:contain;background:var(--bg);transform:rotateY(calc(var(--cover-turn,0)*1deg)) scale(var(--cover-scale,1));opacity:1;transform-origin:center;backface-visibility:hidden;-webkit-user-drag:none;will-change:transform;pointer-events:auto}
-.project-gallery[data-single] .gal-track{padding:0;justify-content:center}
-.project-gallery[data-single] .gal-s{flex-basis:100%;margin:0}
-.project-gallery[data-single] .cover-plane{width:100%}
-.project-gallery .gal-dots{margin:0;padding:12px;gap:7px}
-.project-gallery .gal-dot{width:9px;height:9px;padding:0;border:1px solid var(--mute);border-radius:50%;background:transparent}
-.project-gallery .gal-dot.on{background:var(--fg);border-color:var(--fg)}
+.project-gallery{--cover-width:clamp(220px,52vw,760px);margin:0;background:var(--bg);container-type:inline-size}
+.project-gallery .gal-track{position:relative;display:block;isolation:isolate;height:clamp(280px,49vw,660px);padding:0;overflow:hidden;scroll-snap-type:none;background:var(--bg);touch-action:pan-y pinch-zoom;outline-offset:-4px;cursor:var(--cur-hand);user-select:none;-webkit-user-select:none}
+.project-gallery .gal-s{position:absolute;inset:0;margin:0;display:grid;place-items:center;pointer-events:none;scroll-snap-align:none}
+.project-gallery .cover-plane{position:relative;display:block;width:var(--cover-width);aspect-ratio:4/3;margin-top:-32px;transform:perspective(1400px) translate3d(calc(var(--cover-shift,0)*1px),calc(var(--cover-lift,0)*1px),calc(var(--cover-depth,0)*1px)) rotateY(calc(var(--cover-turn,0)*1deg)) scale(var(--cover-scale,1));transform-origin:center;will-change:transform;pointer-events:auto}
+.project-gallery .cover-surface{display:block;width:100%;height:100%;overflow:hidden;background:var(--bg);box-shadow:0 18px 26px -20px color-mix(in srgb,var(--fg) 30%,transparent),0 32px 48px -28px color-mix(in srgb,var(--fg) 22%,transparent)}
+.project-gallery .cover-plane img{display:block;width:100%;max-width:none;height:100%;object-fit:contain;object-position:calc(50% + var(--cover-drift,0)*1%) 50%;filter:brightness(var(--cover-light,1));backface-visibility:hidden;-webkit-user-drag:none;pointer-events:none}
+.project-gallery .cover-reflection{position:absolute;top:calc(100% + 9px);left:0;width:100%;height:28%;overflow:hidden;opacity:.13;pointer-events:none;mask-image:linear-gradient(to bottom,#000,transparent 85%);-webkit-mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+.project-gallery .cover-reflection img{height:auto;aspect-ratio:4/3;transform:scaleY(-1)}
+.project-gallery[data-single] .gal-track{cursor:var(--cur-arrow)}
+.project-gallery .gal-dots{margin:0;padding:4px 12px 20px;gap:0;flex-wrap:wrap}
+.project-gallery .gal-dot{position:relative;width:24px;height:24px;padding:0;border:0;background:transparent}
+.project-gallery .gal-dot::before{content:'';position:absolute;inset:9px;border-radius:50%;background:var(--faint);transition:background .2s,transform .2s}
+.project-gallery .gal-dot.on::before{background:var(--fg);transform:scale(1.35)}
 .project-gallery .gal-dot:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
-@media(max-width:880px){.project-gallery[data-count]{--cover-width:min(82vw,720px);--cover-step:68vw}.project-gallery .gal-track{height:clamp(260px,58svh,500px);overscroll-behavior-x:contain}}
+@media(max-width:880px){.project-gallery{--cover-width:min(82vw,720px,84svh)}.project-gallery .gal-track{height:clamp(260px,84vw,76svh)}}
+@media(prefers-reduced-motion:reduce){.project-gallery .cover-plane{will-change:auto}.project-gallery .gal-dot::before{transition:none}}
 
 /* ---------- ABOUT / CONTACT ---------- */
 .about-grid,.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-bottom:var(--hair) solid var(--fg)}
@@ -2516,10 +2517,10 @@ function viewProjectDetail(code){
   </section>
   <section class="gal project-gallery" data-count="${Math.min(7,shots.length)}" data-visible="${Math.min(7,shots.length)}"${shots.length===1?' data-single':''} role="region" aria-roledescription="캐러셀" aria-label="${esc(p.name)} 프로젝트 이미지">
     <div class="gal-track" tabindex="0" aria-label="프로젝트 이미지 · 좌우로 밀거나 방향키로 전환">
-      ${shots.map((src,j)=>`<figure class="gal-s" data-cover="${j}" role="group" aria-roledescription="슬라이드" aria-label="${j+1} / ${shots.length}"><span class="cover-plane"><img src="${esc(src)}" alt="${esc(p.name)} · ${j+1}" draggable="false"${j?' loading="lazy"':''}></span></figure>`).join('')}
+      ${shots.map((src,j)=>`<figure class="gal-s" data-cover="${j}" role="group" aria-roledescription="슬라이드" aria-label="${j+1} / ${shots.length}: ${esc(p.name)}"><span class="cover-plane"><span class="cover-surface"><img src="${esc(src)}" alt="${esc(p.name)} · ${j+1}" draggable="false"${j?' loading="lazy"':''}></span><span class="cover-reflection" aria-hidden="true"><img src="${esc(src)}" alt="" draggable="false" loading="lazy"></span></span></figure>`).join('')}
     </div>
     <span class="sr-only" data-gallery-status aria-live="polite" aria-atomic="true"></span>
-    ${shots.length>1?`<div class="gal-dots" role="group" aria-label="이미지 선택">${shots.map((_,j)=>`<button type="button" class="gal-dot${j===0?' on':''}" aria-label="${j+1}번 이미지" aria-pressed="${j===0}"></button>`).join('')}</div>`:''}
+    ${shots.length>1?`<div class="gal-dots" role="group" aria-label="이미지 선택">${shots.map((_,j)=>`<button type="button" class="gal-dot${j===0?' on':''}" tabindex="-1" aria-label="${j+1}번 이미지 보기" aria-current="${j===0?'true':'false'}"></button>`).join('')}</div>`:''}
   </section>
   <section class="pd-body">
     <div class="txt">${paras.map(t => `<p>${esc(t)}</p>`).join('') || '<p class="mute mono">본문이 아직 없습니다.</p>'}</div>
@@ -4724,51 +4725,128 @@ function bindPage(page, arg){
   if (page === 'admin') bindAdmin();
 }
 
-/* swipe groups: the scrolling is native, this only drives arrows and dots */
+/* Project rail: transform-only spring motion. Blog galleries keep native scrolling. */
 function bindProjectGallery(g){
-  const track=$('.gal-track',g),cards=$$('[data-cover]',g),slides=$$('.gal-s',g),dots=$$('.gal-dot',g),status=$('[data-gallery-status]',g),n=slides.length,reduced=matchMedia('(prefers-reduced-motion:reduce)');
-  let index=0,frame=0,scrollFrame=0,drag=null,suppress=false,disposed=false,targetPhysical=0;
-  const clamp=i=>Math.max(0,Math.min(n-1,i));
-  const position=i=>Math.max(0,cards[i].offsetLeft-(track.clientWidth-cards[i].offsetWidth)/2);
-  const nearest=()=>{let best=0,distance=Infinity;cards.forEach((_,i)=>{const d=Math.abs(position(i)-track.scrollLeft);if(d<distance){distance=d;best=i;}});return best;};
-  const stop=()=>{cancelAnimationFrame(frame);frame=0;track.style.scrollSnapType='';};
-  function mark(){
-    scrollFrame=0;const physical=nearest();index=physical;
-    const spacing=cards.length>1?position(1)-position(0):cards[0].offsetWidth;
-    const main=cards[physical].querySelector('img').offsetWidth,width=track.clientWidth,mobile=width<=880,sideSlots=mobile?1:3,gap=Math.max(2,Math.min(5,width*.003)),outer=Math.max(8,Math.min(20,width*.025)),room=Math.max(1,(width-main)/2-outer-gap*sideSlots);
-    const turns=mobile?[0,62,72,78]:[0,38,54,66],depths=[1,1,.82,.66],extent=(scale,turn)=>{const h=main*scale/2,a=turn*Math.PI/180,depth=h*Math.sin(a)/1200;return{inner:h*Math.cos(a)/(1+depth),outer:h*Math.cos(a)/(1-depth)};};
-    let low=0,high=.72;for(let pass=0;pass<18;pass++){const scale=(low+high)/2,total=Array.from({length:sideSlots},(_,i)=>i+1).reduce((sum,i)=>{const e=extent(scale*depths[i],turns[i]);return sum+e.inner+e.outer;},0);if(total>room)high=scale;else low=scale;}
-    const scales=[1,low,low*.82,low*.66],centers=[0];let cursor=main/2+gap;
-    for(let i=1;i<=sideSlots;i++){const e=extent(scales[i],turns[i]);centers[i]=cursor+e.inner;cursor+=e.inner+e.outer+gap;}
+  const track=$('.gal-track',g),cards=$$('[data-cover]',g),dots=$$('.gal-dot',g),status=$('[data-gallery-status]',g),n=cards.length,reduced=matchMedia('(prefers-reduced-motion:reduce)');
+  if(!n)return()=>{};
+  let index=0,position=0,target=0,velocity=0,frame=0,lastTime=0,width=1,spacing=1,drag=null,wheel=null,wheelTimer=0,suppress=false,disposed=false;
+  const bound=x=>Math.max(0,Math.min(n-1,x));
+  const nearest=()=>Math.round(bound(position));
+  const rubber=x=>{const edge=bound(x),over=x-edge;return edge+over*.3/(1+Math.abs(over)*.7);};
+  const stop=()=>{cancelAnimationFrame(frame);frame=0;};
+  function paint(){
+    index=nearest();let visible=0;
     cards.forEach((card,i)=>{
-      const distance=(position(i)-track.scrollLeft)/Math.max(1,spacing),abs=Math.abs(distance),direction=Math.sign(distance),slot=Math.min(sideSlots,abs),from=Math.floor(slot),to=Math.min(sideSlots,from+1),mix=slot-from,blend=values=>values[from]+(values[to]-values[from])*mix;
-      // Fit the full perspective bounds of every receding photo inside the viewport.
-      const desired=direction*blend(centers);
-      card.style.visibility=distance>=-sideSlots-.05&&distance<=sideSlots+.05?'visible':'hidden';card.style.zIndex=String(100-Math.round(abs*10));card.style.setProperty('--cover-shift',String(desired-distance*spacing));card.style.setProperty('--cover-turn',String(-direction*blend(turns)));card.style.setProperty('--cover-scale',String(blend(scales)));
+      const d=i-position,a=Math.abs(d),side=Math.sign(d),depth=Math.min(a,4),near=Math.min(a,1),show=a<3.6;
+      card.style.visibility=show?'visible':'hidden';card.style.zIndex=String(100-Math.round(a*10));card.setAttribute('aria-hidden',String(i!==index));
+      if(!show)return;visible++;
+      // The first neighbour clears the front image; subsequent images form a depth rail.
+      const shift=side*width*(near*.64+Math.max(0,a-1)*.22);
+      card.style.setProperty('--cover-shift',shift.toFixed(3));
+      card.style.setProperty('--cover-depth',String(-depth*100));
+      card.style.setProperty('--cover-lift',String(near*12));
+      card.style.setProperty('--cover-turn',String(reduced.matches?0:-side*(near*48+Math.max(0,depth-1)*5)));
+      card.style.setProperty('--cover-scale',String(1-Math.min(depth,3)*.11));
+      card.style.setProperty('--cover-light',String(1-Math.min(depth,3)*.13));
+      // Object positioning drifts only inside spare contain space, preserving the full drawing.
+      card.style.setProperty('--cover-drift',String(reduced.matches?0:-side*near*6));
     });
-    g.dataset.index=String(index);g.dataset.visible=String(Math.min(n,sideSlots*2+1));g.dataset.atStart=String(index===0);g.dataset.atEnd=String(index===n-1);dots.forEach((dot,i)=>{dot.classList.toggle('on',i===index);dot.setAttribute('aria-pressed',String(i===index));});const label=`이미지 ${index+1} 선택됨`;if(status&&status.textContent!==label)status.textContent=label;
+    g.dataset.index=String(index);g.dataset.visible=String(visible);g.dataset.atStart=String(index===0);g.dataset.atEnd=String(index===n-1);
+    dots.forEach((dot,i)=>{dot.classList.toggle('on',i===index);dot.setAttribute('aria-current',String(i===index));});
+    const label=`이미지 ${index+1} / ${n}`;if(status&&status.textContent!==label)status.textContent=label;
   }
-  function goPhysical(physical){
-    stop();targetPhysical=Math.max(0,Math.min(cards.length-1,physical));const from=track.scrollLeft,to=position(targetPhysical);
-    if(reduced.matches||document.hidden||Math.abs(to-from)<1){track.scrollLeft=to;mark();return;}
-    track.style.scrollSnapType='none';const start=performance.now();
-    function tick(now){if(disposed)return;const p=Math.min(1,(now-start)/360);track.scrollLeft=from+(to-from)*(1-Math.pow(1-p,3));mark();if(p<1)frame=requestAnimationFrame(tick);else{frame=0;track.style.scrollSnapType='';}}
+  function settle(next,speed=0){
+    stop();target=Math.round(bound(next));velocity=Math.max(-14,Math.min(14,speed));
+    if(reduced.matches||document.hidden){position=target;velocity=0;paint();return;}
+    const damping=27+Math.min(5,Math.abs(velocity)*.35);lastTime=performance.now();
+    function tick(now){
+      if(disposed)return;
+      const elapsed=Math.min(.032,Math.max(.001,(now-lastTime)/1000));lastTime=now;
+      // Small integration steps keep the spring stable across slow frames.
+      for(let t=0;t<elapsed;t+=.008){const dt=Math.min(.008,elapsed-t);velocity+=((target-position)*210-velocity*damping)*dt;position+=velocity*dt;}
+      if(Math.abs(target-position)<.001&&Math.abs(velocity)<.008){position=target;velocity=0;frame=0;paint();return;}
+      paint();frame=requestAnimationFrame(tick);
+    }
     frame=requestAnimationFrame(tick);
   }
-  const go=i=>goPhysical(clamp(i)),step=d=>goPhysical((frame?targetPhysical:nearest())+d);
-  dots.forEach((dot,i)=>dot.onclick=()=>go(i));
-  const onScroll=()=>{if(!scrollFrame)scrollFrame=requestAnimationFrame(mark);};
-  const onKey=e=>{if(e.altKey||e.ctrlKey||e.metaKey||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();if(e.key==='Home')go(0);else if(e.key==='End')go(n-1);else step(e.key==='ArrowLeft'?-1:1);};
-  const onDown=e=>{suppress=false;if(e.pointerType==='touch'||e.button!==0)return;stop();drag={id:e.pointerId,x:e.clientX,y:e.clientY,scroll:track.scrollLeft,moved:false};};
-  const onMove=e=>{if(!drag||drag.id!==e.pointerId)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(!drag.moved&&Math.abs(dx)>7&&Math.abs(dx)>Math.abs(dy)*1.2){drag.moved=true;track.setPointerCapture(e.pointerId);track.style.scrollSnapType='none';}if(drag.moved){e.preventDefault();suppress=true;track.scrollLeft=drag.scroll-dx;mark();}};
-  const onUp=()=>{const moved=drag?.moved;drag=null;if(moved)goPhysical(nearest());};
-  const onClick=e=>{if(suppress){e.preventDefault();return;}const card=e.target.closest('[data-cover]');if(card)goPhysical(cards.indexOf(card));};
-  const onWheel=event=>{if(Math.abs(event.deltaX)>Math.abs(event.deltaY))stop();};
-  const size=new ResizeObserver(()=>{stop();track.scrollLeft=position(index);mark();});size.observe(track);
-  const media=()=>{stop();track.scrollLeft=position(index);mark();};
-  track.addEventListener('scroll',onScroll,{passive:true});track.addEventListener('scrollend',mark);track.addEventListener('pointerdown',onDown);track.addEventListener('pointermove',onMove);track.addEventListener('pointerup',onUp);track.addEventListener('pointercancel',onUp);track.addEventListener('lostpointercapture',onUp);track.addEventListener('wheel',onWheel,{passive:true});track.addEventListener('click',onClick);g.addEventListener('keydown',onKey);reduced.addEventListener('change',media);
-  track.scrollTop=0;track.scrollLeft=position(0);mark();
-  return()=>{disposed=true;stop();cancelAnimationFrame(scrollFrame);size.disconnect();track.removeEventListener('scroll',onScroll);track.removeEventListener('scrollend',mark);track.removeEventListener('pointerdown',onDown);track.removeEventListener('pointermove',onMove);track.removeEventListener('pointerup',onUp);track.removeEventListener('pointercancel',onUp);track.removeEventListener('lostpointercapture',onUp);track.removeEventListener('wheel',onWheel);track.removeEventListener('click',onClick);g.removeEventListener('keydown',onKey);reduced.removeEventListener('change',media);};
+  function finishWheel(){
+    clearTimeout(wheelTimer);wheelTimer=0;if(!wheel)return;
+    const gesture=wheel;wheel=null;
+    if(!reduced.matches)release(gesture.start,gesture.travel,gesture.velocity);
+  }
+  function go(next){finishWheel();settle(next);}
+  function release(start,travel,speed){
+    if(reduced.matches){settle(start+(Math.abs(travel)>=40?Math.sign(travel):0));return;}
+    const throwDistance=Math.max(-4,Math.min(4,speed*.22));let next=Math.round(bound(position+throwDistance));
+    if(Math.abs(speed)*spacing>180&&Math.abs(travel)>8){const direction=Math.sign(speed);next=direction>0?Math.max(start+1,next):Math.min(start-1,next);}
+    settle(next,speed);
+  }
+  function clearDrag(){
+    const previous=drag;drag=null;
+    if(previous&&track.hasPointerCapture(previous.id))track.releasePointerCapture(previous.id);
+    return previous;
+  }
+  function onDown(e){
+    if(e.button!==0||e.isPrimary===false||n<2)return;
+    finishWheel();stop();suppress=false;
+    drag={id:e.pointerId,x:e.clientX,y:e.clientY,lastX:e.clientX,time:performance.now(),base:position,start:nearest(),velocity:0,moved:false};
+  }
+  function onMove(e){
+    if(!drag||e.pointerId!==drag.id)return;
+    const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
+    if(!drag.moved){
+      if(Math.abs(dy)>8&&Math.abs(dy)>Math.abs(dx)){clearDrag();settle(nearest());return;}
+      if(Math.abs(dx)<7||Math.abs(dx)<Math.abs(dy)*1.15)return;
+      drag.moved=true;
+      track.setPointerCapture(e.pointerId);
+    }
+    e.preventDefault();suppress=true;
+    const now=performance.now(),dt=Math.max(8,now-drag.time),sample=(drag.lastX-e.clientX)/spacing*1000/dt;
+    drag.velocity=drag.velocity*.35+sample*.65;drag.time=now;drag.lastX=e.clientX;
+    if(!reduced.matches){position=rubber(drag.base-dx/spacing);paint();}
+  }
+  function onUp(e){
+    if(!drag||e.pointerId!==drag.id)return;
+    const previous=clearDrag();
+    if(previous.moved){const speed=performance.now()-previous.time>100?0:previous.velocity;release(previous.start,previous.x-e.clientX,speed);}
+    else settle(nearest());
+  }
+  function onCancel(e){
+    // Touch starts with implicit capture on the image surface. Transferring it to
+    // the rail emits a bubbling lost event from that child, not a cancelled drag.
+    if(e?.type==='lostpointercapture'&&(e.target!==track||track.hasPointerCapture(e.pointerId)))return;
+    const previous=clearDrag();if(previous){suppress=previous.moved;settle(nearest());}
+  }
+  function onClick(e){
+    if(suppress){suppress=false;e.preventDefault();return;}
+    const card=e.target.closest('[data-cover]');if(card){track.focus({preventScroll:true});go(cards.indexOf(card));}
+  }
+  function onKey(e){
+    if(e.altKey||e.ctrlKey||e.metaKey||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+    e.preventDefault();clearDrag();
+    const next=e.key==='Home'?0:e.key==='End'?n-1:(frame?target:nearest())+(e.key==='ArrowLeft'?-1:1);go(next);
+  }
+  function onWheel(e){
+    if(n<2||drag||e.ctrlKey||(!e.shiftKey&&Math.abs(e.deltaX)<=Math.abs(e.deltaY)))return;
+    const delta=(e.shiftKey&&Math.abs(e.deltaY)>Math.abs(e.deltaX)?e.deltaY:e.deltaX)*(e.deltaMode===1?16:e.deltaMode===2?track.clientWidth:1);
+    if(!delta)return;e.preventDefault();
+    const now=performance.now();
+    if(!wheel){stop();wheel={start:nearest(),base:position,travel:0,velocity:0,time:now-16,stepped:false};}
+    const dt=Math.max(8,now-wheel.time);wheel.velocity=wheel.velocity*.4+delta/spacing*1000/dt*.6;wheel.time=now;wheel.travel+=delta;
+    if(reduced.matches){if(!wheel.stepped&&Math.abs(wheel.travel)>12){wheel.stepped=true;settle(wheel.start+Math.sign(wheel.travel));}}
+    else{position=rubber(wheel.base+wheel.travel/spacing);paint();}
+    clearTimeout(wheelTimer);wheelTimer=setTimeout(finishWheel,140);
+  }
+  function measure(){
+    // Read dimensions once per resize, never in the animation loop.
+    clearDrag();finishWheel();stop();width=$('.cover-plane',cards[0]).offsetWidth;spacing=Math.max(100,width*.64);position=target=index;velocity=0;paint();
+  }
+  function onVisibility(){if(document.hidden){clearDrag();finishWheel();stop();position=target=nearest();paint();}}
+  dots.forEach((dot,i)=>dot.onclick=()=>{track.focus({preventScroll:true});go(i);});
+  const size=new ResizeObserver(measure);size.observe(track);
+  track.addEventListener('pointerdown',onDown);track.addEventListener('pointermove',onMove);track.addEventListener('pointerup',onUp);track.addEventListener('pointercancel',onCancel);track.addEventListener('lostpointercapture',onCancel);track.addEventListener('click',onClick);track.addEventListener('wheel',onWheel,{passive:false});g.addEventListener('keydown',onKey);reduced.addEventListener('change',measure);document.addEventListener('visibilitychange',onVisibility);window.addEventListener('blur',onCancel);
+  measure();
+  return()=>{disposed=true;clearDrag();stop();clearTimeout(wheelTimer);size.disconnect();dots.forEach(dot=>dot.onclick=null);track.removeEventListener('pointerdown',onDown);track.removeEventListener('pointermove',onMove);track.removeEventListener('pointerup',onUp);track.removeEventListener('pointercancel',onCancel);track.removeEventListener('lostpointercapture',onCancel);track.removeEventListener('click',onClick);track.removeEventListener('wheel',onWheel);g.removeEventListener('keydown',onKey);reduced.removeEventListener('change',measure);document.removeEventListener('visibilitychange',onVisibility);window.removeEventListener('blur',onCancel);};
 }
 function bindGalleries(root){
   const cleaners=[];
