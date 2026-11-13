@@ -381,6 +381,13 @@ table.idx .st{display:inline-block;max-width:100%;white-space:normal;overflow-wr
 .specs dt,.specs dd{font-family:var(--font-mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;padding:8px 0;border-bottom:var(--hair) solid var(--faint);margin:0}
 .specs dt{color:var(--mute);padding-right:22px;white-space:nowrap}
 .specs dd{text-align:right}
+.project-scene{position:relative;isolation:isolate}
+.project-scene .project-gallery{position:sticky;top:var(--head-h);z-index:0;background:transparent;opacity:calc(1 - var(--project-reading,0)*.84)}
+.project-scene .gal-track{background:transparent}
+.project-scene .pd-body{position:relative;z-index:1;align-items:start;min-height:55svh;padding-bottom:clamp(60px,12svh,140px);background:transparent;pointer-events:none}
+.project-scene .pd-body :is(.txt,.specs){position:relative;background:transparent;pointer-events:auto;text-shadow:0 0 9px var(--bg),0 1px 3px var(--bg)}
+.project-scene .specs :is(dt,dd){border:0}
+@media(prefers-reduced-motion:reduce){.project-scene .project-gallery{position:relative;top:auto;opacity:1}}
 .shots{display:grid;grid-template-columns:1fr;gap:var(--hair);background:var(--fg)}
 .shots .s{background:var(--bg)}
 .shots img{width:100%;height:auto;max-height:82vh;object-fit:cover;display:block}
@@ -2489,6 +2496,7 @@ function viewProjectDetail(code){
   const paras = String(p.descr || '').split(/\n\s*\n/).filter(Boolean);
 
   return `
+  <div class="project-scene">
   <section class="pd-head">
     <div class="code">${esc(p.code)} / ${esc(p.type)}</div>
     <h1 class="display h-l" style="margin-top:.14em">${esc(p.name)}</h1>
@@ -2503,7 +2511,8 @@ function viewProjectDetail(code){
   <section class="pd-body">
     <div class="txt">${paras.map(t => `<p>${esc(t)}</p>`).join('') || '<p class="mute mono">본문이 아직 없습니다.</p>'}</div>
     <div class="specs"><dl>${rows.map(([k,v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl></div>
-  </section>`;
+  </section>
+  </div>`;
 }
 
 const yearOf = s => (String(s).match(/\d{4}/) || ['—'])[0];
@@ -4677,7 +4686,8 @@ function bindPage(page, arg){
 function bindProjectGallery(g){
   const track=$('.gal-track',g),cards=$$('[data-cover]',g),dots=$$('.gal-dot',g),status=$('[data-gallery-status]',g),n=cards.length,reduced=matchMedia('(prefers-reduced-motion:reduce)');
   if(!n)return()=>{};
-  let index=0,position=0,target=0,velocity=0,frame=0,lastTime=0,width=1,spacing=1,drag=null,wheel=null,wheelTimer=0,suppress=false,disposed=false;
+  const scene=g.closest('.project-scene'),body=scene&&$('.pd-body',scene);
+  let index=0,position=0,target=0,velocity=0,frame=0,lastTime=0,width=1,spacing=1,drag=null,wheel=null,wheelTimer=0,readingFrame=0,suppress=false,disposed=false;
   const bound=x=>Math.max(0,Math.min(n-1,x));
   const nearest=()=>Math.round(bound(position));
   const rubber=x=>{const edge=bound(x),over=x-edge;return edge+over*.3/(1+Math.abs(over)*.7);};
@@ -4787,14 +4797,23 @@ function bindProjectGallery(g){
   }
   function measure(){
     // Read dimensions once per resize, never in the animation loop.
-    clearDrag();finishWheel();stop();width=$('.cover-plane',cards[0]).offsetWidth;spacing=Math.max(100,width*.64);position=target=index;velocity=0;paint();
+    clearDrag();finishWheel();stop();width=$('.cover-plane',cards[0]).offsetWidth;spacing=Math.max(100,width*.64);position=target=index;velocity=0;paint();updateReading();
   }
+  function updateReading(){
+    readingFrame=0;if(!body)return;
+    // The gallery stays behind the transparent copy and gently recedes as it overlaps.
+    const overlap=g.getBoundingClientRect().bottom-body.getBoundingClientRect().top,span=Math.max(160,Math.min(track.clientHeight*.6,innerHeight*.5));
+    const progress=reduced.matches?0:Math.max(0,Math.min(1,overlap/span));
+    scene.style.setProperty('--project-reading',progress.toFixed(4));
+  }
+  const onReadingScroll=()=>{if(!readingFrame)readingFrame=requestAnimationFrame(updateReading);};
   function onVisibility(){if(document.hidden){clearDrag();finishWheel();stop();position=target=nearest();paint();}}
   dots.forEach((dot,i)=>dot.onclick=()=>{track.focus({preventScroll:true});go(i);});
   const size=new ResizeObserver(measure);size.observe(track);
   track.addEventListener('pointerdown',onDown);track.addEventListener('pointermove',onMove);track.addEventListener('pointerup',onUp);track.addEventListener('pointercancel',onCancel);track.addEventListener('lostpointercapture',onCancel);track.addEventListener('click',onClick);track.addEventListener('wheel',onWheel,{passive:false});g.addEventListener('keydown',onKey);reduced.addEventListener('change',measure);document.addEventListener('visibilitychange',onVisibility);window.addEventListener('blur',onCancel);
+  window.addEventListener('scroll',onReadingScroll,{passive:true});
   measure();
-  return()=>{disposed=true;clearDrag();stop();clearTimeout(wheelTimer);size.disconnect();dots.forEach(dot=>dot.onclick=null);track.removeEventListener('pointerdown',onDown);track.removeEventListener('pointermove',onMove);track.removeEventListener('pointerup',onUp);track.removeEventListener('pointercancel',onCancel);track.removeEventListener('lostpointercapture',onCancel);track.removeEventListener('click',onClick);track.removeEventListener('wheel',onWheel);g.removeEventListener('keydown',onKey);reduced.removeEventListener('change',measure);document.removeEventListener('visibilitychange',onVisibility);window.removeEventListener('blur',onCancel);};
+  return()=>{disposed=true;clearDrag();stop();clearTimeout(wheelTimer);cancelAnimationFrame(readingFrame);size.disconnect();dots.forEach(dot=>dot.onclick=null);track.removeEventListener('pointerdown',onDown);track.removeEventListener('pointermove',onMove);track.removeEventListener('pointerup',onUp);track.removeEventListener('pointercancel',onCancel);track.removeEventListener('lostpointercapture',onCancel);track.removeEventListener('click',onClick);track.removeEventListener('wheel',onWheel);g.removeEventListener('keydown',onKey);reduced.removeEventListener('change',measure);document.removeEventListener('visibilitychange',onVisibility);window.removeEventListener('blur',onCancel);window.removeEventListener('scroll',onReadingScroll);};
 }
 function bindGalleries(root){
   const cleaners=[];
@@ -4999,7 +5018,7 @@ function bindGuidelines(arg){
 /* ============================================================
    9. CHROME + BOOT
    ============================================================ */
-const NAV_PILL={animation:null,inkAnimation:null,wordAnimation:null,lensFrame:0,key:'',target:null,mapKey:''};
+const NAV_PILL={animation:null,inkAnimation:null,wordAnimation:null,lensFrame:0,key:'',target:null,mapKey:'',hoverKey:'',traveling:false};
 function updateNavLens(width,height){
   const key=Math.round(width)+'/'+Math.round(height);if(NAV_PILL.mapKey===key)return;NAV_PILL.mapKey=key;
   updateLensMap($('#nav-lens-map'),width,height,height/2,14,.09);
@@ -5027,10 +5046,20 @@ function updateNavPill(instant=false){
   const cancel=()=>{cancelAnimationFrame(NAV_PILL.lensFrame);NAV_PILL.lensFrame=0;for(const key of ['animation','inkAnimation','wordAnimation']){NAV_PILL[key]?.cancel();NAV_PILL[key]=null;}};
   links.forEach(link=>{if(link===selected)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});
   const parent=nav.getBoundingClientRect();
+  const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(instant||document.hidden||reduced||!matchMedia('(hover:hover) and (pointer:fine)').matches)NAV_PILL.hoverKey='';
   if(!selected||!parent.width||!parent.height){
-    updateNavLens(100,44);cancel();$('#top').style.removeProperty('--nav-aperture');NAV_PILL.target=null;nav.dataset.pillMotion='hidden';pill.style.opacity=ink.style.opacity='0';return;
+    updateNavLens(100,44);cancel();$('#top').style.removeProperty('--nav-aperture');NAV_PILL.target=null;NAV_PILL.hoverKey='';NAV_PILL.traveling=false;nav.dataset.pillMotion='hidden';pill.style.opacity=ink.style.opacity='0';return;
   }
   const r=selected.getBoundingClientRect(),target={x:r.x+r.width/2-parent.x,width:r.width,height:r.height},key=selected.dataset.p;
+  const hoverOnly=NAV_PILL.key===key,hovered=links.find(link=>link.dataset.p===NAV_PILL.hoverKey&&link!==selected&&link.matches(':hover'));
+  if(hovered){
+    const h=hovered.getBoundingClientRect(),distance=h.x+h.width/2-r.x-r.width/2,reach=Math.min(10,3+Math.abs(distance)*.045);
+    // Keep the far edge anchored; only the edge facing the hovered link reaches out.
+    target.x+=Math.sign(distance)*reach/2;target.width+=reach;
+  }
+  // A hover can queue a lean, but never interrupt a route transition.
+  if(hoverOnly&&NAV_PILL.traveling&&NAV_PILL.animation&&!instant)return;
   const same=NAV_PILL.key===key&&NAV_PILL.target&&Math.abs(NAV_PILL.target.x-target.x)<.5&&Math.abs(NAV_PILL.target.width-target.width)<.5;
   if(same&&NAV_PILL.animation&&!instant)return;
   const current=pill.getBoundingClientRect(),shown=pill.style.opacity==='1'&&current.width>0;
@@ -5043,24 +5072,35 @@ function updateNavPill(instant=false){
   const counter=(x,width,height)=>`scale(${target.width/width},${target.height/height}) translate(${-(x-width/2)}px,${-(parent.height-height)/2}px)`;
   const apply=g=>{for(const el of [pill,ink]){el.style.transform=transform(g.x);el.style.width=g.width+'px';el.style.height=g.height+'px';el.style.borderRadius='999px';}words.style.transform=counter(g.x,g.width,g.height);};
   updateNavLens(target.width,target.height);
-  const finish=()=>{apply(target);navAperture(target,parent);pill.classList.remove('is-traveling');nav.dataset.pillMotion='settled';};
-  if(instant||!shown||matchMedia('(prefers-reduced-motion:reduce)').matches||same){finish();return;}
-  const dx=target.x-from.x,stretch=Math.min(24,Math.abs(dx)*.12);
+  const finish=()=>{apply(target);navAperture(target,parent);pill.classList.remove('is-traveling');NAV_PILL.traveling=false;nav.dataset.pillMotion='settled';};
+  if(instant||!shown||document.hidden||reduced||same){finish();return;}
+  const dx=target.x-from.x,stretch=hoverOnly?0:Math.min(24,Math.abs(dx)*.12),duration=hoverOnly?240:320;
+  NAV_PILL.traveling=!hoverOnly;
   apply(target);pill.classList.add('is-traveling');nav.dataset.pillMotion='moving';
+  const progress=t=>hoverOnly?(1-(1+8*t)*Math.exp(-8*t))/(1-9*Math.exp(-8)):1-Math.pow(1-t,3);
   // Shape recovery follows travel progress, so both settle at the same instant.
   const wordFrames=[];
   const keyframes=Array.from({length:61},(_,i)=>{
-    const t=i/60,p=1-Math.pow(1-t,3),liquid=Math.sin(Math.PI*p)**2;
+    const t=i/60,p=progress(t),liquid=hoverOnly?0:Math.sin(Math.PI*p)**2;
     const width=from.width+(target.width-from.width)*p+stretch*liquid,height=from.height+(target.height-from.height)*p-target.height*.24*liquid;
     wordFrames.push({transform:counter(from.x+dx*p,width,height),offset:t});
     return{transform:transform(from.x+dx*p)+` scale(${width/target.width},${height/target.height})`,offset:t};
   });
-  const timing={duration:320,easing:'linear',fill:'both'},animation=pill.animate(keyframes,timing);
+  const timing={duration,easing:'linear',fill:'both'},animation=pill.animate(keyframes,timing);
   NAV_PILL.animation=animation;
   NAV_PILL.inkAnimation=ink.animate(keyframes,timing);NAV_PILL.wordAnimation=words.animate(wordFrames,timing);
-  const apertureFrame=()=>{if(NAV_PILL.animation!==animation)return;const t=Math.max(0,Math.min(1,(animation.currentTime||0)/320)),p=1-Math.pow(1-t,3),liquid=Math.sin(Math.PI*p)**2;navAperture({x:from.x+dx*p,width:from.width+(target.width-from.width)*p+stretch*liquid,height:from.height+(target.height-from.height)*p-target.height*.24*liquid},parent);NAV_PILL.lensFrame=requestAnimationFrame(apertureFrame);};apertureFrame();
-  animation.onfinish=()=>{if(NAV_PILL.animation!==animation)return;finish();cancel();};
+  const apertureFrame=()=>{if(NAV_PILL.animation!==animation)return;const t=Math.max(0,Math.min(1,(animation.currentTime||0)/duration)),p=progress(t),liquid=hoverOnly?0:Math.sin(Math.PI*p)**2;navAperture({x:from.x+dx*p,width:from.width+(target.width-from.width)*p+stretch*liquid,height:from.height+(target.height-from.height)*p-target.height*.24*liquid},parent);NAV_PILL.lensFrame=requestAnimationFrame(apertureFrame);};apertureFrame();
+  animation.onfinish=()=>{if(NAV_PILL.animation!==animation)return;finish();cancel();updateNavPill();};
 }
+function clearNavHover(){if(NAV_PILL.hoverKey){NAV_PILL.hoverKey='';updateNavPill();}}
+$('#nav').addEventListener('pointerover',event=>{
+  if(event.pointerType!=='mouse')return;
+  const key=event.target.closest('#nav a')?.dataset.p||'';
+  if(key!==NAV_PILL.hoverKey){NAV_PILL.hoverKey=key;updateNavPill();}
+});
+$('#nav').addEventListener('pointerleave',clearNavHover);
+document.addEventListener('pointerdown',event=>{if(event.pointerType!=='mouse')clearNavHover();},{passive:true});
+document.addEventListener('keydown',clearNavHover);
 window.addEventListener('resize',()=>updateNavPill(true),{passive:true});
 document.addEventListener('visibilitychange',()=>updateNavPill(true));
 matchMedia('(prefers-reduced-motion:reduce)').addEventListener('change',()=>updateNavPill(true));

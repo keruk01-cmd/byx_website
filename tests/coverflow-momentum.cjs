@@ -20,7 +20,9 @@ async function main(){
       const index=async()=>+(await gallery.getAttribute('data-index'));
       const rest=async()=>{await page.waitForTimeout(500);await page.waitForFunction(()=>{const g=document.querySelector('.project-gallery'),card=g.querySelector(`[data-cover="${g.dataset.index}"]`);return Math.abs(+card.style.getPropertyValue('--cover-shift'))<.1;});await page.waitForTimeout(100);};
       const select=async i=>{await page.locator('.gal-dot').nth(i).click();await rest();assert.equal(await index(),i);};
-      const center=async()=>{await track.evaluate(el=>{const b=el.getBoundingClientRect();scrollBy(0,b.top+b.height/2-innerHeight*.52);});const b=await track.boundingBox();return{x:width/2,y:Math.max(100,Math.min(height-35,b.y+b.height/2))};};
+      // Return to the image before dragging: the reading layer intentionally covers
+      // the background rail after scrolling down, especially in short landscapes.
+      const center=async()=>{await page.evaluate(()=>{scrollTo(0,0);return new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});await track.evaluate(el=>{const b=el.getBoundingClientRect();scrollBy(0,b.top+b.height/2-innerHeight*.52);});const b=await track.boundingBox();return{x:width/2,y:Math.max(100,Math.min(height-35,b.y+b.height/2))};};
       await select(3);await center();
       const initial=await gallery.evaluate(g=>({
         index:+g.dataset.index,slides:g.querySelectorAll('[data-cover]').length,
